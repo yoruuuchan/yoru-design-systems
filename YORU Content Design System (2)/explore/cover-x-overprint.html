@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>方向 X — 套印错位</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#EEF1F4;font-family:var(--font-body);display:flex;flex-direction:column;align-items:center;padding:24px;gap:12px}
+.stage{position:relative;width:810px;height:356px}
+.rack{position:absolute;top:0;left:0;width:3766px;display:flex;gap:20px;transform:scale(.215);transform-origin:top left}
+.caps{display:flex;gap:20px;width:810px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8A94A2}
+.caps span{flex:1}
+.pg{width:1242px;height:1656px;background:#fff;position:relative;overflow:hidden;isolation:isolate}
+/* 报头栏 — 字段顺序永不改变 */
+.rail{position:absolute;top:0;left:0;right:0;height:100px;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:30px;padding:0 96px;border-bottom:3px solid var(--ink-1);font-family:var(--font-mono);font-size:26px;letter-spacing:.14em;color:var(--ink-4);z-index:3}
+.wm{font-family:var(--font-title);font-weight:900;letter-spacing:.26em;color:var(--yoru-blue);font-size:30px}
+.rail .col{color:var(--accent);font-weight:600}
+.rail .no{justify-self:end}
+/* 巨号刊数压在版心底层，被页边裁掉 */
+.ghostno{position:absolute;right:-84px;bottom:-260px;font-family:var(--font-mono);font-weight:700;font-size:760px;line-height:.8;color:var(--accent-soft);z-index:0;letter-spacing:-.04em}
+.body{position:absolute;inset:100px 96px 0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-bottom:210px}
+/* 套印：同一句话印两遍，彩色那遍偏了 8px，multiply 让叠印处压深 */
+.op{position:relative;margin:0}
+.op .l{font-family:var(--font-title);font-weight:900;font-size:132px;line-height:1.1;letter-spacing:-.02em;display:block}
+.op .solid{color:var(--ink-1);position:relative;z-index:2}
+.op .ghost{position:absolute;top:-11px;left:14px;color:var(--accent);mix-blend-mode:multiply;z-index:1}
+.em{text-emphasis:filled dot var(--ink-1);text-emphasis-position:under right;-webkit-text-emphasis:filled dot var(--ink-1);-webkit-text-emphasis-position:under right}
+.lede{margin:42px 0 0;font-weight:300;font-size:42px;line-height:1.7;color:var(--ink-3);max-width:80%}
+.tags{display:flex;gap:16px;margin-top:44px}
+.tag{font-family:var(--font-ui);font-weight:500;font-size:26px;letter-spacing:.05em;padding:10px 22px;color:var(--accent-ink);border:2px solid var(--accent-hair)}
+.foot{position:absolute;left:96px;right:96px;bottom:88px;display:flex;justify-content:space-between;align-items:flex-end;z-index:3;font-family:var(--font-mono);font-size:26px;letter-spacing:.14em;color:var(--ink-5)}
+.hand{font-family:var(--font-body);font-size:30px;color:var(--ink-4);transform:rotate(-1.4deg);border-bottom:2px solid var(--line-2);padding-bottom:6px}
+/* 结尾页 */
+.endmark{position:absolute;right:-58px;bottom:170px;z-index:1}
+.endmark .l{font-family:var(--font-title);font-weight:900;font-size:560px;line-height:.82;display:block}
+.endmark .solid{color:var(--ink-1)}
+.endmark .ghost{position:absolute;top:-22px;left:28px;color:var(--accent);mix-blend-mode:multiply}
+.endbody{position:absolute;left:96px;top:280px;right:300px;z-index:2}
+.endbody h2{margin:0;font-family:var(--font-title);font-weight:900;font-size:92px;line-height:1.24;color:var(--ink-1)}
+.endbody ul{margin:52px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:26px}
+.endbody li{display:flex;gap:22px;font-size:38px;line-height:1.6;color:var(--ink-3)}
+.endbody li i{color:var(--accent);font-style:normal}
+</style></head><body>
+<div class="stage"><div class="rack">
+
+<div class="pg" data-yoru="signal">
+  <div class="rail"><span class="wm">YORU</span><span class="col">SIGNAL</span><span></span><span class="no">2026.08 · 01/06</span></div>
+  <div class="ghostno">12</div>
+  <div class="body">
+    <h1 class="op">
+      <span class="l ghost">这周值得装的<br>四个工具</span>
+      <span class="l solid">这周值得装的<br><span class="em">四个</span>工具</span>
+    </h1>
+    <p class="lede">都自己跑过一遍，附上踩过的坑。</p>
+    <div class="tags"><span class="tag">实测</span><span class="tag">工具</span></div>
+  </div>
+  <div class="foot"><span class="hand">第三个最省事</span><span>NO.12</span></div>
+</div>
+
+<div class="pg" data-yoru="special">
+  <div class="rail"><span class="wm">YORU</span><span class="col">SPECIAL</span><span></span><span class="no">2026.08 · 01/05</span></div>
+  <div class="ghostno">07</div>
+  <div class="body">
+    <h1 class="op">
+      <span class="l ghost">炸机第七次</span>
+      <span class="l solid"><span class="em">炸机</span>第七次</span>
+    </h1>
+    <p class="lede">这次不怪风，是自己手抖。</p>
+    <div class="tags"><span class="tag">FPV</span><span class="tag">记录</span></div>
+  </div>
+  <div class="foot"><span class="hand">电池又飞走一块</span><span>NO.07</span></div>
+</div>
+
+<div class="pg" data-yoru="signal">
+  <div class="rail"><span class="wm">YORU</span><span class="col">SIGNAL</span><span></span><span class="no">2026.08 · 06/06</span></div>
+  <div class="endmark">
+    <span class="l ghost">完</span>
+    <span class="l solid">完</span>
+  </div>
+  <div class="endbody">
+    <h2>看完顺手<br>点个收藏</h2>
+    <ul>
+      <li><i>—</i><span>四个工具都在正文里给了安装命令</span></li>
+      <li><i>—</i><span>踩坑那段单独标了红</span></li>
+    </ul>
+  </div>
+  <div class="foot"><span style="font-family:var(--font-title);font-weight:900;letter-spacing:.24em;color:var(--yoru-blue);font-size:30px">YORU</span><span>@yoru.hq</span></div>
+</div>
+
+</div></div>
+<div class="caps"><span>封面 · signal</span><span>封面 · special</span><span>结尾页 · 「完」</span></div>
+</body></html>

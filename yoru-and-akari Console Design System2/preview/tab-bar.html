@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Mobile tab bar" subtitle="Glass bar with selected pillow" viewport="700x180" --><html><head><meta charset="utf-8"><title>tab bar (mobile)</title>
+<link rel="stylesheet" href="_base.css">
+<script src="https://unpkg.com/lucide@0.452.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 18px 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 14px; border-radius: 16px; position: relative; height: 120px; }
+  .pane.akari { background: #E8ECF3; color: #0E1525; }
+  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .tag { font-size: 10px; font-family: var(--font-mono); }
+  .pane.akari .tag { color: #6B7793; }
+  .pane.yoru .tag { color: #A8B2CC; }
+
+  .tabs {
+    position: absolute; left: 14px; right: 14px; bottom: 14px;
+    display: flex; align-items: center; padding: 6px; border-radius: 22px;
+  }
+  .akari .tabs {
+    background: hsla(220, 30%, 98%, 0.7);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid hsla(225, 30%, 55%, 0.18);
+    box-shadow: -3px -3px 8px rgba(255,255,255,0.9), 4px 4px 16px rgba(143,158,191,0.30);
+  }
+  .yoru .tabs {
+    background: hsla(225, 35%, 14%, 0.62);
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+    border: 1px solid hsla(220, 40%, 70%, 0.12);
+    box-shadow: -3px -3px 10px rgba(255,255,255,0.05), 5px 5px 16px rgba(0,0,0,0.5);
+  }
+  .tab {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 6px 0; border-radius: 16px; cursor: pointer;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.02em;
+  }
+  .akari .tab { color: #6B7793; }
+  .yoru .tab  { color: #6B7691; }
+  .akari .tab.active { color: #0E1525; background: #EFF2F8; box-shadow: -2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(143,158,191,0.30); }
+  .yoru .tab.active  { color: #E6EAF6; background: #1B2340; box-shadow: -2px -2px 6px rgba(255,255,255,0.05), 3px 3px 10px rgba(0,0,0,0.45); }
+  .tab svg { width: 18px; height: 18px; stroke-width: 1.75; }
+
+  .glow {
+    position: absolute; inset: -12px -10px 0 -10px;
+    border-radius: 0 0 22px 22px; pointer-events: none; opacity: 0.7;
+  }
+  .akari .glow { background: radial-gradient(60% 90% at 50% 100%, rgba(79,108,232,0.18), transparent 70%); }
+  .yoru .glow { background: radial-gradient(60% 90% at 50% 100%, rgba(122,149,250,0.30), transparent 70%); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="pane akari">
+      <span class="tag">akari · glass tab bar</span>
+      <div class="tabs">
+        <div class="tab active"><i data-lucide="message-square-text"></i><span>chat</span></div>
+        <div class="tab"><i data-lucide="clock"></i><span>timeline</span></div>
+        <div class="tab"><i data-lucide="brain"></i><span>memory</span></div>
+        <div class="tab"><i data-lucide="settings"></i><span>console</span></div>
+      </div>
+    </div>
+    <div class="pane yoru">
+      <span class="tag">yoru · glass tab bar</span>
+      <div class="tabs">
+        <div class="tab active"><i data-lucide="message-square-text"></i><span>chat</span></div>
+        <div class="tab"><i data-lucide="clock"></i><span>timeline</span></div>
+        <div class="tab"><i data-lucide="brain"></i><span>memory</span></div>
+        <div class="tab"><i data-lucide="settings"></i><span>console</span></div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body></html>

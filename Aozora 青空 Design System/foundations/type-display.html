@@ -1,0 +1,21 @@
+<!-- @dsCard group="Type" viewport="700x230" name="Display scale" subtitle="Hero / poster sizes — 48 → 200px" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:20px;background:var(--neutral-0);">
+  <style>
+    .row { display:flex; flex-direction:column; gap:10px; }
+    .item { display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--stroke-hairline); padding-bottom:6px; }
+    .item:last-child { border:none; }
+    .label { font-family:var(--font-mono); font-size:10px; color:var(--text-muted); width:140px; flex:none; }
+    .sample { font-family:var(--font-display); font-weight:800;
+              letter-spacing:-0.03em; line-height:1; color:var(--text-strong);
+              overflow:hidden; white-space:nowrap; }
+  </style>
+  <div class="row">
+    <div class="item"><div class="label">display-xl · 200</div><div class="sample" style="font-size:60px">夏</div></div>
+    <div class="item"><div class="label">display-lg · 144</div><div class="sample" style="font-size:48px">SODA</div></div>
+    <div class="item"><div class="label">display-md · 96</div><div class="sample" style="font-size:40px">青空 Aozora</div></div>
+    <div class="item"><div class="label">display-sm · 64</div><div class="sample" style="font-size:30px">A glass of summer</div></div>
+    <div class="item"><div class="label">display-xs · 48</div><div class="sample" style="font-size:22px">Stay hydrated, stay clear</div></div>
+  </div>
+</body></html>

@@ -1,0 +1,90 @@
+/* MOTION — terminal motion is sharp and stepped, not bouncy.
+ * Keep durations short. Avoid ease-out-back / spring physics.
+ */
+
+:root {
+  --dur-instant:  60ms;   /* @kind other */
+  --dur-fast:     120ms;  /* @kind other */
+  --dur-normal:   180ms;  /* @kind other */
+  --dur-slow:     320ms;  /* @kind other */
+  --dur-glacial:  640ms;  /* @kind other */
+
+  /* Easing — favor linear and step-based curves. */
+  --ease-linear:  linear;                            /* @kind other */
+  --ease-out:     cubic-bezier(0.2, 0.7, 0.2, 1);    /* @kind other */
+  --ease-in:      cubic-bezier(0.7, 0, 0.84, 0);     /* @kind other */
+  --ease-step:    steps(8, end);     /* @kind other */
+  --ease-step-2:  steps(2, end);     /* @kind other */
+
+  --transition-base:  background var(--dur-fast) var(--ease-out),
+                      color      var(--dur-fast) var(--ease-out),
+                      border     var(--dur-fast) var(--ease-out),
+                      box-shadow var(--dur-fast) var(--ease-out),
+                      opacity    var(--dur-fast) var(--ease-out); /* @kind other */
+}
+
+/* ─── Keyframes (consumers reference these animations directly) ─── */
+
+@keyframes kl-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes kl-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+@keyframes kl-pulse-glow {
+  0%, 100% { box-shadow: var(--glow-cyan-sm); }
+  50%      { box-shadow: var(--glow-cyan-lg); }
+}
+
+@keyframes kl-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow: var(--text-glow-cyan);
+  }
+  20%, 24%, 55% {
+    opacity: 0.6;
+    text-shadow: none;
+  }
+}
+
+@keyframes kl-scanline-sweep {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes kl-typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes kl-caret {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes kl-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes kl-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes kl-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

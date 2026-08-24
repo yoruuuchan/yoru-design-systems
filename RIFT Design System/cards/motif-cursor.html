@@ -1,0 +1,32 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Motion · cursor & ripple" subtitle="Click anywhere — chromatic ripple on press" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 0; min-height: 180px; cursor: crosshair; }
+    .scene { position: relative; min-height: 180px; padding: 22px 24px; }
+    .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+      color: var(--ink-3); text-transform: uppercase; }
+    .hint { color: var(--ink-2); font-family: var(--font-ui); font-size: 14px; margin-top: 6px; }
+    .ring { display: inline-block; width: 60px; height: 60px; border-radius: 50%;
+      border: 2px solid var(--royal); margin-top: 14px;
+      box-shadow: 0 0 14px rgba(0,240,255,0.6), inset 0 0 8px rgba(255,0,96,0.4);
+      animation: demo-ripple 1.8s ease-in-out infinite; }
+    @keyframes demo-ripple {
+      0% { transform: scale(0.6); opacity: 0.95; }
+      80%,100% { transform: scale(2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="name">cursor-fx.js · #rift-cursor + .rift-ripple</div>
+    <div class="hint">A pointer-follower glow + chromatic click ripple. Drop the script once.</div>
+    <span class="ring"></span>
+  </div>
+  <script src="../assets/cursor-fx.js"></script>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

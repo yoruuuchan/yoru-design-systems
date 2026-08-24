@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Radii & spacing" subtitle="6–22 + pill · 4px base spacing" viewport="700x240" --><html><head><meta charset="utf-8"><title>radii & spacing</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 20px; }
+  .group + .group { margin-top: 14px; }
+  h4 { margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+  .radii { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .rk { background: var(--bg-surface); box-shadow: var(--shadow-flat); height: 64px; display: flex; align-items: flex-end; justify-content: center; padding: 6px; }
+  .rk-l { text-align: center; font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); margin-top: 4px; }
+  .rk .n { font-size: 11px; color: var(--ink-2); font-weight: 500; }
+  .spacing { display: flex; align-items: flex-end; gap: 12px; padding: 12px; background: var(--bg-surface); border-radius: 12px; box-shadow: var(--shadow-flat); }
+  .sp { background: var(--primary-500); border-radius: 3px; }
+  .sp-l { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); text-align: center; margin-top: 6px; }
+</style></head>
+<body data-theme="akari">
+  <div class="group">
+    <h4>Radii</h4>
+    <div class="radii">
+      <div><div class="rk" style="border-radius:6px"><span class="n">xs</span></div><div class="rk-l">6 · xs</div></div>
+      <div><div class="rk" style="border-radius:9px"><span class="n">sm</span></div><div class="rk-l">9 · sm</div></div>
+      <div><div class="rk" style="border-radius:12px"><span class="n">md</span></div><div class="rk-l">12 · md</div></div>
+      <div><div class="rk" style="border-radius:16px"><span class="n">lg</span></div><div class="rk-l">16 · lg</div></div>
+      <div><div class="rk" style="border-radius:22px"><span class="n">xl</span></div><div class="rk-l">22 · xl</div></div>
+      <div><div class="rk" style="border-radius:999px"><span class="n">pill</span></div><div class="rk-l">∞ · pill</div></div>
+    </div>
+  </div>
+  <div class="group">
+    <h4>Spacing — 4px base</h4>
+    <div class="spacing">
+      <div><div class="sp" style="width:14px; height:4px"></div><div class="sp-l">1 · 4</div></div>
+      <div><div class="sp" style="width:14px; height:8px"></div><div class="sp-l">2 · 8</div></div>
+      <div><div class="sp" style="width:14px; height:12px"></div><div class="sp-l">3 · 12</div></div>
+      <div><div class="sp" style="width:14px; height:16px"></div><div class="sp-l">4 · 16</div></div>
+      <div><div class="sp" style="width:14px; height:20px"></div><div class="sp-l">5 · 20</div></div>
+      <div><div class="sp" style="width:14px; height:24px"></div><div class="sp-l">6 · 24</div></div>
+      <div><div class="sp" style="width:14px; height:32px"></div><div class="sp-l">8 · 32</div></div>
+      <div><div class="sp" style="width:14px; height:40px"></div><div class="sp-l">10 · 40</div></div>
+      <div><div class="sp" style="width:14px; height:48px"></div><div class="sp-l">12 · 48</div></div>
+      <div><div class="sp" style="width:14px; height:64px"></div><div class="sp-l">16 · 64</div></div>
+    </div>
+  </div>
+</body></html>

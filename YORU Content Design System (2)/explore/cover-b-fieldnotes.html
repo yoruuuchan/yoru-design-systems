@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>方向 B — 手记</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F2F5F8;font-family:var(--font-body);display:flex;justify-content:center;padding:26px}
+.rack{display:flex;gap:22px;transform:scale(.298);transform-origin:top center;margin-bottom:-1160px}
+.pg{width:1242px;height:1656px;background:#fff;position:relative;display:flex;flex-direction:column;overflow:hidden;padding:82px 78px}
+/* ── the fixed device: a hand-numbered corner mark, top-left, every page ── */
+.mk{position:absolute;top:74px;left:78px;display:flex;align-items:baseline;gap:16px}
+.mk .n{font-family:var(--font-title);font-weight:900;font-size:64px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.mk .of{font-family:var(--font-mono);font-size:24px;letter-spacing:.14em;color:var(--ink-5)}
+.mk .col{font-family:var(--font-mono);font-size:24px;letter-spacing:.18em;color:var(--ink-4);padding-left:16px;border-left:1.5px solid var(--line-2)}
+/* ── the personal detail: 着重号. Chinese emphasis dots under the key run —
+      a typographic mark from print, not a decoration ── */
+.em{text-emphasis:filled dot var(--accent);-webkit-text-emphasis:filled dot var(--accent);text-emphasis-position:under right;-webkit-text-emphasis-position:under right}
+h1{margin:0;font-family:var(--font-title);font-weight:900;font-size:108px;line-height:1.3;letter-spacing:-.015em;color:var(--ink-1)}
+.lede{margin:40px 0 0;font-weight:300;font-size:37px;line-height:1.75;color:var(--ink-3);max-width:88%}
+.mid{flex:1;display:flex;flex-direction:column;justify-content:center}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1.5px solid var(--line-2);padding-top:28px}
+.by{font-family:var(--font-mono);font-size:24px;letter-spacing:.14em;color:var(--ink-5)}
+.by b{font-family:var(--font-title);font-weight:900;letter-spacing:.24em;color:var(--yoru-blue)}
+/* ── margin note in the author's own voice, tilted, tucked to the edge ── */
+.note{position:absolute;right:-4px;top:1090px;width:330px;transform:rotate(1.6deg);background:var(--accent-soft);padding:22px 26px;font-size:25px;line-height:1.6;color:var(--accent-ink)}
+h2{margin:0;font-family:var(--font-title);font-weight:700;font-size:54px;line-height:1.42;color:var(--ink-1)}
+.p{margin:28px 0 0;font-size:34px;line-height:1.95;color:var(--ink-2)}
+.steps{margin:44px 0 0;display:flex;flex-direction:column;gap:30px}
+.st{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:baseline}
+.st i{font-family:var(--font-mono);font-style:normal;font-size:26px;letter-spacing:.1em;color:var(--accent);padding-top:6px}
+.st div{font-size:33px;line-height:1.85;color:var(--ink-2)}
+.tags{display:flex;gap:12px}
+.tag{font-family:var(--font-ui);font-weight:500;font-size:23px;padding:8px 20px;border-radius:999px;color:var(--accent-ink);background:var(--accent-soft)}
+</style></head><body>
+<div class="rack">
+  <div class="pg" data-yoru="lab">
+    <div class="mk"><span class="n">01</span><span class="of">/ 06</span><span class="col">LAB</span></div>
+    <div class="mid">
+      <h1>把一条提示词<br>拆成<span class="em">三层结构</span></h1>
+      <p class="lede">改需求就崩，是因为你把触发、步骤和兜底写在了同一段话里。</p>
+    </div>
+    <div class="note">上一版我写了 800 字，还是崩。问题不在长度。</div>
+    <div class="foot"><div class="tags"><span class="tag">工作流</span><span class="tag">实测</span></div><span class="by"><b>YORU</b> · 2026.08</span></div>
+  </div>
+  <div class="pg" data-yoru="lab">
+    <div class="mk"><span class="n">03</span><span class="of">/ 06</span><span class="col">LAB</span></div>
+    <div class="mid" style="justify-content:flex-start;padding-top:96px">
+      <h2>第一层：触发条件</h2>
+      <p class="p">先写清楚什么时候该跑这条流程，什么时候不该。大多数人跳过这一步，于是模型在<span class="em">不该动手</span>的场合也动手。</p>
+      <div class="steps">
+        <div class="st"><i>01</i><div>写成一句能判真假的话</div></div>
+        <div class="st"><i>02</i><div>“当用户给出完整需求文档时”，不是“当用户需要帮助时”</div></div>
+        <div class="st"><i>03</i><div>补一条否定条件，划出边界</div></div>
+      </div>
+      <p class="p" style="margin-top:52px">否定条件比肯定条件有用。写“文档不完整时先反问”，比写十条“你应该”都管用。</p>
+    </div>
+    <div class="foot"><span class="by">第一层 / 共三层</span><span class="by"><b>YORU</b> · LAB</span></div>
+  </div>
+</div>
+</body></html>

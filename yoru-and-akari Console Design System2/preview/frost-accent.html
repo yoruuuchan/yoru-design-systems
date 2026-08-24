@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Frost accent" subtitle="Cool complement — cyan teal clarity" viewport="700x220" --><html><head><meta charset="utf-8"><title>frost accent</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 20px; }
+  .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 16px; border-radius: 16px; position: relative; overflow: hidden; }
+  .pane.akari { background: #E8ECF3; }
+  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .orb {
+    width: 84px; height: 84px; border-radius: 50%; margin: 4px auto 12px;
+    background: radial-gradient(circle at 35% 30%, #DFFAF8, #1EA8A0 55%, #188078 100%);
+    box-shadow: 0 0 30px rgba(30, 168, 160, 0.45), 0 0 60px rgba(30, 168, 160, 0.18);
+  }
+  .pane.yoru .orb {
+    background: radial-gradient(circle at 35% 30%, #B0F0EA, #38C8C0 60%, #186060 100%);
+    box-shadow: 0 0 34px rgba(56, 200, 192, 0.50), 0 0 80px rgba(56, 200, 192, 0.20);
+  }
+  .row { display: flex; gap: 6px; justify-content: center; }
+  .sw { width: 40px; height: 28px; border-radius: 8px; }
+  .nm { font-size: 10px; font-family: var(--font-mono); text-align: center; margin-top: 4px; opacity: 0.65; }
+  .role { text-align: center; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; opacity: 0.7; margin-bottom: 4px; }
+  .name { text-align: center; font-size: 14px; font-weight: 600; }
+  .sub { text-align: center; font-size: 11px; opacity: 0.6; margin-top: 2px; font-family: var(--font-jp); }
+</style></head>
+<body>
+  <div class="wrap">
+    <div class="pane akari">
+      <div class="role">akari · frost</div>
+      <div class="orb"></div>
+      <div class="name">cool cyan</div>
+      <div class="sub">霜 — calm clarity beside the warmth</div>
+      <div class="row" style="margin-top:12px">
+        <div><div class="sw" style="background:#DBF2F0"></div><div class="nm">100</div></div>
+        <div><div class="sw" style="background:#68C8C2"></div><div class="nm">300</div></div>
+        <div><div class="sw" style="background:#1EA8A0"></div><div class="nm">500</div></div>
+        <div><div class="sw" style="background:#188078"></div><div class="nm">700</div></div>
+      </div>
+    </div>
+    <div class="pane yoru">
+      <div class="role">yoru · frost</div>
+      <div class="orb"></div>
+      <div class="name">vivid teal</div>
+      <div class="sub">青 — coolness that cuts through the dark</div>
+      <div class="row" style="margin-top:12px">
+        <div><div class="sw" style="background:#0A2624"></div><div class="nm">100</div></div>
+        <div><div class="sw" style="background:#186060"></div><div class="nm">300</div></div>
+        <div><div class="sw" style="background:#38C8C0"></div><div class="nm">500</div></div>
+        <div><div class="sw" style="background:#78E0D8"></div><div class="nm">700</div></div>
+      </div>
+    </div>
+  </div>
+</body></html>

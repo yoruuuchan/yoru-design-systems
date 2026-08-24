@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x220" name="Glass · tinted" subtitle="Blue / Sun / Dark — colored frosted panes" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:24px;background:linear-gradient(135deg,#0A84FF 0%,#66B7FF 50%,#FFE34D 100%);">
+  <style>
+    .row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; height:100%; }
+    .pane { border-radius:22px; padding:18px; display:flex; flex-direction:column;
+            justify-content:space-between; border:1px solid var(--glass-stroke);
+            box-shadow:var(--glass-edge), var(--shadow-md);
+            backdrop-filter:blur(24px) saturate(160%);
+            -webkit-backdrop-filter:blur(24px) saturate(160%); }
+    .blue { background:rgba(10,132,255,0.22); color:#fff; }
+    .sun  { background:rgba(255,227,77,0.32); color:var(--neutral-800); }
+    .dark { background:rgba(7,9,14,0.42); color:#fff; }
+    .pane b { font-family:var(--font-display); font-weight:800; font-size:22px;
+              letter-spacing:-0.02em; }
+    .pane small { font-family:var(--font-mono); font-size:10px;
+                  display:block; line-height:1.6; opacity:0.85; }
+  </style>
+  <div class="row">
+    <div class="pane blue"><b>Blue tint</b><small>--glass-bg-blue<br>0.22 · over warm bg<br>for brand context</small></div>
+    <div class="pane sun"><b>Sun tint</b><small>--glass-bg-sun<br>0.28 · CTAs, accent panels</small></div>
+    <div class="pane dark"><b>Dark tint</b><small>--glass-bg-dark<br>0.42 · on bright backgrounds</small></div>
+  </div>
+</body></html>

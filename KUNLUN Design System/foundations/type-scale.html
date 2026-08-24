@@ -1,0 +1,17 @@
+<!-- @dsCard group="Type" viewport="700x200" name="Type Scale" subtitle="从 10px micro 到 64px hero" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 14px; background: var(--bg-base); color: var(--text-primary); }
+  .row { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: baseline; padding: 3px 0; border-bottom: 1px dashed var(--border); }
+  .key { font: var(--type-label); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  .val { font-family: var(--font-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+</style></head>
+<body>
+  <div class="row"><span class="key">10</span><span class="val" style="font-size:10px">3xs · HUD micro · NODE-07</span></div>
+  <div class="row"><span class="key">12</span><span class="val" style="font-size:12px">xs · captions, table cells</span></div>
+  <div class="row"><span class="key">14</span><span class="val" style="font-size:14px">base · body copy 默认正文</span></div>
+  <div class="row"><span class="key">18</span><span class="val" style="font-size:18px">lg · card title 卡片标题</span></div>
+  <div class="row"><span class="key">28</span><span class="val" style="font-size:28px; font-family:var(--font-display); font-weight:700">2xl · page title</span></div>
+  <div class="row"><span class="key">48</span><span class="val" style="font-size:42px; font-family:var(--font-display); font-weight:900; line-height:1">4xl · HERO</span></div>
+</body></html>

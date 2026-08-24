@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Palette · yoru" subtitle="Lifted indigo + midnight surfaces" viewport="700x260" --><html><head><meta charset="utf-8"><title>yoru palette</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 16px 18px; background: var(--bg-base); }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .sw { border-radius: 10px; aspect-ratio: 1.2/1; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; color: #E6EAF6; font-family: var(--font-ui); }
+  .sw.on-light { color: #0B1020; }
+  .sw .nm { font-size: 11px; font-weight: 600; letter-spacing: -0.01em; }
+  .sw .hx { font-family: var(--font-mono); font-size: 10px; opacity: 0.7; }
+  .group { margin-top: 4px; }
+  .group h4 { margin: 0 0 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+</style></head>
+<body data-theme="yoru">
+  <div class="group">
+    <h4>Primary · lifted indigo</h4>
+    <div class="grid">
+      <div class="sw" style="background:#1A2245"><span class="nm">50</span><span class="hx">#1A2245</span></div>
+      <div class="sw" style="background:#1F2A55"><span class="nm">100</span><span class="hx">#1F2A55</span></div>
+      <div class="sw" style="background:#2A3878"><span class="nm">200</span><span class="hx">#2A3878</span></div>
+      <div class="sw" style="background:#3D52AE"><span class="nm">300</span><span class="hx">#3D52AE</span></div>
+      <div class="sw" style="background:#5C76DE"><span class="nm">400</span><span class="hx">#5C76DE</span></div>
+      <div class="sw on-light" style="background:#7A95FA"><span class="nm">500</span><span class="hx">#7A95FA</span></div>
+      <div class="sw on-light" style="background:#93A9FB"><span class="nm">600</span><span class="hx">#93A9FB</span></div>
+      <div class="sw on-light" style="background:#B4C3FC"><span class="nm">700</span><span class="hx">#B4C3FC</span></div>
+      <div class="sw on-light" style="background:#D6DEFD"><span class="nm">800</span><span class="hx">#D6DEFD</span></div>
+      <div class="sw on-light" style="background:#ECF0FE"><span class="nm">900</span><span class="hx">#ECF0FE</span></div>
+    </div>
+  </div>
+  <div class="group" style="margin-top:14px">
+    <h4>Surfaces & ink — yoru</h4>
+    <div class="grid" style="grid-template-columns: repeat(5, 1fr);">
+      <div class="sw" style="background:#0B1020; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06)"><span class="nm">bg-base</span><span class="hx">#0B1020</span></div>
+      <div class="sw" style="background:#131A2E"><span class="nm">surface</span><span class="hx">#131A2E</span></div>
+      <div class="sw" style="background:#1B2340"><span class="nm">elevated</span><span class="hx">#1B2340</span></div>
+      <div class="sw" style="background:#080D1B"><span class="nm">sunken</span><span class="hx">#080D1B</span></div>
+      <div class="sw on-light" style="background:#E6EAF6"><span class="nm">ink-1</span><span class="hx">#E6EAF6</span></div>
+    </div>
+  </div>
+</body></html>

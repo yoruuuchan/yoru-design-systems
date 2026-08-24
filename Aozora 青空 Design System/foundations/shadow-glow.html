@@ -1,0 +1,26 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Shadow · glow & focus" subtitle="Hover / focus accents — brand & accent flavors" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:30px 20px;background:var(--neutral-900);">
+  <style>
+    .row { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; place-items:center; }
+    .cell { display:flex; flex-direction:column; gap:14px; align-items:center; }
+    .shape { width:84px; height:84px; border-radius:18px; }
+    .lbl { font-family:var(--font-mono); font-size:9px; color:rgba(255,255,255,0.5); text-align:center; line-height:1.5; }
+    .lbl b { display:block; color:#fff; font-weight:500; font-size:10px; }
+  </style>
+  <div class="row">
+    <div class="cell">
+      <div class="shape" style="background:#0A84FF;box-shadow:0 0 0 6px rgba(10,132,255,0.18),0 0 32px rgba(10,132,255,0.45)"></div>
+      <div class="lbl"><b>--shadow-glow-blue</b>hover / brand</div>
+    </div>
+    <div class="cell">
+      <div class="shape" style="background:#FFE34D;box-shadow:0 0 0 6px rgba(255,208,0,0.20),0 0 28px rgba(255,227,77,0.55)"></div>
+      <div class="lbl"><b>--shadow-glow-sun</b>accent / focus</div>
+    </div>
+    <div class="cell">
+      <div class="shape" style="background:#fff;box-shadow:0 0 0 3px rgba(10,132,255,0.45)"></div>
+      <div class="lbl"><b>--ring-focus</b>keyboard ring</div>
+    </div>
+  </div>
+</body></html>

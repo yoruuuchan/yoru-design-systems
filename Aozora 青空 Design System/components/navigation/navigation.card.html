@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Tabs" subtitle="Segmented · Underline" -->
+<!doctype html>
+<html><head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../styles.css">
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin></script>
+  <script src="../../_ds_bundle.js"></script>
+</head>
+<body style="margin:0;padding:24px;background:linear-gradient(135deg,#33A8FF 0%,#9DD2FF 60%,#FFE980 100%);">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Tabs } = window.AozoraDesignSystem_e61996;
+    const items = [
+      { value:'all',    label:'All',     count: 24 },
+      { value:'citrus', label:'Citrus' },
+      { value:'mint',   label:'Mint',    count: 4 },
+      { value:'soda',   label:'Soda' },
+    ];
+    function App() {
+      const [a,setA] = React.useState('all');
+      const [b,setB] = React.useState('citrus');
+      const [c,setC] = React.useState('mint');
+      const [d,setD] = React.useState('soda');
+      return (
+        <div style={{display:'flex',flexDirection:'column',gap:18,alignItems:'flex-start'}}>
+          <div>
+            <div style={{fontFamily:'var(--font-mono)',fontSize:10,color:'var(--text-muted)',marginBottom:8,letterSpacing:'0.12em',textTransform:'uppercase'}}>Segmented · md</div>
+            <Tabs value={a} onChange={setA} items={items}/>
+          </div>
+          <div>
+            <div style={{fontFamily:'var(--font-mono)',fontSize:10,color:'var(--text-muted)',marginBottom:8,letterSpacing:'0.12em',textTransform:'uppercase'}}>Segmented · sm</div>
+            <Tabs value={b} onChange={setB} items={items} size="sm"/>
+          </div>
+          <div>
+            <div style={{fontFamily:'var(--font-mono)',fontSize:10,color:'var(--text-muted)',marginBottom:8,letterSpacing:'0.12em',textTransform:'uppercase'}}>Underline</div>
+            <Tabs value={c} onChange={setC} items={items} variant="underline"/>
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body></html>

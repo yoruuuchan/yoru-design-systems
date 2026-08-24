@@ -1,0 +1,41 @@
+/* Sky gradients — the brand's default backgrounds.
+   The "right" surface is rarely a flat color; it's one of these.
+   Tagged @kind color so the indexer treats them as palette tokens. */
+
+:root {
+  /* ── Times of day */
+  --gradient-morning:
+    linear-gradient(180deg, #EAF5FF 0%, #CFE8FF 35%, #9DD2FF 70%, #FFE980 100%); /* @kind color */
+  --gradient-noon:
+    linear-gradient(180deg, #66B7FF 0%, #9DD2FF 50%, #EAF5FF 100%); /* @kind color */
+  --gradient-afternoon:
+    linear-gradient(180deg, #0A84FF 0%, #66B7FF 60%, #CFE8FF 100%); /* @kind color */
+  --gradient-sunset:
+    linear-gradient(180deg, #FFB199 0%, #FFE34D 45%, #9DD2FF 100%); /* @kind color */
+  --gradient-twilight:
+    linear-gradient(180deg, #004690 0%, #006FE0 50%, #FFB199 100%); /* @kind color */
+
+  /* ── Product / abstract — diagonal "soda can" energy */
+  --gradient-soda:
+    linear-gradient(135deg, #0A84FF 0%, #66B7FF 50%, #EAF5FF 100%); /* @kind color */
+  --gradient-ion:
+    linear-gradient(135deg, #339BFF 0%, #5FE3CC 100%); /* @kind color */
+  --gradient-citrus:
+    linear-gradient(135deg, #FFE34D 0%, #FFB199 100%); /* @kind color */
+
+  /* ── Radial — for spotlight / sun glare */
+  --gradient-sunspot:
+    radial-gradient(ellipse at 70% 20%, #FFE980 0%, rgba(255,233,128,0) 50%),
+    linear-gradient(180deg, #66B7FF 0%, #EAF5FF 100%); /* @kind color */
+  --gradient-droplet:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%,
+                                       rgba(255,255,255,0) 40%),
+    linear-gradient(135deg, #0A84FF 0%, #66B7FF 100%); /* @kind color */
+
+  /* ── Mesh — multi-stop, soft */
+  --gradient-mesh-summer:
+    radial-gradient(at 20% 10%, #FFE34D 0%, transparent 40%),
+    radial-gradient(at 80% 20%, #5FE3CC 0%, transparent 40%),
+    radial-gradient(at 50% 80%, #66B7FF 0%, transparent 50%),
+    #EAF5FF; /* @kind color */
+}

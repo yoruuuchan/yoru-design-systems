@@ -1,0 +1,52 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="quote slide" subtitle="oversized pull quote on paper" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;height:100%}
+  .slide{
+    width:1280px; height:720px; position:relative; overflow:hidden;
+    background: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    padding: 80px;
+    box-sizing: border-box;
+  }
+  .slide::before{
+    content:""; position:absolute; inset:0;
+    background-image: url("../assets/grain.svg");
+    background-size: 300px 300px; opacity: .15; mix-blend-mode: multiply; pointer-events: none;
+  }
+  .halo {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 1000px; height: 1000px;
+    background: radial-gradient(circle, var(--frost-50) 0%, var(--bondi-200) 30%, var(--bubblegum-300) 55%, transparent 75%);
+    opacity: 0.5; pointer-events: none;
+  }
+  .frame { position: relative; max-width: 1000px; text-align: center; }
+  .marks {
+    font-family: var(--font-pixel-display); font-size: 200px; line-height: 1;
+    color: var(--bondi-400); margin-bottom: -40px; text-shadow: 4px 4px 0 var(--chrome-100);
+  }
+  blockquote {
+    font-family: var(--font-body-serif); font-style: italic;
+    font-size: 64px; line-height: 1.15; margin: 0; color: var(--ink);
+    text-wrap: pretty;
+  }
+  cite {
+    display: block; margin-top: 32px;
+    font-family: var(--font-pixel-mono); font-size: 18px;
+    color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase;
+    font-style: normal;
+  }
+  cite::before { content: "— "; }
+</style></head>
+<body>
+<div class="slide">
+  <div class="halo"></div>
+  <div class="frame">
+    <div class="marks">"</div>
+    <blockquote>I went back last week. the carpet has been replaced. the hum is the same.</blockquote>
+    <cite>field notes, fluorescent hallway</cite>
+  </div>
+</div>
+</body></html>

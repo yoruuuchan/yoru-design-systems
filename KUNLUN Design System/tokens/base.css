@@ -1,0 +1,79 @@
+/* BASE — minimal resets and global ground rules for KUNLUN surfaces. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font: var(--type-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--cyan-700);
+  color: var(--neutral-50);
+  text-shadow: var(--text-glow-cyan);
+}
+
+/* Scrollbars — terminal-style, thin, cyan */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyan-700) transparent;
+}
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: var(--cyan-800);
+  border: 1px solid var(--cyan-700);
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--cyan-600); }
+
+/* Headings default to display family. Override per-component as needed. */
+h1, h2, h3 { font-family: var(--font-display); margin: 0; letter-spacing: var(--tracking-wide); }
+h4, h5, h6 { font-family: var(--font-mono);    margin: 0; }
+
+a {
+  color: var(--text-link);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--cyan-700);
+  transition: var(--transition-base);
+}
+a:hover {
+  color: var(--cyan-300);
+  text-shadow: var(--text-glow-cyan);
+  border-bottom-color: var(--cyan-400);
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-code);
+  font-size: 0.95em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: var(--space-6) 0;
+}
+
+input, button, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Utility: HUD label (uppercase, wide-tracked, dim) */
+.kl-hud-label {
+  font: var(--type-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-tertiary);
+}
+
+/* Utility: signal text (cyan with glow) */
+.kl-signal {
+  color: var(--text-signal);
+  text-shadow: var(--text-glow-cyan);
+}

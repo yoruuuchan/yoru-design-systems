@@ -1,0 +1,114 @@
+/* DIAGRAM SUBSYSTEM
+   Same parent language as the content system: same type, same hairlines, same
+   accent discipline. Roles are encoded by SHAPE + BORDER + a mono role label —
+   colour carries only three meanings (accent = machine, ink = human/decision,
+   semantic = status). Eight roles never become eight hues.
+
+   SCOPING RULE — read before moving anything. A custom property is substituted
+   at the element that DECLARES it, not where it is used. So an alias written
+   as var(--dg-fg) or var(--accent) up in :root computes there, against the
+   light palette and the default accent, and inherits down already frozen: no
+   variant scope and no theme flip can ever move it again. That is why the base
+   palette lives at :root / [data-dg-theme] but every DERIVED alias (roles,
+   statuses, edges) is declared on .yoru-diagram — the same element that carries
+   data-dg-theme, and always inside the variant scope. Keep it that way. */
+:root{
+/* ---- diagram-local surfaces & ink (the single place dark mode flips) ---- */
+--dg-surface:var(--paper-1);
+--dg-surface-2:var(--paper-3);
+--dg-surface-3:var(--paper-2);
+--dg-fg:var(--ink-1);
+--dg-fg-2:var(--ink-2);
+--dg-fg-3:var(--ink-4);
+--dg-line:var(--line-2);
+--dg-line-strong:var(--ink-1);
+--dg-grid:var(--line-1);
+--dg-invert-fg:#FFFFFF;
+/* ---- diagram font sizes. Article scale by default; the .yoru-card scope
+       below bumps them for XHS card renders (1242 wide) so a diagram doesn't
+       look like it belongs to a WeChat article next to a 76px page heading. ---- */
+--dg-fs-title:21px;
+--dg-fs-kicker:10px;
+--dg-fs-node-label:15px;
+--dg-fs-node-meta:11px;
+--dg-fs-node-role:10px;
+--dg-fs-node-status:9px;
+--dg-fs-legend:10px;
+--dg-fs-caption:13px;
+--dg-fs-source:10px;
+--dg-fs-note:12px;
+--dg-fs-note-label:9px;
+--dg-fs-edge-label:11px;
+--dg-fs-group-label:10px;
+/* ---- geometry (intrinsic px; the frame scales to fit its container) ---- */
+--dg-col-w:240px;
+--dg-col-gap:88px;
+--dg-row-h:92px;
+--dg-row-gap:44px;
+--dg-node-pad:16px;
+--dg-radius:2px;
+--dg-radius-human:10px;
+--dg-elbow:10px; /* @kind radius */
+/* ---- strokes ---- */
+--dg-stroke-hair:1px;
+--dg-stroke:1.75px;
+--dg-stroke-strong:2.5px;
+--dg-stroke-bar:5px;
+--dg-dash-dep:7 5; /* @kind other */
+--dg-dash-weak:2 5; /* @kind other */
+--dg-arrow:9px;
+--dg-process-weight:var(--dg-stroke-strong);
+}
+/* ---- base palette, dark. Only the ten primitives above flip here; every role
+       below re-derives from them automatically. ---- */
+[data-dg-theme="dark"]{
+--dg-surface:#111827;
+--dg-surface-2:#1E2739;
+--dg-surface-3:#18202F;
+--dg-fg:#EDF7FF;
+--dg-fg-2:#C1D7EF;
+--dg-fg-3:#7B8798;
+--dg-line:#2C3644;
+--dg-line-strong:#EDF7FF;
+--dg-grid:#1B2434;
+--dg-invert-fg:#111827;
+}
+/* ---- roles. Declared on the diagram element so they resolve against whichever
+       base palette and whichever variant accent is in force there. ---- */
+.yoru-diagram{
+color:var(--dg-fg-2);font-family:var(--font-body);background:var(--dg-surface);
+--dg-input-bg:transparent;           --dg-input-line:var(--dg-fg-3);     --dg-input-fg:var(--dg-fg-2);
+--dg-process-bg:var(--dg-surface);   --dg-process-line:var(--dg-fg);     --dg-process-fg:var(--dg-fg);
+--dg-human-bg:var(--dg-surface-2);   --dg-human-line:var(--dg-fg-3);     --dg-human-fg:var(--dg-fg);
+--dg-agent-bg:var(--accent-soft);    --dg-agent-line:var(--accent);      --dg-agent-fg:var(--accent-ink);
+--dg-tool-bg:var(--dg-surface);      --dg-tool-line:var(--dg-fg-3);      --dg-tool-fg:var(--dg-fg-2);
+--dg-data-bg:var(--dg-surface-3);    --dg-data-line:var(--dg-fg-3);      --dg-data-fg:var(--dg-fg-2);
+/* output is the one solid-filled role. Straight ink-ramp slate (--ink-3), not
+   an oklch mix toward white — the mix strips chroma and the resulting neutral
+   mid-grey reads faintly brown next to the cool ramp. */
+--dg-output-bg:var(--ink-3);
+--dg-output-line:var(--ink-3);
+--dg-output-fg:var(--dg-invert-fg);
+--dg-external-bg:transparent;        --dg-external-line:var(--dg-line);  --dg-external-fg:var(--dg-fg-3);
+/* ---- statuses. Paired saturated core + soft halo, same discipline as the
+       label chips: the tint carries the color, the core carries the meaning. ---- */
+--dg-verified:var(--ok);      --dg-verified-soft:var(--ok-soft);
+--dg-failed:var(--stop);      --dg-failed-soft:var(--stop-soft);
+--dg-unknown:var(--note);     --dg-unknown-soft:var(--note-soft);
+/* ---- edges ---- */
+--dg-edge-flow:var(--dg-fg-3);
+--dg-edge-data:var(--accent);
+--dg-edge-dep:color-mix(in oklch,var(--dg-fg-3) 78%,var(--dg-surface));
+--dg-edge-weak:color-mix(in oklch,var(--dg-fg-3) 55%,var(--dg-surface));
+}
+/* ---- the few roles that cannot simply re-derive: an accent tint mixed against
+       white goes chalky on a dark ground, and the status halos glow. ---- */
+.yoru-diagram[data-dg-theme="dark"]{
+--dg-agent-bg:color-mix(in oklch,var(--accent) 20%,var(--dg-surface));
+--dg-agent-fg:color-mix(in oklch,var(--accent) 68%,#FFFFFF);
+--dg-output-bg:var(--dg-fg-2);
+--dg-output-line:var(--dg-fg-2);
+--dg-verified-soft:color-mix(in oklch,var(--ok) 30%,var(--dg-surface));
+--dg-failed-soft:color-mix(in oklch,var(--stop) 30%,var(--dg-surface));
+--dg-unknown-soft:color-mix(in oklch,var(--dg-fg-2) 22%,var(--dg-surface));
+}

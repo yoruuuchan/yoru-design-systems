@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" width="220" height="80">
+  <defs>
+    <radialGradient id="halo" cx="50%" cy="55%" r="55%">
+      <stop offset="0" stop-color="#e0f4fb" stop-opacity="0.95"></stop>
+      <stop offset="0.5" stop-color="#5fc8ea" stop-opacity="0.35"></stop>
+      <stop offset="1" stop-color="#009de0" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+  <rect width="220" height="80" fill="url(#halo)"></rect>
+  <g fill="#0c1a26">
+    <rect x="20" y="22" width="40" height="8"></rect>
+    <rect x="20" y="22" width="8" height="40"></rect>
+    <rect x="20" y="54" width="40" height="8"></rect>
+    <rect x="72" y="22" width="40" height="8"></rect>
+    <rect x="72" y="22" width="8" height="40"></rect>
+    <rect x="104" y="22" width="8" height="40"></rect>
+    <rect x="72" y="54" width="40" height="8"></rect>
+    <rect x="124" y="22" width="40" height="8"></rect>
+    <rect x="124" y="22" width="8" height="40"></rect>
+    <rect x="156" y="22" width="8" height="16"></rect>
+    <rect x="124" y="38" width="32" height="6"></rect>
+    <rect x="148" y="44" width="8" height="18"></rect>
+    <rect x="176" y="22" width="34" height="8"></rect>
+    <rect x="176" y="22" width="8" height="40"></rect>
+    <rect x="176" y="38" width="28" height="6"></rect>
+    <rect x="176" y="54" width="34" height="8"></rect>
+  </g>
+</svg>

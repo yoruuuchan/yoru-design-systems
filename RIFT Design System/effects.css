@@ -1,0 +1,175 @@
+/* Glitch chromatic edge, ambient glow, cursor + ripple FX. */
+
+/* ── SIGNATURE CHROMATIC GLITCH ──
+   <span class="rift-glitch" data-text="RIFT">RIFT</span>
+   Intensity scoped via ancestor:  data-glitch="off | subtle | signature | heavy"
+   Color channel:                  data-accent="royal | aqua"  (royal is the default) */
+.rift-glitch {
+  --ca: var(--glitch-ca);
+  --cb: var(--glitch-cb);
+  position: relative;
+  display: inline-block;
+}
+.rift-glitch::before,
+.rift-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  white-space: inherit;
+}
+.rift-glitch::before { color: var(--ca); transform: translate(-0.055em,  0.01em); }
+.rift-glitch::after  { color: var(--cb); transform: translate( 0.055em, -0.01em); }
+
+[data-glitch="off"] .rift-glitch::before,
+[data-glitch="off"] .rift-glitch::after { opacity: 0; }
+
+[data-glitch="subtle"] .rift-glitch::before { transform: translate(-0.025em, 0); opacity: 0.5; }
+[data-glitch="subtle"] .rift-glitch::after  { transform: translate( 0.025em, 0); opacity: 0.5; }
+
+[data-glitch="signature"] .rift-glitch::before { animation: rift-split-a 7s infinite; }
+[data-glitch="signature"] .rift-glitch::after  { animation: rift-split-b 7s infinite; }
+
+[data-glitch="heavy"] .rift-glitch::before {
+  animation: rift-split-a 3.6s infinite;
+  transform: translate(-0.09em, 0);
+}
+[data-glitch="heavy"] .rift-glitch::after {
+  animation: rift-split-b 3.6s infinite;
+  transform: translate(0.09em, 0);
+}
+
+@keyframes rift-split-a {
+  0%, 38%, 100% { transform: translate(-0.05em,  0.01em); clip-path: inset(0); }
+  40%           { transform: translate(-0.13em,  0.01em); clip-path: inset(12% 0 58% 0); }
+  42%           { transform: translate(-0.03em,  0     ); clip-path: inset(46% 0 20% 0); }
+  44%           { transform: translate(-0.05em,  0.01em); clip-path: inset(0); }
+  80%           { transform: translate(-0.05em,  0.01em); }
+  82%           { transform: translate(-0.10em, -0.01em); clip-path: inset(60% 0  8% 0); }
+  84%           { transform: translate(-0.05em,  0.01em); clip-path: inset(0); }
+}
+@keyframes rift-split-b {
+  0%, 38%, 100% { transform: translate( 0.05em, -0.01em); clip-path: inset(0); }
+  40%           { transform: translate( 0.13em, -0.01em); clip-path: inset(58% 0 12% 0); }
+  42%           { transform: translate( 0.03em,  0     ); clip-path: inset(20% 0 46% 0); }
+  44%           { transform: translate( 0.05em, -0.01em); clip-path: inset(0); }
+  80%           { transform: translate( 0.05em, -0.01em); }
+  82%           { transform: translate( 0.10em,  0.01em); clip-path: inset( 8% 0 60% 0); }
+  84%           { transform: translate( 0.05em, -0.01em); clip-path: inset(0); }
+}
+
+/* ── AMBIENT GLOW — slow breathing halo on any accent element ── */
+.rift-glow { animation: rift-glow-pulse 3.2s ease-in-out infinite; }
+@keyframes rift-glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(92, 123, 255, 0.30)); }
+  50%      { filter: drop-shadow(0 0 9px rgba(92, 123, 255, 0.70)); }
+}
+
+/* ── CURSOR & CLICK FX ──
+   Activate via the snippet in /assets/cursor-fx.js. */
+#rift-cursor {
+  position: fixed;
+  left: 0; top: 0;
+  width: 280px; height: 280px;
+  margin: -140px 0 0 -140px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.45s;
+  filter: blur(6px);
+  background: radial-gradient(circle,
+    rgba(120, 150, 255, 0.38),
+    rgba(107, 182, 240, 0.18) 34%,
+    rgba( 92, 123, 255, 0   ) 70%);
+}
+.rift-ripple {
+  position: fixed;
+  width: 16px; height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  border: 2px solid var(--royal);
+  box-shadow:
+    0 0 14px rgba(  0, 240, 255, 0.6),
+    inset 0 0 8px rgba(255,   0,  96, 0.4);
+  animation: rift-ripple 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes rift-ripple {
+  0%   { transform: scale(0.35); opacity: 0.9; }
+  100% { transform: scale(8   ); opacity: 0;   }
+}
+
+/* ── TACTICAL FRAME ── corner brackets around any box.
+   <div class="rift-frame">…</div>
+   Customize on the element:
+     --frame-len: 22px;          arm length
+     --frame-thickness: 1.5px;   stroke
+     --frame-color: var(--ice);  swap per surface
+     --frame-overhang: 4px;      brackets extend past the box edge */
+.rift-frame { position: relative; }
+.rift-frame::before {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--frame-overhang, 0px));
+  pointer-events: none;
+  background:
+    linear-gradient(var(--frame-color), var(--frame-color)) top    left  / var(--frame-len, 18px) var(--frame-thickness, 1.5px) no-repeat,
+    linear-gradient(var(--frame-color), var(--frame-color)) top    left  / var(--frame-thickness, 1.5px) var(--frame-len, 18px) no-repeat,
+    linear-gradient(var(--frame-color), var(--frame-color)) top    right / var(--frame-len, 18px) var(--frame-thickness, 1.5px) no-repeat,
+    linear-gradient(var(--frame-color), var(--frame-color)) top    right / var(--frame-thickness, 1.5px) var(--frame-len, 18px) no-repeat,
+    linear-gradient(var(--frame-color), var(--frame-color)) bottom left  / var(--frame-len, 18px) var(--frame-thickness, 1.5px) no-repeat,
+    linear-gradient(var(--frame-color), var(--frame-color)) bottom left  / var(--frame-thickness, 1.5px) var(--frame-len, 18px) no-repeat,
+    linear-gradient(var(--frame-color), var(--frame-color)) bottom right / var(--frame-len, 18px) var(--frame-thickness, 1.5px) no-repeat,
+    linear-gradient(var(--frame-color), var(--frame-color)) bottom right / var(--frame-thickness, 1.5px) var(--frame-len, 18px) no-repeat;
+}
+
+/* ── SCAN LINES ── CRT horizontal raster overlay.
+   <div class="rift-scan">…</div>  — clip-safe via border-radius: inherit.
+   Auto-adapts to theme via --scan-line. */
+.rift-scan { position: relative; }
+.rift-scan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    var(--scan-line) 2px,
+    var(--scan-line) 3px
+  );
+}
+
+/* ── KANJI / GLYPH WATERMARK ── big faded brand mark behind content.
+   <section class="rift-mark" data-mark="裂隙">…</section>
+   Position via data-mark-pos="tl|tr|bl|br" (default br).
+   Children sit above via the isolate stacking context. */
+.rift-mark { position: relative; isolation: isolate; }
+.rift-mark::before {
+  content: attr(data-mark);
+  position: absolute;
+  font-family: var(--font-jp);
+  font-weight: 700;
+  font-size: clamp(140px, 18vw, 280px);
+  line-height: 0.85;
+  color: var(--ink-1);
+  opacity: 0.045;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: -1;
+  /* default: bottom-right */
+  right: -0.05em;
+  bottom: -0.18em;
+}
+.rift-mark[data-mark-pos="tl"]::before { left: -0.05em; top: -0.08em; right: auto; bottom: auto; }
+.rift-mark[data-mark-pos="tr"]::before { right: -0.05em; top: -0.08em; bottom: auto; }
+.rift-mark[data-mark-pos="bl"]::before { left: -0.05em; bottom: -0.18em; right: auto; }

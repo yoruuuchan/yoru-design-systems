@@ -1,0 +1,14 @@
+/* Google Fonts — substituted for "ideal" pixel + JP pixel + retro mono.
+   Flagged in README: swap with self-hosted webfonts if licensing matters. */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=DotGothic16&family=Major+Mono+Display&display=swap");
+
+:root {
+  /* English pixel display — chunky 8-bit */
+  --font-display: "Press Start 2P", "DotGothic16", monospace;
+  /* Japanese + body pixel — readable bitmap */
+  --font-jp: "DotGothic16", "Press Start 2P", monospace;
+  /* Body / terminal — CRT-style mono */
+  --font-body: "VT323", "DotGothic16", monospace;
+  /* Decorative — retro futurism nameplate */
+  --font-nameplate: "Major Mono Display", "VT323", monospace;
+}

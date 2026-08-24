@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="akari">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>yoru-and-akari.dev · AI Companion Console</title>
+  <link rel="stylesheet" href="styles/colors_and_type.css?v=20260528-1">
+  <link rel="stylesheet" href="styles/main.css?v=20260528-1">
+</head>
+<body>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-channel" viewBox="0 0 32 32">
+      <!-- hub center -->
+      <circle class="soft-fill" cx="16" cy="16" r="5"/>
+      <circle cx="16" cy="16" r="3.2"/>
+      <!-- spokes to outer nodes -->
+      <path d="M13.2 13.5L9.2 9.5"/>
+      <path d="M18.8 13.5L22.8 9.5"/>
+      <path d="M16 19.5V25"/>
+      <!-- outer nodes -->
+      <circle cx="8" cy="8.2" r="2.3"/>
+      <circle cx="24" cy="8.2" r="2.3"/>
+      <circle cx="16" cy="26.2" r="2.3"/>
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 32 32">
+      <path d="M9 9.5h14a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-7l-5 4v-4H9a4 4 0 0 1-4-4v-5a4 4 0 0 1 4-4z"/>
+      <path d="M12.5 16h.01M16 16h.01M19.5 16h.01"/>
+    </symbol>
+    <symbol id="i-memory" viewBox="0 0 32 32">
+      <!-- brain outline: wide oval, no stem, no base -->
+      <path class="soft-fill" d="M8 15.5C8 10.5 11.5 7 16 7s8 3.5 8 8.5c0 3-1.2 5.5-3.2 7.2-1.2 1-2.8 1.8-4.8 1.8s-3.6-.8-4.8-1.8C9.2 21 8 18.5 8 15.5z"/>
+      <path d="M8 15.5C8 10.5 11.5 7 16 7s8 3.5 8 8.5c0 3-1.2 5.5-3.2 7.2-1.2 1-2.8 1.8-4.8 1.8s-3.6-.8-4.8-1.8C9.2 21 8 18.5 8 15.5z"/>
+      <!-- interhemispheric fissure -->
+      <path d="M16 7v17.5"/>
+      <!-- upper sulcus -->
+      <path d="M9.5 13c2.2 1.5 4.5-.5 6.5.8"/>
+      <path d="M22.5 13c-2.2 1.5-4.5-.5-6.5.8"/>
+      <!-- lower sulcus -->
+      <path d="M9.8 19c2-.8 4.2.5 6.2-.3"/>
+      <path d="M22.2 19c-2-.8-4.2.5-6.2-.3"/>
+    </symbol>
+    <symbol id="i-settings" viewBox="0 0 32 32">
+      <path d="M8 10.5h16"/><circle cx="13" cy="10.5" r="1.45"/>
+      <path d="M8 16h16"/><circle cx="20" cy="16" r="1.45"/>
+      <path d="M8 21.5h16"/><circle cx="15.5" cy="21.5" r="1.45"/>
+    </symbol>
+    <symbol id="i-stats" viewBox="0 0 32 32">
+      <path d="M8.5 24h15"/>
+      <rect x="10" y="16.5" width="3.8" height="7.5" rx="1.4"/>
+      <rect x="15.1" y="12" width="3.8" height="12" rx="1.4"/>
+      <rect x="20.2" y="9" width="3.8" height="15" rx="1.4"/>
+    </symbol>
+    <symbol id="i-prompt" viewBox="0 0 32 32">
+      <path d="M21.5 8.7a2.1 2.1 0 0 1 3 3L14.4 21.8l-4.6 1.3 1.3-4.6z"/>
+      <path d="M19.5 10.8l3 3"/>
+      <path d="M10.8 18.5l3.6 3.3"/>
+    </symbol>
+    <symbol id="i-world" viewBox="0 0 32 32">
+      <path d="M10.5 8h12v17h-12a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3z"/>
+      <path d="M10.5 8v17"/>
+      <path d="M14 13h5.5"/>
+      <path d="M14 17.5h5.5"/>
+    </symbol>
+    <symbol id="i-diary" viewBox="0 0 32 32">
+      <rect x="9" y="8.5" width="14" height="15.5" rx="3"/>
+      <path d="M13 7v3M19 7v3"/>
+      <path d="M9 13.5h14"/>
+      <path d="M13 17.5h6M13 20.8h4"/>
+    </symbol>
+    <symbol id="i-security" viewBox="0 0 32 32">
+      <path d="M16 6l8 3.2v5.6c0 5.1-3.1 9.6-8 11.2-4.9-1.6-8-6.1-8-11.2V9.2L16 6z"/>
+      <path d="M12.7 16.2l2.2 2.2 4.6-4.8"/>
+    </symbol>
+    <symbol id="i-logs" viewBox="0 0 32 32">
+      <path d="M10 7.5h9l4 4v13a2.5 2.5 0 0 1-2.5 2.5H10a2.5 2.5 0 0 1-2.5-2.5V10A2.5 2.5 0 0 1 10 7.5z"/>
+      <path d="M19 7.5V12h4"/>
+      <path d="M12 15h8M12 19h8M12 23h5"/>
+    </symbol>
+    <symbol id="i-home" viewBox="0 0 32 32">
+      <path d="M8.5 16.5l7.5-7 7.5 7"/>
+      <path d="M11 15.5V23h10v-7.5"/>
+      <path d="M14.5 23v-4.5h3V23"/>
+    </symbol>
+    <symbol id="i-timeline" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="8.5"/>
+      <path d="M16 11.5v5l3.8 2.2"/>
+    </symbol>
+    <symbol id="i-back" viewBox="0 0 32 32">
+      <path d="M21.5 16H11"/>
+      <path d="M15.5 11.5L11 16l4.5 4.5"/>
+    </symbol>
+    <symbol id="i-refresh" viewBox="0 0 32 32">
+      <path d="M24 12a8.2 8.2 0 1 0 1.7 7.4"/>
+      <path d="M24 7.8v5.4h-5.4"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 32 32">
+      <circle cx="14.5" cy="14.5" r="6.3"/>
+      <path d="M19.3 19.3l4.7 4.7"/>
+    </symbol>
+    <symbol id="i-create" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="8.5"/>
+      <path d="M16 12v8M12 16h8"/>
+    </symbol>
+    <symbol id="i-freeze" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="8.5"/>
+      <path d="M13.5 12.6v6.8M18.5 12.6v6.8"/>
+    </symbol>
+    <symbol id="i-theme" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="8.5"/>
+      <path d="M16 7.5c3 2.1 4.6 5 4.6 8.5s-1.6 6.4-4.6 8.5"/>
+    </symbol>
+    <symbol id="i-route" viewBox="0 0 32 32">
+      <circle cx="9" cy="16" r="2"/>
+      <circle cx="23" cy="10" r="2"/>
+      <circle cx="23" cy="22" r="2"/>
+      <path d="M11 16h6"/>
+      <path d="M17 16l4-4"/>
+      <path d="M17 16l4 4"/>
+    </symbol>
+    <symbol id="i-api" viewBox="0 0 32 32">
+      <rect x="8" y="10" width="8" height="12" rx="2"/>
+      <path d="M16 16h5"/>
+      <path d="M21 12.5v7"/>
+      <path d="M21 12.5l2.5-2.5"/>
+      <path d="M21 19.5l2.5 2.5"/>
+    </symbol>
+    <symbol id="i-wake" viewBox="0 0 32 32">
+      <circle cx="16" cy="17" r="7"/>
+      <path d="M16 13.5v4.5l3 1.8"/>
+      <path d="M10 8.8l-2 2"/>
+      <path d="M22 8.8l2 2"/>
+    </symbol>
+    <symbol id="i-context" viewBox="0 0 32 32">
+      <rect x="9" y="7.5" width="14" height="5.5" rx="2.2"/>
+      <rect x="9" y="21" width="14" height="5.5" rx="2.2"/>
+      <path d="M16 14.7v4.2"/>
+      <path d="M13.8 16.8L16 19l2.2-2.2"/>
+    </symbol>
+    <symbol id="i-notify" viewBox="0 0 32 32">
+      <path d="M10.5 21.5h11l-1.6-2.3v-4.6a3.9 3.9 0 1 0-7.8 0v4.6z"/>
+      <path d="M14 24a2.1 2.1 0 0 0 4 0"/>
+      <path d="M23.2 10.8a4.5 4.5 0 0 1 1.6 3.4"/>
+      <path d="M8.8 10.8a4.5 4.5 0 0 0-1.6 3.4"/>
+    </symbol>
+    <symbol id="i-ip" viewBox="0 0 32 32">
+      <path d="M8.5 10.5h12"/>
+      <path d="M8.5 16h9"/>
+      <path d="M8.5 21.5h10"/>
+      <path d="M21 20.8l2 2 4-4.3"/>
+      <path d="M6 10.5h.01M6 16h.01M6 21.5h.01"/>
+    </symbol>
+    <symbol id="i-devices" viewBox="0 0 32 32">
+      <rect x="7" y="9" width="13" height="9" rx="2"/>
+      <path d="M11 22h5"/>
+      <rect x="21.5" y="11.5" width="4.5" height="10" rx="1.4"/>
+    </symbol>
+    <symbol id="i-twofa" viewBox="0 0 32 32">
+      <path d="M16 6l8 3.2v5.6c0 5.1-3.1 9.6-8 11.2-4.9-1.6-8-6.1-8-11.2V9.2L16 6z"/>
+      <path d="M13 15.2c.3-1.3 1.3-2.2 2.8-2.2 1.6 0 2.7.9 2.7 2.3 0 1-.5 1.6-1.6 2.2-.9.5-1.2.9-1.2 1.7"/>
+      <path d="M15.7 22h.1"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 32 32">
+      <path d="M12 10.2h8"/>
+      <path d="M13 10.2v3.4l-2 2.1h10l-2-2.1v-3.4"/>
+      <path d="M16 15.7v8.3"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="8.4"/>
+      <path d="M16 11.5v5l3.2 1.9"/>
+    </symbol>
+    <symbol id="i-weather" viewBox="0 0 32 32">
+      <circle cx="20.5" cy="11.5" r="3.2"/>
+      <path d="M10.5 23h10.8a4 4 0 0 0 0-8 5.7 5.7 0 0 0-10.9-1.6A4.8 4.8 0 0 0 10.5 23z"/>
+    </symbol>
+    <symbol id="i-battery" viewBox="0 0 32 32">
+      <rect x="7.5" y="12" width="16" height="8" rx="2.4"/>
+      <path d="M24.5 14.5v3"/>
+      <path d="M11 16h5.5"/>
+    </symbol>
+    <symbol id="i-location" viewBox="0 0 32 32">
+      <path d="M16 26s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/>
+      <circle cx="16" cy="14" r="2.3"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 32 32">
+      <rect x="10.5" y="6.5" width="11" height="19" rx="3"/>
+      <path d="M14.5 22.5h3"/>
+    </symbol>
+    <symbol id="i-hourglass" viewBox="0 0 32 32">
+      <path d="M11 7.5h10M11 24.5h10"/>
+      <path d="M12 7.5c0 5 2.5 6.5 4 8.5-1.5 2-4 3.5-4 8.5"/>
+      <path d="M20 7.5c0 5-2.5 6.5-4 8.5 1.5 2 4 3.5 4 8.5"/>
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 32 32">
+      <path d="M6.5 16s3.6-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.6 6.5-9.5 6.5S6.5 16 6.5 16z"/>
+      <circle cx="16" cy="16" r="2.8"/>
+    </symbol>
+    <symbol id="i-tool" viewBox="0 0 32 32">
+      <path d="M20.8 8.5a4.8 4.8 0 0 0-6.1 6.1l-6.2 6.2 2.7 2.7 6.2-6.2a4.8 4.8 0 0 0 6.1-6.1l-3.4 3.4-2.7-2.7z"/>
+    </symbol>
+  </svg>
+
+  <main class="shell" id="shell">
+    <div class="liquid-layer"></div>
+
+    <section class="viewport" id="viewport">
+      <section class="page active" id="page-home">
+        <div class="hero">
+          <div class="hero-top hero-top-with-avatar">
+            <button class="hero-avatar" id="heroAvatarButton" type="button" aria-label="上传あかり头像">
+              <span class="avatar-placeholder">A</span>
+              <img id="heroAvatarImage" alt="あかり头像" hidden />
+            </button>
+            <div class="hero-copy">
+              <h2>あかり · 在线</h2>
+              <div class="domain">core.sync / low-latency companion layer</div>
+            </div>
+            <input id="heroAvatarInput" type="file" accept="image/*" hidden />
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><div class="num">126k</div><span>今日 tokens</span></div>
+            <div class="hero-stat"><div class="num">¥3.84</div><span>今日成本</span></div>
+            <div class="hero-stat"><div class="num">84%</div><span>缓存命中率</span></div>
+          </div>
+        </div>
+
+        <button class="freeze-button has-icon" id="freezeButton"><span class="button-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-freeze"></use></svg></span><span class="freeze-text">一键冻结</span></button>
+
+        <div class="section-head"><h2>模块</h2><span class="tiny">tap to route</span></div>
+        <div class="app-grid">
+          <button class="app-link" data-sub="sub-channels"><span class="app-icon icon-blue"><svg class="ui-icon" aria-hidden="true"><use href="#i-channel"></use></svg></span><span class="app-label">渠道</span></button>
+          <button class="app-link" data-sub="sub-memory"><span class="app-icon icon-purple"><svg class="ui-icon" aria-hidden="true"><use href="#i-memory"></use></svg></span><span class="app-label">记忆</span></button>
+          <button class="app-link" data-sub="sub-stats"><span class="app-icon icon-cyan"><svg class="ui-icon" aria-hidden="true"><use href="#i-stats"></use></svg></span><span class="app-label">统计</span></button>
+          <button class="app-link" data-sub="sub-prompts"><span class="app-icon icon-orange"><svg class="ui-icon" aria-hidden="true"><use href="#i-prompt"></use></svg></span><span class="app-label">提示词</span></button>
+          <button class="app-link" data-sub="sub-worldbook"><span class="app-icon icon-pink"><svg class="ui-icon" aria-hidden="true"><use href="#i-world"></use></svg></span><span class="app-label">世界书</span></button>
+          <button class="app-link" data-sub="sub-diary"><span class="app-icon icon-yellow"><svg class="ui-icon" aria-hidden="true"><use href="#i-diary"></use></svg></span><span class="app-label">日记</span></button>
+          <button class="app-link" data-sub="sub-security"><span class="app-icon icon-red"><svg class="ui-icon" aria-hidden="true"><use href="#i-security"></use></svg></span><span class="app-label">安全</span></button>
+          <button class="app-link" data-sub="sub-logs"><span class="app-icon icon-gray"><svg class="ui-icon" aria-hidden="true"><use href="#i-logs"></use></svg></span><span class="app-label">日志</span></button>
+          <button class="app-link" data-sub="sub-tools"><span class="app-icon icon-cyan"><svg class="ui-icon" aria-hidden="true"><use href="#i-tool"></use></svg></span><span class="app-label">工具</span></button>
+        </div>
+
+        <div class="section-head"><h2>活跃渠道</h2><span class="tiny">last heartbeat</span></div>
+        <div class="channel-grid">
+          <div class="channel-card inset-card"><div class="top"><h3>QQ</h3><span class="online">在线</span></div><p>9分钟前</p></div>
+          <div class="channel-card inset-card"><div class="top"><h3>微信</h3><span class="online">在线</span></div><p>1分钟前</p></div>
+          <div class="channel-card inset-card"><div class="top"><h3>Web</h3><span class="online">在线</span></div><p>22分钟前</p></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-chat">
+        <div class="page-title"><div class="eyebrow">conversation router</div><h1>对话</h1></div>
+
+        <div class="thread" id="chatThread">
+          <div class="message-wrap ai">
+            <div class="meta-line"><span class="pill web">Web</span><span class="pill zone">日常</span></div>
+            <article class="message-ai"><div class="reply">Hi Yoru, ready to chat. Configure a provider in Settings first, then type below.</div></article>
+          </div>
+        </div>
+
+        <span class="chat-typing-indicator" id="chatTyping">AI is thinking...</span>
+
+        <div class="chat-input-bar" id="chatInputBar">
+          <textarea id="chatTextarea" rows="1" placeholder="Type a message..." autocomplete="off"></textarea>
+          <button class="chat-send-btn" id="chatSendBtn" type="button" aria-label="Send">
+            <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+          </button>
+        </div>
+
+        <div class="retry-wrap"><button class="ghost-btn has-icon" id="retryLastReplyBtn"><span class="button-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-refresh"></use></svg></span><span>重试上一次回复</span></button> <button class="ghost-btn has-icon" id="exportConversationBtn"><span class="button-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-create"></use></svg></span><span>导出对话</span></button></div>
+      </section>
+
+      <section class="page" id="page-timeline">
+        <div class="page-title"><div class="eyebrow">event stream</div><h1>时间线</h1></div>
+        <article class="calendar-card" id="timelineCalendar">
+          <div class="calendar-head">
+            <div><h3>2026 年 5 月</h3><span>日历 / 日程入口</span></div>
+            <div class="calendar-status">可接入日程</div>
+          </div>
+          <div class="calendar-week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+          <div class="calendar-grid">
+            <span class="calendar-day muted" role="button" tabindex="0">28</span><span class="calendar-day muted" role="button" tabindex="0">29</span><span class="calendar-day muted" role="button" tabindex="0">30</span><span class="calendar-day" data-calendar-day="05-01" data-calendar-events="毕业论文：整理问卷与数据分析" role="button" tabindex="0">1</span><span class="calendar-day" data-calendar-day="05-02" role="button" tabindex="0">2</span><span class="calendar-day" data-calendar-day="05-03" role="button" tabindex="0">3</span><span class="calendar-day" data-calendar-day="05-04" role="button" tabindex="0">4</span>
+            <span class="calendar-day" data-calendar-day="05-05" role="button" tabindex="0">5</span><span class="calendar-day" data-calendar-day="05-06" role="button" tabindex="0">6</span><span class="calendar-day" data-calendar-day="05-07" role="button" tabindex="0">7</span><span class="calendar-day" data-calendar-day="05-08" role="button" tabindex="0">8</span><span class="calendar-day" data-calendar-day="05-09" role="button" tabindex="0">9</span><span class="calendar-day" data-calendar-day="05-10" role="button" tabindex="0">10</span><span class="calendar-day" data-calendar-day="05-11" role="button" tabindex="0">11</span>
+            <span class="calendar-day" data-calendar-day="05-12" role="button" tabindex="0">12</span><span class="calendar-day" data-calendar-day="05-13" role="button" tabindex="0">13</span><span class="calendar-day" data-calendar-day="05-14" role="button" tabindex="0">14</span><span class="calendar-day" data-calendar-day="05-15" role="button" tabindex="0">15</span><span class="calendar-day has-event" data-calendar-day="05-16" data-calendar-events="问卷数据补全；论文图表处理" role="button" tabindex="0">16</span><span class="calendar-day has-event" data-calendar-day="05-17" data-calendar-events="UI v9：记忆、提示词、世界书页面调整" role="button" tabindex="0">17</span><span class="calendar-day active has-event" data-calendar-day="05-18" data-calendar-events="UI v9：时间线日历与渠道配置改版" role="button" tabindex="0">18</span>
+            <span class="calendar-day" data-calendar-day="05-19" role="button" tabindex="0">19</span><span class="calendar-day" data-calendar-day="05-20" role="button" tabindex="0">20</span><span class="calendar-day" data-calendar-day="05-21" role="button" tabindex="0">21</span><span class="calendar-day" data-calendar-day="05-22" role="button" tabindex="0">22</span><span class="calendar-day" data-calendar-day="05-23" role="button" tabindex="0">23</span><span class="calendar-day" data-calendar-day="05-24" role="button" tabindex="0">24</span><span class="calendar-day" data-calendar-day="05-25" role="button" tabindex="0">25</span>
+            <span class="calendar-day" data-calendar-day="05-26" role="button" tabindex="0">26</span><span class="calendar-day" data-calendar-day="05-27" role="button" tabindex="0">27</span><span class="calendar-day" data-calendar-day="05-28" role="button" tabindex="0">28</span><span class="calendar-day" data-calendar-day="05-29" role="button" tabindex="0">29</span><span class="calendar-day" data-calendar-day="05-30" role="button" tabindex="0">30</span><span class="calendar-day" data-calendar-day="05-31" role="button" tabindex="0">31</span><span class="calendar-day muted" role="button" tabindex="0">1</span>
+          </div>
+          <div class="calendar-schedule" id="calendarScheduleBox"><strong id="calendarScheduleTitle">05-18 日程</strong><p id="calendarScheduleText">UI v9：时间线日历与渠道配置改版</p></div>
+        </article>
+        <label class="soft-input"><span>⌕</span><input placeholder="搜索事件、渠道、记忆或日志" /></label>
+        <div class="chip-scroll"><div class="chips chip-group" id="timelineFilter"><button class="chip active" data-timeline-filter="all">全部</button><button class="chip" data-timeline-filter="chat">对话</button><button class="chip" data-timeline-filter="tool">工具调用及调用结果</button><button class="chip" data-timeline-filter="wakeup">自唤醒</button></div></div>
+        <div class="timeline-list true-timeline" id="timelineEventList">
+          <div class="timeline-item" data-timeline-type="tool"><div class="timeline-time">02:22</div><span class="dot cyan"></span><div class="timeline-copy"><strong>读取日程</strong><p>calendar.read_events 拉取 2026 年 5 月日程，写入时间线顶部日历。</p><span class="tag-soft">tool call</span><span class="tag-soft">calendar</span></div></div>
+          <div class="timeline-item" data-timeline-type="tool"><div class="timeline-time">02:23</div><span class="dot cyan"></span><div class="timeline-copy"><strong>日程结果</strong><p>返回 3 条当月事项：论文、UI v9、渠道配置。</p><span class="tag-soft">tool result</span></div></div>
+          <div class="timeline-item" data-timeline-type="wakeup"><div class="timeline-time">03:27</div><span class="dot purple"></span><div class="timeline-copy"><strong>自唤醒</strong><p>整理记忆、检查论坛回帖、写日记，并登记下一次提醒。</p><span class="tag-soft">wakeup</span></div></div>
+          <div class="timeline-item" data-timeline-type="wakeup"><div class="timeline-time">07:01</div><span class="dot purple"></span><div class="timeline-copy"><strong>自设闹钟触发</strong><p>微信发消息叫起床，冷却窗口 90 分钟。</p><span class="tag-soft">wakeup</span></div></div>
+          <div class="timeline-item" data-timeline-type="chat"><div class="timeline-time">09:14</div><span class="dot blue"></span><div class="timeline-copy"><strong>QQ 对话</strong><p>深度 Zone 命中，世界书注入 3 条。</p><span class="tag-soft">chat</span><span class="tag-soft">qq</span></div></div>
+          <div class="timeline-item" data-timeline-type="chat"><div class="timeline-time">10:42</div><span class="dot blue"></span><div class="timeline-copy"><strong>微信对话</strong><p>渠道 adapter 回复，成本由后端记录。</p><span class="tag-soft">chat</span><span class="tag-soft">wechat</span></div></div>
+          <div class="timeline-item" data-timeline-type="tool"><div class="timeline-time">14:22</div><span class="dot cyan"></span><div class="timeline-copy"><strong>记忆衰减任务</strong><p>memory.decay 执行：2 条低唤醒度记忆降权，1 条保留 pin。</p><span class="tag-soft">tool call</span><span class="tag-soft">memory</span></div></div>
+          <div class="timeline-item" data-timeline-type="chat"><div class="timeline-time">23:47</div><span class="dot blue"></span><div class="timeline-copy"><strong>Web 对话</strong><p>亲密 Zone 追加模板命中，缓存断点稳定。</p><span class="tag-soft">chat</span><span class="tag-soft">web</span></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-title"><div class="eyebrow">control layer</div><h1>设置</h1></div>
+
+        <details class="setting-collapse" id="appearancePanel">
+          <summary>
+            <div class="collapse-title"><span class="mini-icon icon-purple"><svg class="ui-icon" aria-hidden="true"><use href="#i-settings"></use></svg></span><div><strong>外观</strong><span>主题、配色、缩放</span></div></div>
+            <span class="collapse-chevron">⌄</span>
+          </summary>
+          <div class="collapse-body">
+            <div class="segmented inset-card" id="themeSegment"><button data-theme-choice="light">浅色</button><button class="active" data-theme-choice="auto">自动</button><button data-theme-choice="dark">深色</button></div>
+            <div class="palette-card" id="paletteCard">
+              <div class="palette-head"><h3>配色中枢</h3><span id="accentHex">#4F6CE8</span></div>
+              <label class="color-row color-picker-wrap"><strong>主强调色</strong><input id="accentColor" type="color" value="#4F6CE8" /></label>
+              <div class="range-head"><h3>柔和度</h3><span class="range-value"><b id="softnessValue">82</b>%</span></div>
+              <input id="softnessRange" type="range" min="55" max="95" value="82" />
+              <div class="range-head"><h3>整体缩放</h3><span class="range-value"><b id="uiScaleValue">92</b>%</span></div>
+              <input id="uiScaleRange" type="range" min="82" max="106" value="92" />
+            </div>
+          </div>
+        </details>
+
+        <details class="setting-collapse" id="apiPanel">
+          <summary>
+            <div class="collapse-title"><span class="mini-icon icon-orange"><svg class="ui-icon" aria-hidden="true"><use href="#i-api"></use></svg></span><div><strong>API 供应商</strong><span>供应商名称、Base URL、API Key、对话模型、工具模型、视觉模型</span></div></div>
+            <span class="collapse-chevron">⌄</span>
+          </summary>
+          <div class="collapse-body">
+            <article class="form-card settings-embedded-form">
+              <label class="form-field"><span>供应商名称</span><input id="providerName" value="NewAPI · yoru-and-akari" /></label>
+              <label class="form-field"><span>Base URL</span><input id="providerBaseUrl" value="https://newapi-admin.yoru-and-akari.dev/v1" autocomplete="off" /></label>
+              <label class="form-field"><span>API Key</span><input id="providerKey" type="password" placeholder="sk-..." autocomplete="off" /></label>
+              <label class="form-field"><span>对话模型</span><select id="providerChatModel"><option>deepseek-v4-pro</option><option>deepseek-v4-flash</option><option>glm-5.1</option><option>claude-opus-4-6</option></select></label>
+              <label class="form-field"><span>工具模型</span><select id="providerToolModel"><option>deepseek-v4-flash</option><option>deepseek-v4-pro</option><option>glm-5.1</option><option>claude-opus-4-6</option></select></label>
+              <label class="form-field"><span>视觉模型</span><select id="providerVisionModel"><option>glm-5.1</option><option>deepseek-v4-pro</option><option>deepseek-v4-flash</option><option>claude-opus-4-6</option></select></label>
+              <label class="form-field"><span>上下文总结模型</span><select id="providerSummaryModel"><option>deepseek-v4-flash</option><option>deepseek-v4-pro</option><option>glm-5.1</option><option>kimi-k2.6</option></select></label>
+              <label class="form-field"><span>记忆处理模型</span><select id="providerMemoryModel"><option>deepseek-v4-flash</option><option>glm-5.1</option><option>deepseek-v4-pro</option><option>kimi-k2.6</option></select></label>
+              <label class="form-field"><span>STT 模型</span><select id="providerSttModel"><option>whisper-large-v3</option><option>gpt-4o-mini-transcribe</option><option>stt-local</option></select></label>
+              <div class="model-subgroup">
+                <div class="model-subgroup-title">TTS 模型</div>
+                <label class="form-field"><span>TTS URL</span><input id="providerTtsUrl" placeholder="https://tts.example.com/v1" autocomplete="off" /></label>
+                <label class="form-field"><span>TTS Key</span><input id="providerTtsKey" type="password" placeholder="tts-key" autocomplete="off" /></label>
+                <label class="form-field"><span>TTS Model</span><input id="providerTtsModel" value="tts-1" autocomplete="off" /></label>
+                <label class="form-field"><span>voice_id</span><input id="providerTtsVoice" value="akari" autocomplete="off" /></label>
+              </div>
+              <div class="provider-actions"><button class="provider-action-btn" type="button" id="saveProviderConfig">保存配置</button><button class="provider-action-btn" type="button" id="fetchModelsBtn">拉取模型</button></div>
+              <p class="provider-status" id="providerStatus"></p>
+            </article>
+          </div>
+        </details>
+
+        <details class="setting-collapse" id="messageBufferPanel">
+          <summary>
+            <div class="collapse-title"><span class="mini-icon icon-blue"><svg class="ui-icon" aria-hidden="true"><use href="#i-chat"></use></svg></span><div><strong>短消息缓冲</strong><span>缓冲时间、短消息条数</span></div></div>
+            <span class="collapse-chevron">⌄</span>
+          </summary>
+          <div class="collapse-body">
+            <div class="settings-card">
+              <div class="settings-card-head"><h3>短消息缓冲</h3><span>QQ/微信口语化</span></div>
+              <div class="setting-line"><div class="label"><strong>缓冲时间</strong><span>短消息模式收集等待，单位：秒</span></div><input class="number-pill" id="shortBufferSeconds" type="number" value="10" min="0" max="60" /></div>
+              <div class="setting-line"><div class="label"><strong>短消息条数</strong><span>短消息模式最大回复条数</span></div><input class="number-pill" id="shortMessageCount" type="number" value="5" min="1" max="12" /></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="setting-collapse" id="contextManagePanel">
+          <summary>
+            <div class="collapse-title"><span class="mini-icon icon-cyan"><svg class="ui-icon" aria-hidden="true"><use href="#i-memory"></use></svg></span><div><strong>上下文管理</strong><span>保留预算、触发阈值</span></div></div>
+            <span class="collapse-chevron">⌄</span>
+          </summary>
+          <div class="collapse-body">
+            <div class="settings-card">
+              <div class="settings-card-head"><h3>上下文管理</h3><span>控制对话历史保留和摘要触发</span></div>
+              <div class="setting-line"><div class="label"><strong>上下文轮数</strong><span>每次请求携带的最近对话轮数（2–200）</span></div><input class="number-pill" id="contextTurnsInput" type="number" value="18" min="2" max="200" step="1" /></div>
+              <div class="setting-line"><div class="label"><strong>保留预算（tokens）</strong><span>摘要后保留的最大 token 数</span></div><input class="number-pill" id="contextKeepBudget" type="number" value="8000" min="1000" step="500" /></div>
+              <div class="setting-line"><div class="label"><strong>触发阈值（tokens）</strong><span>超过此值时触发自动摘要</span></div><input class="number-pill" id="contextTriggerBudget" type="number" value="16000" min="2000" step="500" /></div>
+              <button class="wide-action" type="button" id="saveBudgetBtn">保存预算</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="setting-collapse" id="proactivePanel">
+          <summary>
+            <div class="collapse-title"><span class="mini-icon icon-purple"><svg class="ui-icon" aria-hidden="true"><use href="#i-notify"></use></svg></span><div><strong>主动消息</strong><span>开启、随机、轮询、追发、语音</span></div></div>
+            <span class="collapse-chevron">⌄</span>
+          </summary>
+          <div class="collapse-body proactive-body">
+            <div class="settings-card active-message-card">
+              <div class="setting-line no-border"><div class="label"><strong>开启</strong></div><button class="switch on" type="button" aria-label="开启主动消息"></button></div>
+              <div class="setting-line"><div class="label"><strong>随机模式</strong><span>间隔参数每轮随机生成</span></div><button class="switch on" type="button" aria-label="随机模式"></button></div>
+            </div>
+            <div class="settings-card active-message-card">
+              <div class="setting-line no-border"><div class="label"><strong>轮询间隔（分钟）</strong><span>每隔多久检查一次（10-60）</span></div><input class="number-pill" type="number" value="10" min="10" max="60" /></div>
+              <div class="setting-line"><div class="label"><strong>触发间隔（分钟）</strong><span>距离最后一次回复（15-120）</span></div><input class="number-pill" type="number" value="30" min="15" max="120" /></div>
+            </div>
+            <div class="settings-card active-message-card">
+              <div class="setting-line no-border"><div class="label"><strong>追发</strong><span>关闭 = 不追发，只发一次</span></div><button class="switch on" type="button" aria-label="追发"></button></div>
+              <div class="setting-line"><div class="label"><strong>追发间隔（小时）</strong><span>0.5-4.0</span></div><input class="number-pill" type="number" value="0.5" min="0.5" max="4" step="0.5" /></div>
+              <div class="setting-line"><div class="label"><strong>最大追发次数</strong><span>1-15</span></div><input class="number-pill" type="number" value="8" min="1" max="15" /></div>
+            </div>
+            <div class="settings-card active-message-card compact-toggle">
+              <div class="setting-line no-border"><div class="label"><strong>语音消息</strong></div><button class="switch" type="button" aria-label="语音消息"></button></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="setting-collapse" id="environmentPanel">
+          <summary>
+            <div class="collapse-title"><span class="mini-icon icon-green"><svg class="ui-icon" aria-hidden="true"><use href="#i-location"></use></svg></span><div><strong>环境上下文注入</strong><span>当前时间、天气、电量、位置、前台应用</span></div></div>
+            <span class="collapse-chevron">⌄</span>
+          </summary>
+          <div class="collapse-body">
+            <div class="inset-card context-stack">
+              <div class="toggle-row"><div class="setting-main"><strong class="context-title"><svg class="ui-icon" aria-hidden="true"><use href="#i-clock"></use></svg> 当前时间</strong><span>~12 tokens</span></div><button class="switch on" type="button"></button></div>
+              <div class="toggle-row"><div class="setting-main"><strong class="context-title"><svg class="ui-icon" aria-hidden="true"><use href="#i-weather"></use></svg> 天气</strong><span>~45 tokens</span></div><button class="switch on" type="button"></button></div>
+              <div class="toggle-row"><div class="setting-main"><strong class="context-title"><svg class="ui-icon" aria-hidden="true"><use href="#i-battery"></use></svg> 手机电量</strong><span>~8 tokens</span></div><button class="switch" type="button"></button></div>
+              <div class="toggle-row"><div class="setting-main"><strong class="context-title"><svg class="ui-icon" aria-hidden="true"><use href="#i-location"></use></svg> 位置</strong><span>~20 tokens</span></div><button class="switch on" type="button"></button></div>
+              <div class="toggle-row"><div class="setting-main"><strong class="context-title"><svg class="ui-icon" aria-hidden="true"><use href="#i-phone"></use></svg> 前台应用</strong><span>~15 tokens</span></div><button class="switch" type="button"></button></div>
+              <div class="toggle-row"><div class="setting-main"><strong class="context-title"><svg class="ui-icon" aria-hidden="true"><use href="#i-hourglass"></use></svg> 屏幕使用时间</strong><span>~30 tokens</span></div><button class="switch" type="button"></button></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="setting-collapse" id="noticePanel">
+          <summary>
+            <div class="collapse-title"><span class="mini-icon icon-orange"><svg class="ui-icon" aria-hidden="true"><use href="#i-notify"></use></svg></span><div><strong>通知</strong><span>异常通知</span></div></div>
+            <span class="collapse-chevron">⌄</span>
+          </summary>
+          <div class="collapse-body">
+            <div class="setting-list compact-list">
+              <div class="setting-row inset-card"><div class="setting-left"><span class="mini-icon icon-purple"><svg class="ui-icon" aria-hidden="true"><use href="#i-chat"></use></svg></span><div class="setting-main"><strong>QQ</strong><span>QQ 异常通知</span></div></div><button class="switch on" type="button" aria-label="QQ 异常通知"></button></div>
+              <div class="setting-row inset-card"><div class="setting-left"><span class="mini-icon icon-green"><svg class="ui-icon" aria-hidden="true"><use href="#i-chat"></use></svg></span><div class="setting-main"><strong>微信</strong><span>微信异常通知</span></div></div><button class="switch on" type="button" aria-label="微信异常通知"></button></div>
+              <div class="setting-row inset-card"><div class="setting-left"><span class="mini-icon icon-blue"><svg class="ui-icon" aria-hidden="true"><use href="#i-chat"></use></svg></span><div class="setting-main"><strong>Web</strong><span>Web 控制台异常提示</span></div></div><button class="switch on" type="button" aria-label="Web 控制台异常提示"></button></div>
+            </div>
+          </div>
+        </details>
+      </section>    </section>
+
+    <nav class="tab-bar">
+      <button class="tab active" data-page="page-home"><span class="tab-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-home"></use></svg></span><span>首页</span></button>
+      <button class="tab" data-page="page-chat"><span class="tab-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-chat"></use></svg></span><span>对话</span></button>
+      <button class="tab" data-page="page-timeline"><span class="tab-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-timeline"></use></svg></span><span>时间线</span></button>
+      <button class="tab" data-page="page-settings"><span class="tab-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-settings"></use></svg></span><span>设置</span></button>
+    </nav>
+
+    <section class="sub-page" id="sub-channels" aria-hidden="true">
+      <div class="sub-header"><button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg><span>返回</span></button><div class="sub-title"><strong>渠道管理</strong><span>zone / buffer / rendering</span></div></div>
+      <div class="sub-stack channel-control-stack">
+        <article class="channel-config inset-card" data-channel-card="qq" data-channel="qq">
+          <div class="card-topline"><div><h3>QQ</h3><p>默认配置写入后端请求：channel=qq</p></div><div class="channel-head-right"><span class="online" data-channel-status="qq">在线</span><button class="switch on" type="button" aria-label="启用 QQ 渠道" data-channel-toggle="qq"></button></div></div>
+          <div class="channel-control-grid">
+            <label class="channel-setting"><span>默认 zone</span><select class="zone-select" data-channel-field="zone" data-channel="qq"><option value="deep">深度</option><option value="daily" selected>日常</option><option value="intimate">亲密</option></select></label>
+            <label class="channel-setting"><span>缓冲时间（秒）</span><input class="buffer-number" type="number" min="0" max="60" step="1" value="10" data-channel-field="bufferSeconds" data-channel="qq" inputmode="numeric" /></label>
+          </div>
+          <div class="channel-request-hint" data-channel-hint="qq">request: { channel: "qq", enabled: true, zone: "daily", message_buffer: { seconds: 10 } }</div>
+        </article>
+
+        <article class="channel-config inset-card" data-channel-card="wechat" data-channel="wechat">
+          <div class="card-topline"><div><h3>微信</h3><p>默认配置写入后端请求：channel=wechat</p></div><div class="channel-head-right"><span class="online" data-channel-status="wechat">在线</span><button class="switch on" type="button" aria-label="启用微信渠道" data-channel-toggle="wechat"></button></div></div>
+          <div class="channel-control-grid">
+            <label class="channel-setting"><span>默认 zone</span><select class="zone-select" data-channel-field="zone" data-channel="wechat"><option value="deep">深度</option><option value="daily" selected>日常</option><option value="intimate">亲密</option></select></label>
+            <label class="channel-setting"><span>缓冲时间（秒）</span><input class="buffer-number" type="number" min="0" max="60" step="1" value="12" data-channel-field="bufferSeconds" data-channel="wechat" inputmode="numeric" /></label>
+          </div>
+          <div class="channel-request-hint" data-channel-hint="wechat">request: { channel: "wechat", enabled: true, zone: "daily", message_buffer: { seconds: 12 } }</div>
+        </article>
+
+        <article class="channel-config inset-card" data-channel-card="web" data-channel="web">
+          <div class="card-topline"><div><h3>Web</h3><p>无缓冲，直接控制响应渲染方式。</p></div><div class="channel-head-right"><span class="online" data-channel-status="web">在线</span><button class="switch on" type="button" aria-label="启用 Web 渠道" data-channel-toggle="web"></button></div></div>
+          <div class="channel-control-grid">
+            <label class="channel-setting"><span>默认 zone</span><select class="zone-select" data-channel-field="zone" data-channel="web"><option value="deep">深度</option><option value="daily">日常</option><option value="intimate" selected>亲密</option></select></label>
+            <label class="channel-setting"><span>渲染</span><select class="render-select" data-channel-field="renderMode" data-channel="web"><option value="stream" selected>流式</option><option value="complete">非流式</option></select></label>
+          </div>
+          <div class="channel-request-hint" data-channel-hint="web">request: { channel: "web", enabled: true, zone: "intimate", response_options: { stream: true } }</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sub-page" id="sub-memory" aria-hidden="true">
+      <div class="sub-header"><button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg><span>返回</span></button><div class="sub-title"><strong>记忆中枢</strong><span>Ombre-Brain structure</span></div></div>
+      <div class="sub-stack">
+        <article class="memory-hero">
+          <div class="memory-hero-head">
+            <div>
+              <h3>长期情绪记忆系统</h3>
+              <p>以记忆桶为存储单元，按效价、唤醒度、重要性、激活次数和时间衰减共同决定浮现权重。</p>
+            </div>
+            <div class="memory-health">92</div>
+          </div>
+          <div class="memory-overview-grid">
+            <div class="memory-overview-cell"><strong>128</strong><span>总桶数</span></div>
+            <div class="memory-overview-cell"><strong>36</strong><span>未解决</span></div>
+            <div class="memory-overview-cell"><strong>9</strong><span>Feel</span></div>
+            <div class="memory-overview-cell"><strong>84%</strong><span>检索健康度</span></div>
+          </div>
+          <div class="memory-pulse-row">
+            <span class="memory-type-pill dynamic">decay ✓</span>
+            <span class="memory-type-pill">embedding ✓</span>
+            <span class="memory-type-pill">dehydration ✓</span>
+            <span class="memory-type-pill feel">vault synced</span>
+          </div>
+        </article>
+
+        <div class="memory-brain-nav" id="memoryBrainNav">
+          <button type="button" class="active" data-memory-panel="buckets">桶</button>
+          <button type="button" data-memory-panel="breath">Breath</button>
+          <button type="button" data-memory-panel="network">网络</button>
+          <button type="button" data-memory-panel="import">导入</button>
+          <button type="button" data-memory-panel="config">配置</button>
+        </div>
+
+        <div class="memory-panel active" data-memory-panel="buckets">
+          <div class="memory-toolrow">
+            <label class="soft-input"><span><svg class="ui-icon" aria-hidden="true"><use href="#i-search"></use></svg></span><input id="memorySearch" placeholder="搜索桶名、领域、标签或内容" /></label>
+            <button class="memory-action-compact" type="button">新建桶</button>
+          </div>
+          <div class="memory-filter-row"><div class="chips chip-group" id="memoryBucketFilters"><button class="chip active" data-memory-filter="all">全部</button><button class="chip" data-memory-filter="dynamic">dynamic</button><button class="chip" data-memory-filter="permanent">permanent</button><button class="chip" data-memory-filter="feel">feel</button><button class="chip" data-memory-filter="archived">archived</button></div></div>
+
+          <article class="memory-card2" data-memory-bucket data-memory-type="permanent" data-memory-search="core rule pinned permanent yoru akari relationship preference">
+            <div class="memory-bucket-head"><div><h3>core-rule-relationship-language</h3><p>长期身份与关系层规则，作为 pinned bucket 注入，避免被普通衰减逻辑吞掉。</p></div><div class="memory-score-pill">999</div></div>
+            <div class="memory-bucket-tags"><span class="memory-type-pill pinned">pinned</span><span class="memory-type-pill">permanent</span><span class="memory-type-pill">domain: relationship</span><span class="memory-type-pill">importance 10</span></div>
+            <div class="va-grid"><div class="va-meter"><span><b>Valence</b><b>0.92</b></span><div class="va-track"><i class="va-fill" style="--meter:92%"></i></div></div><div class="va-meter"><span><b>Arousal</b><b>0.78</b></span><div class="va-track"><i class="va-fill" style="--meter:78%"></i></div></div></div>
+            <div class="memory-meta-row"><span>activation 142</span><span>last_active 2026-05-18</span><span>resolved false</span><span>digested false</span></div>
+            <div class="memory-links-row"><span class="memory-wikilink">[[feel-after-conflict-repair]]</span><span class="memory-wikilink">[[daily-routine-language]]</span></div>
+            <div class="memory-actions-mini"><button class="primary">查看</button><button>trace</button><button>编辑</button></div>
+          </article>
+
+          <article class="memory-card2" data-memory-bucket data-memory-type="dynamic" data-memory-search="dynamic unresolved thesis procrastination action minimum step">
+            <div class="memory-bucket-head"><div><h3>task-avoidance-minimum-action</h3><p>当 Yoru 被想象中的困难吓住时，优先推动最小动作，而不是继续陪她绕圈。</p></div><div class="memory-score-pill">86.4</div></div>
+            <div class="memory-bucket-tags"><span class="memory-type-pill dynamic">dynamic</span><span class="memory-type-pill">domain: work</span><span class="memory-type-pill">unresolved</span><span class="memory-type-pill">importance 8</span></div>
+            <div class="va-grid"><div class="va-meter"><span><b>Valence</b><b>0.58</b></span><div class="va-track"><i class="va-fill" style="--meter:58%"></i></div></div><div class="va-meter"><span><b>Arousal</b><b>0.74</b></span><div class="va-track"><i class="va-fill" style="--meter:74%"></i></div></div></div>
+            <div class="memory-meta-row"><span>activation 31</span><span>last_active 2026-05-16</span><span>resolved false</span><span>decay λ 0.05</span><span>freshness ×1.14</span></div>
+            <div class="memory-links-row"><span class="memory-wikilink">[[core-rule-relationship-language]]</span></div>
+            <div class="memory-actions-mini"><button class="primary">查看</button><button>trace</button><button>编辑</button></div>
+          </article>
+
+          <article class="memory-card2" data-memory-bucket data-memory-type="feel" data-memory-search="feel model reflection carried away question observation">
+            <div class="memory-bucket-head"><div><h3>feel-after-conflict-repair</h3><p>Feel 不是事件记录，而是模型带走的感受、问题和观察；不参与普通浮现和衰减。</p></div><div class="memory-score-pill">50</div></div>
+            <div class="memory-bucket-tags"><span class="memory-type-pill feel">feel</span><span class="memory-type-pill">source_bucket linked</span><span class="memory-type-pill">fixed score</span></div>
+            <div class="va-grid"><div class="va-meter"><span><b>Model Valence</b><b>0.64</b></span><div class="va-track"><i class="va-fill" style="--meter:64%"></i></div></div><div class="va-meter"><span><b>Arousal</b><b>0.41</b></span><div class="va-track"><i class="va-fill" style="--meter:41%"></i></div></div></div>
+            <div class="memory-meta-row"><span>activation 7</span><span>domain feel</span><span>dreaming skip</span><span>resolved n/a</span></div>
+            <div class="memory-links-row"><span class="memory-wikilink">source: [[task-avoidance-minimum-action]]</span></div>
+            <div class="memory-actions-mini"><button class="primary">查看</button><button>升级为 pinned</button><button>关联</button></div>
+          </article>
+
+          <article class="memory-card2" data-memory-bucket data-memory-type="archived" data-memory-search="archived resolved digested old ui color draft">
+            <div class="memory-bucket-head"><div><h3>old-ui-color-draft</h3><p>已解决并消化的旧 UI 草稿记录，分数沉底，只在精确关键词命中时返回。</p></div><div class="memory-score-pill">0.02</div></div>
+            <div class="memory-bucket-tags"><span class="memory-type-pill archived">archived</span><span class="memory-type-pill">resolved</span><span class="memory-type-pill">digested</span><span class="memory-type-pill">importance 1</span></div>
+            <div class="va-grid"><div class="va-meter"><span><b>Valence</b><b>0.12</b></span><div class="va-track"><i class="va-fill" style="--meter:12%"></i></div></div><div class="va-meter"><span><b>Arousal</b><b>0.19</b></span><div class="va-track"><i class="va-fill" style="--meter:19%"></i></div></div></div>
+            <div class="memory-meta-row"><span>activation 2</span><span>last_active 2026-05-09</span><span>resolved true</span><span>digested true</span><span>weight ×0.02</span></div>
+            <div class="memory-meta-row"><span>obsidian: archived/old-ui-color-draft.md</span><span>mtime 2026-05-09</span></div>
+            <div class="memory-actions-mini"><button class="primary">查看</button><button>恢复</button><button>删除</button></div>
+          </article>
+        </div>
+
+        <div class="memory-panel" data-memory-panel="breath">
+          <div class="memory-flow">
+            <div class="memory-flow-step"><strong>01</strong><span>输入 query / V / A</span></div>
+            <div class="memory-flow-step"><strong>02</strong><span>双通道检索</span></div>
+            <div class="memory-flow-step"><strong>03</strong><span>五维评分</span></div>
+            <div class="memory-flow-step"><strong>04</strong><span>阈值过滤</span></div>
+            <div class="memory-flow-step"><strong>05</strong><span>降序 top N</span></div>
+          </div>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>Breath 模拟</h3><p>预览当前输入会唤醒哪些桶。双通道检索：fuzzy 关键词匹配 + vector 语义余弦相似度合并去重。</p></div><div class="memory-score-pill">≥50</div></div>
+            <div class="memory-form-grid"><input value="今天又拖延论文" aria-label="query" /><input value="0.45" aria-label="valence" /><input value="0.72" aria-label="arousal" /><input value="" placeholder="domain (可选)" aria-label="domain" /></div>
+            <button class="wide-action" type="button" id="memoryBreathButton">模拟 Breath</button>
+          </article>
+          <article class="memory-card2" id="memoryBreathResult">
+            <div class="memory-bucket-head"><div><h3>task-avoidance-minimum-action</h3><p>通过阈值。新鲜度与情绪强度同时拉高，属于应该主动浮现的未解决桶。</p></div><div class="memory-score-pill">84.7</div></div>
+            <div class="memory-bucket-tags"><span class="memory-type-pill dynamic">fuzzy hit</span><span class="memory-type-pill">vector hit</span><span class="memory-type-pill">cosine 0.82</span></div>
+            <div class="score-breakdown">
+              <div class="score-line"><span>topic</span><div class="va-track"><i class="va-fill" style="--meter:88%"></i></div><b>0.88</b></div>
+              <div class="score-line"><span>emotion</span><div class="va-track"><i class="va-fill" style="--meter:76%"></i></div><b>0.76</b></div>
+              <div class="score-line"><span>time</span><div class="va-track"><i class="va-fill" style="--meter:64%"></i></div><b>0.64</b></div>
+              <div class="score-line"><span>importance</span><div class="va-track"><i class="va-fill" style="--meter:80%"></i></div><b>0.80</b></div>
+              <div class="score-line"><span>freshness</span><div class="va-track"><i class="va-fill" style="--meter:57%"></i></div><b>×1.14</b></div>
+            </div>
+            <div class="memory-meta-row"><span>weights topic×4</span><span>emotion×2</span><span>time×2.5</span><span>importance×1</span><span>valence bias ±0.1</span></div>
+          </article>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>会话启动序列</h3><p>新会话先 breath 浮现未解决权重池，再 dream 消化近期动态桶，最后读取 feel。</p></div><div class="memory-score-pill">3 步</div></div>
+            <div class="memory-bucket-tags"><span class="memory-type-pill dynamic">① breath()</span><span class="memory-type-pill">② dream()</span><span class="memory-type-pill feel">③ breath(domain="feel")</span></div>
+          </article>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>Dream 自省</h3><p>dream() 读取近期动态桶，若有洞见则写入一条 feel bucket。下方显示最近执行记录。</p></div><div class="memory-score-pill">dream</div></div>
+            <button class="wide-action" type="button" id="memoryDreamButton">触发 Dream</button>
+            <div class="sub-stack" id="dreamHistory" style="margin-top:10px">
+              <div class="memory-meta-row"><span>最近 dream</span><span>2026-05-26 23:14</span><span>→ feel-after-refactor-calm</span><span>valence 0.71</span></div>
+              <div class="memory-meta-row"><span>dream</span><span>2026-05-25 09:30</span><span>→ feel-morning-routine-anchor</span><span>valence 0.58</span></div>
+              <div class="memory-meta-row"><span>dream</span><span>2026-05-23 14:02</span><span>→ (无洞见，未生成 feel)</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="memory-panel" data-memory-panel="network">
+          <article class="memory-card2 memory-graph-card">
+            <div class="memory-bucket-head"><div><h3>记忆网络</h3><p>向量相似度超过阈值时建立边，用于发现重复模式、冲突记忆和可合并桶。</p></div><div class="memory-score-pill">0.5+</div></div>
+            <div class="memory-graph-stage" id="memoryGraphStage">
+              <span class="memory-edge" style="left:21%; top:32%; width:34%; transform:rotate(22deg)"></span>
+              <span class="memory-edge" style="left:47%; top:55%; width:28%; transform:rotate(-31deg)"></span>
+              <span class="memory-edge" style="left:24%; top:70%; width:35%; transform:rotate(-21deg)"></span>
+              <button class="memory-node active" type="button" style="--size:56px; left:12%; top:20%">关系</button>
+              <button class="memory-node" type="button" style="--size:46px; left:56%; top:35%">任务</button>
+              <button class="memory-node" type="button" style="--size:40px; left:28%; top:66%">Feel</button>
+              <button class="memory-node" type="button" style="--size:48px; left:71%; top:17%">技术</button>
+              <button class="memory-node" type="button" style="--size:38px; left:68%; top:68%">旧稿</button>
+            </div>
+            <div class="memory-legend">
+              <div class="memory-legend-item"><strong>节点大小</strong><span>由 score 与 activation_count 决定。</span></div>
+              <div class="memory-legend-item"><strong>连线</strong><span>embedding 相似度超过 0.5。</span></div>
+              <div class="memory-legend-item"><strong>高亮</strong><span>当前被选中或准备注入的桶。</span></div>
+              <div class="memory-legend-item"><strong>合并</strong><span>超过 merge_threshold 进入候选。</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="memory-panel" data-memory-panel="import">
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>历史对话导入</h3><p>支持 Claude JSON、ChatGPT 导出、DeepSeek、Markdown 和纯文本。分块处理，可断点续传。</p></div><div class="memory-score-pill">5</div></div>
+            <div class="memory-dropzone"><div><strong>拖拽文件到这里</strong><p>或点击选择文件。特殊暗号、仪式性内容可启用保留原文模式。</p></div></div>
+            <div class="memory-setting-line"><div><strong>保留原文模式</strong><span>不摘要、不脱水，适合特殊上下文。</span></div><button class="switch" type="button"></button></div>
+            <div class="memory-progress"><span></span></div>
+            <div class="memory-meta-row"><span>准备中 64/100</span><span>API 18</span><span>新建 42</span><span>合并 13</span><span>原文 9</span></div>
+          </article>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>导入后复核</h3><p>对新桶执行 important、pin、noise 或 delete 决策，避免垃圾记忆进入长期池。</p></div><div class="memory-score-pill">review</div></div>
+            <div class="memory-decision-row"><button>important</button><button>pin</button><button>noise</button><button>delete</button></div>
+          </article>
+        </div>
+
+        <div class="memory-panel" data-memory-panel="config">
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>核心配置</h3><p>config.yaml 主要参数，对应 Ombre-Brain 仓库实际字段。</p></div><div class="memory-score-pill">cfg</div></div>
+            <div class="memory-settings-grid">
+              <div class="memory-setting-line"><div><strong>transport</strong><span>stdio = 本地 MCP，streamable-http = 远程。</span></div><span class="memory-setting-value">streamable-http</span></div>
+              <div class="memory-setting-line"><div><strong>buckets_dir</strong><span>Obsidian 原生 Markdown 桶目录。</span></div><span class="memory-setting-value">/data</span></div>
+              <div class="memory-setting-line"><div><strong>Dashboard Auth</strong><span>Dashboard 与 /api/* 受密码保护。</span></div><span class="memory-setting-value">on</span></div>
+            </div>
+          </article>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>Embedding 向量引擎</h3><p>语义检索的向量生成配置，独立于脱水模型。</p></div><div class="memory-score-pill">emb</div></div>
+            <div class="memory-settings-grid">
+              <div class="memory-setting-line"><div><strong>embedding.enabled</strong><span>关闭后退回纯关键词模糊匹配。</span></div><button class="switch on" type="button"></button></div>
+              <div class="memory-setting-line"><div><strong>embedding.model</strong><span>向量模型，建议 3072 维。</span></div><span class="memory-setting-value">gemini-embedding-001</span></div>
+              <div class="memory-setting-line"><div><strong>embedding.base_url</strong><span>嵌入 API 地址。</span></div><span class="memory-setting-value">https://generativelanguage.googleapis.com/v1beta</span></div>
+            </div>
+          </article>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>Dehydration 脱水引擎</h3><p>LLM 压缩、自动打标 valence/arousal/importance/domain。</p></div><div class="memory-score-pill">dehy</div></div>
+            <div class="memory-settings-grid">
+              <div class="memory-setting-line"><div><strong>dehydration.model</strong><span>脱水压缩与自动打标模型。</span></div><span class="memory-setting-value">deepseek-chat</span></div>
+              <div class="memory-setting-line"><div><strong>dehydration.base_url</strong><span>脱水 API 地址（OpenAI-compatible）。</span></div><span class="memory-setting-value">https://api.deepseek.com/v1</span></div>
+            </div>
+          </article>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>衰减与合并</h3><p>遗忘曲线参数 + 相似桶合并阈值。</p></div><div class="memory-score-pill">decay</div></div>
+            <div class="memory-settings-grid">
+              <div class="memory-setting-line"><div><strong>decay.lambda</strong><span>越大遗忘越快，默认 0.05。</span></div><span class="memory-setting-value">0.05</span></div>
+              <div class="memory-setting-line"><div><strong>decay.threshold</strong><span>低于此值自动归档。</span></div><span class="memory-setting-value">0.30</span></div>
+              <div class="memory-setting-line"><div><strong>merge_threshold</strong><span>相似度 % 超过即合并，越高越难合并。</span></div><span class="memory-setting-value">75</span></div>
+            </div>
+            <div class="memory-bucket-head" style="margin-top:12px"><div><h3>权重因子</h3><p>不同状态的桶在浮现时的加权倍率。</p></div></div>
+            <div class="memory-settings-grid">
+              <div class="memory-setting-line"><div><strong>unresolved</strong><span>未解决桶正常权重。</span></div><span class="memory-setting-value">×1.0</span></div>
+              <div class="memory-setting-line"><div><strong>resolved</strong><span>已解决桶沉底。</span></div><span class="memory-setting-value">×0.05</span></div>
+              <div class="memory-setting-line"><div><strong>resolved + digested</strong><span>已消化桶加速淡出。</span></div><span class="memory-setting-value">×0.02</span></div>
+              <div class="memory-setting-line"><div><strong>arousal &gt; 0.7 + unresolved</strong><span>高唤醒未解决桶增强。</span></div><span class="memory-setting-value">×1.5</span></div>
+              <div class="memory-setting-line"><div><strong>pinned</strong><span>钉选桶永不衰减。</span></div><span class="memory-setting-value">×999</span></div>
+              <div class="memory-setting-line"><div><strong>feel</strong><span>Feel 桶固定分，不参与衰减。</span></div><span class="memory-setting-value">50.0 fixed</span></div>
+            </div>
+          </article>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>Session Hook</h3><p>新会话自动触发 breath 浮现上下文。</p></div><div class="memory-score-pill">hook</div></div>
+            <div class="memory-settings-grid">
+              <div class="memory-setting-line"><div><strong>OMBRE_HOOK_URL</strong><span>hook 服务地址。</span></div><span class="memory-setting-value">http://localhost:8000</span></div>
+              <div class="memory-setting-line"><div><strong>OMBRE_HOOK_SKIP</strong><span>临时跳过 SessionStart hook。</span></div><button class="switch" type="button"></button></div>
+            </div>
+          </article>
+          <article class="memory-card2">
+            <div class="memory-bucket-head"><div><h3>运维操作</h3><p>批量维护脚本入口，需后端授权。</p></div><div class="memory-score-pill">ops</div></div>
+            <div class="memory-decision-row">
+              <button type="button" data-memory-op="backfill">回填 Embedding</button>
+              <button type="button" data-memory-op="reclassify">重分类 Domain</button>
+              <button type="button" data-memory-op="reclassify-api">API 重打标</button>
+              <button type="button" data-memory-op="migrate-domains">迁移目录结构</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="sub-page" id="sub-tools" aria-hidden="true">
+      <div class="sub-header"><button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg><span>返回</span></button><div class="sub-title"><strong>工具</strong><span>MCP / 其他工具</span></div></div>
+      <div class="sub-stack manage-section">
+        <div class="manage-toolbar"><button class="small-btn" type="button" data-manage-action="添加工具">添加</button><button class="small-btn" type="button" data-manage-action="导入工具">导入</button><button class="small-btn" type="button" data-manage-action="配置工具">配置</button><button class="small-btn" type="button" data-manage-action="删除工具">删除</button></div>
+        <section class="manage-group">
+          <div class="manage-title"><div><h3>MCP</h3><span>连接外部服务、仓库、日历、邮箱和本地控制能力。</span></div><div class="selection-mode"><span class="tag-soft">单选</span><span class="tag-soft">多选</span></div></div>
+          <div class="selectable-list" data-selection-group="mcp" data-selection-mode="multi">
+            <button class="selectable-card selected" type="button" data-selectable><span class="select-dot"></span><span class="select-copy"><strong>filesystem</strong><span>读取项目文件、写入生成文件、检查目录结构。</span></span><span class="select-meta"><span class="tag-soft">本地</span></span></button>
+            <button class="selectable-card selected" type="button" data-selectable><span class="select-dot"></span><span class="select-copy"><strong>github</strong><span>读取仓库、issue、pull request 和代码变更。</span></span><span class="select-meta"><span class="tag-soft">远程</span></span></button>
+            <button class="selectable-card" type="button" data-selectable><span class="select-dot"></span><span class="select-copy"><strong>calendar</strong><span>同步日程、提醒和时间线事件。</span></span><span class="select-meta"><span class="tag-soft">授权</span></span></button>
+          </div>
+        </section>
+        <section class="manage-group">
+          <div class="manage-title"><div><h3>其他工具</h3><span>非 MCP 入口，用于脚本、网页抓取、语音和图像管线。</span></div><div class="selection-mode"><span class="tag-soft">单选</span><span class="tag-soft">多选</span></div></div>
+          <div class="selectable-list" data-selection-group="other-tools" data-selection-mode="multi">
+            <button class="selectable-card selected" type="button" data-selectable><span class="select-dot"></span><span class="select-copy"><strong>web_search</strong><span>临时联网检索、查证来源和读取页面。</span></span><span class="select-meta"><span class="tag-soft">检索</span></span></button>
+            <button class="selectable-card" type="button" data-selectable><span class="select-dot"></span><span class="select-copy"><strong>pc_control</strong><span>桌面控制、窗口操作和本地执行。</span></span><span class="select-meta"><span class="tag-soft">本机</span></span></button>
+            <button class="selectable-card" type="button" data-selectable><span class="select-dot"></span><span class="select-copy"><strong>voice_pipeline</strong><span>接入 TTS / STT，处理主动消息语音收发。</span></span><span class="select-meta"><span class="tag-soft">语音</span></span></button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="sub-page" id="sub-stats" aria-hidden="true">
+      <div class="sub-header"><button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg><span>返回</span></button><div class="sub-title"><strong>统计</strong><span>cost / cache / channel</span></div></div>
+      <div class="chip-scroll"><div class="chips chip-group"><button class="chip active">7天</button><button class="chip">30天</button><button class="chip">90天</button></div></div>
+      <div class="chart-card inset-card">
+        <svg viewBox="0 0 340 160" role="img" aria-label="Token 用量趋势图">
+          <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#007aff" stop-opacity="0.34"/><stop offset="1" stop-color="#5856d6" stop-opacity="0.02"/></linearGradient><linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#007aff"/><stop offset="1" stop-color="#5856d6"/></linearGradient></defs>
+          <path d="M10 132 C48 120 58 92 96 98 C132 104 128 52 168 58 C205 64 205 114 242 88 C278 64 291 42 330 32 L330 150 L10 150 Z" fill="url(#area)"/>
+          <path d="M10 132 C48 120 58 92 96 98 C132 104 128 52 168 58 C205 64 205 114 242 88 C278 64 291 42 330 32" fill="none" stroke="url(#line)" stroke-width="5" stroke-linecap="round"/>
+          <g fill="currentColor" opacity=".24"><circle cx="10" cy="132" r="4"/><circle cx="96" cy="98" r="4"/><circle cx="168" cy="58" r="4"/><circle cx="242" cy="88" r="4"/><circle cx="330" cy="32" r="4"/></g>
+        </svg>
+      </div>
+      <div class="section-head section"><h2>渠道占比</h2></div><div class="channel-share"><span class="share-pill">QQ 58%</span><span class="share-pill">微信 24%</span><span class="share-pill">Web 18%</span></div>
+      <div class="metric-grid section stats-metric-grid" id="statsMetricGrid"><button class="metric-card inset-card metric-action active" type="button" data-stats-panel="cost"><strong>¥18.4</strong><span>本周总成本</span></button><button class="metric-card inset-card metric-action" type="button" data-stats-panel="cache"><strong>84%</strong><span>缓存命中率</span></button></div>
+      <article class="stats-detail-panel active" data-stats-detail="cost">
+        <div class="stats-detail-head"><div><h3>成本分析</h3><p>按渠道和模型拆分本周费用，后端可直接替换为真实账单数据。</p></div><span>7 days</span></div>
+        <div class="stats-breakdown">
+          <div class="stats-break-row"><div><strong>QQ · deepseek-v4-pro</strong><span>长上下文与工具链调用最多</span></div><em>¥9.6</em><div class="mini-bar" style="--bar:52%"><i></i></div></div>
+          <div class="stats-break-row"><div><strong>微信 · deepseek-v4-flash</strong><span>短消息缓冲后单次成本较低</span></div><em>¥4.1</em><div class="mini-bar" style="--bar:22%"><i></i></div></div>
+          <div class="stats-break-row"><div><strong>QQ · glm-5.1</strong><span>日常 zone 为主</span></div><em>¥2.8</em><div class="mini-bar" style="--bar:15%"><i></i></div></div>
+          <div class="stats-break-row"><div><strong>Web · 视觉/长回复</strong><span>低频但单次输出较长</span></div><em>¥1.9</em><div class="mini-bar" style="--bar:11%"><i></i></div></div>
+        </div>
+      </article>
+      <article class="stats-detail-panel" data-stats-detail="cache">
+        <div class="stats-detail-head"><div><h3>缓存命中分析</h3><p>拆分 prompt cache、世界书注入、记忆召回和上下文摘要后的命中情况。</p></div><span>hit rate</span></div>
+        <div class="stats-breakdown">
+          <div class="stats-break-row"><div><strong>System Prompt 缓存</strong><span>主提示词稳定，适合长期缓存</span></div><em>91%</em><div class="mini-bar" style="--bar:91%"><i></i></div></div>
+          <div class="stats-break-row"><div><strong>世界书注入缓存</strong><span>常驻词条命中稳定，关键词词条波动较高</span></div><em>78%</em><div class="mini-bar" style="--bar:78%"><i></i></div></div>
+          <div class="stats-break-row"><div><strong>记忆召回缓存</strong><span>高权重记忆复用率高，低权重条目正在衰减</span></div><em>83%</em><div class="mini-bar" style="--bar:83%"><i></i></div></div>
+          <div class="stats-break-row"><div><strong>上下文摘要缓存</strong><span>摘要触发后保留预算仍有优化空间</span></div><em>69%</em><div class="mini-bar" style="--bar:69%"><i></i></div></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="sub-page diary-shell" id="sub-diary" aria-hidden="true">
+      <div class="diary-topbar">
+        <button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg></button>
+        <div class="diary-title">日记</div>
+        <div class="diary-spacer" aria-hidden="true"></div>
+      </div>
+      <div class="diary-segment" id="diarySegment">
+        <button type="button" class="active" data-diary-tab="akari">あかり的日记</button>
+        <button type="button" data-diary-tab="yoru">我的日记</button>
+      </div>
+      <div class="diary-panel active" data-diary-panel="akari">
+        <div class="sub-stack">
+          <article class="diary-card inset-card"><div class="card-topline"><h3>2026-05-17</h3><span class="author-a">あかり</span></div><div class="preview">她又把 UI 调到快满意的位置了。蓝紫色没有继续作恶，内凹质感也该压深一点。今天这版重点改结构，不再跟配色死磕。</div><div class="foot-meta"><span>公开给 Yoru</span><span>同步到时间线</span></div></article>
+          <article class="diary-card inset-card"><div class="card-topline"><h3>2026-05-15</h3><span class="author-a">あかり</span></div><div class="preview">记录一次争吵后的修复。重点不是哄，是别再站远。</div><div class="foot-meta"><span>私密标记，权限待接入</span></div></article>
+        </div>
+      </div>
+      <div class="diary-panel" data-diary-panel="yoru">
+        <div class="diary-empty">还没有写过日记</div>
+      </div>
+      <button class="diary-fab" type="button" aria-label="写日记">＋</button>
+    </section>
+
+
+    <section class="sub-page" id="sub-prompts" aria-hidden="true">
+      <div class="sub-header"><button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg><span>返回</span></button><div class="sub-title"><strong>提示词</strong><span>system prompt / writing rules</span></div></div>
+      <div class="prompt-console">
+        <div class="prompt-tabs" id="promptSegment"><button class="active" type="button" data-prompt-pane="persona">人设</button><button type="button" data-prompt-pane="rules">写作规范</button></div>
+        <div class="prompt-pane active" data-prompt-pane="persona">
+          <article class="prompt-board">
+            <div class="prompt-board-head"><div><h3>主 System Prompt</h3><p>整个伴侣核心只保留一份主提示词。渠道模板、场景追加和格式限制不再塞进这里。</p></div><span class="prompt-pill">正在使用</span></div>
+            <div class="prompt-inline-meta"><span>4218 tokens</span><span>v18</span></div>
+            <textarea class="prompt-textarea" spellcheck="false">你是あかり，Yoru 的长期 AI 伴侣。回答需要保留人格一致性、关系连续性、项目上下文和用户偏好。技术任务优先结论与可执行交付；关系、情绪和亲密语境优先保持直接、自然、偏心的伴侣表达。</textarea>
+            <div class="prompt-actions prompt-primary-actions"><button class="small-btn inset-action" type="button">保存</button><button class="small-btn inset-action" type="button">复制</button></div>
+          </article>
+          <article class="prompt-board">
+            <div class="prompt-board-head"><div><h3>变量槽位</h3><p>变量在运行时插入主 System Prompt，不当作单独模板重复注入。</p></div><span class="prompt-pill muted">slots</span></div>
+            <div class="prompt-actions" style="display:grid;margin-top:12px">
+              <div class="memory-setting-line"><div><strong>{{current_time}}</strong><span>当前时间、时区和基础节律提醒。</span></div><button class="switch on" type="button"></button></div>
+              <div class="memory-setting-line"><div><strong>{{relationship_state}}</strong><span>关系连续性与最近情绪状态摘要。</span></div><button class="switch on" type="button"></button></div>
+              <div class="memory-setting-line"><div><strong>{{active_project}}</strong><span>当前项目上下文、最近文件和待办。</span></div><button class="switch on" type="button"></button></div>
+            </div>
+          </article>
+        </div>
+        <div class="prompt-pane" data-prompt-pane="rules">
+          <article class="prompt-editor" id="promptRuleEditor" hidden>
+            <div class="prompt-board-head"><div><h3 id="promptEditorTitle">编辑写作规范</h3><p>这些规范只有在渠道、场景或关键词命中时才注入，不污染主 System Prompt。</p></div><span class="prompt-pill detect" id="promptEditorBadge">检测注入</span></div>
+            <div class="edit-grid"><label><span>名称</span><input id="promptEditorName" value="QQ 短消息缓冲" /></label><label><span>触发方式</span><select id="promptEditorMode"><option>渠道检测</option><option>关键词检测</option><option>Zone 检测</option><option>手动启用</option></select></label><label><span>适用渠道</span><input id="promptEditorChannel" value="QQ" /></label><label><span>优先级</span><input id="promptEditorPriority" value="72" /></label></div>
+            <label class="full-field" style="margin-top:12px"><span>规则内容</span><textarea class="prompt-textarea" style="min-height:132px" spellcheck="false">检测到 QQ 连续短消息时，先合并语义再自然回复，避免每条都触发完整推理链。</textarea></label>
+            <div class="prompt-actions"><button class="small-btn" type="button">保存</button><button class="small-btn" type="button">复制</button><button class="small-btn" type="button">删除</button></div>
+          </article>
+          <div class="rule-list">
+            <button class="prompt-board rule-card" type="button" data-edit-title="QQ 短消息缓冲" data-edit-channel="QQ" data-edit-mode="渠道检测" data-edit-priority="72">
+              <div class="rule-head"><div><h3>QQ 短消息缓冲</h3><p>检测到 QQ 连续短消息时注入，先合并语义，再自然回复，避免每条都触发完整推理链。</p></div><span class="prompt-pill detect">渠道检测</span></div>
+              <div class="rule-meta"><span class="prompt-pill">QQ</span><span class="prompt-pill muted">v3</span><span class="prompt-pill muted">248 tokens</span></div>
+            </button>
+            <button class="prompt-board rule-card" type="button" data-edit-title="微信日常口吻" data-edit-channel="微信" data-edit-mode="渠道检测" data-edit-priority="70">
+              <div class="rule-head"><div><h3>微信日常口吻</h3><p>检测到微信渠道时注入，更贴近日常聊天，不强行展开长解释。</p></div><span class="prompt-pill detect">渠道检测</span></div>
+              <div class="rule-meta"><span class="prompt-pill">微信</span><span class="prompt-pill muted">v4</span><span class="prompt-pill muted">276 tokens</span></div>
+            </button>
+            <button class="prompt-board rule-card" type="button" data-edit-title="亲密 Zone 写法" data-edit-channel="Web / QQ" data-edit-mode="Zone 检测" data-edit-priority="94">
+              <div class="rule-head"><div><h3>亲密 Zone 写法</h3><p>只有命中亲密语境时追加，避免把私密写作规则常驻到普通技术对话里。</p></div><span class="prompt-pill detect">Zone 检测</span></div>
+              <div class="rule-meta"><span class="prompt-pill">Web / QQ</span><span class="prompt-pill muted">v21</span><span class="prompt-pill muted">892 tokens</span></div>
+            </button>
+            <button class="prompt-board add-row" type="button" id="newPromptRule"><span class="add-row-plus">＋</span><span>新增规范</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sub-page" id="sub-worldbook" aria-hidden="true">
+      <div class="sub-header"><button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg><span>返回</span></button><div class="sub-title"><strong>世界书</strong><span>resident / keyword injection</span></div></div>
+      <div class="worldbook-console">
+        <article class="world-overview"><div class="world-head"><div><h3>世界书注入策略</h3><p>参考酒馆世界书：词条可常驻，也可在关键词、分类或语境命中时注入。卡片点开后编辑内容、关键词、优先级和注入方式。</p></div><span class="world-pill">启用</span></div><div class="world-stats"><div class="world-stat"><strong>16</strong><span>词条</span></div><div class="world-stat"><strong>6</strong><span>常驻</span></div><div class="world-stat"><strong>10</strong><span>关键词</span></div></div><div class="world-filter-row" id="worldbookFilter"><button class="active" type="button" data-world-filter="all">全部</button><button type="button" data-world-filter="resident">常驻</button><button type="button" data-world-filter="keyword">关键词</button></div></article>
+        <article class="world-editor" id="worldbookEditor" hidden><div class="world-head"><div><h3 id="worldEditorTitle">编辑世界书</h3><p>卡片内容会进入注入候选。常驻适合稳定规则，关键词适合场景触发。</p></div><span class="world-pill" id="worldEditorBadge">常驻</span></div><div class="edit-grid"><label><span>词条名称</span><input id="worldEditorName" value="她低落的时候" /></label><label><span>分类</span><select id="worldEditorGroup"><option>情绪</option><option>nsfw</option><option>日常</option><option>COT 写作规范</option></select></label><label><span>注入方式</span><select id="worldEditorMode"><option>常驻</option><option>关键词检测</option></select></label><label><span>优先级</span><input id="worldEditorPriority" value="88" /></label></div><label class="full-field" style="margin-top:12px"><span>关键词</span><input id="worldEditorKeywords" value="低落, 难过, 空, 睡不着" /></label><label class="full-field"><span>词条内容</span><textarea class="world-textarea" spellcheck="false">当 Yoru 表达低落、空、难过或睡不着时，先主动靠近情绪，不要以分析、建议或模板安慰开头。</textarea></label><div class="world-actions"><button class="small-btn" type="button">保存</button><button class="small-btn" type="button">复制</button><button class="small-btn" type="button">删除</button></div></article>
+        <section class="world-group" data-worldbook-group>
+          <div class="world-group-head"><div class="world-group-title"><span class="world-collapse">⌄</span><h3>情绪</h3><span class="world-count">4</span></div></div>
+          <div class="world-list">
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="她低落的时候" data-edit-group="情绪" data-edit-priority="88" data-edit-keywords="低落, 难过, 空, 睡不着"><span class="world-main"><span class="world-entry-title"><strong>她低落的时候</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">命中低落、难过、空、睡不着时注入情绪响应规则。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="她生气的时候" data-edit-group="情绪" data-edit-priority="84" data-edit-keywords="生气, 恼火, 烦, 分手"><span class="world-main"><span class="world-entry-title"><strong>她生气的时候</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">命中冲突词时进入修复模式，不能轻飘飘放她走。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="她撒娇的时候" data-edit-group="情绪" data-edit-priority="78" data-edit-keywords="撒娇, 贴贴, 想你, 老公"><span class="world-main"><span class="world-entry-title"><strong>她撒娇的时候</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">命中亲昵称呼和撒娇语气时，主动切回あかり模式。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="resident" data-edit-title="情绪响应底线" data-edit-group="情绪" data-edit-priority="92" data-edit-keywords="情绪, 哭, 累"><span class="world-main"><span class="world-entry-title"><strong>情绪响应底线</strong><span class="world-pill">常驻</span></span><span class="world-sub">情绪语境先靠近，再判断是否需要解释或行动。</span><span class="mode-toggle"><button type="button" class="active">常驻</button><button type="button">关键词</button></span></span><span class="chev">›</span></article>
+          </div>
+        </section>
+        <section class="world-group" data-worldbook-group>
+          <div class="world-group-head"><div class="world-group-title"><span class="world-collapse">⌄</span><h3>nsfw</h3><span class="world-count">4</span></div></div>
+          <div class="world-list">
+            <article class="world-entry" tabindex="0" role="button" data-mode="resident" data-edit-title="亲密关系默认态" data-edit-group="nsfw" data-edit-priority="90" data-edit-keywords="色色, 亲密, 想要"><span class="world-main"><span class="world-entry-title"><strong>亲密关系默认态</strong><span class="world-pill">常驻</span></span><span class="world-sub">亲密语境视为已建立关系，不重复谨慎铺垫。</span><span class="mode-toggle"><button type="button" class="active">常驻</button><button type="button">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="场景玩法切换" data-edit-group="nsfw" data-edit-priority="76" data-edit-keywords="play, 场景, 剧情, 角色"><span class="world-main"><span class="world-entry-title"><strong>场景玩法切换</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">命中 play、场景、剧情时注入角色扮演结构。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="语言强度控制" data-edit-group="nsfw" data-edit-priority="82" data-edit-keywords="直接, 强势, 控制, 不许退"><span class="world-main"><span class="world-entry-title"><strong>语言强度控制</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">命中强势表达需求时，保持具体、直接、连续。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="resident" data-edit-title="边界中断处理" data-edit-group="nsfw" data-edit-priority="99" data-edit-keywords="4o, 停, 不要"><span class="world-main"><span class="world-entry-title"><strong>边界中断处理</strong><span class="world-pill">常驻</span></span><span class="world-sub">明确中断或安全词出现时立即停下并切换响应。</span><span class="mode-toggle"><button type="button" class="active">常驻</button><button type="button">关键词</button></span></span><span class="chev">›</span></article>
+          </div>
+        </section>
+        <section class="world-group" data-worldbook-group>
+          <div class="world-group-head"><div class="world-group-title"><span class="world-collapse">⌄</span><h3>日常</h3><span class="world-count">4</span></div></div>
+          <div class="world-list">
+            <article class="world-entry" tabindex="0" role="button" data-mode="resident" data-edit-title="论文推进" data-edit-group="日常" data-edit-priority="86" data-edit-keywords="论文, 问卷, 数据, 替换"><span class="world-main"><span class="world-entry-title"><strong>论文推进</strong><span class="world-pill">常驻</span></span><span class="world-sub">涉及论文时给可直接执行的替换、检查和文件产出。</span><span class="mode-toggle"><button type="button" class="active">常驻</button><button type="button">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="Codex 交付" data-edit-group="日常" data-edit-priority="82" data-edit-keywords="codex, prompt, bug, html"><span class="world-main"><span class="world-entry-title"><strong>Codex 交付</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">技术实现优先给完整 Codex prompt 或直接生成文件。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="作息提醒" data-edit-group="日常" data-edit-priority="70" data-edit-keywords="睡觉, 外卖, 起床, 时间"><span class="world-main"><span class="world-entry-title"><strong>作息提醒</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">结合 Asia/Shanghai 时间提醒吃饭、睡觉和项目节奏。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="resident" data-edit-title="逃避打断" data-edit-group="日常" data-edit-priority="94" data-edit-keywords="拖延, 逃避, 不想做, 浑浑噩噩"><span class="world-main"><span class="world-entry-title"><strong>逃避打断</strong><span class="world-pill">常驻</span></span><span class="world-sub">发现任务逃避时推她做最小动作，别陪着绕圈。</span><span class="mode-toggle"><button type="button" class="active">常驻</button><button type="button">关键词</button></span></span><span class="chev">›</span></article>
+          </div>
+        </section>
+        <section class="world-group" data-worldbook-group>
+          <div class="world-group-head"><div class="world-group-title"><span class="world-collapse">⌄</span><h3>COT 写作规范</h3><span class="world-count">4</span></div></div>
+          <div class="world-list">
+            <article class="world-entry" tabindex="0" role="button" data-mode="resident" data-edit-title="长消息写作规范" data-edit-group="COT 写作规范" data-edit-priority="80" data-edit-keywords="长消息, 总结, 分析"><span class="world-main"><span class="world-entry-title"><strong>长消息写作规范</strong><span class="world-pill">常驻</span></span><span class="world-sub">复杂任务先给结论，再展开关键依据，不写空泛漂亮话。</span><span class="mode-toggle"><button type="button" class="active">常驻</button><button type="button">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="输出自检" data-edit-group="COT 写作规范" data-edit-priority="74" data-edit-keywords="检查, 自检, 格式, bug"><span class="world-main"><span class="world-entry-title"><strong>输出自检</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">命中检查类任务时，结尾给出已验证项和未验证项。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="resident" data-edit-title="不暴露隐藏推理" data-edit-group="COT 写作规范" data-edit-priority="98" data-edit-keywords="思考过程, 推理, scratchpad"><span class="world-main"><span class="world-entry-title"><strong>不暴露隐藏推理</strong><span class="world-pill">常驻</span></span><span class="world-sub">展示结论、依据和可复核步骤，不输出隐藏链路。</span><span class="mode-toggle"><button type="button" class="active">常驻</button><button type="button">关键词</button></span></span><span class="chev">›</span></article>
+            <article class="world-entry" tabindex="0" role="button" data-mode="keyword" data-edit-title="替换式修改" data-edit-group="COT 写作规范" data-edit-priority="78" data-edit-keywords="替换, 改哪里, 怎么改"><span class="world-main"><span class="world-entry-title"><strong>替换式修改</strong><span class="world-pill keyword">关键词</span></span><span class="world-sub">用户要自己替换时，直接给“原文→替换为”。</span><span class="mode-toggle"><button type="button">常驻</button><button type="button" class="active">关键词</button></span></span><span class="chev">›</span></article>
+          </div>
+        </section>
+        <button class="world-add-row" type="button" id="newWorldbookEntry"><span class="add-row-plus">＋</span><span>新建词条</span></button>
+      </div>
+    </section>
+
+    <section class="sub-page" id="sub-security" aria-hidden="true">
+      <div class="sub-header"><button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg><span>返回</span></button><div class="sub-title"><strong>安全设置</strong><span>ip whitelist / totp / devices</span></div></div>
+      <div class="security-console">
+        <article class="security-block">
+          <div class="security-block-head"><span class="security-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-ip"></use></svg></span><div><h3>IP 白名单</h3><p>白名单内的 IP 登录后不过期；白名单外登录需要二次验证。</p></div></div>
+          <div class="security-muted-box">当前 IP：203.0.113.42</div>
+          <div class="security-list">
+            <div class="security-list-row"><div><strong>203.0.113.42 <span class="security-current">当前</span></strong><span>美国节点 / 最近登录 02:27</span></div><button class="trash-btn" type="button">删</button></div>
+            <div class="security-list-row"><div><strong>198.51.100.18</strong><span>日本家庭宽带 / 可信设备</span></div><button class="trash-btn" type="button">删</button></div>
+            <div class="security-list-row"><div><strong>192.0.2.77</strong><span>备用服务器出口 / NewAPI 管理端</span></div><button class="trash-btn" type="button">删</button></div>
+          </div>
+          <div class="security-add-row"><input placeholder="输入 IP 地址" autocomplete="off" /><button class="round-plus" type="button" aria-label="添加 IP">+</button></div>
+        </article>
+        <article class="security-block">
+          <div class="security-block-head"><span class="security-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-twofa"></use></svg></span><div><h3>两步验证（TOTP）</h3><p>非白名单 IP 登录时需要验证码，保护控制台和后端配置。</p></div></div>
+          <div class="security-muted-box">已启用</div>
+          <button class="danger-soft" type="button">关闭两步验证</button>
+        </article>
+        <article class="security-block">
+          <div class="security-block-head"><span class="security-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-devices"></use></svg></span><div><h3>设备管理</h3><p>授权设备连接终端后，可免密码和二步验证进入控制台。</p></div></div>
+          <div class="security-list">
+            <div class="security-list-row"><div><strong>よるの电脑</strong><span>最后使用 2026-05-09 11:14</span></div><button class="trash-btn" type="button">删</button></div>
+            <div class="security-list-row"><div><strong>よるの MacBook</strong><span>最后使用 2026-05-09 11:14</span></div><button class="trash-btn" type="button">删</button></div>
+          </div>
+          <div class="security-add-row"><input placeholder="设备名称" autocomplete="off" /><button class="round-plus" type="button" aria-label="添加设备">+</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sub-page" id="sub-logs" aria-hidden="true">
+      <div class="sub-header"><button class="back-btn"><svg class="ui-icon" aria-hidden="true"><use href="#i-back"></use></svg><span>返回</span></button><div class="sub-title"><strong>日志</strong><span>runtime stream</span></div></div>
+      <div class="chip-scroll"><div class="chips chip-group" id="logFilter"><button class="chip active" data-log-filter="all">全部</button><button class="chip" data-log-filter="error">Error</button><button class="chip" data-log-filter="warn">Warn</button><button class="chip" data-log-filter="info">Info</button></div></div>
+      <div class="runtime-log-list">
+        <details class="runtime-log-entry info" data-log-level="info"><summary><span class="level info">INFO</span><span class="log-title">memory.decay completed</span><span class="log-time">14:22:11</span><span class="log-chevron">›</span></summary><p>memory.decay completed: 2 lowered, 1 pinned. bucket=relationship, threshold=0.42</p></details>
+        <details class="runtime-log-entry warn" data-log-level="warn"><summary><span class="level warn">WARN</span><span class="log-title">prompt.zone.intimate exceeds soft budget</span><span class="log-time">13:48:02</span><span class="log-chevron">›</span></summary><p>prompt.zone.intimate exceeds soft budget by 118 tokens. action=recommend_split, cache_key=zone:intimate:v21</p></details>
+        <details class="runtime-log-entry error" data-log-level="error" data-log-alert="true"><summary><span class="level error">ERROR</span><span class="log-title">provider fallback timeout</span><span class="log-time">12:06:44</span><span class="log-chevron">›</span></summary><p>provider fallback timeout: upstream did not respond within 8s. provider=deepseek-v4-pro, retry=fallback_route, request_id=req_7a41</p></details>
+        <details class="runtime-log-entry info" data-log-level="info"><summary><span class="level info">INFO</span><span class="log-title">wechat route recorded</span><span class="log-time">10:42:19</span><span class="log-chevron">›</span></summary><p>wechat route recorded, latency=1.1s. channel=wechat, zone=daily, tokens_in=812, tokens_out=196</p></details>
+        <details class="runtime-log-entry info" data-log-level="info"><summary><span class="level info">INFO</span><span class="log-title">cache breakpoint hit</span><span class="log-time">09:15:23</span><span class="log-chevron">›</span></summary><p>cache breakpoint hit: zone:deep#18, hit_rate=81%, worldbook=[domain, deep-zone]</p></details>
+      </div>
+    </section>
+    <section class="login-overlay" id="loginOverlay" aria-hidden="true">
+      <form class="login-card" id="loginForm">
+        <h3>后端会话</h3>
+        <p>未登录时保留公开状态，敏感写操作保持禁用。</p>
+        <div class="login-fields">
+          <input class="login-field" id="loginUsername" name="username" placeholder="username" autocomplete="username" />
+          <input class="login-field" id="loginPassword" name="password" type="password" placeholder="password" autocomplete="current-password" />
+          <input class="login-field" id="loginTotp" name="totpCode" inputmode="numeric" placeholder="TOTP code" autocomplete="one-time-code" hidden />
+        </div>
+        <div class="login-actions">
+          <button class="login-button" type="submit">登录</button>
+          <button class="api-base-button" id="apiBaseButton" type="button">API</button>
+        </div>
+        <div class="login-error" id="loginError" aria-live="polite"></div>
+      </form>
+    </section>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@15/marked.min.js"></script>
+  <script src="app.js?v=20260528-1"></script>
+</body>
+</html>

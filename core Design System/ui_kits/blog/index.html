@@ -1,0 +1,61 @@
+<!-- @dsCard group="Blog" viewport="1200x900" name="blog · long-form" subtitle="serif body, sidebar, Y2K footer" -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>mostly_empty.com — blog</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" href="../../assets/logo-mark.svg">
+  <style>
+    body { margin: 0; background: var(--paper); color: var(--ink); }
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 0 0;
+      position: relative;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 40px;
+      padding: 32px 32px 0;
+    }
+    .main { min-width: 0; }
+  </style>
+</head>
+<body>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="./posts.js"></script>
+<script type="text/babel" src="./BlogHeader.jsx"></script>
+<script type="text/babel" src="./PostBody.jsx"></script>
+<script type="text/babel" src="./BlogSidebar.jsx"></script>
+<script type="text/babel" src="./BlogFooter.jsx"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  function BlogApp() {
+    const [postId, setPostId] = React.useState(window.blogPosts[0].id);
+    const post = window.blogPosts.find(p => p.id === postId);
+    React.useEffect(() => { window.scrollTo({ top: 0 }); }, [postId]);
+    return (
+      <div className="page">
+        <window.BlogHeader activePostId={postId} onPick={setPostId} />
+        <div className="layout">
+          <div className="main">
+            <window.BlogPostBody post={post} />
+          </div>
+          <window.BlogSidebar activePostId={postId} onPick={setPostId} />
+        </div>
+        <window.BlogFooter />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<BlogApp/>);
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="end slide" subtitle="closing — pixel 'fin' + web-ring footer" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;height:100%}
+  .slide{
+    width:1280px; height:720px; position:relative; overflow:hidden;
+    background: var(--ink);
+    color: var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+  }
+  .slide::before{
+    content:""; position:absolute; inset:0;
+    background-image: url("../assets/tile.svg");
+    background-size: 64px 64px;
+    image-rendering: pixelated;
+    opacity: .2; mix-blend-mode: screen;
+  }
+  .fin {
+    font-family: var(--font-pixel-display); font-size: 320px; line-height: 1;
+    color: var(--frost-50);
+    text-shadow:
+      0 0 24px var(--bondi-300), 0 0 64px var(--bondi-500),
+      0 0 120px rgba(95,200,234,.55);
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+  .url {
+    margin-top: 20px;
+    font-family: var(--font-pixel-mono); font-size: 24px;
+    color: var(--paper); letter-spacing: 0.18em;
+    position: relative;
+  }
+  .marq {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: var(--paper); color: var(--ink);
+    padding: 8px 0; font-family: var(--font-pixel-display); font-size: 24px;
+    overflow: hidden; white-space: nowrap;
+    border-top: 1px solid var(--ink);
+    letter-spacing: 0.08em;
+  }
+  .grain{position:absolute;inset:0;background-image:url("../assets/grain.svg");
+         background-size:300px 300px;opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+  .ring {
+    position: absolute; left: 40px; top: 40px;
+    display: flex; gap: 8px;
+    font-family: var(--font-pixel-mono); font-size: 14px;
+    color: var(--paper-fold);
+  }
+  .ring a { color: var(--neon-cyan); border-bottom: 1px dashed; padding-bottom: 1px; text-decoration: none; }
+</style></head>
+<body>
+<div class="slide">
+  <div class="ring">
+    <a href="#">« drain_records</a>
+    <span>·</span>
+    <a href="#" style="color:var(--neon-lime)">random</a>
+    <span>·</span>
+    <a href="#" style="color:var(--neon-magenta)">hum_archive »</a>
+  </div>
+  <div class="fin">fin.</div>
+  <div class="url">mostly_empty.com / guestbook ░</div>
+  <div class="grain"></div>
+  <div class="marq">thanks for staying ░ thanks for staying ░ thanks for staying ░ thanks for staying ░ thanks for staying ░</div>
+</div>
+</body></html>

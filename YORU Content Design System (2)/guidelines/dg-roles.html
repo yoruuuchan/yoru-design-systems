@@ -1,0 +1,22 @@
+<!-- @dsCard group="Diagram" viewport="700x330" name="Node roles" subtitle="八个语义角色靠描边粗细、线型与填充区分，不靠颜色，也没有侧边色条" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.YORUContentDesignSystem_a0b73e;
+
+const {DiagramNode}=NS;
+const ROLES=[["input","git diff","入口 · 发丝边"],["process","跑一遍测试","步骤 · 加粗描边"],["human","我看一遍","人 · 圆角"],["agent","Claude Code","机器 · accent 顶盖"],["tool","ripgrep","工具 · 虚线"],["data","commit 记录","数据 · 顶部双线"],["output","PR 评论","结果 · 反白实底"],["external","GitHub API","外部 · 虚线弱化"]];
+function Demo(){return <div data-yoru="lab" className="yoru-diagram" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:14}}>
+  {ROLES.map(([r,l,d])=><div key={r} style={{display:"flex",flexDirection:"column",gap:7}}>
+    <DiagramNode role={r} label={l} style={{minHeight:78}}/>
+    <span className="lbl">{d}</span></div>)}
+</div>}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

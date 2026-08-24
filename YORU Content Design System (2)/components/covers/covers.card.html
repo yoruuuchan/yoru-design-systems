@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Covers & EndCard" subtitle="两套封面 + 结尾页，四个变体通用；YORU 字标只在结尾角落出现一次" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>Covers</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.YORUContentDesignSystem_a0b73e;
+const {CoverType,CoverOverprint,EndCard,Emphasis}=NS;
+function Mini({w=1242,h=1656,scale,label,children}){
+  return <div style={{display:"flex",flexDirection:"column",gap:7}}>
+    <div style={{width:w*scale,height:h*scale,overflow:"hidden",border:"1px solid var(--line-2)"}}>
+      <div style={{transform:"scale("+scale+")",transformOrigin:"top left"}}>{children}</div></div>
+    <span className="lbl">{label}</span></div>;
+}
+const s=0.152;
+function Demo(){return <div style={{display:"flex",gap:16,alignItems:"flex-start",flexWrap:"wrap"}}>
+  <Mini scale={s} label="CoverType · signal · 默认款">
+    <CoverType variant="signal" column="SIGNAL" date="2026.08" total={6}
+      title={<>这周值得装的<br/><Emphasis>四个</Emphasis>工具</>}
+      subtitle="都自己跑过一遍，附上踩过的坑。" tags={["实测","工具"]} aside="第三个最省事"/>
+  </Mini>
+  <Mini scale={s} label="CoverOverprint · signal · 套印款">
+    <CoverOverprint variant="signal" column="SIGNAL" date="2026.08" index={1} total={6}
+      title={<>这周值得装的<br/><Emphasis>四个</Emphasis>工具</>}
+      subtitle="都自己跑过一遍，附上踩过的坑。" tags={["实测","工具"]}
+      aside="第三个最省事" issueNumber="12"/>
+  </Mini>
+  <Mini scale={s} label="CoverOverprint · special">
+    <CoverOverprint variant="special" column="SPECIAL" date="2026.08" index={1} total={5}
+      title={<><Emphasis>炸机</Emphasis>第七次</>}
+      subtitle="这次不怪风，是自己手抖。" tags={["FPV","记录"]}
+      aside="电池又飞走一块" issueNumber="07"/>
+  </Mini>
+  <Mini scale={s} label="EndCard · lab · 「完」印在角上">
+    <EndCard variant="lab" headline="看完顺手点个收藏"
+      lines={["三层结构的模板放在正文第四页","兜底那段可以直接抄走"]}
+      note="2026.08 · 06 / 06"/>
+  </Mini>
+</div>}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

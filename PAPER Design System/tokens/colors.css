@@ -1,0 +1,65 @@
+/* PAPER — colour. Material-driven: paper stock, ink density, one accent.
+   Base ramps are physical (paper-*, ink-*); semantics are editorial (--text-*, --surface-*, --rule-*). */
+:root{
+  /* PAPER STOCK — warm neutral ramp, lightest to heaviest */
+  --paper-100:#FCFBF8;  /* bright leaf, gallery white */
+  --paper-200:#F4F1EA;  /* editorial page — the default */
+  --paper-300:#EDE6D7;  /* analog page — warmer stock */
+  --paper-400:#E3D9C5;  /* kraft, card, mount board */
+  --paper-500:#D3C7AC;  /* deep kraft, tape, envelope */
+
+  /* INK — warm charcoal, never pure black */
+  --ink-900:#15140F;
+  --ink-800:#26241E;    /* body + headline ink */
+  --ink-600:#4E4941;
+  --ink-400:#847D6E;    /* captions, secondary */
+  --ink-200:#B3AB9A;    /* faint labels */
+  --ink-100:#D6CFBF;    /* hairlines on paper */
+
+  /* SLATE — the one cool grey, for photographic/print greys only */
+  --slate-600:#7C8382;
+  --slate-400:#9BA1A0;
+  --slate-200:#C4C7C4;
+
+  /* RUST — the single accent. Stamp ink, fig. numbers, marks. */
+  --rust-700:#8E3A24;
+  --rust-500:#B8543A;   /* THE accent */
+  --rust-300:#D9917A;
+  --rust-100:#F1DCD2;
+
+  /* SEMANTIC — surfaces */
+  --surface-page:var(--paper-200);
+  --surface-raised:var(--paper-100);   /* a sheet lying on the page */
+  --surface-sunken:var(--paper-300);
+  --surface-mount:var(--paper-400);    /* mount board behind a print */
+  --surface-dark:var(--ink-900);       /* film base, contact sheet */
+  --surface-invert:var(--paper-100);
+
+  /* SEMANTIC — text */
+  --text-display:var(--ink-900);
+  --text-body:var(--ink-800);
+  --text-secondary:var(--ink-600);
+  --text-muted:var(--ink-400);
+  --text-faint:var(--ink-200);
+  --text-accent:var(--rust-500);
+  --text-on-dark:#E7E2D6;
+  --text-on-dark-muted:#9A937F;
+
+  /* SEMANTIC — rules & borders. Editorial systems live on hairlines. */
+  --rule-hair:var(--ink-100);
+  --rule-mid:var(--ink-200);
+  --rule-strong:var(--ink-800);
+  --frame-edge:rgba(38,36,30,.14);     /* the 1px inset around every photo */
+
+  /* SEMANTIC — links */
+  --link:var(--ink-800);
+  --link-hover:var(--rust-500);
+  --link-underline:var(--ink-200);
+
+  /* SEMANTIC — marks */
+  --stamp-ink:var(--rust-500);
+  --hand-ink:#3A4A5C;                  /* ballpoint blue-black */
+  --tape:rgba(213,199,166,.72);
+  --film-base:#1B1A16;
+  --film-edge:#C6B58C;                 /* sprocket-side lettering */
+}

@@ -1,0 +1,8 @@
+:root{
+--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:40px;--sp-8:56px;--sp-9:72px;
+--flow-block:var(--sp-6);
+--flow-tight:var(--sp-4);
+}
+.yoru-card{
+--sp-1:10px;--sp-2:20px;--sp-3:28px;--sp-4:40px;--sp-5:56px;--sp-6:76px;--sp-7:100px;--sp-8:136px;--sp-9:176px;
+}

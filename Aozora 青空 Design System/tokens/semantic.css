@@ -1,0 +1,52 @@
+/* Semantic aliases — what the rest of the system should reference.
+   Components should NEVER consume --blue-500 directly; they reference --brand,
+   --text-body, --surface-card, etc. */
+
+:root {
+  /* ── Brand */
+  --brand:           var(--blue-500);
+  --brand-hover:     var(--blue-600);
+  --brand-press:     var(--blue-700);
+  --brand-tint:      var(--blue-50);
+  --brand-soft:      var(--blue-100);
+  --accent:          var(--sun-400);
+  --accent-hover:    var(--sun-500);
+
+  /* ── Text */
+  --text-strong:     var(--neutral-800);
+  --text-body:       var(--neutral-700);
+  --text-muted:      var(--neutral-500);
+  --text-faint:      var(--neutral-400);
+  --text-on-brand:   var(--neutral-0);
+  --text-on-accent:  var(--neutral-800);
+  --text-accent:     var(--blue-600);
+  --text-danger:     var(--danger-500);
+
+  /* ── Surfaces (solid) */
+  --surface-page:        var(--neutral-0);
+  --surface-page-tint:   var(--blue-50);
+  --surface-elevated:    var(--neutral-0);
+  --surface-sunken:      var(--neutral-50);
+  --surface-inverse:     var(--neutral-900);
+
+  /* ── Surfaces (glass) — these are the defaults across the brand. */
+  --surface-card:        var(--glass-bg-regular);
+  --surface-card-blur:   var(--glass-blur-regular);
+  --surface-overlay:     var(--glass-bg-thick);
+  --surface-overlay-blur: var(--glass-blur-thick);
+  --surface-nav:         var(--glass-bg-thin);
+  --surface-nav-blur:    var(--glass-blur-thin);
+
+  /* ── Strokes */
+  --stroke-hairline: rgba(10, 68, 140, 0.08);
+  --stroke-subtle:   rgba(10, 68, 140, 0.12);
+  --stroke-strong:   rgba(10, 68, 140, 0.24);
+  --stroke-glass:    var(--glass-stroke);
+
+  /* ── State */
+  --state-hover-tint:  rgba(10, 132, 255, 0.06);
+  --state-press-tint:  rgba(10, 132, 255, 0.12);
+  --state-selected:    rgba(10, 132, 255, 0.10);
+  --state-disabled-fg: var(--neutral-400);
+  --state-disabled-bg: var(--neutral-100);
+}

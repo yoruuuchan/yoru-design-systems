@@ -1,0 +1,49 @@
+:root{
+/* ---- ink ramp — cool, navy-tinted (from #111827 / #2C3440) ---- */
+--ink-1:#1B2127;--ink-2:#2C3440;--ink-3:#4A5566;--ink-4:#7B8798;--ink-5:#A9B4C4;--ink-6:#C1D7EF;
+/* ---- paper ramp — 铅字房青白纸：页面不再纯白，白留给卡片内的局部面 ---- */
+--paper-1:#FFFFFF;--paper-2:#F7FAFA;--paper-3:#E9EFF0;--paper-4:#D6DFE1;
+/* ---- hairlines ---- */
+--line-1:#DEE5E8;--line-2:#B4C0C4;--line-3:#1B2127;
+/* ---- YORU family thread: 靖青 — identical in all four variants.
+       Seal-position details only: spine accents and tool chrome. ---- */
+--yoru-blue:#2E4A68;
+--yoru-blue-ink:#23394F;
+--yoru-blue-soft:#E9EFF0;
+/* ---- variant accent (overridden per variant, see variants.css) ---- */
+--accent:#3186FF;
+--accent-ink:#1B5FC7;
+--accent-soft:#D0E8FF;
+--accent-hair:#A9C2FF;
+/* ---- status. YORU has no yellow: 注意 is rose, 避坑 is deep red,
+       they are told apart by depth, not by hue. ---- */
+--ok:#1E8A66;--ok-soft:#EAF6EF;
+--warn:#C15A52;--warn-soft:#FBEEEC;
+--stop:#A62733;--stop-soft:#F8E5E7;
+--note:#2F3E66;--note-soft:#EDF7FF;
+/* ---- semantic text ---- */
+--text-title:var(--ink-1);
+--text-body:var(--ink-2);
+--text-muted:var(--ink-4);
+--text-faint:var(--ink-5);
+--text-accent:var(--accent-ink);
+--text-inverse:#FFFFFF;
+/* ---- semantic surface ---- */
+--surface-page:#F2F5F5;
+--surface-inset:var(--paper-3);
+--surface-code:#20293C;
+--surface-accent:var(--accent-soft);
+/* ---- semantic border ---- */
+--border-hair:var(--line-1);
+--border-rule:var(--line-2);
+--border-strong:var(--line-3);
+--border-accent:var(--accent);
+}
+/* See the note in diagram.css: a var(--accent) alias declared at :root computes
+   there and inherits down already-resolved, so it can never follow a variant.
+   Re-declare the three accent aliases on the variant element itself. */
+[data-yoru]{
+--text-accent:var(--accent-ink);
+--surface-accent:var(--accent-soft);
+--border-accent:var(--accent);
+}

@@ -1,0 +1,61 @@
+<!-- @dsCard group="Spacing" viewport="700x230" name="4px base scale" subtitle="Token · pixel · ruler — and where each size lives" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:24px;background:var(--neutral-0);">
+  <style>
+    .scale { display:grid; grid-template-columns:repeat(11, 1fr); gap:8px; }
+    .col { display:flex; flex-direction:column; align-items:center; gap:6px;
+           padding:8px 4px; border-radius:8px;
+           transition:background var(--dur-fast) var(--ease-out-quart); }
+    .col:hover { background:var(--blue-50); }
+    .bar { width:100%; background:linear-gradient(180deg,#9DD2FF,#0A84FF);
+           border-radius:3px; position:relative; flex:none;
+           box-shadow:var(--inset-rim); }
+    .px  { font-family:var(--font-mono); font-size:11px; font-weight:600;
+           color:var(--text-strong); letter-spacing:-0.01em; }
+    .tok { font-family:var(--font-mono); font-size:9px; color:var(--text-muted);
+           text-align:center; }
+    .ruler { margin-top:18px; display:flex; height:20px;
+             border-top:1px solid var(--stroke-hairline);
+             border-bottom:1px solid var(--stroke-hairline);
+             background:repeating-linear-gradient(90deg,
+                var(--stroke-hairline) 0 1px, transparent 1px 4px); }
+    .legend { margin-top:12px; display:flex; gap:18px; flex-wrap:wrap;
+              font-family:var(--font-mono); font-size:10px; color:var(--text-muted); }
+    .legend b { color:var(--text-strong); font-weight:600; margin-right:4px; }
+  </style>
+
+  <div class="scale">
+    <div class="col"><div class="bar" style="height:4px"></div>
+      <div class="px">4</div><div class="tok">space-1</div></div>
+    <div class="col"><div class="bar" style="height:8px"></div>
+      <div class="px">8</div><div class="tok">space-2</div></div>
+    <div class="col"><div class="bar" style="height:12px"></div>
+      <div class="px">12</div><div class="tok">space-3</div></div>
+    <div class="col"><div class="bar" style="height:16px"></div>
+      <div class="px">16</div><div class="tok">space-4</div></div>
+    <div class="col"><div class="bar" style="height:24px"></div>
+      <div class="px">24</div><div class="tok">space-6</div></div>
+    <div class="col"><div class="bar" style="height:32px"></div>
+      <div class="px">32</div><div class="tok">space-8</div></div>
+    <div class="col"><div class="bar" style="height:48px"></div>
+      <div class="px">48</div><div class="tok">space-12</div></div>
+    <div class="col"><div class="bar" style="height:64px"></div>
+      <div class="px">64</div><div class="tok">space-16</div></div>
+    <div class="col"><div class="bar" style="height:80px"></div>
+      <div class="px">80</div><div class="tok">space-20</div></div>
+    <div class="col"><div class="bar" style="height:96px"></div>
+      <div class="px">96</div><div class="tok">space-24</div></div>
+    <div class="col"><div class="bar" style="height:128px"></div>
+      <div class="px">128</div><div class="tok">space-32</div></div>
+  </div>
+
+  <div class="ruler"></div>
+
+  <div class="legend">
+    <span><b>4 – 12</b>icon ↔ label gaps</span>
+    <span><b>16 – 24</b>card inner padding</span>
+    <span><b>32 – 48</b>section gaps</span>
+    <span><b>64 +</b>page gutters, hero air</span>
+  </div>
+</body></html>

@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Forms" subtitle="Input · Textarea · Select" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { padding: 18px 20px; background: var(--bg-base); display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; align-items: start; }
+</style>
+</head>
+<body>
+<div id="root" style="display:contents"></div>
+<script type="text/babel">
+  const { Input, Textarea, Select } = window.KUNLUNDesignSystem_29e6df;
+  const App = () => (
+    <>
+      <Input label="NODE ID" placeholder="07-A-7F" defaultValue="07-A-7F" />
+      <Input label="POWER" suffix="MW" defaultValue="142.3" />
+      <Input label="ACCESS KEY" type="password" defaultValue="xxxxxxxxxx" />
+      <Input label="UPLINK" error="UNAUTHORIZED · CODE 0xE1" defaultValue="invalid-key" />
+      <Select label="SECTOR" options={[
+        { value: "a", label: "SECTOR-A · CORE" },
+        { value: "b", label: "SECTOR-B · RELAY" },
+        { value: "c", label: "SECTOR-C · COLD" }
+      ]} />
+      <Textarea label="LOG ENTRY" rows={3} placeholder="// describe the anomaly..." />
+    </>
+  );
+  ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body></html>

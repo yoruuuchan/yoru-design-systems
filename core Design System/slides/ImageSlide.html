@@ -1,0 +1,71 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="image slide" subtitle="full-bleed image with caption + tag overlay" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;height:100%}
+  .slide{
+    width:1280px; height:720px; position:relative; overflow:hidden;
+    background: var(--ink);
+  }
+  .img-wrap { position:absolute; inset:0; }
+  .img-wrap img {
+    width:100%; height:100%; object-fit:cover;
+    filter: var(--filter-overexposed) saturate(0.92) brightness(1.05);
+  }
+  .grain{position:absolute;inset:0;background-image:url("../assets/grain.svg");
+         background-size:300px 300px;opacity:.28;mix-blend-mode:multiply;pointer-events:none}
+  .ledger {
+    position:absolute; left: 56px; bottom: 56px;
+    background: var(--paper); color: var(--ink);
+    border: 1px solid var(--ink);
+    box-shadow: var(--shadow-window-lg);
+    padding: 18px 22px;
+    max-width: 540px;
+    font-family: var(--font-body-serif);
+  }
+  .ledger .name {
+    font-family: var(--font-pixel-mono); font-size: 16px;
+    color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .ledger h2 {
+    font-family: var(--font-pixel-display); font-size: 56px; line-height: 1; margin: 8px 0 6px;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .ledger p {
+    margin: 8px 0 0; font-size: 18px; line-height: 1.5; font-style: italic;
+  }
+  .tags { position:absolute; right: 40px; top: 40px; display: flex; gap: 6px; }
+  .tags span {
+    font-family: var(--font-pixel-mono); font-size: 14px;
+    background: var(--paper); color: var(--ink);
+    border: 1px solid var(--ink); padding: 4px 10px;
+    letter-spacing: 0.06em;
+  }
+  .tags span.dream { background: var(--bubblegum-300); }
+  .tags span.pool  { background: var(--tile-200); }
+  .corner-stamp {
+    position: absolute; left: 40px; top: 40px;
+    font-family: var(--font-pixel-mono); font-size: 14px; color: var(--paper);
+    background: rgba(26,20,12,.55); padding: 4px 10px;
+    border: 1px solid var(--paper); letter-spacing: 0.08em;
+  }
+</style></head>
+<body>
+<div class="slide">
+  <div class="img-wrap">
+    <img src="https://picsum.photos/seed/pool_slide/1280/720" alt="">
+  </div>
+  <div class="grain"></div>
+  <div class="corner-stamp">core / archive / 04</div>
+  <div class="tags">
+    <span class="pool">poolcore</span>
+    <span class="dream">halo</span>
+  </div>
+  <div class="ledger">
+    <div class="name">pool_05.jpg · 06.23.2026</div>
+    <h2>drained.</h2>
+    <p>"the tile grout turned the color of old butter, and the deep end still smelled like chlorine for months after."</p>
+  </div>
+</div>
+</body></html>

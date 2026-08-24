@@ -1,0 +1,51 @@
+/* PAPER — the two voices. One family, two settings of the same type and grid.
+   Editorial is the default; Analog is a scope you opt into.
+   Apply with data-mode="analog" on any element — a whole page, or one figure. */
+
+[data-mode="editorial"],:root{
+  --mode-name:"editorial"; /* @kind other */
+  --surface-page:var(--paper-200);
+  --surface-raised:var(--paper-100);
+  --grain:var(--grain-opacity-editorial); /* @kind other */
+  --photo-filter:var(--photo-filter-editorial); /* @kind other */
+  --plate-shadow:var(--shadow-none);
+  --rule-weight:var(--border-hair); /* @kind other */
+  --figure-tilt:0deg; /* @kind other */
+  --label-font:var(--font-sans);
+  --label-tracking:var(--tracking-label); /* @kind other */
+}
+
+[data-mode="analog"]{
+  --mode-name:"analog"; /* @kind other */
+  --surface-page:var(--paper-300);
+  --surface-raised:#FBF7EC;
+  --surface-sunken:var(--paper-400);
+  --grain:var(--grain-opacity-analog); /* @kind other */
+  --photo-filter:var(--photo-filter-analog); /* @kind other */
+  --plate-shadow:var(--shadow-print);
+  --rule-hair:#D8CDB6;
+  --rule-weight:var(--border-hair); /* @kind other */
+  --figure-tilt:-.55deg; /* @kind other */               /* the only tilt in the system */
+  --label-font:var(--font-mono);
+  --label-tracking:.06em; /* @kind other */
+  --text-muted:#8B8168;
+  --text-faint:#B0A48A;
+}
+
+/* Analog earns its warmth through the paper, not through decoration. */
+[data-mode="analog"]{background-color:var(--surface-page)}
+[data-mode="analog"] figcaption{font-family:var(--font-mono)}
+
+/* Dark plate — contact sheets, film strips, full-bleed spreads */
+[data-mode="dark"]{
+  --surface-page:var(--surface-dark);
+  --text-body:var(--text-on-dark);
+  --text-display:var(--text-on-dark);
+  --text-muted:var(--text-on-dark-muted);
+  --text-faint:#6E6857;
+  --rule-hair:rgba(231,226,214,.16);
+  --rule-strong:rgba(231,226,214,.5);
+  --link:var(--text-on-dark);
+  --link-hover:var(--rust-300);
+  --grain:.05; /* @kind other */
+}

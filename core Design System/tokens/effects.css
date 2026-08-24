@@ -1,0 +1,66 @@
+/* effects.css — shadows, bevels, glows, grain.
+   The whole system is built on the contrast between
+   crisp Y2K bevels and soft dreamcore halos. */
+
+:root {
+  /* ── Y2K bevels (sharp, 1px, no blur) ──────────────────────── */
+  --bevel-out:
+    inset -1px -1px 0 var(--bevel-lo),
+    inset  1px  1px 0 var(--bevel-hi);
+  --bevel-in:
+    inset  1px  1px 0 var(--bevel-lo),
+    inset -1px -1px 0 var(--bevel-hi);
+  --bevel-out-strong:
+    inset -2px -2px 0 var(--bevel-lo),
+    inset  2px  2px 0 var(--bevel-hi);
+
+  /* ── Drop shadows (offset, no blur — like a clipping mask) ─── */
+  --shadow-card:      2px 2px 0 var(--ink);
+  --shadow-window:    3px 3px 0 var(--ink), 6px 6px 0 rgba(26,20,12,0.25);
+  --shadow-window-lg: 4px 4px 0 var(--ink), 10px 10px 0 rgba(26,20,12,0.3);
+  --shadow-press:     1px 1px 0 var(--ink);
+
+  /* ── Dreamcore glows (soft, halo'd, blurred) ───────────────── */
+  --glow-bondi:  0 0 24px var(--bondi-300), 0 0 48px rgba(95,200,234,0.5);
+  --glow-chrome: 0 0 16px var(--chrome-100), 0 0 36px rgba(196,208,221,0.5);
+  --glow-pool:   0 0 32px rgba(74,143,168,0.6);
+  --glow-peach:  0 0 24px var(--peach-300), 0 0 48px rgba(244,184,160,0.45);
+  --glow-rose:   0 0 24px var(--rose-300),  0 0 60px rgba(240,164,184,0.4);
+  --glow-bubblegum: 0 0 24px var(--bubblegum-300), 0 0 60px rgba(255,126,182,0.4);
+  --glow-text-overexposed:
+    0 0 8px var(--frost-50),
+    0 0 16px rgba(188,232,246,0.85),
+    0 0 28px rgba(95,200,234,0.6);
+
+  /* ── Pool inner shadow (water depth) ───────────────────────── */
+  --shadow-pool-inner:
+    inset 0 12px 32px rgba(36,79,99,0.5),
+    inset 0 2px 0 rgba(26,20,12,0.3);
+
+  /* ── Backgrounds (declared assets) ─────────────────────────── */
+  --bg-tile-pattern:    url("../assets/tile.svg");
+  --bg-grain-pattern:   url("../assets/grain.svg");
+  --bg-caustic-pattern: url("../assets/caustic.svg");
+
+  /* ── Filters ───────────────────────────────────────────────── */
+  --filter-overexposed: saturate(0.85) brightness(1.08) contrast(0.95); /* @kind other */
+  --filter-jpeg:        contrast(1.05) saturate(1.1);                   /* @kind other */
+  --filter-vhs:         contrast(0.9) saturate(1.2) brightness(1.05);   /* @kind other */
+  --filter-soft-dream:  blur(0.4px) saturate(0.9) brightness(1.05);     /* @kind other */
+
+  /* ── Motion ────────────────────────────────────────────────── */
+  --ease-step-2:  steps(2, end);                  /* @kind other */
+  --ease-step-4:  steps(4, end);                  /* @kind other */
+  --ease-step-8:  steps(8, end);                  /* @kind other */
+  --ease-snap:    cubic-bezier(0.2, 0.9, 0.3, 1); /* @kind other */
+  --ease-dream:   cubic-bezier(0.4, 0, 0.2, 1);   /* @kind other */
+  --dur-instant:  60ms;                           /* @kind other */
+  --dur-snap:     120ms;                          /* @kind other */
+  --dur-soft:     500ms;                          /* @kind other */
+  --dur-drift:    2400ms;                         /* @kind other */
+  --dur-marquee:  18s;                            /* @kind other */
+
+  /* ── Cursor (Y2K crosshair) ────────────────────────────────── */
+  --cursor-default: auto;     /* @kind other */
+  --cursor-link:    pointer;  /* @kind other */
+}

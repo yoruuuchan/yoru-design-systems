@@ -1,0 +1,23 @@
+<!-- @dsCard group="Colors" viewport="700x230" name="Product gradients" subtitle="Soda · Ion · Citrus · Sunspot · Droplet" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:20px;background:var(--neutral-0);">
+  <style>
+    .row { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+    .g { aspect-ratio:0.7; border-radius:14px; position:relative;
+         box-shadow:var(--inset-rim), var(--shadow-sm); overflow:hidden; }
+    .g b { position:absolute; left:10px; bottom:32px; color:#fff;
+           font-family:var(--font-display); font-weight:700; font-size:13px;
+           letter-spacing:-0.01em; text-shadow:0 1px 3px rgba(0,0,0,0.25); }
+    .g small { position:absolute; left:10px; bottom:10px; color:#fff;
+               font-family:var(--font-mono); font-size:9px; opacity:0.85;
+               text-shadow:0 1px 3px rgba(0,0,0,0.25); }
+  </style>
+  <div class="row">
+    <div class="g" style="background:linear-gradient(135deg,#0A84FF 0%,#66B7FF 50%,#EAF5FF 100%)"><b>Soda</b><small>--gradient-soda</small></div>
+    <div class="g" style="background:linear-gradient(135deg,#339BFF 0%,#5FE3CC 100%)"><b>Ion</b><small>--gradient-ion</small></div>
+    <div class="g" style="background:linear-gradient(135deg,#FFE34D 0%,#FFB199 100%);color:#232C36"><b style="color:#232C36;text-shadow:none">Citrus</b><small style="color:#232C36;text-shadow:none;opacity:0.7">--gradient-citrus</small></div>
+    <div class="g" style="background:radial-gradient(ellipse at 70% 20%,#FFE980 0%,rgba(255,233,128,0) 50%),linear-gradient(180deg,#66B7FF 0%,#EAF5FF 100%)"><b>Sunspot</b><small>--gradient-sunspot</small></div>
+    <div class="g" style="background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.9) 0%,rgba(255,255,255,0) 40%),linear-gradient(135deg,#0A84FF 0%,#66B7FF 100%)"><b>Droplet</b><small>--gradient-droplet</small></div>
+  </div>
+</body></html>

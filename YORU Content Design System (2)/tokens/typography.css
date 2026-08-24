@@ -1,0 +1,37 @@
+:root{
+/* ---- article scale — WeChat / web reading, 677px column ---- */
+--fs-cover:44px;--fs-h1:28px;--fs-h2:22px;--fs-h3:18px;
+--fs-lede:17px;--fs-body:16px;--fs-small:14px;--fs-caption:13px;--fs-label:11px;--fs-code:13.5px;
+/* ---- line heights ---- */
+--lh-cover:1.15; /* @kind font */
+--lh-h1:1.3; /* @kind font */
+--lh-h2:1.35; /* @kind font */
+--lh-body:1.85; /* @kind font */
+--lh-tight:1.5; /* @kind font */
+--lh-code:1.7; /* @kind font */
+/* ---- letter spacing ---- */
+--ls-cover:-0.01em; /* @kind font */
+--ls-title:0em; /* @kind font */
+--ls-body:0.01em; /* @kind font */
+--ls-label:0.14em; /* @kind font */
+--ls-mono:0em; /* @kind font */
+/* ---- weights ---- */
+--fw-black:900; /* @kind font */
+--fw-bold:700; /* @kind font */
+--fw-medium:500; /* @kind font */
+--fw-regular:400; /* @kind font */
+--fw-light:300; /* @kind font */
+}
+/* ---- card scale — Xiaohongshu 1242x1656 export canvas ---- */
+.yoru-card{
+--fs-cover:128px;--fs-h1:76px;--fs-h2:56px;--fs-h3:46px;
+--fs-lede:44px;--fs-body:40px;--fs-small:34px;--fs-caption:30px;--fs-label:26px;--fs-code:32px;
+--lh-cover:1.06; /* @kind font */
+--lh-h1:1.24; /* @kind font */
+--lh-h2:1.3; /* @kind font */
+--lh-body:1.75; /* @kind font */
+--lh-tight:1.45; /* @kind font */
+--lh-code:1.65; /* @kind font */
+/* 铅字房：卡片上的正文是宋体（文章列宽仍是黑体——16px 的思源宋在微信里太重）。 */
+--font-body:var(--font-serif-display);
+}

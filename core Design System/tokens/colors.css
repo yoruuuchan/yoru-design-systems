@@ -1,0 +1,132 @@
+/* colors.css — the core palette.
+   COOL Y2K MILLENNIUM substrate:
+   - bondi:     iMac/MSN/XP-era hero blue
+   - chrome:    brushed silver
+   - frost:     icy paper substrate
+   - tile:      deeper aquatic blue (kept; pairs with bondi)
+   - bubblegum: Y2K iconic pink (the "Lisa Frank" accent)
+   Plus warm scales kept for accent use only:
+   - sodium:    backrooms yellow
+   - peach/rose: dream halo */
+
+:root {
+  /* ── Bondi (Y2K hero blue) ─────────────────────────────── */
+  --bondi-50:  #e0f4fb;
+  --bondi-100: #bce8f6;
+  --bondi-200: #8ddaf0;
+  --bondi-300: #5fc8ea;
+  --bondi-400: #2eb2e0;
+  --bondi-500: #009de0;   /* core Bondi — iMac blue */
+  --bondi-600: #0083bd;
+  --bondi-700: #006a99;
+  --bondi-800: #004d70;
+  --bondi-900: #003855;
+
+  /* ── Chrome (millennial silver / brushed metal) ───────── */
+  --chrome-50:  #f0f4f8;
+  --chrome-100: #dde4ec;
+  --chrome-200: #c8d2dd;
+  --chrome-300: #b4c0cc;
+  --chrome-400: #97a4b3;
+  --chrome-500: #8895a3;
+  --chrome-600: #6c7886;
+  --chrome-700: #4a5663;
+  --chrome-800: #2d3744;
+  --chrome-900: #1d2733;
+
+  /* ── Frost (icy paper substrate) ──────────────────────── */
+  --frost-50:  #f5fafd;
+  --frost-100: #eaf4f8;
+  --frost-200: #d8e7ef;
+  --frost-300: #bcd3df;
+  --frost-400: #95b3c4;
+
+  /* ── Tile (chlorine pool blue — deeper aquatic) ───────── */
+  --tile-50:  #eef5f8;
+  --tile-100: #d3e6ed;
+  --tile-200: #b1d4df;
+  --tile-300: #8fc0d2;
+  --tile-400: #6aa9bf;
+  --tile-500: #4a8fa8;
+  --tile-600: #356f87;
+  --tile-700: #244f63;
+  --tile-800: #163546;
+  --tile-900: #0c2230;
+
+  /* ── Bubblegum (Y2K pink — Lisa Frank energy) ─────────── */
+  --bubblegum-200: #ffd6e8;
+  --bubblegum-300: #ffafd0;
+  --bubblegum-400: #ff92bf;
+  --bubblegum-500: #ff7eb6;
+  --bubblegum-700: #c84f8e;
+
+  /* ── Sodium (warm yellow — demoted to accent only) ────── */
+  --sodium-50:  #fbf3d8;
+  --sodium-100: #f5e4a8;
+  --sodium-200: #efd57e;
+  --sodium-300: #e8c761;
+  --sodium-400: #dcb13f;
+  --sodium-500: #d4a93a;
+  --sodium-600: #b88a23;
+  --sodium-700: #8a6b1e;
+  --sodium-800: #5c4815;
+  --sodium-900: #3d2e0c;
+
+  /* ── Dream (peach/rose halo — small accent) ──────────── */
+  --peach-100: #fce5d8;
+  --peach-200: #f7cdb8;
+  --peach-300: #f4b8a0;
+  --peach-400: #ee9b7d;
+  --peach-500: #e88a6e;
+  --rose-200:  #f7c6d2;
+  --rose-300:  #f0a4b8;
+  --rose-400:  #e57f9b;
+
+  /* ── Paper / ink (the substrate) ──────────────────────── */
+  --paper:         var(--frost-100);
+  --paper-stained: var(--frost-200);
+  --paper-grout:   var(--frost-300);
+  --paper-fold:    var(--frost-400);
+  --ink:           #0c1a26;   /* deep cool ink */
+  --ink-soft:      #1a2f42;
+  --ink-muted:     #4a5e72;
+  --ink-faint:     #7a8c9e;
+
+  /* ── Y2K neon (rainbow text + visited links) ──────────── */
+  --neon-magenta: #ff2bbb;
+  --neon-cyan:    #00e8ff;
+  --neon-lime:    #c8ff2b;
+  --neon-orange:  #ff6f1f;
+  --neon-violet:  #9b4bff;
+
+  /* ── Semantic aliases ────────────────────────────────── */
+  --text-body:     var(--ink);
+  --text-muted:    var(--ink-muted);
+  --text-faint:    var(--ink-faint);
+  --text-link:     var(--bondi-700);
+  --text-link-hover: var(--bondi-500);
+  --text-invert:   var(--paper);
+  --text-warn:     var(--bubblegum-500);
+
+  --surface-page:    var(--paper);
+  --surface-card:    var(--frost-50);
+  --surface-window:  var(--bondi-50);
+  --surface-sunk:    var(--chrome-100);
+  --surface-pool:    var(--bondi-100);
+  --surface-pool-deep: var(--bondi-500);
+
+  --titlebar-bg:     var(--bondi-500);   /* iMac/XP title-bar blue */
+  --titlebar-fg:     #ffffff;
+  --titlebar-bg-inactive: var(--chrome-300);
+
+  --line:            var(--ink);
+  --line-soft:       var(--ink-muted);
+  --bevel-hi:        var(--frost-50);
+  --bevel-lo:        var(--chrome-500);
+
+  --accent-glow:     var(--bondi-300);
+  --accent-link-visited: var(--bubblegum-500);
+
+  --select-bg:       var(--bondi-500);
+  --select-fg:       #ffffff;
+}

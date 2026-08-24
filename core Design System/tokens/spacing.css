@@ -1,0 +1,35 @@
+/* spacing.css — 4px-grid scale + one "tile" unit that doubles
+   as a layout grid and a literal background-tile size. */
+
+:root {
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* tile grid — used for background patterns AND for layout columns */
+  --tile-size:   32px;
+  --grout-size:  2px;
+
+  /* radii — mostly sharp (Y2K). One soft for "pebble" pills. */
+  --radius-none:    0;
+  --radius-soft:    2px;
+  --radius-pebble:  10px;
+  --radius-pill:    999px;
+  --radius-blob:    50%;
+
+  /* borders */
+  --border-w:        1px;
+  --border-w-thick:  2px;
+  --border-w-window: 1px;
+}

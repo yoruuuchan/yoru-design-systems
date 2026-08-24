@@ -1,0 +1,46 @@
+<!-- @dsCard group="Colors" viewport="700x130" name="Cool spectrum" subtitle="Raw palette — midnight → aurora" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 20px 24px; }
+    .row { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
+    .sw {
+      aspect-ratio: 1; border-radius: var(--r-sm);
+      border: 1px solid var(--line-1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .meta { margin-top: 8px; display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px;
+      font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+    .meta span { display: flex; flex-direction: column; gap: 2px; }
+    .meta b { color: var(--ink-2); font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background: var(--midnight)"></div>
+    <div class="sw" style="background: var(--slate)"></div>
+    <div class="sw" style="background: var(--steel)"></div>
+    <div class="sw" style="background: var(--royal)"></div>
+    <div class="sw" style="background: var(--cobalt)"></div>
+    <div class="sw" style="background: var(--sky)"></div>
+    <div class="sw" style="background: var(--ice)"></div>
+    <div class="sw" style="background: var(--aqua)"></div>
+    <div class="sw" style="background: var(--aurora)"></div>
+  </div>
+  <div class="meta">
+    <span><b>midnight</b>0A1230</span>
+    <span><b>slate</b>54668D</span>
+    <span><b>steel</b>7B8BB0</span>
+    <span><b>royal</b>5C7BFF</span>
+    <span><b>cobalt</b>3F86E0</span>
+    <span><b>sky</b>6BB6F0</span>
+    <span><b>ice</b>8FD2F5</span>
+    <span><b>aqua</b>8AD8D0</span>
+    <span><b>aurora</b>B8DCFF</span>
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

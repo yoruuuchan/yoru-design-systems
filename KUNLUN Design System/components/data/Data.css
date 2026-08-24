@@ -1,0 +1,137 @@
+/* Badge + Tag + StatusPill + Avatar */
+
+/* Badge — small label, neutral or status-tinted. Chamfered. */
+.kl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  padding: 2px 8px;
+  height: 18px;
+  clip-path: var(--clip-chamfer-sm);
+  border: 1px solid;
+  white-space: nowrap;
+}
+.kl-badge--neutral {
+  background: var(--bg-elevated); border-color: var(--border-strong);
+  color: var(--text-secondary);
+}
+.kl-badge--signal {
+  background: rgba(0, 184, 255, 0.12); border-color: var(--cyan-700);
+  color: var(--cyan-300); text-shadow: var(--text-glow-cyan);
+}
+.kl-badge--success {
+  background: rgba(0, 232, 145, 0.1); border-color: var(--green-700);
+  color: var(--green-300);
+}
+.kl-badge--warn {
+  background: rgba(255, 176, 0, 0.1); border-color: var(--amber-700);
+  color: var(--amber-300);
+}
+.kl-badge--danger {
+  background: rgba(255, 58, 58, 0.1); border-color: var(--red-700);
+  color: var(--red-300); text-shadow: var(--text-glow-red);
+}
+.kl-badge--solid {
+  background: var(--accent); border-color: var(--cyan-400);
+  color: var(--bg-void); text-shadow: none;
+}
+
+/* Tag — looks like a removable chip. Has an optional × button. */
+.kl-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  padding: 2px 4px 2px 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  clip-path: var(--clip-chamfer-sm);
+  letter-spacing: var(--tracking-wide);
+}
+.kl-tag__close {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 14px; height: 14px;
+  background: transparent; border: none;
+  color: var(--text-tertiary); cursor: pointer; font-size: 12px;
+  line-height: 1; padding: 0;
+}
+.kl-tag__close:hover { color: var(--text-danger); }
+.kl-tag--accent {
+  border-color: var(--cyan-700);
+  color: var(--cyan-300);
+  background: rgba(0, 184, 255, 0.06);
+}
+
+/* StatusPill — dot + label, animated pulse on "live". */
+.kl-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1px solid;
+  clip-path: var(--clip-chamfer-sm);
+  white-space: nowrap;
+}
+.kl-pill__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+.kl-pill--online {
+  color: var(--green-500); border-color: var(--green-700);
+  background: rgba(0, 232, 145, 0.05);
+}
+.kl-pill--online .kl-pill__dot { animation: kl-pulse 1.4s ease-in-out infinite; }
+.kl-pill--idle {
+  color: var(--text-tertiary); border-color: var(--border-strong);
+  background: var(--bg-elevated);
+}
+.kl-pill--idle .kl-pill__dot { box-shadow: none; opacity: 0.6; }
+.kl-pill--busy {
+  color: var(--cyan-300); border-color: var(--cyan-700);
+  background: rgba(0, 184, 255, 0.06);
+}
+.kl-pill--busy .kl-pill__dot { animation: kl-pulse 0.8s linear infinite; }
+.kl-pill--warn {
+  color: var(--amber-300); border-color: var(--amber-700);
+  background: rgba(255, 176, 0, 0.05);
+}
+.kl-pill--error {
+  color: var(--red-300); border-color: var(--red-700);
+  background: rgba(255, 58, 58, 0.06);
+}
+.kl-pill--error .kl-pill__dot { animation: kl-blink 0.6s steps(2, end) infinite; }
+
+/* Avatar — square (chamfered) or circle. Used for users + nodes. */
+.kl-avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--cyan-700);
+  color: var(--cyan-300);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: var(--text-glow-cyan);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.kl-avatar--sq    { clip-path: var(--clip-chamfer-sm); }
+.kl-avatar--round { border-radius: 50%; }
+.kl-avatar--sm { width: 24px; height: 24px; font-size: 10px; }
+.kl-avatar--md { width: 32px; height: 32px; font-size: 12px; }
+.kl-avatar--lg { width: 48px; height: 48px; font-size: 16px; }
+.kl-avatar__img { width: 100%; height: 100%; object-fit: cover; display: block; }

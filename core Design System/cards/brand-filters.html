@@ -1,0 +1,20 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Image filters" subtitle="house treatments for photography" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--paper); display: flex; gap: 12px; font-family: var(--font-ui-sans); font-size: 11px; }
+  .frame { flex: 1; height: 124px; border: 1px solid var(--ink); position: relative; overflow: hidden;
+           background: linear-gradient(135deg, var(--bondi-300) 0%, var(--frost-100) 50%, var(--bubblegum-300) 100%); }
+  .frame::before { content: ""; position: absolute; inset: 0; background-image: var(--bg-grain-pattern); background-size: 200px 200px; opacity: 0.18; mix-blend-mode: multiply; }
+  .over { filter: var(--filter-overexposed); }
+  .jpeg { filter: var(--filter-jpeg); }
+  .vhs { filter: var(--filter-vhs); }
+  .dream { filter: var(--filter-soft-dream); }
+  .lab { position: absolute; left: 6px; bottom: 6px; font-family: var(--font-pixel-mono); font-size: 10px; color: var(--ink); background: rgba(234,244,248,0.9); padding: 2px 6px; }
+</style>
+</head><body>
+<div class="frame over"><span class="lab">overexposed</span></div>
+<div class="frame jpeg"><span class="lab">jpeg</span></div>
+<div class="frame vhs"><span class="lab">vhs</span></div>
+<div class="frame dream"><span class="lab">soft-dream</span></div>
+</body></html>

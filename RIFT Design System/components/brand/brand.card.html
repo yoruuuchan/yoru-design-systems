@@ -1,0 +1,54 @@
+<!-- @dsCard group="Components" viewport="700x240" name="Brand · Glitch + Wordmark" subtitle="Chromatic split — off · subtle · signature · heavy" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <style>
+    body { padding: 24px 28px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .cell { display: flex; flex-direction: column; gap: 10px; }
+    .lbl {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-3);
+    }
+    .wm { font-size: 44px; }
+    hr { margin: 24px 0 18px; border: 0; border-top: 1px solid var(--line-1); }
+    .accents { display: flex; gap: 32px; align-items: baseline; }
+  </style>
+</head>
+<body data-glitch="signature" data-accent="royal">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Glitch, Wordmark } = window.RIFTDesignSystem_b2dbfe;
+    const LEVELS = ["off", "subtle", "signature", "heavy"];
+    const ACCENTS = ["royal", "aqua"];
+    ReactDOM.createRoot(document.getElementById("root")).render(
+      <div>
+        <div className="grid">
+          {LEVELS.map(level => (
+            <div key={level} className="cell" data-glitch={level}>
+              <div className="lbl">data-glitch="{level}"</div>
+              <Wordmark text="RIFT" size="44px" />
+            </div>
+          ))}
+        </div>
+        <hr/>
+        <div className="accents">
+          {ACCENTS.map(a => (
+            <div key={a} className="cell" data-accent={a}>
+              <div className="lbl">{a}</div>
+              <Glitch text="ENTER" style={{ fontFamily: "var(--font-wordmark)", fontSize: 28, fontWeight: 700 }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  </script>
+  <script src="../../assets/theme-toggle.js"></script>
+</body>
+</html>

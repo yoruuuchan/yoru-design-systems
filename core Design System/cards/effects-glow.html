@@ -1,0 +1,24 @@
+<!-- @dsCard group="Effects" viewport="700x200" name="Y2K glows" subtitle="bondi · chrome · bubblegum halos — the millennium counterpart to bevels" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 28px; background: var(--paper); display: flex; gap: 28px; align-items: center; justify-content: center; font-family: var(--font-ui-sans); font-size: 11px; }
+  .blob { width: 64px; height: 64px; border-radius: 50%; }
+  .bondi      { background: var(--bondi-300);     box-shadow: var(--glow-bondi); }
+  .chrome     { background: var(--chrome-200);    box-shadow: var(--glow-chrome); }
+  .bubblegum  { background: var(--bubblegum-300); box-shadow: var(--glow-bubblegum); }
+  .pool       { background: var(--tile-300);      box-shadow: var(--glow-pool); }
+  .peach      { background: var(--peach-200);     box-shadow: var(--glow-peach); }
+  .text  { font-family: var(--font-pixel-display); font-size: 42px; color: var(--frost-50); background: var(--bondi-500); padding: 6px 14px;
+           text-shadow: var(--glow-text-overexposed); }
+  .lab { font-family: var(--font-pixel-mono); font-size: 10px; color: var(--text-muted); margin-top: 14px; letter-spacing: 0.05em; text-align: center; }
+  .col { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head><body>
+<div class="col"><div class="blob bondi"></div><div class="lab">--glow-bondi</div></div>
+<div class="col"><div class="blob chrome"></div><div class="lab">--glow-chrome</div></div>
+<div class="col"><div class="blob bubblegum"></div><div class="lab">--glow-bubblegum</div></div>
+<div class="col"><div class="blob pool"></div><div class="lab">--glow-pool</div></div>
+<div class="col"><div class="blob peach"></div><div class="lab">--glow-peach (warm accent)</div></div>
+<div class="col"><div class="text">overexposed</div><div class="lab">text default</div></div>
+</body></html>

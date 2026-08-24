@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Semantic" subtitle="Success · Warn · Danger · Info" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:20px;background:var(--neutral-0);">
+  <style>
+    .row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+    .cell { padding:14px; border-radius:14px; color:#fff; display:flex;
+            flex-direction:column; gap:6px; box-shadow:var(--inset-rim); }
+    .cell b { font-family:var(--font-display); font-weight:700; font-size:14px;
+              letter-spacing:-0.01em; }
+    .cell small { font-family:var(--font-mono); font-size:10px; opacity:0.9; }
+    .cell .dot { width:8px; height:8px; border-radius:50%; background:#fff; opacity:0.95; }
+  </style>
+  <div class="row">
+    <div class="cell" style="background:#34C759"><span class="dot"></span><b>Success</b><small>--success-500 · 34C759</small></div>
+    <div class="cell" style="background:#FF9F0A"><span class="dot"></span><b>Warn</b><small>--warn-500 · FF9F0A</small></div>
+    <div class="cell" style="background:#FF453A"><span class="dot"></span><b>Danger</b><small>--danger-500 · FF453A</small></div>
+    <div class="cell" style="background:#0A84FF"><span class="dot"></span><b>Info</b><small>--info-500 · 0A84FF</small></div>
+  </div>
+</body></html>

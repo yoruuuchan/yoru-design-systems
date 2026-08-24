@@ -1,0 +1,39 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Semantic aliases" subtitle="role-named tokens you actually consume" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--paper); font-family: var(--font-ui-sans); font-size: 11px; color: var(--ink); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+  .pair { display: flex; align-items: center; gap: 8px; padding: 3px 0; }
+  .chip { width: 22px; height: 22px; border: 1px solid var(--ink); flex: none; }
+  .name { font-family: var(--font-pixel-mono); font-size: 12px; }
+  .desc { color: var(--text-muted); margin-left: auto; font-size: 10px; }
+</style>
+</head><body>
+<div class="grid">
+  <div class="pair"><span class="chip" style="background:var(--surface-page)"></span>
+    <span class="name">--surface-page</span></div>
+  <div class="pair"><span class="chip" style="background:var(--surface-card)"></span>
+    <span class="name">--surface-card</span></div>
+  <div class="pair"><span class="chip" style="background:var(--surface-window)"></span>
+    <span class="name">--surface-window</span></div>
+  <div class="pair"><span class="chip" style="background:var(--surface-sunk)"></span>
+    <span class="name">--surface-sunk</span></div>
+  <div class="pair"><span class="chip" style="background:var(--surface-pool)"></span>
+    <span class="name">--surface-pool</span></div>
+  <div class="pair"><span class="chip" style="background:var(--surface-pool-deep)"></span>
+    <span class="name">--surface-pool-deep</span></div>
+  <div class="pair"><span class="chip" style="background:var(--titlebar-bg)"></span>
+    <span class="name">--titlebar-bg</span></div>
+  <div class="pair"><span class="chip" style="background:var(--titlebar-bg-inactive)"></span>
+    <span class="name">--titlebar-bg-inactive</span></div>
+  <div class="pair"><span class="chip" style="background:var(--text-link)"></span>
+    <span class="name">--text-link</span></div>
+  <div class="pair"><span class="chip" style="background:var(--accent-link-visited)"></span>
+    <span class="name">--accent-link-visited</span></div>
+  <div class="pair"><span class="chip" style="background:var(--accent-glow)"></span>
+    <span class="name">--accent-glow</span></div>
+  <div class="pair"><span class="chip" style="background:var(--text-warn)"></span>
+    <span class="name">--text-warn</span></div>
+</div>
+</body></html>

@@ -1,0 +1,47 @@
+/* PAPER — type. One old-style serif carries display AND text; a neutral grotesque
+   carries labels/UI; mono carries anything machine-recorded (dates, fig. no., film stock).
+   Handwriting is a fourth voice, used at most once per spread. */
+:root{
+  --font-display:"EB Garamond","Noto Serif SC",Georgia,serif;
+  --font-serif:"EB Garamond","Noto Serif SC",Georgia,serif;
+  --font-sans:"IBM Plex Sans","Noto Sans SC",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --font-hand:"Caveat","Noto Serif SC",cursive;
+
+  /* SIZE — editorial scale, ~1.28. Display sizes are meant to be set tight and large. */
+  --type-display-1:5.5rem;   /* 88 — cover / spread opener */
+  --type-display-2:4.25rem;  /* 68 — article title */
+  --type-display-3:3rem;     /* 48 — section opener */
+  --type-h1:2.25rem;         /* 36 */
+  --type-h2:1.6875rem;       /* 27 */
+  --type-h3:1.3125rem;       /* 21 */
+  --type-body-lg:1.1875rem;  /* 19 — standfirst, single-column essays */
+  --type-body:1.0625rem;     /* 17 — the reading size */
+  --type-body-sm:0.9375rem;  /* 15 — sidebars, notes */
+  --type-caption:0.78125rem; /* 12.5 — figcaption, credits */
+  --type-micro:0.65625rem;   /* 10.5 — running heads, folio labels, stamps */
+
+  /* LEADING — display is set tight, text is set open */
+  --leading-tight:1.02; /* @kind other */
+  --leading-snug:1.16; /* @kind other */
+  --leading-normal:1.38; /* @kind other */
+  --leading-text:1.68; /* @kind other */       /* body copy */
+  --leading-cjk:1.9; /* @kind other */         /* Chinese needs more air */
+  --leading-caption:1.55; /* @kind other */
+
+  /* TRACKING — only two moves: negative on display, wide on uppercase labels */
+  --tracking-display:-0.012em;
+  --tracking-normal:0;
+  --tracking-label:0.14em;
+  --tracking-wide:0.22em;
+  --tracking-wordmark:0.42em;
+
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+
+  /* MEASURE — never let a line run long */
+  --measure-narrow:44ch; /* @kind other */
+  --measure:66ch; /* @kind other */
+  --measure-wide:78ch; /* @kind other */
+}

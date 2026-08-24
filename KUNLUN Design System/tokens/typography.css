@@ -1,0 +1,62 @@
+/* TYPOGRAPHY — all monospace, with display & CRT variants.
+ * Body / UI uses JetBrains Mono. Display / headings use Orbitron for
+ * its geometric, mil-spec character. VT323 is reserved for "screen
+ * readout" moments (terminal, status displays). CJK falls through to
+ * Noto Sans SC.
+ */
+
+:root {
+  /* Font families */
+  --font-mono:      "JetBrains Mono", "Noto Sans SC", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display:   "Orbitron", "JetBrains Mono", "Noto Sans SC", monospace;
+  --font-crt:       "VT323", "JetBrains Mono", "Noto Sans SC", monospace;
+  --font-body:      "JetBrains Mono", "Noto Sans SC", ui-monospace, monospace;
+  --font-code:      "JetBrains Mono", "Space Mono", ui-monospace, monospace;
+
+  /* Type scale — modular, terminal-friendly */
+  --text-3xs:       10px;     /* coordinate labels, HUD micro */
+  --text-2xs:       11px;     /* tags, status pills */
+  --text-xs:        12px;     /* captions, table cells */
+  --text-sm:        13px;     /* secondary UI */
+  --text-base:      14px;     /* body */
+  --text-md:        15px;     /* body emphasized */
+  --text-lg:        18px;     /* card title */
+  --text-xl:        22px;     /* section title */
+  --text-2xl:       28px;     /* page title */
+  --text-3xl:       36px;     /* feature title */
+  --text-4xl:       48px;     /* hero */
+  --text-5xl:       64px;     /* hero display */
+  --text-6xl:       96px;     /* big numerals / countdown */
+
+  /* Line heights — tight for terminal feel */
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.45;
+  --leading-loose:  1.7;
+
+  /* Letter-spacing — wide for display, monospaced for body */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.06em;
+  --tracking-wider:  0.12em;
+  --tracking-widest: 0.22em;  /* for HUD labels: [ N O D E - 0 7 ] */
+
+  /* Weights */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-display:  900;
+
+  /* Semantic type roles */
+  --type-display:   var(--weight-display) var(--text-4xl)/var(--leading-tight) var(--font-display);
+  --type-h1:        var(--weight-bold) var(--text-3xl)/var(--leading-tight) var(--font-display);
+  --type-h2:        var(--weight-bold) var(--text-2xl)/var(--leading-snug) var(--font-display);
+  --type-h3:        var(--weight-semibold) var(--text-xl)/var(--leading-snug) var(--font-mono);
+  --type-h4:        var(--weight-semibold) var(--text-lg)/var(--leading-snug) var(--font-mono);
+  --type-body:      var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-body);
+  --type-caption:   var(--weight-regular) var(--text-xs)/var(--leading-normal) var(--font-mono);
+  --type-label:     var(--weight-semibold) var(--text-2xs)/var(--leading-tight) var(--font-mono);
+  --type-code:      var(--weight-regular) var(--text-sm)/var(--leading-normal) var(--font-code);
+  --type-crt:       var(--weight-regular) var(--text-xl)/var(--leading-normal) var(--font-crt);
+}

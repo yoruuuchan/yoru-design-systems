@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Console" description="Real-time monitoring console — header, channel sidebar, log feed, stats" -->
+<helmet>
+<script src="./ds-base.js"></script>
+</helmet>
+<div style="min-height:100vh; display:grid; grid-template-rows:64px 1fr; grid-template-columns:260px 1fr; grid-template-areas:'header header' 'sidebar main'; font-family:var(--font-ui); color:var(--ink-1);">
+
+  <!-- HEADER -->
+  <header class="rift-glass-2" style="grid-area:header; display:flex; align-items:center; gap:24px; padding:0 24px; border-radius:0; border-left:none; border-right:none; border-top:none;">
+    <span class="rift-glitch" data-text="RIFT" style="font-family:var(--font-wordmark); font-weight:700; font-size:24px; letter-spacing:0.06em;">RIFT</span>
+    <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-3); letter-spacing:0.18em; text-transform:uppercase;">CONSOLE / / NODE-04</span>
+    <div style="margin-left:auto; display:flex; gap:10px; align-items:center;">
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Badge" variant="ok" hint-size="auto,28px">CONNECTED</x-import>
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Badge" hint-size="auto,28px">v2.4.1 STABLE</x-import>
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Button" variant="primary" hint-size="auto,42px">ENTER STREAM</x-import>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside style="grid-area:sidebar; padding:20px 16px; border-right:1px solid var(--line-1); display:flex; flex-direction:column; gap:8px;">
+    <div style="font-family:var(--font-mono); font-size:10px; color:var(--ink-3); letter-spacing:0.18em; text-transform:uppercase; padding:6px 10px 10px;">Channels</div>
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <div style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--r-sm); background:var(--glass-2-bg); border:1px solid var(--line-2);">
+        <span class="rift-dot rift-dot--ok"></span>
+        <span style="font-weight:600;">handshake.core</span>
+        <span style="margin-left:auto; font-family:var(--font-mono); font-size:11px; color:var(--ink-3);">2,847</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--r-sm); color:var(--ink-2);">
+        <span class="rift-dot rift-dot--ok"></span>
+        <span>auth.refresh</span>
+        <span style="margin-left:auto; font-family:var(--font-mono); font-size:11px; color:var(--ink-3);">412</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--r-sm); color:var(--ink-2);">
+        <span class="rift-dot rift-dot--warn"></span>
+        <span>rate.window</span>
+        <span style="margin-left:auto; font-family:var(--font-mono); font-size:11px; color:var(--ink-3);">87/100</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--r-sm); color:var(--ink-2);">
+        <span class="rift-dot rift-dot--bad"></span>
+        <span>tunnel.beta</span>
+        <span style="margin-left:auto; font-family:var(--font-mono); font-size:11px; color:var(--ink-3);">—</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--r-sm); color:var(--ink-3);">
+        <span style="opacity:0.5">+</span>
+        <span style="font-style:italic;">new channel</span>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; font-family:var(--font-mono); font-size:10px; color:var(--ink-3); letter-spacing:0.18em; text-transform:uppercase; padding:6px 10px 10px;">Saved queries</div>
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <div style="padding:8px 12px; color:var(--ink-2); font-family:var(--font-mono); font-size:12px;">level:WARN OR level:FAIL</div>
+      <div style="padding:8px 12px; color:var(--ink-2); font-family:var(--font-mono); font-size:12px;">node:04 last:5m</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="rift-mark" data-mark="信号" style="grid-area:main; padding:24px; display:flex; flex-direction:column; gap:20px; overflow:hidden;">
+
+    <!-- STATS -->
+    <div class="rift-frame" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; padding:8px; --frame-len:18px; --frame-overhang:6px; --frame-color:var(--ice);">
+      <div class="rift-card" style="padding:18px;">
+        <div style="font-family:var(--font-mono); font-size:10px; color:var(--ink-3); letter-spacing:0.16em; text-transform:uppercase;">Packets / s</div>
+        <div style="font-family:var(--font-display); font-size:36px; font-weight:600; margin-top:4px; color:var(--ink-1);">12,847</div>
+        <div style="display:flex; align-items:center; gap:6px; color:var(--ok); font-size:12px; font-family:var(--font-mono);">▲ 4.2%</div>
+      </div>
+      <div class="rift-card" style="padding:18px;">
+        <div style="font-family:var(--font-mono); font-size:10px; color:var(--ink-3); letter-spacing:0.16em; text-transform:uppercase;">Latency p95</div>
+        <div style="font-family:var(--font-display); font-size:36px; font-weight:600; margin-top:4px;">38<span style="font-size:18px; color:var(--ink-3);"> ms</span></div>
+        <div style="display:flex; align-items:center; gap:6px; color:var(--ok); font-size:12px; font-family:var(--font-mono);">▼ 2.1%</div>
+      </div>
+      <div class="rift-card" style="padding:18px;">
+        <div style="font-family:var(--font-mono); font-size:10px; color:var(--ink-3); letter-spacing:0.16em; text-transform:uppercase;">Error rate</div>
+        <div style="font-family:var(--font-display); font-size:36px; font-weight:600; margin-top:4px;">0.04<span style="font-size:18px; color:var(--ink-3);"> %</span></div>
+        <div style="display:flex; align-items:center; gap:6px; color:var(--warn); font-size:12px; font-family:var(--font-mono);">▲ 0.8%</div>
+      </div>
+      <div class="rift-card" style="padding:18px;">
+        <div style="font-family:var(--font-mono); font-size:10px; color:var(--ink-3); letter-spacing:0.16em; text-transform:uppercase;">Active streams</div>
+        <div style="font-family:var(--font-display); font-size:36px; font-weight:600; margin-top:4px;">47</div>
+        <div style="display:flex; align-items:center; gap:6px; color:var(--ink-3); font-size:12px; font-family:var(--font-mono);">— steady</div>
+      </div>
+    </div>
+
+    <!-- LOG -->
+    <div class="rift-glass-2 rift-scan" style="flex:1; padding:18px 20px; display:flex; flex-direction:column; gap:14px; min-height:0;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span style="font-family:var(--font-display); font-size:18px; font-weight:600;">Signal feed</span>
+        <span class="rift-dot rift-dot--ok"></span>
+        <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-3); letter-spacing:0.12em; text-transform:uppercase;">LIVE</span>
+        <div style="margin-left:auto; width:280px;">
+          <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Input" placeholder="filter level:WARN…" hint-size="100%,44px"></x-import>
+        </div>
+      </div>
+      <pre style="margin:0; flex:1; overflow:auto; font-family:var(--font-mono); font-size:13px; color:var(--ink-2); line-height:1.65;"><span style="color:var(--ink-3)">04:17:32.812</span>  <span style="color:var(--ok)">OK  </span>  handshake → node-04 (RTT 38ms)
+<span style="color:var(--ink-3)">04:17:32.974</span>  <span style="color:var(--ok)">OK  </span>  auth.token → ttl 3600s
+<span style="color:var(--ink-3)">04:17:33.103</span>  <span style="color:var(--warn)">WARN</span>  rate-limit window 87/100 — backing off 200ms
+<span style="color:var(--ink-3)">04:17:33.402</span>  <span style="color:var(--ok)">OK  </span>  stream.subscribe channel=handshake.core
+<span style="color:var(--ink-3)">04:17:33.611</span>  <span style="color:var(--ok)">OK  </span>  stream.subscribe channel=auth.refresh
+<span style="color:var(--ink-3)">04:17:34.018</span>  <span style="color:var(--bad)">FAIL</span>  tunnel.beta unreachable — retry in 4s
+<span style="color:var(--ink-3)">04:17:34.512</span>  <span style="color:var(--ok)">OK  </span>  ingest 2,847 packets ✓
+<span style="color:var(--ink-3)">04:17:35.001</span>  <span style="color:var(--ok)">OK  </span>  checkpoint sealed → block 0x4F2A1C8
+<span style="color:var(--ink-3)">04:17:35.318</span>  <span style="color:var(--ink-2)">INFO</span>  observer attached — id=ANON-7841
+<span style="color:var(--ink-3)">04:17:35.622</span>  <span style="color:var(--ok)">OK  </span>  rotation complete — 4 keys cycled</pre>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 },
+  &quot;theme&quot;:  { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;dark&quot;,      &quot;options&quot;: [&quot;dark&quot;, &quot;light&quot;],                          &quot;tsType&quot;: &quot;\&quot;dark\&quot; | \&quot;light\&quot;&quot; },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;royal&quot;,     &quot;options&quot;: [&quot;royal&quot;, &quot;aqua&quot;],                          &quot;tsType&quot;: &quot;\&quot;royal\&quot; | \&quot;aqua\&quot;&quot; },
+  &quot;glitch&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;signature&quot;, &quot;options&quot;: [&quot;off&quot;, &quot;subtle&quot;, &quot;signature&quot;, &quot;heavy&quot;],    &quot;tsType&quot;: &quot;\&quot;off\&quot; | \&quot;subtle\&quot; | \&quot;signature\&quot; | \&quot;heavy\&quot;&quot; }
+}">class Component extends DCLogic {
+  componentDidMount()  { this._sync(); }
+  componentDidUpdate() { this._sync(); }
+  componentWillUnmount() {
+    const h = document.documentElement;
+    delete h.dataset.theme; delete h.dataset.glitch; delete h.dataset.accent;
+  }
+  _sync() {
+    const h = document.documentElement;
+    h.dataset.theme  = this.props.theme  || "dark";
+    h.dataset.glitch = this.props.glitch || "signature";
+    h.dataset.accent = this.props.accent || "royal";
+  }
+}</script>
+</body>
+</html>

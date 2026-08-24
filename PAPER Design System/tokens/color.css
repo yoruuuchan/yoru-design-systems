@@ -1,0 +1,51 @@
+/* PAPER — color. Sampled from the PAPER system board (assets/brand/paper-system-board.png).
+   Mostly material neutrals; one accent (terracotta), used only for stamps, marks and page marginalia. */
+:root{
+  /* paper — warm off-whites, lightest to deepest */
+  --paper-0:#FBFAF7; --paper-1:#F4F1EA; --paper-2:#EDE6D8; --paper-3:#E3DAC7; --paper-4:#D8CDB5;
+  /* ink — charcoal to mid grey */
+  --ink-0:#26241F; --ink-1:#403C34; --ink-2:#6B6459; --ink-3:#948D80; --ink-4:#B4AC9D;
+  /* rules & edges */
+  --rule-0:#26241F; --rule-1:#C9C1AE; --rule-2:#DED7C6;
+  /* accent — terracotta. one accent only; never for large fills */
+  --accent:#C0563C; --accent-deep:#9A4229; --accent-tint:#EBD3C8;
+  /* film & darkroom */
+  --film-base:#1A1815; --film-edge:#0E0D0B; --film-rebate:#C6B98F; --film-frame:#8A8272;
+  /* tonal placeholders for photography */
+  --tone-1:#D9D3C6; --tone-2:#C6BFAF; --tone-3:#AFA898; --tone-4:#8C8577; --tone-5:#5A554C;
+
+  /* semantic — editorial mode is the default */
+  --surface-page:var(--paper-1);
+  --surface-raised:var(--paper-0);
+  --surface-sunken:var(--paper-2);
+  --surface-dark:var(--ink-0);
+  --text-display:var(--ink-0);
+  --text-body:var(--ink-1);
+  --text-quiet:var(--ink-2);
+  --text-faint:var(--ink-3);
+  --text-inverse:var(--paper-0);
+  --text-accent:var(--accent);
+  --border-hair:var(--rule-1);
+  --border-strong:var(--rule-0);
+  --link:var(--ink-0);
+  --link-hover:var(--accent);
+  --caption:var(--ink-2);
+  --stamp:var(--accent);
+}
+/* Analog mode — same system, warmer paper, softer rules, material switched on.
+   Set data-mode="analog" on <html>, a section, or any single component. */
+[data-mode="analog"]{
+  --surface-page:var(--paper-2);
+  --surface-raised:#F7F2E6;
+  --surface-sunken:var(--paper-3);
+  --text-body:var(--ink-1);
+  --text-quiet:#6E6656;
+  --border-hair:#CDC3A9;
+  --caption:#6E6656;
+}
+[data-mode="editorial"]{
+  --surface-page:var(--paper-1);
+  --surface-raised:var(--paper-0);
+  --surface-sunken:var(--paper-2);
+  --border-hair:var(--rule-1);
+}

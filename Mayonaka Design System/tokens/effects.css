@@ -1,0 +1,87 @@
+:root {
+  /* Glow shadows — the signature lighting of the system */
+  --glow-magenta-sm: 0 0 8px rgba(255, 43, 214, 0.6);
+  --glow-magenta:    0 0 16px rgba(255, 43, 214, 0.8), 0 0 32px rgba(255, 43, 214, 0.35);
+  --glow-magenta-lg: 0 0 24px rgba(255, 43, 214, 0.9), 0 0 60px rgba(255, 43, 214, 0.4);
+  --glow-cyan-sm:    0 0 8px rgba(25, 230, 255, 0.6);
+  --glow-cyan:       0 0 16px rgba(25, 230, 255, 0.8), 0 0 32px rgba(25, 230, 255, 0.35);
+  --glow-cyan-lg:    0 0 24px rgba(25, 230, 255, 0.9), 0 0 60px rgba(25, 230, 255, 0.4);
+  --glow-blue-sm:    0 0 8px rgba(45, 108, 255, 0.7);
+  --glow-blue:       0 0 16px rgba(45, 108, 255, 0.85), 0 0 32px rgba(0, 179, 255, 0.4);
+  --glow-blue-lg:    0 0 24px rgba(45, 108, 255, 0.95), 0 0 60px rgba(0, 179, 255, 0.5);
+
+  /* "Drop into the void" hard shadow — pixel-style, no blur */
+  --shadow-pixel-sm: 2px 2px 0 var(--shadow-ink);
+  --shadow-pixel:    4px 4px 0 var(--shadow-ink);
+  --shadow-pixel-lg: 6px 6px 0 var(--shadow-ink);
+  /* Colored pixel shadows for buttons */
+  --shadow-pixel-magenta: 4px 4px 0 var(--magenta);
+  --shadow-pixel-cyan:    4px 4px 0 var(--cyan);
+  --shadow-pixel-blue:    4px 4px 0 var(--electric);
+
+  /* Text glow */
+  --text-glow-magenta: 0 0 6px rgba(255, 43, 214, 0.9), 0 0 14px rgba(255, 43, 214, 0.5);
+  --text-glow-cyan:    0 0 6px rgba(25, 230, 255, 0.9), 0 0 14px rgba(25, 230, 255, 0.5);
+  --text-glow-blue:    0 0 6px rgba(45, 108, 255, 0.95), 0 0 14px rgba(0, 179, 255, 0.55);
+
+  /* Scanlines — overlay on top of everything cinematic */
+  --scanlines: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) 2px,
+    rgba(0,0,0,0.25) 3px,
+    rgba(0,0,0,0.25) 4px
+  ); /* @kind other */
+
+  /* Grid floor — the iconic vaporwave perspective grid */
+  --grid-floor: linear-gradient(transparent 0, transparent 95%, var(--magenta) 95%, var(--magenta) 100%),
+                linear-gradient(90deg, transparent 0, transparent 95%, var(--magenta) 95%, var(--magenta) 100%); /* @kind other */
+
+  /* Motion — kept restrained per brand */
+  --ease-pixel: steps(6, end);            /* @kind other */
+  --ease-smooth: cubic-bezier(.2,.7,.2,1); /* @kind other */
+  --dur-fast: 120ms;                       /* @kind other */
+  --dur-med:  240ms;                       /* @kind other */
+  --dur-slow: 480ms;                       /* @kind other */
+}
+
+/* === Keyframes — restrained, ambient motion === */
+@keyframes mnk-pulse-magenta {
+  0%, 100% { box-shadow: 0 0 12px rgba(255,43,214,.55), 0 0 24px rgba(255,43,214,.25); }
+  50%      { box-shadow: 0 0 22px rgba(255,43,214,.9),  0 0 52px rgba(255,43,214,.5); }
+}
+@keyframes mnk-pulse-cyan {
+  0%, 100% { box-shadow: 0 0 12px rgba(25,230,255,.55), 0 0 24px rgba(25,230,255,.25); }
+  50%      { box-shadow: 0 0 22px rgba(25,230,255,.9),  0 0 52px rgba(25,230,255,.5); }
+}
+@keyframes mnk-pulse-blue {
+  0%, 100% { box-shadow: 0 0 12px rgba(45,108,255,.55),  0 0 24px rgba(0,179,255,.25); }
+  50%      { box-shadow: 0 0 24px rgba(45,108,255,.95), 0 0 52px rgba(0,179,255,.55); }
+}
+@keyframes mnk-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+@keyframes mnk-scanline-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 8px; }
+}
+@keyframes mnk-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes mnk-glitch-shake {
+  0%, 92%, 100% { transform: translate(0,0); }
+  93% { transform: translate(-2px, 1px); }
+  95% { transform: translate(2px, -1px); }
+  97% { transform: translate(-1px, -2px); }
+  99% { transform: translate(1px, 1px); }
+}
+@keyframes mnk-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes mnk-sun-spin {
+  0%   { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}

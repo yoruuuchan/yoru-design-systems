@@ -1,0 +1,22 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Radius scale" subtitle="--radius-xs … --radius-pill" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:20px;background:var(--neutral-0);">
+  <style>
+    .row { display:grid; grid-template-columns:repeat(7,1fr); gap:14px; }
+    .cell { display:flex; flex-direction:column; gap:6px; align-items:center; }
+    .shape { width:100%; aspect-ratio:1; background:linear-gradient(135deg,#9DD2FF,#0A84FF);
+             box-shadow:var(--inset-rim), var(--shadow-sm); }
+    .lbl { font-family:var(--font-mono); font-size:9px; color:var(--text-muted); text-align:center; }
+    .lbl b { display:block; color:var(--text-strong); font-weight:500; }
+  </style>
+  <div class="row">
+    <div class="cell"><div class="shape" style="border-radius:4px"></div><div class="lbl"><b>xs</b>4px</div></div>
+    <div class="cell"><div class="shape" style="border-radius:8px"></div><div class="lbl"><b>sm</b>8px</div></div>
+    <div class="cell"><div class="shape" style="border-radius:14px"></div><div class="lbl"><b>md</b>14px</div></div>
+    <div class="cell"><div class="shape" style="border-radius:20px"></div><div class="lbl"><b>lg</b>20px</div></div>
+    <div class="cell"><div class="shape" style="border-radius:28px"></div><div class="lbl"><b>xl</b>28px</div></div>
+    <div class="cell"><div class="shape" style="border-radius:36px"></div><div class="lbl"><b>2xl</b>36px</div></div>
+    <div class="cell"><div class="shape" style="border-radius:999px"></div><div class="lbl"><b>pill</b>full</div></div>
+  </div>
+</body></html>

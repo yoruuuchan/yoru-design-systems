@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Portfolio index" description="A personal creative homepage — name, one line, hero plate, recent grid and a ruled index of work." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<script src="../../assets/image-slot.js"></script>
+<style>body{margin:0;background:var(--surface-page)}body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;background-image:var(--tex-grain);opacity:var(--grain,.06);mix-blend-mode:multiply}</style>
+</helmet>
+<article style="max-width:1120px;margin:0 auto;padding:40px 64px 80px;font-family:var(--font-serif);color:var(--text-body)">
+<header style="display:flex;align-items:baseline;justify-content:space-between;gap:32px;padding-bottom:16px;border-bottom:1px solid var(--rule-hair)">
+<span style="font-family:var(--font-display);font-size:15px;letter-spacing:.42em;text-transform:uppercase;color:var(--text-display)">Mira Andersson</span>
+<nav style="display:flex;gap:32px;font-family:var(--font-sans);font-size:12.5px;color:var(--text-secondary)"><a href="#" style="border-bottom:0">Work</a><a href="#" style="border-bottom:0">Journal</a><a href="#" style="border-bottom:0">About</a><a href="#" style="border-bottom:0">Contact</a></nav>
+</header>
+
+<div style="display:grid;grid-template-columns:1fr 1.1fr;gap:96px;align-items:center;margin:96px 0">
+<div>
+<h1 style="font-family:var(--font-display);font-weight:400;font-size:68px;line-height:1.02;letter-spacing:-.012em;color:var(--text-display);margin:0;max-width:9ch">Stories in <em style="font-style:italic">stillness.</em></h1>
+<p style="font-size:17px;line-height:1.6;color:var(--text-secondary);margin:24px 0 0;max-width:30ch">Photographer &amp; visual storyteller based in Copenhagen.</p>
+<a href="#" style="display:inline-flex;align-items:baseline;gap:8px;margin-top:32px;color:var(--link);border-bottom:1px solid var(--link-underline)"><span>View selected work</span><span style="font-family:var(--font-sans);font-size:.9em">&#8594;</span></a>
+</div>
+<div style="position:relative;aspect-ratio:3/2;background:var(--placeholder-tone);box-shadow:0 1px 2px rgba(38,36,30,.11),0 12px 26px -16px rgba(38,36,30,.42),inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pi-hero" shape="rect" placeholder="Hero photograph — 3:2"></image-slot></div>
+</div>
+
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px">
+<span style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">Recent — 2024</span>
+<a href="#" style="font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted);border-bottom:1px solid var(--link-underline)">All work</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+<div style="position:relative;aspect-ratio:4/5;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pi-a" shape="rect"></image-slot></div>
+<div style="position:relative;aspect-ratio:4/5;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pi-b" shape="rect"></image-slot></div>
+<div style="position:relative;aspect-ratio:4/5;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pi-c" shape="rect"></image-slot></div>
+<div style="position:relative;aspect-ratio:4/5;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pi-d" shape="rect"></image-slot></div>
+</div>
+
+<h2 style="font-family:var(--font-display);font-weight:400;font-size:48px;line-height:1.1;color:var(--text-display);margin:96px 0 32px">Work</h2>
+<ol style="list-style:none;margin:0;padding:0;border-top:1px solid var(--rule-hair)">
+<li style="border-bottom:1px solid var(--rule-hair)"><a href="#" style="display:grid;grid-template-columns:38px 1fr 148px 44px;align-items:baseline;gap:16px;padding:11px 0;border-bottom:0;color:inherit"><span style="font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint)">01</span><span style="font-size:17px">The Coast Later</span><span style="font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted)">Photo Essay</span><span style="font-family:var(--font-mono);font-size:12.5px;text-align:right;color:var(--text-muted)">02</span></a></li>
+<li style="border-bottom:1px solid var(--rule-hair)"><a href="#" style="display:grid;grid-template-columns:38px 1fr 148px 44px;align-items:baseline;gap:16px;padding:11px 0;border-bottom:0;color:inherit"><span style="font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint)">02</span><span style="font-size:17px">Apartmento</span><span style="font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted)">Interior</span><span style="font-family:var(--font-mono);font-size:12.5px;text-align:right;color:var(--text-muted)">08</span></a></li>
+<li style="border-bottom:1px solid var(--rule-hair)"><a href="#" style="display:grid;grid-template-columns:38px 1fr 148px 44px;align-items:baseline;gap:16px;padding:11px 0;border-bottom:0;color:inherit"><span style="font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint)">03</span><span style="font-size:17px">The Gentlewoman</span><span style="font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted)">Still Life</span><span style="font-family:var(--font-mono);font-size:12.5px;text-align:right;color:var(--text-muted)">14</span></a></li>
+<li style="border-bottom:1px solid var(--rule-hair)"><a href="#" style="display:grid;grid-template-columns:38px 1fr 148px 44px;align-items:baseline;gap:16px;padding:11px 0;border-bottom:0;color:inherit"><span style="font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint)">04</span><span style="font-size:17px">Drift</span><span style="font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted)">Journal</span><span style="font-family:var(--font-mono);font-size:12.5px;text-align:right;color:var(--text-muted)">26</span></a></li>
+<li style="border-bottom:1px solid var(--rule-hair)"><a href="#" style="display:grid;grid-template-columns:38px 1fr 148px 44px;align-items:baseline;gap:16px;padding:11px 0;border-bottom:0;color:inherit"><span style="font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint)">05</span><span style="font-size:17px">Field Notes</span><span style="font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted)">Observations</span><span style="font-family:var(--font-mono);font-size:12.5px;text-align:right;color:var(--text-muted)">32</span></a></li>
+</ol>
+
+<footer style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:64px;padding-top:16px;border-top:1px solid var(--rule-hair)">
+<span style="font-family:var(--font-hand);font-size:22px;line-height:1.3;color:var(--hand-ink)">Built for clarity.<br>Made to be kept.</span>
+<span style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Copenhagen — © 2026</span>
+</footer>
+</article>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;analog&quot;,&quot;editorial&quot;],&quot;default&quot;:&quot;analog&quot;,&quot;tsType&quot;:&quot;\&quot;analog\&quot; | \&quot;editorial\&quot;&quot;,&quot;section&quot;:&quot;Voice&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { document.body.setAttribute("data-mode", this.props.mode ?? "analog"); }
+  componentDidUpdate() { document.body.setAttribute("data-mode", this.props.mode ?? "analog"); }
+  renderVals() { return {}; }
+}
+
+</script>
+</body>
+</html>

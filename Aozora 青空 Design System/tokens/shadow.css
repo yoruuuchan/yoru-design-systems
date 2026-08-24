@@ -1,0 +1,28 @@
+/* Shadows are tinted with the brand blue so cards feel anchored to a sky-lit
+   scene rather than a generic gray drop. Avoid pure black shadows. */
+
+:root {
+  /* Outer drops — soft, blue-tinted */
+  --shadow-xs:   0 1px 2px  rgba(10, 68, 140, 0.06);
+  --shadow-sm:   0 2px 8px  rgba(10, 68, 140, 0.08);
+  --shadow-md:   0 6px 18px rgba(10, 68, 140, 0.12);
+  --shadow-lg:   0 12px 36px rgba(10, 68, 140, 0.16);
+  --shadow-xl:   0 24px 60px rgba(10, 68, 140, 0.22);
+
+  /* Glow — for hover/focus accents */
+  --shadow-glow-blue: 0 0 0 6px rgba(10, 132, 255, 0.18),
+                      0 0 32px  rgba(10, 132, 255, 0.45); /* @kind shadow */
+  --shadow-glow-sun:  0 0 0 6px rgba(255, 208, 0, 0.20),
+                      0 0 28px  rgba(255, 227, 77, 0.55); /* @kind shadow */
+
+  /* Inset highlights — give surfaces a top-lit, condensation feel */
+  --inset-rim:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(10, 68, 140, 0.10); /* @kind shadow */
+  --inset-rim-strong:
+    inset 0 2px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -2px 0 rgba(10, 68, 140, 0.14); /* @kind shadow */
+
+  /* Focus ring — keyboard accessibility, brand-tinted */
+  --ring-focus: 0 0 0 3px rgba(10, 132, 255, 0.45); /* @kind shadow */
+}

@@ -1,0 +1,68 @@
+/* iOS 26 liquid-glass tokens.
+   Three tiers of glass — thin, regular, thick — plus a colored "tinted" variant
+   for tonal surfaces (e.g. a blue glass header over a yellow gradient).
+
+   Usage pattern:
+     background: var(--glass-bg-regular);
+     backdrop-filter: var(--glass-blur-regular);
+     box-shadow: var(--glass-edge), var(--shadow-md);
+     border: 1px solid var(--glass-stroke);
+
+   Always pair backdrop-filter with -webkit-backdrop-filter (handled below).
+*/
+
+:root {
+  /* Fill — translucent whites for over-color surfaces */
+  --glass-bg-thin:    rgba(255, 255, 255, 0.30);
+  --glass-bg-regular: rgba(255, 255, 255, 0.48);
+  --glass-bg-thick:   rgba(255, 255, 255, 0.68);
+
+  /* Tinted glass — when you want a brand-colored frosted pane */
+  --glass-bg-blue:    rgba(10, 132, 255, 0.22);
+  --glass-bg-sun:     rgba(255, 227, 77, 0.28);
+  --glass-bg-dark:    rgba(7, 9, 14, 0.42);
+
+  /* Blur strength */
+  --glass-blur-thin:    blur(12px) saturate(140%);  /* @kind other */
+  --glass-blur-regular: blur(24px) saturate(160%);  /* @kind other */
+  --glass-blur-thick:   blur(40px) saturate(180%);  /* @kind other */
+
+  /* Stroke / rim — the bright top edge that makes glass read as glass */
+  --glass-stroke:        rgba(255, 255, 255, 0.55);
+  --glass-stroke-strong: rgba(255, 255, 255, 0.78);
+  --glass-stroke-dark:   rgba(10, 68, 140, 0.18);
+
+  /* Composite edge — apply as box-shadow to get the high-light rim */
+  --glass-edge:
+    inset 0 1px 0 rgba(255, 255, 255, 0.90),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(10, 68, 140, 0.08); /* @kind shadow */
+
+  --glass-edge-strong:
+    inset 0 2px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    inset 0 -2px 0 rgba(10, 68, 140, 0.12); /* @kind shadow */
+}
+
+/* Utility classes — opt-in. Components can also just use the tokens directly. */
+.glass-thin,
+.glass-regular,
+.glass-thick {
+  border: 1px solid var(--glass-stroke);
+  box-shadow: var(--glass-edge), var(--shadow-md);
+}
+.glass-thin {
+  background: var(--glass-bg-thin);
+  -webkit-backdrop-filter: var(--glass-blur-thin);
+          backdrop-filter: var(--glass-blur-thin);
+}
+.glass-regular {
+  background: var(--glass-bg-regular);
+  -webkit-backdrop-filter: var(--glass-blur-regular);
+          backdrop-filter: var(--glass-blur-regular);
+}
+.glass-thick {
+  background: var(--glass-bg-thick);
+  -webkit-backdrop-filter: var(--glass-blur-thick);
+          backdrop-filter: var(--glass-blur-thick);
+}

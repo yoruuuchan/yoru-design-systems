@@ -1,0 +1,55 @@
+/* Aozora color scales.
+   Base scales (raw values) live here. Semantic aliases live in semantic.css. */
+
+:root {
+  /* ── Sky blue — the primary scale. Tuned to feel like a Pocari can on a
+     bright summer day: saturated, slightly cool, never navy-corporate. */
+  --blue-50:  #EAF5FF;
+  --blue-100: #CFE8FF;
+  --blue-200: #9DD2FF;
+  --blue-300: #66B7FF;
+  --blue-400: #339BFF;
+  --blue-500: #0A84FF;   /* primary */
+  --blue-600: #006FE0;
+  --blue-700: #005BB8;
+  --blue-800: #004690;
+  --blue-900: #003068;
+
+  /* ── Sun yellow — the accent. Used sparingly: a single chip, a focus ring,
+     a poster slash. Never as a background tile. */
+  --sun-100: #FFF6CC;
+  --sun-200: #FFEE99;
+  --sun-300: #FFE980;
+  --sun-400: #FFE34D;    /* accent */
+  --sun-500: #FFD000;
+  --sun-600: #E0B500;
+
+  /* ── Cool neutrals — slight blue cast so whites feel like sky-lit paper,
+     not screen-gray. */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F7FAFD;
+  --neutral-100: #EEF3F8;
+  --neutral-200: #DCE5EF;
+  --neutral-300: #BCC9D6;
+  --neutral-400: #8A9AAB;
+  --neutral-500: #5C6B7C;
+  --neutral-600: #3D4956;
+  --neutral-700: #232C36;
+  --neutral-800: #131922;
+  --neutral-900: #07090E;
+
+  /* ── Supporting summer hues — used in gradients, illustrations,
+     occasional badge accents. Not part of the everyday UI palette. */
+  --mint-400:   #5FE3CC;
+  --mint-500:   #34D9C2;
+  --coral-400:  #FF8A80;
+  --coral-500:  #FF6B6B;
+  --peach-400:  #FFB199;
+  --lilac-400:  #C8B8FF;
+
+  /* ── Semantic raw values */
+  --success-500: #34C759;
+  --warn-500:    #FF9F0A;
+  --danger-500:  #FF453A;
+  --info-500:    var(--blue-500);
+}

@@ -1,0 +1,92 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Provider picker" subtitle="Connected · available · errored" viewport="700x280" --><html><head><meta charset="utf-8"><title>provider picker</title>
+<link rel="stylesheet" href="_base.css">
+<script src="https://unpkg.com/lucide@0.452.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 16px 18px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 14px; border-radius: 16px; }
+  .pane.akari { background: #E8ECF3; color: #0E1525; }
+  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
+  .pane.akari .tag { color: #6B7793; }
+  .pane.yoru  .tag { color: #A8B2CC; }
+
+  .row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; margin-bottom: 6px; }
+  .akari .row { background: #EFF2F8; box-shadow: inset 0 0 0 1px rgba(14,21,37,0.04); }
+  .yoru  .row { background: #131A2E; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
+  .akari .row.on { background: #EFF2F8; box-shadow: -3px -3px 8px rgba(255,255,255,0.95), 3px 3px 8px rgba(143,158,191,0.30), 0 0 0 1.5px #4F6CE8 inset; }
+  .yoru  .row.on { background: #131A2E; box-shadow: -3px -3px 9px rgba(255,255,255,0.05), 4px 4px 12px rgba(0,0,0,0.4), 0 0 0 1.5px #7A95FA inset; }
+
+  .logo { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-family: var(--font-mono); font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .l-an { background: #FFE4D6; color: #C05015; }
+  .l-oa { background: #DCF3E8; color: #1F7E58; }
+  .l-go { background: #DCE3FE; color: #2E44B0; }
+  .l-lo { background: #DEE3EC; color: #394560; }
+  .yoru .l-an { background: #2A1408; color: #FF9456; }
+  .yoru .l-oa { background: #143025; color: #7CE0B6; }
+  .yoru .l-go { background: #1F2A55; color: #B4C3FC; }
+  .yoru .l-lo { background: #131A2E; color: #A8B2CC; }
+
+  .nm { font-size: 13px; font-weight: 600; }
+  .sb { font-size: 11px; opacity: 0.55; margin-top: 1px; font-family: var(--font-mono); }
+  .right { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 10px; font-family: var(--font-mono); opacity: 0.6; }
+  .dot { width: 7px; height: 7px; border-radius: 99px; background: #2BA672; }
+  .yoru .dot { background: #3FCB94; }
+  .dot.err { background: #D45D5D; }
+  .yoru .dot.err { background: #F08484; }
+  .check { width: 16px; height: 16px; }
+  .akari .check { color: #4F6CE8; }
+  .yoru .check  { color: #7A95FA; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="pane akari">
+      <span class="tag">akari · model providers</span>
+      <div class="row on">
+        <div class="logo l-an">A</div>
+        <div><div class="nm">anthropic</div><div class="sb">claude-sonnet-4-5 · key ok</div></div>
+        <div class="right"><span class="dot"></span><span>healthy · 412ms</span><i data-lucide="check" class="check"></i></div>
+      </div>
+      <div class="row">
+        <div class="logo l-oa">O</div>
+        <div><div class="nm">openai</div><div class="sb">gpt-5 · key ok</div></div>
+        <div class="right"><span class="dot"></span><span>healthy · 510ms</span></div>
+      </div>
+      <div class="row">
+        <div class="logo l-go">G</div>
+        <div><div class="nm">google</div><div class="sb">gemini-2.5 · no key</div></div>
+        <div class="right"><span>add key</span><i data-lucide="key" class="check"></i></div>
+      </div>
+      <div class="row">
+        <div class="logo l-lo">L</div>
+        <div><div class="nm">local · ollama</div><div class="sb">llama-3-70b · 127.0.0.1:11434</div></div>
+        <div class="right"><span class="dot err"></span><span>offline</span></div>
+      </div>
+    </div>
+    <div class="pane yoru">
+      <span class="tag">yoru · model providers</span>
+      <div class="row on">
+        <div class="logo l-an">A</div>
+        <div><div class="nm">anthropic</div><div class="sb">claude-sonnet-4-5 · key ok</div></div>
+        <div class="right"><span class="dot"></span><span>healthy · 412ms</span><i data-lucide="check" class="check"></i></div>
+      </div>
+      <div class="row">
+        <div class="logo l-oa">O</div>
+        <div><div class="nm">openai</div><div class="sb">gpt-5 · key ok</div></div>
+        <div class="right"><span class="dot"></span><span>healthy · 510ms</span></div>
+      </div>
+      <div class="row">
+        <div class="logo l-go">G</div>
+        <div><div class="nm">google</div><div class="sb">gemini-2.5 · no key</div></div>
+        <div class="right"><span>add key</span><i data-lucide="key" class="check"></i></div>
+      </div>
+      <div class="row">
+        <div class="logo l-lo">L</div>
+        <div><div class="nm">local · ollama</div><div class="sb">llama-3-70b · 127.0.0.1:11434</div></div>
+        <div class="right"><span class="dot err"></span><span>offline</span></div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body></html>

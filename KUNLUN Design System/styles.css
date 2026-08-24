@@ -1,0 +1,14 @@
+/* KUNLUN Design System — root stylesheet
+ * Industrial sci-fi / terminal aesthetic.
+ * Cyan-blue dominant, amber + red as sparing accents.
+ * Consumers link this one file; everything else is imported below.
+ */
+
+@import url("./tokens/fonts.css");
+@import url("./tokens/colors.css");
+@import url("./tokens/typography.css");
+@import url("./tokens/spacing.css");
+@import url("./tokens/effects.css");
+@import url("./tokens/motion.css");
+@import url("./tokens/base.css");
+@import url("./tokens/components.css");

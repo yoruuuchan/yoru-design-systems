@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" viewport="700x220" name="Tabs" subtitle="Top-edge cyan indicator, chamfered tabs" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { padding: 18px 20px; background: var(--bg-base); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Tabs } = window.KUNLUNDesignSystem_29e6df;
+  const Panel = ({children}) => <div style={{padding:'10px 4px', color:'var(--text-secondary)', fontSize:13}}>{children}</div>;
+  const App = () => (
+    <Tabs
+      defaultValue="telemetry"
+      tabs={[
+        { value:"overview",  label:"OVERVIEW",  content:<Panel>Aggregate node status across all sectors.</Panel> },
+        { value:"telemetry", label:"TELEMETRY", count:24, content:<Panel>Live 24-channel telemetry stream. CORE-9 at 142.3 MW · stable.</Panel> },
+        { value:"logs",      label:"LOGS",      content:<Panel>System log tail.</Panel> },
+        { value:"lockdown",  label:"LOCKDOWN",  disabled:true },
+      ]}
+    />
+  );
+  ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body></html>

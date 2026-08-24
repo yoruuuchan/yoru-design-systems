@@ -1,0 +1,95 @@
+/* fonts.css — self-hosted webfonts. No external CDN.
+ *
+ * Inter 4.1          https://github.com/rsms/inter/releases/tag/v4.1        (SIL OFL 1.1, see inter/LICENSE.txt)
+ * JetBrains Mono 2.304  https://github.com/JetBrains/JetBrainsMono/releases/tag/v2.304  (SIL OFL 1.1, see jetbrains-mono/OFL.txt)
+ *
+ * Import from a consumer stylesheet with a path relative to that stylesheet, e.g.
+ *   @import url("../../assets/fonts/fonts.css");
+ * The url() paths below resolve relative to THIS file, so they stay correct
+ * wherever it is imported from.
+ *
+ * Inter is shipped as the variable font only: one file covers weight 100-900 and
+ * carries the `opsz` optical-size axis, which the browser applies automatically
+ * (font-optical-sizing defaults to auto). That replaces both the 18 static Inter
+ * weights and the separate InterDisplay family in the upstream release.
+ *
+ * JetBrains Mono has no variable woff2 upstream, so it ships as static woff2 at
+ * the four weights the design systems actually declare (400/500/600/700) plus a
+ * 400 italic for code comments.
+ *
+ * The .ttf files alongside each woff2 are for desktop use — Figma, Blender,
+ * DaVinci Resolve, installing into the OS. They are not referenced here.
+ */
+
+/* ---------- Inter — UI / body ---------- */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("inter/InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("inter/InterVariable-Italic.woff2") format("woff2");
+}
+
+/* ---------- JetBrains Mono — code, numerals, labels ---------- */
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("jetbrains-mono/JetBrainsMono-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("jetbrains-mono/JetBrainsMono-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("jetbrains-mono/JetBrainsMono-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("jetbrains-mono/JetBrainsMono-Bold.woff2") format("woff2");
+}
+
+/* ---------- Role tokens ---------- */
+
+:root {
+  /* Primary UI and body text. CJK falls through to the system faces —
+     neither Inter nor JetBrains Mono ships Chinese or Japanese glyphs. */
+  --font-sans: "Inter", -apple-system, "Segoe UI", "PingFang SC",
+    "Hiragino Sans", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+
+  /* Code, numerals, tags, anything that needs to align in columns. */
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas,
+    "Liberation Mono", monospace;
+}

@@ -1,0 +1,10 @@
+/* core — design system root.
+   This file MUST contain only @import lines.
+   The compiler walks this closure to ship tokens + @font-face to consumers. */
+
+@import url("tokens/fonts.css");
+@import url("tokens/colors.css");
+@import url("tokens/typography.css");
+@import url("tokens/spacing.css");
+@import url("tokens/effects.css");
+@import url("tokens/reset.css");

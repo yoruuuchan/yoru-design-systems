@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Photo essay" description="A full editorial article page — masthead, giant display title, plates, pull quote, footnotes and credits." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<script src="../../assets/image-slot.js"></script>
+<style>body{margin:0;background:var(--surface-page)}body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;background-image:var(--tex-grain);opacity:var(--grain,.035);mix-blend-mode:multiply}</style>
+</helmet>
+<article style="max-width:1180px;margin:0 auto;padding:40px 64px 80px;font-family:var(--font-serif);color:var(--text-body)">
+<header style="display:flex;align-items:baseline;justify-content:space-between;gap:32px;padding-bottom:12px">
+<span style="font-family:var(--font-display);font-size:19px;letter-spacing:.42em;text-transform:uppercase;color:var(--text-display)">Paper</span>
+<nav style="display:flex;gap:24px;font-family:var(--font-sans);font-size:12.5px;letter-spacing:.08em;color:var(--text-secondary)"><a href="#" style="border-bottom:0">Essays</a><a href="#" style="border-bottom:0">Portfolio</a><a href="#" style="border-bottom:0">Archive</a><a href="#" style="border-bottom:0">Colophon</a></nav>
+</header>
+<div style="height:1px;background:var(--rule-hair)"></div>
+<div style="display:flex;justify-content:space-between;padding-top:8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)"><span>Issue Nº 04 — Northern Light</span><span>Photo Essay</span></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center;margin-top:96px">
+<div>
+<div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-accent)">Photo Essay</div>
+<h1 style="font-family:var(--font-display);font-weight:400;font-size:88px;line-height:.98;letter-spacing:-.014em;color:var(--text-display);margin:16px 0 0;max-width:11ch">The Slow Return of <em style="font-style:italic">Winter Light</em></h1>
+<p style="font-family:var(--font-serif);font-style:italic;font-size:19px;line-height:1.55;color:var(--text-secondary);margin:24px 0 0;max-width:44ch">Four months on the Baltic coast, photographed on expired film and printed the following spring.</p>
+</div>
+<div style="position:relative;aspect-ratio:4/5;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pe-hero" shape="rect" placeholder="Opening plate — 4:5"></image-slot></div>
+</div>
+
+<div style="display:flex;gap:48px;flex-wrap:wrap;margin-top:64px;padding:12px 0;border-top:1px solid var(--rule-hair)">
+<div><div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Words</div><div style="font-size:15px;margin-top:5px">Ana Rehn</div></div>
+<div><div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Photographs</div><div style="font-size:15px;margin-top:5px">M. Sørensen</div></div>
+<div><div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Published</div><div style="font-size:15px;margin-top:5px">March 2026</div></div>
+<div><div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Reading</div><div style="font-size:15px;margin-top:5px">12 min</div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:3fr 2fr;gap:64px;margin-top:64px;align-items:start">
+<div>
+<p style="font-size:17px;line-height:1.68;margin:0"><span style="float:left;font-family:var(--font-display);font-size:58px;line-height:.84;padding:4px 9px 0 0;color:var(--text-display)">T</span>he road north empties in November. What remains is a particular quality of light that arrives late, stays low, and leaves early — an hour, then two, then a whole afternoon of it by February.<sup style="font-size:.62em;line-height:0;vertical-align:super;font-family:var(--font-mono);color:var(--text-accent)">1</sup></p>
+<p style="font-size:17px;line-height:1.68;margin:0;text-indent:1.5em">We kept a notebook of the returns. Sunrise times, film stock, the temperature at the moment of exposure. The record is unremarkable on its own and becomes something else entirely when read in sequence.</p>
+<p lang="zh" style="font-family:var(--font-serif);font-size:15.5px;line-height:1.9;color:var(--text-secondary);margin:20px 0 0">光线回来的那几周，我们几乎不说话，只记录时间和温度。</p>
+</div>
+<div>
+<blockquote style="margin:0;border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);padding:24px 0">
+<p style="font-family:var(--font-display);font-size:30px;line-height:1.16;font-style:italic;color:var(--text-display);margin:0">You cannot photograph the return of the light.</p>
+<cite style="display:block;font-style:normal;font-family:var(--font-sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-top:16px">M. Sørensen — interview, 2025</cite>
+</blockquote>
+<div style="position:relative;aspect-ratio:1/1;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;margin-top:32px;filter:var(--photo-filter,none)"><image-slot id="pe-side" shape="rect"></image-slot></div>
+</div>
+</div>
+
+<figure style="margin:96px 0 0">
+<div style="position:relative;aspect-ratio:16/7;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pe-wide" shape="rect" placeholder="Panoramic plate — 16:7"></image-slot></div>
+<figcaption style="display:flex;gap:12px;margin-top:12px;font-family:var(--font-sans);font-size:12.5px;line-height:1.55;color:var(--text-muted);max-width:62ch"><span style="font-family:var(--font-mono);color:var(--text-accent);flex:none">Fig. 01</span><span>Låtefossen at first light, 06:12. The exposure ran long by a full stop; the fog did the rest.</span></figcaption>
+</figure>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:64px">
+<div style="position:relative;aspect-ratio:4/5;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pe-g1" shape="rect"></image-slot></div>
+<div style="position:relative;aspect-ratio:4/5;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pe-g2" shape="rect"></image-slot></div>
+<div style="position:relative;aspect-ratio:4/5;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="pe-g3" shape="rect"></image-slot></div>
+</div>
+
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:64px">
+<div style="border-top:1px solid var(--rule-hair);padding-top:12px">
+<div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px">Notes</div>
+<div style="display:grid;grid-template-columns:22px 1fr;gap:4px;font-family:var(--font-sans);font-size:12.5px;line-height:1.55;color:var(--text-muted)"><span style="font-family:var(--font-mono);color:var(--text-accent)">1.</span><span>Sunrise, Bodø, 21 Dec: 11:47. Sunset: 13:12.</span><span style="font-family:var(--font-mono);color:var(--text-accent)">2.</span><span>All plates printed at 24 × 30 cm on Ilford MGFB.</span></div>
+</div>
+<div style="border-top:1px solid var(--rule-hair);padding-top:12px">
+<div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px">Credits</div>
+<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--rule-hair);font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted)"><span>Photography</span><span style="font-family:var(--font-serif);font-size:15px;color:var(--text-body)">M. Sørensen</span></div>
+<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--rule-hair);font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted)"><span>Words</span><span style="font-family:var(--font-serif);font-size:15px;color:var(--text-body)">Ana Rehn</span></div>
+<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--rule-hair);font-family:var(--font-sans);font-size:12.5px;color:var(--text-muted)"><span>Printing</span><span style="font-family:var(--font-serif);font-size:15px;color:var(--text-body)">Narayana Press, Odder</span></div>
+</div>
+</div>
+</sc-if>
+
+<footer style="display:flex;justify-content:space-between;align-items:baseline;margin-top:64px;padding-top:12px;border-top:1px solid var(--rule-hair);font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">
+<span>Paper — Issue Nº 04</span><span>The Slow Return of Winter Light</span><span style="font-family:var(--font-display);font-size:21px;letter-spacing:0;text-transform:none;color:var(--text-display)">37</span>
+</footer>
+</article>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180},&quot;mode&quot;:{&quot;editorial&quot;:&quot;enum&quot;,&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;editorial&quot;,&quot;analog&quot;],&quot;default&quot;:&quot;editorial&quot;,&quot;tsType&quot;:&quot;\&quot;editorial\&quot; | \&quot;analog\&quot;&quot;,&quot;section&quot;:&quot;Voice&quot;},&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { this.apply(); }
+  componentDidUpdate() { this.apply(); }
+  apply() {
+    const m = this.props.mode ?? "editorial";
+    document.body.setAttribute("data-mode", m);
+  }
+  renderVals() {
+    return { showNotes: this.props.showNotes ?? true };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!-- @dsCard group="Type" viewport="700x180" name="CRT — VT323" subtitle="终端读数、复古屏显" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--bg-void); position: relative; overflow: hidden; }
+  body::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: var(--bg-scanlines);
+  }
+  .crt {
+    font-family: var(--font-crt); font-size: 32px; line-height: 1.1;
+    color: var(--cyan-300); text-shadow: var(--text-glow-cyan);
+    position: relative;
+  }
+  .meta {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-tertiary); margin-top: 14px;
+    letter-spacing: var(--tracking-wide); position: relative;
+  }
+  .caret { animation: kl-caret 0.9s var(--ease-step-2) infinite; }
+</style></head>
+<body>
+  <div class="crt">&gt; INIT SEQUENCE 0xA7F3</div>
+  <div class="crt">&gt; LOADING KERNEL... <span class="caret">▮</span></div>
+  <div class="meta">VT323 · 32px · 仅用于终端/读数场景</div>
+</body></html>

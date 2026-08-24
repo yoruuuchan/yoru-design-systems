@@ -1,0 +1,37 @@
+/* PAPER — element defaults. Sets the page as a sheet of stock, not a viewport. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+html{-webkit-text-size-adjust:100%}
+
+body{background:var(--surface-page);color:var(--text-body);font-family:var(--font-serif);font-size:var(--type-body);line-height:var(--leading-text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-variant-numeric:oldstyle-nums}
+
+/* The grain sits over the page, under the content, and never intercepts a click. */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:var(--tex-grain);opacity:var(--grain,.035);mix-blend-mode:multiply}
+
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:var(--weight-regular);color:var(--text-display);margin:0;text-wrap:balance}
+h1{font-size:var(--type-display-2);line-height:var(--leading-tight);letter-spacing:var(--tracking-display)}
+h2{font-size:var(--type-h1);line-height:var(--leading-snug)}
+h3{font-size:var(--type-h3);line-height:var(--leading-normal)}
+p{margin:0;text-wrap:pretty}
+p+p{margin-top:0;text-indent:1.5em}
+figure{margin:0}
+blockquote{margin:0}
+ul,ol{margin:0;padding-left:1.2em}
+img{display:block;max-width:100%}
+sup{font-size:.62em;line-height:0;vertical-align:super;font-family:var(--font-mono);color:var(--text-accent)}
+::selection{background:var(--rust-100);color:var(--ink-900)}
+
+a{color:var(--link);text-decoration:none;border-bottom:1px solid var(--link-underline);transition:color var(--dur-1) var(--ease-paper),border-color var(--dur-1) var(--ease-paper)}
+a:hover{color:var(--link-hover);border-bottom-color:var(--rust-300)}
+a:focus-visible{outline:1px solid var(--rust-500);outline-offset:3px}
+
+/* Nav / label links carry no rule — they are set as small caps labels instead. */
+nav a,.paper-label a{border-bottom:0}
+nav a:hover{color:var(--link-hover)}
+
+hr{border:0;height:1px;background:var(--rule-hair);margin:var(--space-6) 0}
+
+/* Chinese in a bilingual setting: same ink, more leading, no italic. */
+:lang(zh),.cjk{font-family:var(--font-serif);line-height:var(--leading-cjk);font-style:normal;font-synthesis:none}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}

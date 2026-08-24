@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>方向 A — 刊号眉</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F2F5F8;font-family:var(--font-body);display:flex;justify-content:center;padding:26px}
+.rack{display:flex;gap:22px;transform:scale(.298);transform-origin:top center;margin-bottom:-1160px}
+.pg{width:1242px;height:1656px;background:#fff;position:relative;display:flex;flexDirection:column;flex-direction:column;overflow:hidden}
+/* ── the fixed device: a masthead rail, identical on every page of every post ── */
+.rail{position:absolute;top:0;left:0;right:0;height:96px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:30px;padding:0 74px;border-bottom:2px solid var(--ink-1);font-family:var(--font-mono);font-size:26px;letter-spacing:.14em;color:var(--ink-4)}
+.wm{font-family:var(--font-title);font-weight:900;letter-spacing:.26em;color:var(--yoru-blue);font-size:30px}
+.rail .col{color:var(--accent);font-weight:600}
+.body{padding:74px;padding-top:170px;flex:1;display:flex;flex-direction:column}
+/* ── the personal detail: a marker band behind the key phrase, uneven ends ── */
+.mark{position:relative;display:inline;background:linear-gradient(transparent 58%,var(--accent-soft) 58%,var(--accent-soft) 94%,transparent 94%);padding:0 .08em}
+h1{margin:0;font-family:var(--font-title);font-weight:900;font-size:112px;line-height:1.22;letter-spacing:-.02em;color:var(--ink-1)}
+.lede{margin:38px 0 0;font-family:var(--font-body);font-weight:300;font-size:38px;line-height:1.72;color:var(--ink-3);max-width:86%}
+.foot{position:absolute;left:74px;right:74px;bottom:70px;display:flex;justify-content:space-between;align-items:flex-end}
+.tags{display:flex;gap:14px}
+.tag{font-family:var(--font-ui);font-weight:500;font-size:24px;letter-spacing:.05em;padding:9px 20px;color:var(--accent-ink);border:1.5px solid var(--accent-hair)}
+/* ── hand note: set in the body face, tilted, as if written in the margin ── */
+.hand{font-size:26px;line-height:1.5;color:var(--ink-4);transform:rotate(-1.4deg);border-bottom:1.5px solid var(--line-2);padding-bottom:6px}
+h2{margin:0;font-family:var(--font-title);font-weight:700;font-size:56px;line-height:1.4;color:var(--ink-1)}
+.p{margin:26px 0 0;font-size:34px;line-height:1.95;color:var(--ink-2)}
+.hr{height:2px;background:var(--ink-1);margin:52px 0 40px;width:74px}
+.pull{margin:52px 0;padding:0 0 0 0;border-top:2px solid var(--ink-1);border-bottom:1px solid var(--line-2);padding:34px 0}
+.pull b{display:block;font-family:var(--font-title);font-weight:700;font-size:46px;line-height:1.5;color:var(--ink-1)}
+.cap{margin-top:16px;font-family:var(--font-mono);font-size:22px;letter-spacing:.1em;color:var(--ink-5)}
+.num{font-variant-numeric:tabular-nums}
+</style></head><body>
+<div class="rack">
+  <div class="pg" data-yoru="lab">
+    <div class="rail"><span class="wm">YORU</span><span></span><span class="col">LAB</span><span class="num">2026.08 · 01/06</span></div>
+    <div class="body" style="justify-content:center">
+      <h1>把一条提示词<br>拆成<span class="mark">三层结构</span></h1>
+      <p class="lede">改需求就崩，是因为你把触发、步骤和兜底写在了同一段话里。</p>
+    </div>
+    <div class="foot">
+      <div class="tags"><span class="tag">工作流</span><span class="tag">实测</span></div>
+      <span class="hand">踩了三天才想明白</span>
+    </div>
+  </div>
+  <div class="pg" data-yoru="lab">
+    <div class="rail"><span class="wm">YORU</span><span></span><span class="col">LAB</span><span class="num">2026.08 · 03/06</span></div>
+    <div class="body">
+      <h2>第一层：触发条件</h2>
+      <div class="hr"></div>
+      <p class="p">先写清楚什么时候该跑这条流程，什么时候不该。大多数人跳过这一步，直接写“你是一个……”，于是模型在不该动手的场合也动手。</p>
+      <div class="pull"><b>触发条件不写死，后面两层写得再细也会被绕过。</b><div class="cap">LAB / 03</div></div>
+      <p class="p">把它写成一句可以判真假的话：<span class="mark">“当用户给出完整需求文档时”</span>，而不是“当用户需要帮助时”。</p>
+      <div class="hr" style="margin:48px 0 40px"></div>
+      <p class="p">否定条件比肯定条件有用。写“文档不完整时先反问”，比写十条“你应该”都管用。</p>
+    </div>
+    <div class="foot"><span class="hand">这条最容易被忽略</span><span class="num" style="font-family:var(--font-mono);font-size:24px;letter-spacing:.12em;color:var(--ink-5)">YORU · LAB</span></div>
+  </div>
+</div>
+</body></html>

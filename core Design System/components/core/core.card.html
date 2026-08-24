@@ -1,0 +1,78 @@
+<!-- @dsCard group="Components" viewport="700x320" name="core" subtitle="Button · IconButton · Input · Checkbox · Tag · Card · Divider" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>
+  body { padding: 16px; background: var(--paper); color: var(--ink); font-family: var(--font-body-serif); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; align-items: start; }
+  .group { display: flex; flex-direction: column; gap: 8px; }
+  .row   { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .hd    { font-family: var(--font-pixel-mono); font-size: 10px; color: var(--text-muted);
+           letter-spacing: 0.08em; text-transform: uppercase; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Button, IconButton, Input, Checkbox, Tag, Card, Divider } = window.CoreDesignSystem_61d596;
+  const App = () => (
+    <div className="grid">
+      <div className="group">
+        <div className="hd">buttons · variants</div>
+        <div className="row">
+          <Button variant="primary">primary</Button>
+          <Button>secondary</Button>
+          <Button variant="pool">pool</Button>
+          <Button variant="dream" style={{display:'none'}} />
+          <Button variant="danger">danger</Button>
+          <Button variant="ghost">ghost</Button>
+        </div>
+        <div className="hd">sizes + glow</div>
+        <div className="row">
+          <Button size="sm">sm</Button>
+          <Button size="md">md</Button>
+          <Button size="lg" variant="primary" glow>glow CTA</Button>
+          <Button disabled>disabled</Button>
+        </div>
+      </div>
+      <div className="group">
+        <div className="hd">icon buttons</div>
+        <div className="row">
+          <IconButton label="minimize" size="sm">_</IconButton>
+          <IconButton label="close" size="sm">×</IconButton>
+          <IconButton label="back">◀</IconButton>
+          <IconButton label="next">▶</IconButton>
+          <IconButton label="new" size="lg">+</IconButton>
+        </div>
+        <div className="hd">tags</div>
+        <div className="row">
+          <Tag variant="pool">poolcore</Tag>
+          <Tag variant="dream" bracketed>halo</Tag>
+          <Tag variant="sodium">sodium</Tag>
+          <Tag variant="ink">drained</Tag>
+          <Tag>default</Tag>
+        </div>
+      </div>
+      <div className="group">
+        <div className="hd">inputs</div>
+        <Input label="title" placeholder="untitled room" defaultValue="" />
+        <Input label="path" mono defaultValue="/mostly_empty/05.jpg" />
+        <div className="row">
+          <Checkbox defaultChecked>show grain</Checkbox>
+          <Checkbox>autoplay GIFs</Checkbox>
+        </div>
+      </div>
+      <div className="group">
+        <div className="hd">cards + dividers</div>
+        <Card variant="paper" padding={10}>paper. a normal note.</Card>
+        <Card variant="pool" padding={10}>pool. a wet note.</Card>
+        <Card variant="ghost" padding={10} style={{fontStyle:'italic', color:'var(--text-muted)'}}>ghost. low emphasis.</Card>
+        <Divider variant="block" label="archive" />
+      </div>
+    </div>
+  );
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

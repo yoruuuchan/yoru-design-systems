@@ -1,0 +1,44 @@
+<!-- @dsCard group="Mobile App" viewport="900x900" name="Midnight FM — Mobile" subtitle="Phone frame: browse + player" -->
+<!-- @startingPoint section="Mobile App" subtitle="Midnight FM — vaporwave mobile player" viewport="900x900" -->
+<!doctype html><html><head>
+<meta charset="utf-8"><title>Midnight FM — Mobile</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  html,body{margin:0;min-height:100vh;background:
+    radial-gradient(circle at 20% 20%, rgba(255,43,214,.15), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(25,230,255,.12), transparent 55%),
+    var(--bg-void);
+    font-family:var(--font-body);color:var(--text-primary);}
+  .stage{min-height:100vh;display:flex;align-items:center;justify-content:center;gap:48px;padding:32px;flex-wrap:wrap;}
+  .caption{font-family:var(--font-display);font-size:10px;letter-spacing:.18em;color:var(--text-muted);margin-top:14px;text-align:center;}
+</style></head><body>
+<div id="root"></div>
+<script type="text/babel" src="./Screens.jsx"></script>
+<script type="text/babel">
+function App(){
+  const [screen, setScreen] = React.useState("browse");
+  return (
+    <div className="stage">
+      <div>
+        <MNK_PhoneFrame>
+          <MNK_BrowseScreen onOpen={()=>setScreen("player")} />
+        </MNK_PhoneFrame>
+        <div className="caption">// 01 — BROWSE_</div>
+      </div>
+      <div>
+        <MNK_PhoneFrame>
+          <MNK_PlayerScreen onMenu={()=>setScreen("browse")} />
+        </MNK_PhoneFrame>
+        <div className="caption">// 02 — NOW PLAYING_</div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body></html>

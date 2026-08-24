@@ -1,0 +1,29 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Textures" subtitle="扫描线 / 网格 / 颗粒 — 全局背景纹理" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 14px; background: var(--bg-base); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tex {
+    height: 120px; background: var(--bg-void); position: relative; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 8px;
+    font: var(--type-label); text-transform: uppercase; color: var(--text-signal);
+    letter-spacing: var(--tracking-wide);
+    border: 1px solid var(--border);
+  }
+  .scan::before {
+    content: ""; position: absolute; inset: 0; background: var(--bg-scanlines);
+  }
+  .gridbg { background-image: var(--bg-grid); background-color: var(--bg-void); }
+  .grain::before {
+    content: ""; position: absolute; inset: 0;
+    background: var(--bg-grain); opacity: 0.7;
+  }
+</style></head>
+<body>
+<div class="grid">
+  <div class="tex scan">SCANLINES</div>
+  <div class="tex gridbg">GRID · 40px</div>
+  <div class="tex grain">GRAIN · 噪点</div>
+</div>
+</body></html>

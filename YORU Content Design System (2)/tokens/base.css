@@ -1,0 +1,7 @@
+.yoru-card,.yoru-article{color:var(--text-body);font-family:var(--font-body);font-size:var(--fs-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);background:var(--surface-page);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+.yoru-card{width:var(--page-w);height:var(--page-h);position:relative;overflow:hidden;box-sizing:border-box}
+.yoru-article{width:100%;max-width:var(--page-w);margin:0 auto;box-sizing:border-box}
+.yoru-card *,.yoru-article *{box-sizing:border-box}
+.yoru-card a,.yoru-article a{color:var(--text-accent);text-decoration:none;border-bottom:var(--hair) solid var(--accent-hair)}
+.yoru-card a:hover,.yoru-article a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.yoru-num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}

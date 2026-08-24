@@ -1,0 +1,10 @@
+/* PAPER — motion. Print does not animate. Motion here is limited to reveal, hover and page turn:
+   slow, eased, never bouncy, never more than opacity + a few pixels of travel. */
+:root{
+  --ease-paper:cubic-bezier(.2,.6,.3,1);
+  --ease-turn:cubic-bezier(.4,0,.2,1);
+  --dur-instant:120ms; --dur-quick:180ms; --dur-calm:320ms; --dur-slow:600ms; --dur-reveal:900ms;
+  --hover-lift:-2px;
+  --hover-dim:.62;
+}
+@media(prefers-reduced-motion:reduce){:root{--dur-instant:0ms;--dur-quick:0ms;--dur-calm:0ms;--dur-slow:0ms;--dur-reveal:0ms}}

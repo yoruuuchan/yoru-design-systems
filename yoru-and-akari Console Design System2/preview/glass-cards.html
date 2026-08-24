@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Liquid glass" subtitle="Blurred translucent surfaces over color washes" viewport="700x270" --><html><head><meta charset="utf-8"><title>liquid glass</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 20px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .scene { border-radius: 18px; height: 230px; padding: 14px; position: relative; overflow: hidden; }
+  .scene.akari {
+    background:
+      radial-gradient(60% 80% at 80% 20%, #B9C6FD, transparent 60%),
+      radial-gradient(50% 60% at 10% 90%, #FF9456, transparent 60%),
+      #E8ECF3;
+  }
+  .scene.yoru {
+    background:
+      radial-gradient(60% 80% at 80% 20%, #3D52AE, transparent 60%),
+      radial-gradient(50% 60% at 10% 90%, #804418, transparent 60%),
+      #0B1020;
+  }
+  .glass {
+    position: absolute; left: 18px; right: 18px; bottom: 18px;
+    border-radius: 16px; padding: 12px 14px;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+  .scene.akari .glass {
+    background: hsla(220, 30%, 98%, 0.62);
+    border: 1px solid hsla(225, 30%, 55%, 0.18);
+    color: #0E1525;
+    box-shadow: 0 8px 24px rgba(20,28,51,0.12);
+  }
+  .scene.yoru .glass {
+    background: hsla(225, 35%, 14%, 0.55);
+    border: 1px solid hsla(220, 40%, 70%, 0.12);
+    color: #E6EAF6;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .glass .t1 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .glass .t2 { font-size: 11px; opacity: 0.7; }
+  .tag { position: absolute; top: 10px; left: 14px; font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.04em; }
+  .scene.akari .tag { color: #394560; }
+  .scene.yoru .tag { color: #A8B2CC; }
+  .pill { position: absolute; top: 38px; left: 18px; padding: 6px 12px; border-radius: 99px; font-size: 11px; font-weight: 500; }
+  .scene.akari .pill {
+    background: hsla(220, 30%, 98%, 0.7);
+    border: 1px solid hsla(225, 30%, 55%, 0.18);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    color: #0E1525;
+  }
+  .scene.yoru .pill {
+    background: hsla(225, 35%, 14%, 0.6);
+    border: 1px solid hsla(220, 40%, 70%, 0.12);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    color: #E6EAF6;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 99px; background: #2BA672; display: inline-block; margin-right: 6px; vertical-align: middle; }
+  .scene.yoru .dot { background: #3FCB94; }
+</style></head>
+<body>
+  <div class="pair">
+    <div class="scene akari">
+      <span class="tag">akari · glass</span>
+      <span class="pill"><span class="dot"></span>akari is awake</span>
+      <div class="glass">
+        <div class="t1">proactive · 3 unsent</div>
+        <div class="t2">Quiet hours until 07:30 — held by safety policy</div>
+      </div>
+    </div>
+    <div class="scene yoru">
+      <span class="tag">yoru · glass</span>
+      <span class="pill"><span class="dot"></span>akari is awake</span>
+      <div class="glass">
+        <div class="t1">proactive · 3 unsent</div>
+        <div class="t2">Quiet hours until 07:30 — held by safety policy</div>
+      </div>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,11 @@
+:root{
+/* article */
+--page-w:677px;--page-h:auto; /* @kind other */--page-pad-x:0px;--page-pad-y:0px;
+--measure:677px;--col-gap:var(--sp-5);--grid-cols:12; /* @kind other */
+}
+.yoru-card{
+--page-w:1242px;--page-h:1656px;--page-pad-x:96px;--page-pad-y:104px;
+--measure:1050px;--col-gap:var(--sp-4);--grid-cols:12; /* @kind other */
+}
+.yoru-card[data-size="1080x1440"]{--page-w:1080px;--page-h:1440px;--page-pad-x:84px;--page-pad-y:90px;--measure:912px}
+.yoru-card[data-size="1080x1350"]{--page-w:1080px;--page-h:1350px;--page-pad-x:84px;--page-pad-y:80px;--measure:912px}

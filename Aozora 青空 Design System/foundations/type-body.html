@@ -1,0 +1,20 @@
+<!-- @dsCard group="Type" viewport="700x200" name="Headings & body" subtitle="--text-3xl → --text-xs" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:20px;background:var(--neutral-0);">
+  <style>
+    .row { display:flex; flex-direction:column; gap:8px; }
+    .item { display:flex; align-items:baseline; gap:14px; }
+    .label { font-family:var(--font-mono); font-size:10px; color:var(--text-muted); width:160px; flex:none; }
+    .sample { font-family:var(--font-sans); color:var(--text-strong); line-height:1.2; }
+  </style>
+  <div class="row">
+    <div class="item"><div class="label">3xl · 36 · bold</div><div class="sample" style="font-size:30px;font-weight:700;letter-spacing:-0.02em">夏のはじまり Beginning</div></div>
+    <div class="item"><div class="label">2xl · 28 · semibold</div><div class="sample" style="font-size:24px;font-weight:600;letter-spacing:-0.015em">Cool, clear, blue.</div></div>
+    <div class="item"><div class="label">xl · 22 · medium</div><div class="sample" style="font-size:20px;font-weight:500">蓝色的天空，海風と少し</div></div>
+    <div class="item"><div class="label">lg · 18 · regular</div><div class="sample" style="font-size:16px">A regular-weight headline still reads as light.</div></div>
+    <div class="item"><div class="label">base · 16 · regular</div><div class="sample" style="font-size:14px;color:var(--text-body)">Body copy uses --text-body, not --text-strong. The brand keeps long-form text comfortable, never punchy.</div></div>
+    <div class="item"><div class="label">sm · 14 · medium</div><div class="sample" style="font-size:13px;color:var(--text-muted)">UI labels and helper text.</div></div>
+    <div class="item"><div class="label">xs · 12 · regular</div><div class="sample" style="font-size:11px;color:var(--text-muted)">Captions, footnotes, hint text.</div></div>
+  </div>
+</body></html>

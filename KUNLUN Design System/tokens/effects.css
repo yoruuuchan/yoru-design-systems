@@ -1,0 +1,131 @@
+/* EFFECTS — shadows, glows, HUD chamfers, grain, scanlines.
+ * Everything sci-fi-tech lives here as reusable utilities.
+ */
+
+:root {
+  /* ─── Shadows (subtle in dark UI; rely on glow for emphasis) ─── */
+  --shadow-sm:     0 1px 0 rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.3);
+  --shadow-md:     0 4px 12px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(0, 0, 0, 0.4);
+  --shadow-lg:     0 16px 40px rgba(0, 0, 0, 0.75), 0 1px 0 rgba(0, 0, 0, 0.5);
+
+  /* Inset for input wells */
+  --shadow-inset:  inset 0 0 0 1px var(--border), inset 0 2px 6px rgba(0, 0, 0, 0.6);
+
+  /* ─── Neon glows (the signature look) ─── */
+  --glow-cyan-sm:   0 0 8px var(--accent-glow-soft);
+  --glow-cyan-md:   0 0 16px var(--accent-glow), 0 0 2px var(--cyan-400);
+  --glow-cyan-lg:   0 0 32px var(--accent-glow), 0 0 8px var(--cyan-300);
+
+  --glow-amber-md:  0 0 16px var(--warn-glow), 0 0 2px var(--amber-300);
+  --glow-red-md:    0 0 16px var(--danger-glow), 0 0 2px var(--red-300);
+  --glow-green-md:  0 0 16px var(--success-glow), 0 0 2px var(--green-300);
+
+  /* Text glows */
+  --text-glow-cyan:  0 0 6px rgba(0, 184, 255, 0.7);
+  --text-glow-amber: 0 0 6px rgba(255, 176, 0, 0.7);
+  --text-glow-red:   0 0 6px rgba(255, 58, 58, 0.7);
+
+  /* ─── Chamfer clip-paths (top-left + bottom-right cut) ─── */
+  --clip-chamfer-sm: polygon(
+      6px 0,
+      100% 0,
+      100% calc(100% - 6px),
+      calc(100% - 6px) 100%,
+      0 100%,
+      0 6px
+  ); /* @kind other */
+  --clip-chamfer-md: polygon(
+      12px 0,
+      100% 0,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      0 100%,
+      0 12px
+  ); /* @kind other */
+  --clip-chamfer-lg: polygon(
+      18px 0,
+      100% 0,
+      100% calc(100% - 18px),
+      calc(100% - 18px) 100%,
+      0 100%,
+      0 18px
+  ); /* @kind other */
+
+  /* All-four-corners chamfer (octagonal) */
+  --clip-chamfer-all-md: polygon(
+      10px 0, calc(100% - 10px) 0,
+      100% 10px, 100% calc(100% - 10px),
+      calc(100% - 10px) 100%, 10px 100%,
+      0 calc(100% - 10px), 0 10px
+  ); /* @kind other */
+
+  /* ─── Backdrop / textures (use as ::before / ::after overlays) ─── */
+
+  /* Scanlines — horizontal CRT lines */
+  --bg-scanlines: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      var(--scanline) 2px,
+      var(--scanline) 3px
+  );
+
+  /* Grid */
+  --bg-grid: linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/40px 40px,
+             linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/40px 40px;
+
+  --bg-grid-fine: linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/12px 12px,
+                  linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/12px 12px;
+
+  /* Grain (use as inline SVG noise overlay) */
+  --bg-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.15 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+
+  /* Vignette */
+  --bg-vignette: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
+
+  /* Glow gradient halo (for hero blocks) */
+  --bg-halo-cyan: radial-gradient(circle at 50% 0%, var(--accent-glow-soft), transparent 60%);
+}
+
+/* ─── Reusable effect utility classes ─── */
+
+.kl-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--bg-grain);
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.kl-scanlines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--bg-scanlines);
+  z-index: 2;
+}
+
+.kl-chamfer {
+  clip-path: var(--clip-chamfer-md);
+}
+
+.kl-chamfer-sm { clip-path: var(--clip-chamfer-sm); }
+.kl-chamfer-lg { clip-path: var(--clip-chamfer-lg); }
+
+/* Corner ticks — apply to a relatively-positioned container.
+   Place four <span class="kl-corner kl-corner-tl"></span> etc inside. */
+.kl-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--hud-ink-bright);
+  pointer-events: none;
+}
+.kl-corner-tl { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+.kl-corner-tr { top: 4px; right: 4px; border-left: none; border-bottom: none; }
+.kl-corner-bl { bottom: 4px; left: 4px; border-right: none; border-top: none; }
+.kl-corner-br { bottom: 4px; right: 4px; border-left: none; border-top: none; }

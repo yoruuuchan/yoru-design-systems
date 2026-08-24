@@ -1,0 +1,28 @@
+<!-- @dsCard group="Diagram" viewport="700x260" name="Cell grid" subtitle="固定网格：列 240 / 间隙 88，行 92 / 间隙 44。不测量文字，所以可程序化生成" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.YORUContentDesignSystem_a0b73e;
+
+const {Diagram}=NS;
+function Demo(){return <div data-yoru="signal" style={{display:"flex",gap:26,alignItems:"center"}}>
+  <div style={{flex:1}}><Diagram grid fit layout="grid"
+    nodes={[{id:"a",label:"col 0 · row 0",showRole:false},{id:"b",label:"col 1 · row 0",showRole:false,col:1},
+      {id:"c",label:"colSpan 2",showRole:false,col:0,row:1,colSpan:2},{id:"d",label:"row 0.5",showRole:false,col:2,row:.5,rowSpan:2}]}
+    edges={[]}/></div>
+  <div style={{width:200,display:"flex",flexDirection:"column",gap:6,fontSize:11,lineHeight:1.6,color:"var(--ink-4)"}}>
+    <span className="lbl" style={{color:"var(--ink-2)"}}>--dg-col-w 240 / gap 88</span>
+    <span className="lbl" style={{color:"var(--ink-2)"}}>--dg-row-h 92 / gap 44</span>
+    <div>行可以取小数（0.5）做居中对位；colSpan / rowSpan 按整格扩张。</div>
+    <div>整张图按容器宽度等比缩小，永不放大。</div>
+  </div>
+</div>}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

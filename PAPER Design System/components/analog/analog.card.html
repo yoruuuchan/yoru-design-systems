@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Analog details" subtitle="FilmStrip, MemoryCard, HandNote, DateStamp, Tape, ScanEdge" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px 28px;background:var(--surface-page)}body::before{opacity:.03}.sec{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);border-top:1px solid var(--rule-hair);padding-top:6px;margin:26px 0 12px}.sec:first-child{margin-top:0;border-top:0;padding-top:0}</style>
+</head><body><div id="root"></div><script type="text/babel">
+const { FilmStrip, MemoryCard, HandNote, DateStamp, Tape, ScanEdge, Plate } = window.PAPERDesignSystem_7d8f86;
+const S = ({children}) => <div className="sec">{children}</div>;
+function Card(){
+  return (<div data-mode="analog" style={{background:"var(--surface-page)"}}>
+    <S>FilmStrip</S>
+    <FilmStrip frames={5} stock="KODAK 400TX" startAt={12} height={78} />
+
+    <S>MemoryCard · HandNote (slip) · Tape</S>
+    <div style={{display:"flex",gap:"var(--space-7)",alignItems:"flex-start",flexWrap:"wrap"}}>
+      <div style={{position:"relative"}}>
+        <Tape style={{position:"absolute",top:-11,left:"50%",transform:"translateX(-50%) rotate(-2deg)",zIndex:1}} />
+        <MemoryCard width={190} caption="Sunday light" date="APR 12 26" rotate={-1} />
+      </div>
+      <HandNote slip rotate={1} attribution="Paper Journal" style={{maxWidth:230}}>Design is a record of how we see.</HandNote>
+      <div>
+        <HandNote rotate={-1.5} size={23}>stay<br/>curious</HandNote>
+        <div className="sec" style={{marginTop:20}}>plain hand note</div>
+      </div>
+    </div>
+
+    <S>DateStamp — plain / boxed / round</S>
+    <div style={{display:"flex",gap:"var(--space-8)",alignItems:"center"}}>
+      <DateStamp date="APR 12 2026" />
+      <DateStamp date="14 · 02 · 2026" variant="boxed" />
+      <DateStamp date="PAPER ARCHIVE 2026" variant="round" />
+    </div>
+
+    <S>ScanEdge — x / all</S>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--space-5)"}}>
+      <ScanEdge sides="x"><Plate ratio="16/7" /></ScanEdge>
+      <ScanEdge sides="all"><Plate ratio="16/7" /></ScanEdge>
+    </div>
+  </div>);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Card/>);
+</script></body></html>

@@ -1,0 +1,21 @@
+/* Base resets + canvas. Imported once from styles.css. */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: var(--font-ui);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--ink-1);
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 72px 72px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 72px 72px,
+    var(--canvas) fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: rgba(92, 123, 255, 0.35); color: #EDF2FF; }
+
+code, pre, kbd { font-family: var(--font-mono); font-size: 0.9em; }

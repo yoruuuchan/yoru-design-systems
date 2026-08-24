@@ -1,0 +1,20 @@
+<!-- @dsCard group="Effects" viewport="700x180" name="Grain overlay" subtitle="JPEG-y noise on paper surfaces" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--paper); display: flex; gap: 12px; font-family: var(--font-ui-sans); font-size: 11px; }
+  .swatch { flex: 1; height: 130px; position: relative; overflow: hidden; border: 1px solid var(--ink); }
+  .swatch::after { content: ""; position: absolute; inset: 0; background-image: var(--bg-grain-pattern); background-size: 200px 200px; opacity: var(--op, 0.15); mix-blend-mode: multiply; }
+  .lab { position: absolute; left: 8px; bottom: 8px; font-family: var(--font-pixel-mono); font-size: 10px; color: var(--ink); background: rgba(246,239,217,0.8); padding: 2px 6px; }
+  .a { background: var(--paper); }
+  .b { background: var(--sodium-200); --op: 0.22; }
+  .c { background: var(--tile-200); --op: 0.28; }
+  .d { background: var(--peach-200); --op: 0.20; }
+</style>
+</head><body>
+<div class="swatch a"><span class="lab">no grain</span></div>
+<div class="swatch a"><span class="lab">grain · 0.15</span><span style="display:none">.</span></div>
+<div class="swatch b"><span class="lab">on sodium · 0.22</span></div>
+<div class="swatch c"><span class="lab">on tile · 0.28</span></div>
+<div class="swatch d"><span class="lab">on peach · 0.20</span></div>
+</body></html>

@@ -1,0 +1,31 @@
+/* PAPER — material. Grain, print shadows, film, tape, scan edge.
+   All procedural (SVG turbulence / gradients) so nothing depends on a raster asset.
+   Rule: texture is a whisper. If you can name it before you read the page, turn it down. */
+:root{
+  --tex-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); /* @kind other */
+  --tex-fibre:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23f)' opacity='.4'/%3E%3C/svg%3E"); /* @kind other */
+
+  --grain-opacity-editorial:.035; /* @kind other */
+  --grain-opacity-analog:.075; /* @kind other */
+
+  /* SHADOW — printing, not elevation. Tight contact + one long soft cast. */
+  --shadow-none:none;
+  --shadow-sheet:0 1px 1px rgba(38,36,30,.07),0 6px 16px -12px rgba(38,36,30,.34);
+  --shadow-print:0 1px 2px rgba(38,36,30,.11),0 12px 26px -16px rgba(38,36,30,.42);
+  --shadow-polaroid:0 1px 2px rgba(38,36,30,.16),0 18px 34px -20px rgba(38,36,30,.5);
+  --shadow-page:0 0 0 1px rgba(38,36,30,.05),0 30px 70px -46px rgba(38,36,30,.62);
+  --shadow-inset-frame:inset 0 0 0 1px var(--frame-edge);
+
+  /* SCAN EDGE — the soft dark lip where a print meets the scanner bed */
+  --scan-edge:linear-gradient(90deg,rgba(30,28,22,.16),rgba(30,28,22,0) 5%,rgba(30,28,22,0) 95%,rgba(30,28,22,.13)); /* @kind other */
+
+  /* FILM — sprocket rail for strips and contact sheets */
+  --film-sprocket:repeating-linear-gradient(90deg,transparent 0 6px,rgba(240,236,224,.9) 6px 14px,transparent 14px 20px); /* @kind other */
+
+  /* PHOTO TONE — every plate sits in the same warm, slightly desaturated register */
+  --photo-filter-editorial:saturate(.9) contrast(1.02); /* @kind other */
+  --photo-filter-analog:sepia(.16) saturate(.82) contrast(1.03) brightness(1.01); /* @kind other */
+
+  --placeholder-tone:linear-gradient(155deg,#DCD5C6,#C9C2B0 55%,#B6AE9A); /* @kind other */
+  --placeholder-tone-cool:linear-gradient(155deg,#CDD1CE,#B4B9B6 55%,#9DA3A0); /* @kind other */
+}

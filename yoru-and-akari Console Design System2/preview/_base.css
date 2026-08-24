@@ -1,0 +1,42 @@
+/* Shared base for /preview/*.html cards.
+   Cards target ~700px wide; each renders inside the Design System tab. */
+@import url("../colors_and_type.css");
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-ui);
+  color: var(--ink-1);
+  background: var(--page-wash);
+  padding: 18px 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Two-up layout for showing akari + yoru side-by-side */
+.pv-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pv-pane {
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  min-height: 100px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.pv-pane[data-theme="akari"] { background: var(--page-wash); color: var(--ink-1); }
+.pv-pane[data-theme="yoru"]  { background: var(--page-wash); color: var(--ink-1); }
+.pv-pane .pv-tag {
+  position: absolute; top: 10px; right: 12px;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 600;
+}
+
+.pv-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.pv-col { display: flex; flex-direction: column; gap: 8px; }
+
+.pv-label { font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em; }
+.pv-mono  { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }

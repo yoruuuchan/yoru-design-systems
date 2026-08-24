@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Auth" description="Enter Console screen — single centered glass card with primary CTA" -->
+<helmet>
+<script src="./ds-base.js"></script>
+</helmet>
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; color:var(--ink-1); font-family:var(--font-ui); padding:24px;">
+
+  <div class="rift-glass-2 rift-frame rift-scan" style="width:420px; padding:36px 32px; display:flex; flex-direction:column; align-items:stretch; gap:18px; --frame-len:20px; --frame-overhang:6px; --frame-color:var(--ice);">
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <span class="rift-glitch" data-text="RIFT" style="font-family:var(--font-wordmark); font-weight:700; font-size:56px; letter-spacing:0.05em;">RIFT</span>
+      <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-3); letter-spacing:0.2em; text-transform:uppercase;">// console / sign in</span>
+    </div>
+
+    <div style="height:1px; background:var(--line-1); margin:6px 0;"></div>
+
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <label style="font-family:var(--font-mono); font-size:10px; color:var(--ink-3); letter-spacing:0.16em; text-transform:uppercase;">Node identifier</label>
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Input" placeholder="node-04@rift.io" hint-size="100%,44px"></x-import>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <label style="font-family:var(--font-mono); font-size:10px; color:var(--ink-3); letter-spacing:0.16em; text-transform:uppercase;">Channel key</label>
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Input" type="password" placeholder="••••••••••••" hint-size="100%,44px"></x-import>
+      <a href="#" style="font-family:var(--font-mono); font-size:11px; color:var(--ice); align-self:flex-end; text-decoration:none; letter-spacing:0.08em;">rotate key →</a>
+    </div>
+
+    <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Button" variant="primary" size="lg" block="{{ true }}" glow="{{ true }}" hint-size="100%,50px">ENTER CONSOLE</x-import>
+
+    <div style="display:flex; gap:8px; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:11px; color:var(--ink-3); letter-spacing:0.1em;">
+      <span class="rift-dot rift-dot--ok"></span>
+      <span>NODE-04 · READY</span>
+      <span style="opacity:0.5;">·</span>
+      <span>p95 38ms</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1280, &quot;height&quot;: 720 },
+  &quot;theme&quot;:  { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;dark&quot;,      &quot;options&quot;: [&quot;dark&quot;, &quot;light&quot;],                          &quot;tsType&quot;: &quot;\&quot;dark\&quot; | \&quot;light\&quot;&quot; },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;royal&quot;,     &quot;options&quot;: [&quot;royal&quot;, &quot;aqua&quot;],                          &quot;tsType&quot;: &quot;\&quot;royal\&quot; | \&quot;aqua\&quot;&quot; },
+  &quot;glitch&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;signature&quot;, &quot;options&quot;: [&quot;off&quot;, &quot;subtle&quot;, &quot;signature&quot;, &quot;heavy&quot;],    &quot;tsType&quot;: &quot;\&quot;off\&quot; | \&quot;subtle\&quot; | \&quot;signature\&quot; | \&quot;heavy\&quot;&quot; }
+}">class Component extends DCLogic {
+  componentDidMount()  { this._sync(); }
+  componentDidUpdate() { this._sync(); }
+  componentWillUnmount() {
+    const h = document.documentElement;
+    delete h.dataset.theme; delete h.dataset.glitch; delete h.dataset.accent;
+  }
+  _sync() {
+    const h = document.documentElement;
+    h.dataset.theme  = this.props.theme  || "dark";
+    h.dataset.glitch = this.props.glitch || "signature";
+    h.dataset.accent = this.props.accent || "royal";
+  }
+}</script>
+</body>
+</html>

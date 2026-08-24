@@ -1,0 +1,40 @@
+<!-- @dsCard group="Type" viewport="700x180" name="Wordmark · accent pairs" subtitle="royal (sky × royal) — default — and aqua (aqua × royal)" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 20px 24px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .cell { display: flex; flex-direction: column; gap: 12px; padding: 18px 20px;
+      border-radius: var(--r-md); border: 1px solid var(--line-1); }
+    .lbl { display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+      color: var(--ink-3); text-transform: uppercase; }
+    .name { color: var(--ink-1); font-weight: 600; }
+    .swatches { display: inline-flex; gap: 4px; margin-left: auto; }
+    .sw { width: 12px; height: 12px; border-radius: 50%;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10); }
+    .wm { font-family: var(--font-wordmark); font-weight: 700; font-size: 56px;
+      letter-spacing: 0.05em; color: var(--ink-1); }
+  </style>
+</head>
+<body data-glitch="signature">
+  <div class="grid">
+    <div class="cell" data-accent="royal">
+      <div class="lbl"><span class="name">royal</span> sky × royal &nbsp;·&nbsp; default
+        <span class="swatches"><span class="sw" style="background:var(--sky)"></span><span class="sw" style="background:var(--royal)"></span></span>
+      </div>
+      <span class="rift-glitch wm" data-text="RIFT//2.0">RIFT//2.0</span>
+    </div>
+    <div class="cell" data-accent="aqua">
+      <div class="lbl"><span class="name">aqua</span> aqua × royal
+        <span class="swatches"><span class="sw" style="background:var(--aqua)"></span><span class="sw" style="background:var(--royal)"></span></span>
+      </div>
+      <span class="rift-glitch wm" data-text="RIFT//2.0">RIFT//2.0</span>
+    </div>
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- @dsCard group="Brand" viewport="700x240" name="Grid floor" subtitle="iconic vaporwave perspective grid + sunset" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;height:240px;overflow:hidden;font-family:var(--font-display);position:relative;background:var(--grad-sunset);}
+  .sun{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);width:160px;height:160px;border-radius:50%;
+       background:radial-gradient(circle,#ffcc66 0%,#ff71ce 50%,#ff2bd6 100%);
+       box-shadow:0 0 80px rgba(255,113,206,.7);}
+  .sun::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 18px,var(--bg-void) 18px 22px);mask:linear-gradient(180deg,transparent 60%,#000 60%);-webkit-mask:linear-gradient(180deg,transparent 60%,#000 60%);}
+  .floor{position:absolute;left:0;right:0;bottom:0;height:55%;
+         background:
+           linear-gradient(transparent 0,transparent calc(100% - 2px),var(--magenta) 100%),
+           repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), var(--magenta) calc(10% - 2px) 10%),
+           repeating-linear-gradient(0deg, transparent 0 calc(20% - 2px), var(--magenta) calc(20% - 2px) 20%);
+         transform:perspective(220px) rotateX(58deg);transform-origin:bottom;box-shadow:0 0 60px var(--magenta);}
+  .label{position:absolute;left:20px;top:14px;color:#fff;text-shadow:var(--text-glow-magenta);font-size:11px;letter-spacing:.2em;}
+  .jp{position:absolute;right:20px;top:14px;font-family:var(--font-jp);color:#fff;font-size:22px;text-shadow:0 0 8px rgba(0,0,0,.6);}
+</style></head><body>
+  <div class="label">MIDNIGHT // GRID</div>
+  <div class="jp">夜の地平線</div>
+  <div class="sun"></div>
+  <div class="floor"></div>
+</body></html>

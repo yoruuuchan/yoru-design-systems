@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Shadow · drops" subtitle="Blue-tinted elevation — never pure black" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:30px 20px;background:var(--neutral-50);">
+  <style>
+    .row { display:grid; grid-template-columns:repeat(5,1fr); gap:20px; }
+    .cell { display:flex; flex-direction:column; gap:14px; align-items:center; }
+    .shape { width:78px; height:78px; border-radius:18px; background:#fff; }
+    .lbl { font-family:var(--font-mono); font-size:9px; color:var(--text-muted); text-align:center; }
+    .lbl b { display:block; color:var(--text-strong); font-weight:500; font-size:10px; }
+  </style>
+  <div class="row">
+    <div class="cell"><div class="shape" style="box-shadow:0 1px 2px rgba(10,68,140,0.06)"></div><div class="lbl"><b>--shadow-xs</b>0 1px 2px</div></div>
+    <div class="cell"><div class="shape" style="box-shadow:0 2px 8px rgba(10,68,140,0.08)"></div><div class="lbl"><b>--shadow-sm</b>0 2px 8px</div></div>
+    <div class="cell"><div class="shape" style="box-shadow:0 6px 18px rgba(10,68,140,0.12)"></div><div class="lbl"><b>--shadow-md</b>0 6px 18px</div></div>
+    <div class="cell"><div class="shape" style="box-shadow:0 12px 36px rgba(10,68,140,0.16)"></div><div class="lbl"><b>--shadow-lg</b>0 12px 36px</div></div>
+    <div class="cell"><div class="shape" style="box-shadow:0 24px 60px rgba(10,68,140,0.22)"></div><div class="lbl"><b>--shadow-xl</b>0 24px 60px</div></div>
+  </div>
+</body></html>

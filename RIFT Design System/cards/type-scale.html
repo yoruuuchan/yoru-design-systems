@@ -1,0 +1,31 @@
+<!-- @dsCard group="Type" viewport="700x140" name="Type scale" subtitle="xs · sm · base · lg · xl · 2xl · 3xl · 4xl · 5xl" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 18px 24px; }
+    .row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .step { display: flex; align-items: baseline; gap: 6px; padding: 4px 0; }
+    .px { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.08em; }
+    .s { font-family: var(--font-display); color: var(--ink-1); }
+    .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; color: var(--ink-3); text-transform: uppercase; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="name">--text-* · scale</div>
+  <div class="row">
+    <div class="step"><span class="s" style="font-size: var(--text-xs)">Aa</span><span class="px">xs 11</span></div>
+    <div class="step"><span class="s" style="font-size: var(--text-sm)">Aa</span><span class="px">sm 13</span></div>
+    <div class="step"><span class="s" style="font-size: var(--text-base)">Aa</span><span class="px">base 15</span></div>
+    <div class="step"><span class="s" style="font-size: var(--text-lg)">Aa</span><span class="px">lg 18</span></div>
+    <div class="step"><span class="s" style="font-size: var(--text-xl)">Aa</span><span class="px">xl 24</span></div>
+    <div class="step"><span class="s" style="font-size: var(--text-2xl)">Aa</span><span class="px">2xl 32</span></div>
+    <div class="step"><span class="s" style="font-size: var(--text-3xl)">Aa</span><span class="px">3xl 42</span></div>
+    <div class="step"><span class="s" style="font-size: var(--text-4xl)">Aa</span><span class="px">4xl 56</span></div>
+    <div class="step"><span class="s" style="font-size: var(--text-5xl)">Aa</span><span class="px">5xl 72</span></div>
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

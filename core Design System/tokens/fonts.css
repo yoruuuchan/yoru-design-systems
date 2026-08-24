@@ -1,0 +1,18 @@
+/* fonts.css — webfont sources.
+   Pixelify Sans + VT323 + Tinos pulled from Google Fonts.
+   MS Sans Serif is declared via @font-face with local()-only sources: machines that have
+   it installed (older Windows) will use it; everywhere else the browser silently falls
+   through to the next family in --font-ui-sans (Tahoma / Segoe UI / system-ui). If you
+   want to ship MS Sans Serif as a webfont, drop `ms-sans-serif.woff2` into
+   `assets/fonts/` and add a url() line to the src list. */
+
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=VT323&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+@font-face {
+  font-family: 'MS Sans Serif';
+  src: local('MS Sans Serif'),
+       local('MSSansSerif');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}

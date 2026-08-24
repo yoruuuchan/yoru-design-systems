@@ -1,0 +1,74 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Iconography · Lucide" subtitle="18px · 1.75 stroke · console icon set" viewport="700x180" --><html><head><meta charset="utf-8"><title>iconography</title>
+<link rel="stylesheet" href="_base.css">
+<script src="https://unpkg.com/lucide@0.452.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 16px 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 14px; border-radius: 16px; }
+  .pane.akari { background: #E8ECF3; color: #0E1525; }
+  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
+  .pane.akari .tag { color: #6B7793; }
+  .pane.yoru .tag { color: #A8B2CC; }
+  .icons { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+  .ic {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 8px 4px; border-radius: 10px;
+  }
+  .akari .ic { background: #EFF2F8; }
+  .yoru .ic { background: #131A2E; }
+  .ic svg { width: 18px; height: 18px; stroke-width: 1.75; }
+  .akari .ic svg { color: #394560; }
+  .yoru .ic svg { color: #A8B2CC; }
+  .akari .ic.on svg { color: #4F6CE8; }
+  .yoru .ic.on svg { color: #7A95FA; }
+  .nm { font-size: 9px; font-family: var(--font-mono); opacity: 0.55; letter-spacing: 0.02em; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="pane akari">
+      <span class="tag">akari · lucide @ 18px · 1.75</span>
+      <div class="icons">
+        <div class="ic on"><i data-lucide="message-square-text"></i><span class="nm">chat</span></div>
+        <div class="ic"><i data-lucide="brain"></i><span class="nm">memory</span></div>
+        <div class="ic"><i data-lucide="book-open"></i><span class="nm">world</span></div>
+        <div class="ic"><i data-lucide="git-branch"></i><span class="nm">prompt</span></div>
+        <div class="ic"><i data-lucide="clock"></i><span class="nm">timeline</span></div>
+        <div class="ic"><i data-lucide="terminal"></i><span class="nm">logs</span></div>
+        <div class="ic"><i data-lucide="cpu"></i><span class="nm">model</span></div>
+        <div class="ic"><i data-lucide="zap"></i><span class="nm">proactive</span></div>
+        <div class="ic"><i data-lucide="wrench"></i><span class="nm">tools</span></div>
+        <div class="ic"><i data-lucide="shield"></i><span class="nm">safety</span></div>
+        <div class="ic"><i data-lucide="moon"></i><span class="nm">yoru</span></div>
+        <div class="ic"><i data-lucide="sun"></i><span class="nm">akari</span></div>
+        <div class="ic"><i data-lucide="bell-off"></i><span class="nm">quiet</span></div>
+        <div class="ic"><i data-lucide="settings"></i><span class="nm">cfg</span></div>
+        <div class="ic"><i data-lucide="plug"></i><span class="nm">provider</span></div>
+        <div class="ic"><i data-lucide="key"></i><span class="nm">key</span></div>
+      </div>
+    </div>
+    <div class="pane yoru">
+      <span class="tag">yoru · lucide @ 18px · 1.75</span>
+      <div class="icons">
+        <div class="ic on"><i data-lucide="message-square-text"></i><span class="nm">chat</span></div>
+        <div class="ic"><i data-lucide="brain"></i><span class="nm">memory</span></div>
+        <div class="ic"><i data-lucide="book-open"></i><span class="nm">world</span></div>
+        <div class="ic"><i data-lucide="git-branch"></i><span class="nm">prompt</span></div>
+        <div class="ic"><i data-lucide="clock"></i><span class="nm">timeline</span></div>
+        <div class="ic"><i data-lucide="terminal"></i><span class="nm">logs</span></div>
+        <div class="ic"><i data-lucide="cpu"></i><span class="nm">model</span></div>
+        <div class="ic"><i data-lucide="zap"></i><span class="nm">proactive</span></div>
+        <div class="ic"><i data-lucide="wrench"></i><span class="nm">tools</span></div>
+        <div class="ic"><i data-lucide="shield"></i><span class="nm">safety</span></div>
+        <div class="ic"><i data-lucide="moon"></i><span class="nm">yoru</span></div>
+        <div class="ic"><i data-lucide="sun"></i><span class="nm">akari</span></div>
+        <div class="ic"><i data-lucide="bell-off"></i><span class="nm">quiet</span></div>
+        <div class="ic"><i data-lucide="settings"></i><span class="nm">cfg</span></div>
+        <div class="ic"><i data-lucide="plug"></i><span class="nm">provider</span></div>
+        <div class="ic"><i data-lucide="key"></i><span class="nm">key</span></div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body></html>

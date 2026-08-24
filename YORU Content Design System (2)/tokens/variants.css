@@ -1,0 +1,75 @@
+/* Four child variants of one parent language.
+   They differ ONLY in: accent, decorative detail, cover treatment, tag shape, density.
+   Type, grid, hairline system and the YORU family blue stay identical.
+
+   All four accents come from one cool palette — blue, teal, mint, coral. No purple,
+   no orange, no yellow anywhere in the system. */
+
+[data-yoru="signal"]{
+--accent:#3186FF;
+--accent-ink:#1B5FC7;
+--accent-soft:#D0E8FF;
+--accent-hair:#A9C2FF;
+--radius-tag:var(--radius-0);
+--radius-block:var(--radius-0);
+--lh-body:1.72; /* @kind font */
+--deco-mark:"\2014"; /* @kind other */
+--deco-rule-style:solid; /* @kind other */
+--hand-underline:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='10' viewBox='0 0 120 10' preserveAspectRatio='none'><path d='M2 7C22 3 38 8 58 5s40-3 60 1' fill='none' stroke='%23A9C2FF' stroke-width='4.4' stroke-linecap='round'/></svg>"); /* @kind other */
+--deco-underline:var(--hand-underline); /* @kind other */
+--variant-name:"SIGNAL"; /* @kind other */
+}
+[data-yoru="lab"]{
+--accent:#00A9BB;
+--accent-ink:#06707E;
+--accent-soft:#C1E9E9;
+--accent-hair:#6ED3CD;
+--radius-tag:var(--radius-0);
+--radius-block:var(--radius-1);
+--lh-body:1.68; /* @kind font */
+--deco-mark:"\232D"; /* @kind other */
+--deco-rule-style:dashed; /* @kind other */
+--hand-underline:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='10' viewBox='0 0 120 10' preserveAspectRatio='none'><path d='M2 7C22 3 38 8 58 5s40-3 60 1' fill='none' stroke='%236ED3CD' stroke-width='4.4' stroke-linecap='round'/></svg>"); /* @kind other */
+--deco-underline:var(--hand-underline); /* @kind other */
+--variant-name:"LAB"; /* @kind other */
+}
+[data-yoru="studio"]{
+--accent:#45C496;
+--accent-ink:#1E8A66;
+--accent-soft:#EEF5E9;
+--accent-hair:#A6DCC3;
+--radius-tag:var(--radius-pill);
+--radius-block:var(--radius-2);
+--radius-media:var(--radius-2);
+--lh-body:1.9; /* @kind font */
+--deco-mark:"\25CF"; /* @kind other */
+--deco-rule-style:solid; /* @kind other */
+/* variant-tinted hand underline: colour baked into the SVG stroke so the
+   background-image consumer doesn't have to route currentColor through the
+   data URI (which Chrome ignores). Uses accent-hair — lighter than accent — at
+   4px stroke-width for a soft, chunky mark. */
+--hand-underline:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='10' viewBox='0 0 120 10' preserveAspectRatio='none'><path d='M2 7C22 3 38 8 58 5s40-3 60 1' fill='none' stroke='%23A6DCC3' stroke-width='4.4' stroke-linecap='round'/></svg>"); /* @kind other */
+--deco-underline:var(--hand-underline); /* @kind other */
+--variant-name:"STUDIO"; /* @kind other */
+}
+[data-yoru="special"]{
+--accent:#FF6B78;
+--accent-ink:#C93F4B;
+--accent-soft:#FDEEEE;
+--accent-hair:#F5B7B7;
+--radius-tag:var(--radius-pill);
+--radius-block:var(--radius-1);
+--lh-body:1.85; /* @kind font */
+--deco-tilt:-1.2deg; /* @kind other */
+--deco-mark:"\2726"; /* @kind other */
+--deco-rule-style:solid; /* @kind other */
+--hand-underline:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='10' viewBox='0 0 120 10' preserveAspectRatio='none'><path d='M2 7C22 3 38 8 58 5s40-3 60 1' fill='none' stroke='%23F5B7B7' stroke-width='4.4' stroke-linecap='round'/></svg>"); /* @kind other */
+--deco-underline:var(--hand-underline); /* @kind other */
+--variant-name:"SPECIAL"; /* @kind other */
+}
+:root{
+/* Root fallback for --hand-underline. Variants override it with their own
+   tinted version (see [data-yoru="studio"] / [data-yoru="special"] above);
+   this default only kicks in on an un-scoped element. */
+--hand-underline:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='10' viewBox='0 0 120 10' preserveAspectRatio='none'><path d='M2 7C22 3 38 8 58 5s40-3 60 1' fill='none' stroke='%23C1D7EF' stroke-width='4.4' stroke-linecap='round'/></svg>"); /* @kind other */
+}

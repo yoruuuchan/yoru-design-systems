@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" viewport="700x320" name="Forms · Button + Input" subtitle="Variants, sizes, focus state" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <style>
+    body { padding: 24px 28px; }
+    .stack { display: flex; flex-direction: column; gap: 16px; }
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .label {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-3); min-width: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Button, Input } = window.RIFTDesignSystem_b2dbfe;
+    const Row = ({ label, children }) => (
+      <div className="row">
+        <span className="label">{label}</span>
+        {children}
+      </div>
+    );
+    ReactDOM.createRoot(document.getElementById("root")).render(
+      <div className="stack">
+        <Row label="Variants">
+          <Button variant="primary">Enter console</Button>
+          <Button>Cancel</Button>
+          <Button variant="ghost">Read docs →</Button>
+          <Button variant="danger">Disconnect</Button>
+        </Row>
+        <Row label="Sizes">
+          <Button variant="primary" size="sm">Small</Button>
+          <Button variant="primary">Medium</Button>
+          <Button variant="primary" size="lg">Large</Button>
+        </Row>
+        <Row label="Glow">
+          <Button variant="primary" glow>Connect</Button>
+          <Button glow>Listen</Button>
+        </Row>
+        <Row label="Input">
+          <div style={{ width: 240 }}><Input placeholder="enter query 検索…" /></div>
+          <div style={{ width: 200 }}><Input defaultValue="rift-node-04" /></div>
+        </Row>
+      </div>
+    );
+  </script>
+  <script src="../../assets/theme-toggle.js"></script>
+</body>
+</html>

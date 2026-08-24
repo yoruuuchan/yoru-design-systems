@@ -1,0 +1,22 @@
+<!-- @dsCard group="Type" viewport="700x140" name="Mono & numerals" subtitle="Timestamps, IDs, prices — tabular --font-mono" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:20px;background:var(--neutral-0);">
+  <style>
+    .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .cell { padding:12px; border-radius:12px; background:var(--neutral-50);
+            display:flex; flex-direction:column; gap:6px; }
+    .cell .lbl { font-family:var(--font-mono); font-size:9px;
+                 letter-spacing:0.18em; text-transform:uppercase;
+                 color:var(--text-muted); }
+    .cell .val { font-family:var(--font-mono); font-size:22px;
+                 font-weight:600; color:var(--text-strong);
+                 font-variant-numeric:tabular-nums; letter-spacing:-0.02em; }
+  </style>
+  <div class="grid">
+    <div class="cell"><div class="lbl">No.</div><div class="val">0825</div></div>
+    <div class="cell"><div class="lbl">Date</div><div class="val">26.06.23</div></div>
+    <div class="cell"><div class="lbl">Vol.</div><div class="val">05/12</div></div>
+    <div class="cell"><div class="lbl">¥</div><div class="val">1,280</div></div>
+  </div>
+</body></html>

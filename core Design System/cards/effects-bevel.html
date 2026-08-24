@@ -1,0 +1,18 @@
+<!-- @dsCard group="Effects" viewport="700x170" name="Y2K bevels" subtitle="sharp 1px highlights — buttons + windows" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--paper-stained); display: flex; gap: 20px; align-items: center; font-family: var(--font-ui-sans); font-size: 11px; }
+  .box { width: 130px; height: 80px; background: var(--paper); border: 1px solid var(--ink);
+         display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
+  .out { box-shadow: var(--bevel-out); }
+  .in  { box-shadow: var(--bevel-in); background: var(--surface-sunk); }
+  .strong { box-shadow: var(--bevel-out-strong); }
+  .lab { font-family: var(--font-pixel-mono); font-size: 10px; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.05em; text-align: center; }
+  .col { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head><body>
+<div class="col"><div class="box out">--bevel-out</div><div class="lab">resting button</div></div>
+<div class="col"><div class="box in">--bevel-in</div><div class="lab">pressed / sunken</div></div>
+<div class="col"><div class="box strong">--bevel-out-strong</div><div class="lab">window edge</div></div>
+</body></html>

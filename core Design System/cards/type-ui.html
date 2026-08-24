@@ -1,0 +1,26 @@
+<!-- @dsCard group="Type" viewport="700x170" name="UI chrome — system sans" subtitle="title bars, buttons, tooltips — always 11–13px" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--paper); color: var(--ink); font-family: var(--font-ui-sans); }
+  .titlebar { background: var(--titlebar-bg); color: var(--titlebar-fg); padding: 3px 6px;
+              font-size: 12px; font-weight: 700; display: flex; justify-content: space-between;
+              border: 1px solid var(--ink); margin-bottom: -1px; }
+  .closebox { background: var(--paper); color: var(--ink); width: 14px; height: 14px;
+              text-align: center; line-height: 13px; box-shadow: var(--bevel-out); font-size: 10px; font-weight: 700; }
+  .body { border: 1px solid var(--ink); background: var(--surface-window); padding: 10px 12px; }
+  .label { font-size: 11px; margin-bottom: 4px; }
+  .btn { display: inline-block; font-family: var(--font-ui-sans); font-size: 11px; padding: 3px 12px;
+         background: var(--paper-stained); color: var(--ink); border: 1px solid var(--ink); box-shadow: var(--bevel-out); }
+  .meta { font-family: var(--font-pixel-mono); font-size: 11px; color: var(--text-muted);
+          letter-spacing: 0.08em; margin-top: 8px; }
+</style>
+</head><body>
+<div class="titlebar"><span>untitled_window.exe</span><span class="closebox">×</span></div>
+<div class="body">
+  <div class="label">Label · 11px regular</div>
+  <button class="btn">button · 11px</button>
+  &nbsp;<button class="btn">cancel</button>
+</div>
+<div class="meta">system-sans · 11–12px · weights 400 / 700</div>
+</body></html>

@@ -1,0 +1,25 @@
+/* PAPER — grid. 24 columns, as on the system board. Text sits on 12; images break to 16, 20 or full bleed. */
+:root{
+  --grid-columns:24;
+  --grid-gutter:20px;
+  --grid-gutter-tight:8px;   /* photo grids and contact sheets */
+  --measure-page:1120px;     /* article page width */
+  --measure-page-wide:1440px;/* gallery / index page width */
+  --measure-spread:1280px;   /* two-page printable spread */
+}
+.paper-grid{display:grid;grid-template-columns:repeat(var(--grid-columns),1fr);gap:var(--grid-gutter)}
+.paper-page{width:100%;max-width:var(--measure-page);margin-inline:auto;padding-inline:var(--page-margin)}
+.paper-page--wide{max-width:var(--measure-page-wide)}
+/* column spans used across the system */
+.col-full{grid-column:1/-1}
+.col-text{grid-column:1/13}
+.col-text-right{grid-column:13/25}
+.col-wide{grid-column:1/17}
+.col-side{grid-column:17/25}
+.col-half{grid-column:span 12}
+.col-third{grid-column:span 8}
+.col-quarter{grid-column:span 6}
+@media(max-width:900px){
+  :root{--grid-gutter:14px;--page-margin:var(--page-margin-mobile)}
+  .col-text,.col-text-right,.col-wide,.col-side,.col-half,.col-third,.col-quarter{grid-column:1/-1}
+}

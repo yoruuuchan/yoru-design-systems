@@ -1,0 +1,30 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Typography" subtitle="Heading / Lede / Body / Caption — 文章刻度" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>Typography</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.YORUContentDesignSystem_a0b73e;
+
+const {Heading,Lede,Body,Caption}=NS;
+function Demo(){return <div className="yoru-article" data-yoru="signal" style={{display:"flex",gap:26}}>
+  <div style={{flex:1.25,display:"flex",flexDirection:"column",gap:14}}>
+    <Heading level={1} kicker="03 · 工作流" mark>把提示词写成可复用的模块</Heading>
+    <Lede>三个月里我把这套流程跑了四十多遍，这是留下来的部分。</Lede>
+    <Body>实测下来，长上下文的收益在 <b style={{fontWeight:500}}>3 万字</b>以后基本就平掉了，再往上堆只会变慢。</Body>
+    <Caption index={2}>同一段提示词，左边是默认输出，右边加了角色约束。</Caption>
+  </div>
+  <div style={{flex:.85,display:"flex",flexDirection:"column",gap:12,borderLeft:"1px solid var(--line-1)",paddingLeft:20}}>
+    <Heading level={2}>二级小节标题</Heading>
+    <Heading level={3}>三级：步骤名</Heading>
+    <Body size="small" muted>测试环境：M4 Pro / 48G / Claude Sonnet 4.5。</Body>
+    <div className="lbl" style={{marginTop:4}}>标题一律宋体 · 正文一律黑体</div>
+  </div>
+</div>}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

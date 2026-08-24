@@ -1,0 +1,127 @@
+/* Panel + Card */
+
+/* Panel — terminal-style window with a title bar. */
+.kl-panel {
+  position: relative;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  clip-path: var(--clip-chamfer-md);
+  display: flex;
+  flex-direction: column;
+}
+.kl-panel--signal {
+  border-color: var(--cyan-700);
+  box-shadow: var(--glow-cyan-sm);
+}
+.kl-panel--danger {
+  border-color: var(--red-700);
+  box-shadow: var(--glow-red-md);
+}
+.kl-panel--warn {
+  border-color: var(--amber-700);
+  box-shadow: var(--glow-amber-md);
+}
+
+.kl-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-panel));
+  min-height: 32px;
+}
+.kl-panel__title {
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-signal);
+  text-shadow: var(--text-glow-cyan);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.kl-panel__title::before {
+  content: "▣";
+  color: var(--cyan-400);
+}
+.kl-panel__meta {
+  font-size: var(--text-3xs);
+  color: var(--text-tertiary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+.kl-panel__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.kl-panel__body {
+  padding: var(--pad-default);
+  flex: 1;
+  min-height: 0;
+}
+.kl-panel__body--flush { padding: 0; }
+.kl-panel__foot {
+  border-top: 1px solid var(--border);
+  padding: 6px 14px;
+  font-size: var(--text-3xs);
+  color: var(--text-tertiary);
+  display: flex;
+  justify-content: space-between;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  background: var(--bg-inset);
+}
+
+/* Card — lighter alternative to Panel, no header chrome */
+.kl-card {
+  position: relative;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  padding: var(--pad-default);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  clip-path: var(--clip-chamfer-sm);
+  transition: var(--transition-base);
+}
+.kl-card--interactive { cursor: pointer; }
+.kl-card--interactive:hover {
+  border-color: var(--cyan-700);
+  background: var(--bg-elevated);
+  box-shadow: var(--glow-cyan-sm);
+}
+.kl-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  letter-spacing: var(--tracking-wide);
+  margin: 0 0 4px 0;
+  color: var(--text-primary);
+}
+.kl-card__eyebrow {
+  font-size: var(--text-3xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--cyan-400);
+  margin-bottom: 8px;
+  text-shadow: var(--text-glow-cyan);
+}
+.kl-card__body {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+}
+
+/* Corner ticks decoration (mirrors .kl-corner foundation utility) */
+.kl-panel--ticked > .kl-corner-tl,
+.kl-panel--ticked > .kl-corner-tr,
+.kl-panel--ticked > .kl-corner-bl,
+.kl-panel--ticked > .kl-corner-br {
+  position: absolute; width: 8px; height: 8px;
+  border: 1px solid var(--cyan-400);
+  pointer-events: none;
+}

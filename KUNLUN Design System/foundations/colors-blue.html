@@ -1,0 +1,29 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Blue / Secondary" subtitle="次色，结构 + 深度" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 12px; background: var(--bg-base); }
+  .row { display: grid; grid-template-columns: repeat(9, 1fr); gap: 6px; }
+  .sw {
+    height: 100px; padding: 6px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    color: var(--bg-void);
+    clip-path: var(--clip-chamfer-sm);
+  }
+  .sw.dark { color: var(--blue-100); }
+  .label { font: var(--type-label); text-transform: uppercase; opacity: 0.9; }
+  .hex { font-family: var(--font-mono); font-size: 10px; opacity: 0.85; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw" style="background:var(--blue-100)"><span class="label">100</span><span class="hex">DBE6FF</span></div>
+    <div class="sw" style="background:var(--blue-200)"><span class="label">200</span><span class="hex">A7C1FF</span></div>
+    <div class="sw" style="background:var(--blue-300)"><span class="label">300</span><span class="hex">6C95FF</span></div>
+    <div class="sw" style="background:var(--blue-400)"><span class="label">400</span><span class="hex">3D72F0</span></div>
+    <div class="sw dark" style="background:var(--blue-500)"><span class="label">500</span><span class="hex">2A5FD6</span></div>
+    <div class="sw dark" style="background:var(--blue-600)"><span class="label">600</span><span class="hex">1F47A8</span></div>
+    <div class="sw dark" style="background:var(--blue-700)"><span class="label">700</span><span class="hex">18377F</span></div>
+    <div class="sw dark" style="background:var(--blue-800)"><span class="label">800</span><span class="hex">112759</span></div>
+    <div class="sw dark" style="background:var(--blue-900)"><span class="label">900</span><span class="hex">0A1738</span></div>
+  </div>
+</body></html>

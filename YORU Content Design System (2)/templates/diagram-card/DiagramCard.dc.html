@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="图谱卡片" description="小红书图谱卡：封面 + 一张图 + 时间线 + 结尾，改 nodes/edges 即改图" -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>body{margin:0;background:#D6DFE1}</style>
+</helmet>
+<div style="display:flex;flex-direction:column;align-items:center;gap:36px;padding:40px 0;font-family:"Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.CoverType" variant="{{ variant }}" kicker="WORKFLOW" title="一次代码审查的分工" subtitle="哪一步能交给 Agent，哪一步不能。" tags="{{ coverTags }}" aside="打回那条线最值钱" issue="二〇二六年八月" hint-size="1242px,1656px"></x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Page" variant="{{ variant }}" index="{{ n2 }}" total="{{ n4 }}" spine="{{ spine }}" footer="{{ footer }}" hint-size="1242px,1656px">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n2 }}" hint-size="100%,110px"><x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Emphasis" style="display:inline" hint-size="1em,1em">谁</x-import>做什么</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Diagram" nodes="{{ nodes }}" edges="{{ edges }}" annotations="{{ notes }}" legend="{{ true }}" caption="回边就是返工。画出来才知道自己在哪一步反复。" source="来源：自己的 commit 记录 2026.05–08" hint-size="100%,900px"></x-import>
+</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Page" variant="{{ variant }}" index="{{ n3 }}" total="{{ n4 }}" spine="{{ spine }}" footer="{{ footer }}" hint-size="1242px,1656px">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n2 }}" hint-size="100%,110px">怎么走到这一步的</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Timeline" items="{{ milestones }}" caption="失败的版本也留在轴上。" hint-size="100%,800px"></x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.MarginNote" tone="quiet" hint-size="360px,80px">五月那版的 commit 我现在不敢看</x-import>
+</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.EndCard" variant="{{ variant }}" headline="下期把这张图做成模板" lines="{{ endLines }}" note="二〇二六年八月 · 〇四 / 〇四" hint-size="1242px,1656px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1242,&quot;height&quot;:1656},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;signal&quot;,&quot;lab&quot;,&quot;studio&quot;,&quot;special&quot;],&quot;default&quot;:&quot;signal&quot;,&quot;tsType&quot;:&quot;\&quot;signal\&quot;|\&quot;lab\&quot;|\&quot;studio\&quot;|\&quot;special\&quot;&quot;,&quot;section&quot;:&quot;YORU&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const K = window.YORUContentDesignSystem_a0b73e || {};
+    return {
+      variant: this.props.variant ?? "signal",
+      spine: "二〇二六年八月 · 卷八", n2: 2, n3: 3, n4: 4, true: true,
+      coverTags: ["工作流", "Claude Code"],
+      endLines: ["节点和边都是数据", "有问题直接问"],
+      nodes: [
+        { id: "diff", role: "input", label: "git diff", meta: "只给改动" },
+        { id: "rg", role: "tool", label: "ripgrep", meta: "定位调用点" },
+        { id: "agent", role: "agent", label: "Claude Code", meta: "读 diff · 列风险", status: "verified" },
+        { id: "me", role: "human", label: "我拍板", meta: "业务影响", status: "verified" },
+        { id: "pr", role: "output", label: "PR 评论" }
+      ],
+      edges: [
+        { from: "diff", to: "agent", kind: "data", label: "unified" },
+        { from: "rg", to: "agent", kind: "dep" },
+        { from: "agent", to: "me", label: "风险清单" },
+        { from: "me", to: "pr" },
+        { from: "me", to: "agent", kind: "dep", label: "打回" }
+      ],
+      notes: [{ at: "me", side: "right", text: "Agent 判断不了业务影响，这一步不能省。" }],
+      milestones: [
+        { date: "2026.05", label: "全丢给 Agent", status: "failed", body: "合进去三个 bug。" },
+        { date: "2026.06", label: "加人工确认", status: "verified", meta: "只看风险项" },
+        { date: "2026.08", label: "固定成流程", status: "verified" }
+      ],
+      footer: K.PageFooter ? React.createElement(K.PageFooter, { note: "2026.08" }) : null
+    };
+  }
+}
+</script>
+</body>
+</html>

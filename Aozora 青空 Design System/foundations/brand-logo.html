@@ -1,0 +1,46 @@
+<!-- @dsCard group="Brand" viewport="700x300" name="Logo · lockups" subtitle="Primary 青空 / Poster AOZORA / Digital aozora.jp / Mark" -->
+<!doctype html>
+<html><head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body style="margin:0;background:var(--neutral-0);">
+  <style>
+    .grid { display:grid; grid-template-columns:1.4fr 1fr;
+            grid-template-rows:1fr 1fr; gap:0;
+            border:1px solid var(--stroke-hairline); }
+    .cell { display:flex; align-items:center; justify-content:center;
+            padding:28px; position:relative;
+            border-right:1px solid var(--stroke-hairline);
+            border-bottom:1px solid var(--stroke-hairline); }
+    .cell:nth-child(2n) { border-right:none; }
+    .cell:nth-last-child(-n+2) { border-bottom:none; }
+    .lbl { position:absolute; top:10px; left:14px;
+           font-family:var(--font-mono); font-size:9px;
+           letter-spacing:0.16em; text-transform:uppercase;
+           color:var(--text-muted); }
+    .dark { background:var(--neutral-900); }
+    .dark .lbl { color:rgba(255,255,255,0.55); }
+    .gradient { background:linear-gradient(135deg,#0A84FF,#66B7FF); }
+    .gradient .lbl { color:rgba(255,255,255,0.7); }
+    /* Mark cell needs to be smaller pill in dark */
+  </style>
+  <div class="grid" style="height:300px">
+    <div class="cell">
+      <span class="lbl">Primary lockup</span>
+      <img src="../assets/logo.svg" alt="" style="height:64px">
+    </div>
+    <div class="cell">
+      <span class="lbl">Mark</span>
+      <img src="../assets/logo-mark.svg" alt="" style="width:72px">
+    </div>
+    <div class="cell">
+      <span class="lbl">Poster · marketing</span>
+      <img src="../assets/logo-poster.svg" alt="" style="height:64px">
+    </div>
+    <div class="cell dark">
+      <span class="lbl">Digital · product chrome</span>
+      <img src="../assets/logo-digital.svg" alt="" style="height:36px;filter:invert(1) hue-rotate(180deg)">
+    </div>
+  </div>
+</body></html>

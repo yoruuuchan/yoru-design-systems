@@ -1,0 +1,28 @@
+:root{
+--hair:1px;--rule:2px;
+/* --wu is the 文武线 pair: --wu the thick (武) stroke, --hair the thin (文) below it. */
+--wu:2.5px;
+/* --bar is the weight of a RULE ABOVE a heading. It is never a left-hand colour bar. */
+--bar:3px;
+--radius-0:0px;--radius-1:2px;--radius-2:6px;--radius-3:12px;--radius-pill:999px;
+--radius-block:var(--radius-1);
+--radius-tag:var(--radius-1);
+--radius-media:var(--radius-1);
+/* shadows are used sparingly and only under media, never under text blocks */
+--shadow-media:0 1px 2px rgba(17,24,39,.05),0 8px 24px rgba(17,24,39,.07);
+--shadow-none:none;
+/* Recessed blocks. The ONE place this system borrows soft shading: a prompt or a
+   code block is something the reader lifts out of the page, so it sits IN the
+   paper rather than on it. Two tinted stops, never pure black — a cool low from
+   the ink ramp, a white high. Nothing else in the system takes a shadow, and
+   the page itself never does: on pure white the white stop is invisible, so a
+   raised treatment would collapse into a plain drop shadow. */
+--shadow-inset:inset 2px 2px 5px rgba(122,152,188,.26),inset -2px -2px 5px rgba(255,255,255,.92);
+--shadow-inset-dark:inset 2px 2px 6px rgba(0,0,0,.42),inset -1px -1px 3px rgba(255,255,255,.05);
+--deco-tilt:0deg; /* @kind other */
+--deco-underline:none; /* @kind other */
+}
+.yoru-card{--hair:2px;--rule:3px;--bar:5px;--wu:4px;--radius-1:3px;--radius-2:10px;--radius-3:20px;
+--shadow-media:0 2px 4px rgba(17,24,39,.05),0 18px 48px rgba(17,24,39,.08);
+--shadow-inset:inset 4px 4px 10px rgba(122,152,188,.26),inset -4px -4px 10px rgba(255,255,255,.92);
+--shadow-inset-dark:inset 4px 4px 12px rgba(0,0,0,.42),inset -2px -2px 6px rgba(255,255,255,.05)}

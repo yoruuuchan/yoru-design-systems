@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>方向 Z — 满版切边</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#EEF1F4;font-family:var(--font-body);display:flex;flex-direction:column;align-items:center;padding:24px;gap:12px}
+.stage{position:relative;width:810px;height:356px}
+.rack{position:absolute;top:0;left:0;width:3766px;display:flex;gap:20px;transform:scale(.215);transform-origin:top left}
+.caps{display:flex;gap:20px;width:810px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8A94A2}
+.caps span{flex:1}
+.pg{width:1242px;height:1656px;position:relative;overflow:hidden;background:var(--accent)}
+/* 报头栏照旧，只是反白 */
+.rail{position:absolute;top:0;left:0;right:0;height:100px;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:30px;padding:0 96px;border-bottom:3px solid rgba(255,255,255,.5);font-family:var(--font-mono);font-size:26px;letter-spacing:.14em;color:rgba(255,255,255,.72);z-index:3}
+.wm{font-family:var(--font-title);font-weight:900;letter-spacing:.26em;color:#fff;font-size:30px}
+.rail .col{color:#fff;font-weight:600}
+.rail .no{justify-self:end}
+/* 标题反白，排得比页面还宽，最后一个字被页边切掉 */
+.huge{position:absolute;top:230px;left:96px;right:-190px;margin:0;font-family:var(--font-title);font-weight:900;font-size:206px;line-height:1.02;letter-spacing:-.03em;color:#fff;z-index:2;white-space:nowrap}
+.huge.two{font-size:164px;white-space:normal;right:96px}
+.em{text-emphasis:filled dot #fff;text-emphasis-position:under right;-webkit-text-emphasis:filled dot #fff;-webkit-text-emphasis-position:under right}
+.lede{position:absolute;left:96px;right:340px;top:820px;margin:0;font-weight:300;font-size:44px;line-height:1.68;color:rgba(255,255,255,.86);z-index:2}
+.hand{position:absolute;left:96px;top:1080px;font-size:30px;color:rgba(255,255,255,.8);transform:rotate(-1.4deg);border-bottom:2px solid rgba(255,255,255,.45);padding-bottom:6px;z-index:2}
+/* 底部白纸带：所有 meta 回到纸面上 */
+.band{position:absolute;left:0;right:0;bottom:0;height:280px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 96px;z-index:3}
+.tags{display:flex;gap:16px}
+.tag{font-family:var(--font-ui);font-weight:500;font-size:26px;letter-spacing:.05em;padding:10px 22px;color:var(--accent-ink);border:2px solid var(--accent-hair)}
+.issue{font-family:var(--font-mono);font-size:30px;letter-spacing:.16em;color:var(--ink-4)}
+/* 结尾页：反过来，白纸上一个被下边切掉的巨号 handle */
+.pg.end{background:#fff}
+.pg.end .rail{border-bottom-color:var(--ink-1);color:var(--ink-4)}
+.pg.end .wm{color:var(--yoru-blue)}
+.pg.end .rail .col{color:var(--accent)}
+.endh{position:absolute;left:96px;right:96px;top:300px;margin:0;font-family:var(--font-title);font-weight:900;font-size:112px;line-height:1.2;color:var(--ink-1);z-index:2}
+.endlines{position:absolute;left:96px;top:620px;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:26px;max-width:820px;z-index:2}
+.endlines li{display:flex;gap:22px;font-size:38px;line-height:1.6;color:var(--ink-3)}
+.endlines i{color:var(--accent);font-style:normal}
+.handle{position:absolute;left:78px;bottom:-96px;margin:0;font-family:var(--font-title);font-weight:900;font-size:290px;line-height:1;letter-spacing:-.04em;color:var(--accent);z-index:1;white-space:nowrap}
+.foot{position:absolute;right:96px;bottom:120px;font-family:var(--font-mono);font-size:26px;letter-spacing:.14em;color:var(--ink-5);z-index:3}
+</style></head><body>
+<div class="stage"><div class="rack">
+
+<div class="pg" data-yoru="signal">
+  <div class="rail"><span class="wm">YORU</span><span class="col">SIGNAL</span><span></span><span class="no">2026.08 · 01/06</span></div>
+  <h1 class="huge two">这周值得装的<br><span class="em">四个</span>工具</h1>
+  <p class="lede">都自己跑过一遍，附上踩过的坑。</p>
+  <div class="hand">第三个最省事</div>
+  <div class="band"><div class="tags"><span class="tag">实测</span><span class="tag">工具</span></div><span class="issue">NO.12 / 2026.08</span></div>
+</div>
+
+<div class="pg" data-yoru="special">
+  <div class="rail"><span class="wm">YORU</span><span class="col">SPECIAL</span><span></span><span class="no">2026.08 · 01/05</span></div>
+  <h1 class="huge"><span class="em">炸机</span>第七次</h1>
+  <p class="lede">这次不怪风，是自己手抖。</p>
+  <div class="hand">电池又飞走一块</div>
+  <div class="band"><div class="tags"><span class="tag">FPV</span><span class="tag">记录</span></div><span class="issue">NO.07 / 2026.08</span></div>
+</div>
+
+<div class="pg end" data-yoru="signal">
+  <div class="rail"><span class="wm">YORU</span><span class="col">SIGNAL</span><span></span><span class="no">2026.08 · 06/06</span></div>
+  <h2 class="endh">看完顺手点个收藏</h2>
+  <ul class="endlines">
+    <li><i>—</i><span>四个工具都在正文里给了安装命令</span></li>
+    <li><i>—</i><span>踩坑那段单独标了红</span></li>
+  </ul>
+  <p class="handle">@yoru.hq</p>
+</div>
+
+</div></div>
+<div class="caps"><span>封面 · signal · 满版</span><span>封面 · special · 切边</span><span>结尾页 · 巨号 handle</span></div>
+</body></html>

@@ -1,0 +1,39 @@
+/* Raw palette — theme-independent. The semantic layer in
+   theme-dark.css / theme-light.css maps these to surface/ink/glass tokens. */
+
+:root {
+  /* Cool spectrum — midnight → ice */
+  --midnight: #0A1230;
+  --slate:    #54668D;
+  --steel:    #7B8BB0;
+  --royal:    #5C7BFF;
+  --cobalt:   #3F86E0;
+  --sky:      #6BB6F0;
+  --ice:      #8FD2F5;
+  --aqua:     #8AD8D0;
+  --aurora:   #B8DCFF;
+
+  /* Status */
+  --ok:   #4DCB97;
+  --warn: #ECB85F;
+  --bad:  #FF7480;
+
+  /* Chromatic edge — default pair (sky × royal). Override via data-accent. */
+  --glitch-ca: var(--sky);
+  --glitch-cb: var(--royal);
+}
+
+/* Accent re-channels — scope on any wrapper:
+   <main data-accent="royal"> … </main>
+   Each pair is an opponent-color duotone for .rift-glitch and accent halos. */
+
+/* royal — sky × royal. Tonal, quiet. The default. */
+[data-accent="royal"] {
+  --glitch-ca: var(--sky);
+  --glitch-cb: var(--royal);
+}
+/* aqua — aqua × royal. Soft, cool-on-cool. */
+[data-accent="aqua"] {
+  --glitch-ca: var(--aqua);
+  --glitch-cb: var(--royal);
+}

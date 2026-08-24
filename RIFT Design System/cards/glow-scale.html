@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x140" name="Glow primitives" subtitle="ice · royal · ok · warn · bad" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 28px 24px; }
+    .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    .cell { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .d { width: 18px; height: 18px; border-radius: 50%; }
+    .tok { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell"><span class="d" style="background: var(--ice); box-shadow: var(--glow-ice)"></span><span class="tok">glow-ice</span></div>
+    <div class="cell"><span class="d" style="background: var(--royal); box-shadow: var(--glow-royal)"></span><span class="tok">glow-royal</span></div>
+    <div class="cell"><span class="d" style="background: var(--ok); box-shadow: var(--glow-ok)"></span><span class="tok">glow-ok</span></div>
+    <div class="cell"><span class="d" style="background: var(--warn); box-shadow: var(--glow-warn)"></span><span class="tok">glow-warn</span></div>
+    <div class="cell"><span class="d" style="background: var(--bad); box-shadow: var(--glow-bad)"></span><span class="tok">glow-bad</span></div>
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Spacing scale" subtitle="4px grid · sp-1 → sp-20" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 16px 20px; }
+    .row { display: flex; flex-direction: column; gap: 6px; }
+    .step { display: grid; grid-template-columns: 60px 60px 1fr; align-items: center; gap: 10px; }
+    .tok { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.08em; }
+    .val { font-family: var(--font-mono); font-size: 10px; color: var(--ink-2); }
+    .bar { height: 8px; background: linear-gradient(90deg, var(--royal), var(--cobalt)); border-radius: 2px; box-shadow: 0 0 6px rgba(92,123,255,0.4); }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="step"><span class="tok">--sp-1</span><span class="val">4</span><span class="bar" style="width: 4px"></span></div>
+    <div class="step"><span class="tok">--sp-2</span><span class="val">8</span><span class="bar" style="width: 8px"></span></div>
+    <div class="step"><span class="tok">--sp-3</span><span class="val">12</span><span class="bar" style="width: 12px"></span></div>
+    <div class="step"><span class="tok">--sp-4</span><span class="val">16</span><span class="bar" style="width: 16px"></span></div>
+    <div class="step"><span class="tok">--sp-5</span><span class="val">20</span><span class="bar" style="width: 20px"></span></div>
+    <div class="step"><span class="tok">--sp-6</span><span class="val">24</span><span class="bar" style="width: 24px"></span></div>
+    <div class="step"><span class="tok">--sp-8</span><span class="val">32</span><span class="bar" style="width: 32px"></span></div>
+    <div class="step"><span class="tok">--sp-10</span><span class="val">40</span><span class="bar" style="width: 40px"></span></div>
+    <div class="step"><span class="tok">--sp-12</span><span class="val">48</span><span class="bar" style="width: 48px"></span></div>
+    <div class="step"><span class="tok">--sp-16</span><span class="val">64</span><span class="bar" style="width: 64px"></span></div>
+    <div class="step"><span class="tok">--sp-20</span><span class="val">80</span><span class="bar" style="width: 80px"></span></div>
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

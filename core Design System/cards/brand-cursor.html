@@ -1,0 +1,20 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Cursor + ornament" subtitle="crosshair cursor + unicode block ornaments" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px; background: var(--paper); font-family: var(--font-ui-sans); font-size: 11px; color: var(--text-muted); }
+  .row { display: flex; gap: 32px; align-items: center; }
+  .crs { width: 48px; height: 48px; border: 1px solid var(--ink); background: var(--paper-stained); padding: 12px; }
+  .orn { font-family: var(--font-pixel-mono); font-size: 28px; color: var(--ink); letter-spacing: 0.1em; line-height: 1.2; }
+  .lab { font-family: var(--font-pixel-mono); font-size: 11px; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.05em; }
+  .col { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head><body>
+<div class="row">
+  <div class="col"><img class="crs" src="../assets/cursor-crosshair.svg"><div class="lab">cursor-crosshair.svg</div></div>
+  <div class="col">
+    <div class="orn">░ ▒ ▓ █ ◇ ◊ ◯ ◆ ☉ ♁</div>
+    <div class="lab">approved unicode ornaments · NO emoji</div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="小红书图文" description="1242×1656 多页卡片：封面 + 内容页 + 结尾页，改文字即出图" -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>body{margin:0;background:#D6DFE1}</style>
+</helmet>
+<div style="display:flex;flex-direction:column;align-items:center;gap:36px;padding:40px 0;font-family:"Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.CoverType" variant="{{ variant }}" kicker="AI NEWS" title="这周值得装的四个工具" subtitle="都自己跑过，附踩坑。" tags="{{ coverTags }}" aside="装完当晚就删了仨" issue="卷十二 · 〇一 / 〇六" hint-size="1242px,1656px"></x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Page" variant="{{ variant }}" index="{{ n2 }}" total="{{ total }}" spine="{{ spine }}" footer="{{ footer }}" hint-size="1242px,1656px">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n1 }}" hint-size="100%,120px">四个里只有<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Emphasis" style="display:inline" hint-size="2em,1em">一个</x-import>留下来</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Lede" hint-size="100%,90px">装完第二天就删了三个，剩下这个用到现在。</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Body" hint-size="100%,140px">判断标准很简单：一周之后我还会主动打开它吗。这一轮里只有一个通过，其余三个都停在<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Marker" style="display:inline" hint-size="2em,1em">“看着不错”</x-import>这一步。</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Callout" kind="warn" title="先说清楚" hint-size="100%,160px">全部在 macOS 上测的，Windows 的表现可能不一样。</x-import>
+</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Page" variant="{{ variant }}" index="{{ n3 }}" total="{{ total }}" spine="{{ spine }}" footer="{{ footer }}" hint-size="1242px,1656px">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n2 }}" hint-size="100%,90px">怎么挑的</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.StepList" steps="{{ steps }}" hint-size="100%,600px"></x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.MarginNote" hint-size="360px,100px">卸载原因那张便签我还留着</x-import>
+</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Page" variant="{{ variant }}" index="{{ n4 }}" total="{{ total }}" spine="{{ spine }}" footer="{{ footer }}" hint-size="1242px,1656px">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n2 }}" hint-size="100%,90px">横向对比</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.CompareTable" columns="{{ cols }}" rows="{{ rows }}" highlight="{{ n2 }}" caption="四列是卡片页的上限，再多就该写成公众号长文。" hint-size="100%,520px"></x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Quote" cite="自己" hint-size="100%,220px">工具不是越多越好，是越少越好。</x-import>
+</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Page" variant="{{ variant }}" index="{{ n5 }}" total="{{ total }}" spine="{{ spine }}" footer="{{ footer }}" hint-size="1242px,1656px">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n2 }}" hint-size="100%,90px">截图与出处</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Figure" ratio="16 / 10" index="{{ n1 }}" caption="设置面板在这里，第一次装完记得先跑一次 doctor。" placeholder="拖入截图" hint-size="100%,700px"></x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.MarginNote" tone="quiet" hint-size="360px,100px">截图是八月的版本，界面不一样别慌</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.ReferenceList" items="{{ refs }}" hint-size="100%,260px"></x-import>
+</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.EndCard" variant="{{ variant }}" headline="下期讲怎么让它自己写测试" lines="{{ endLines }}" note="二〇二六年八月 · 〇六 / 〇六" hint-size="1242px,1656px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1242,&quot;height&quot;:1656},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;signal&quot;,&quot;lab&quot;,&quot;studio&quot;,&quot;special&quot;],&quot;default&quot;:&quot;signal&quot;,&quot;tsType&quot;:&quot;\&quot;signal\&quot;|\&quot;lab\&quot;|\&quot;studio\&quot;|\&quot;special\&quot;&quot;,&quot;section&quot;:&quot;YORU&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const K = window.YORUContentDesignSystem_a0b73e || {};
+    const v = this.props.variant ?? "signal";
+    const total = 6;
+    return {
+      variant: v, total, spine: "二〇二六年八月 · 卷十二", n1: 1, n2: 2, n3: 3, n4: 4, n5: 5, true: true,
+      coverTags: ["实测", "工具"],
+      endLines: ["工具都在评论区", "有问题直接问，我都看"],
+      steps: [
+        { title: "先装上，别看介绍", body: "介绍写得好不代表能用。装完直接丢一个真实任务进去。" },
+        { title: "一周后再回来看", body: "还会主动打开的才算留下来。" },
+        { title: "记下卸载原因", body: "下次遇到同类工具能省半天。" }
+      ],
+      cols: ["", "A 工具", "B 工具", "留下的那个"],
+      rows: [["上手", "快", "慢", "中"], ["长任务", "断", "断", "稳"], ["价格", "订阅", "订阅", "按量"]],
+      refs: [
+        { title: "官方文档", source: "Anthropic", url: "docs.anthropic.com/claude-code" },
+        { title: "我的完整测试记录", source: "公众号", url: "见文末链接" }
+      ],
+      footer: K.PageFooter ? React.createElement(K.PageFooter, { note: "2026.08" }) : null
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>A · Newsreader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Archivo:wght@400;500;600&family=Courier+Prime:wght@400;700&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAF6EC;--paper-2:#F2ECDE;--ink:#1E1B16;--ink-2:#4A443A;--ink-3:#8A8274;--rule:#D8D0BE;--accent:#B0402C;--serif:"Newsreader",serif;--sans:"Archivo",sans-serif;--mono:"Courier Prime",monospace}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+.page{width:880px;margin:0 auto;padding:44px 56px 72px}
+.masthead{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:10px}
+.wordmark{font-family:var(--sans);font-weight:600;font-size:22px;letter-spacing:.34em;text-transform:uppercase}
+.masthead nav{display:flex;gap:22px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.runner{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);padding:7px 0 0;text-transform:uppercase}
+.kicker{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-top:56px}
+h1{font-family:var(--serif);font-weight:300;font-size:76px;line-height:.98;letter-spacing:-.022em;margin-top:16px;max-width:13ch}
+.standfirst{font-size:21px;line-height:1.5;color:var(--ink-2);font-style:italic;font-weight:300;max-width:46ch;margin-top:22px}
+.meta{display:flex;gap:34px;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:30px;padding-top:12px;border-top:1px solid var(--rule)}
+.meta b{display:block;font-weight:500;color:var(--ink);letter-spacing:.06em;margin-top:5px;text-transform:none;font-size:12.5px}
+figure{margin:44px 0 0}
+.frame{aspect-ratio:3/2;background:linear-gradient(150deg,#DED6C6,#CFC6B4 60%,#C4BAA6);position:relative}
+.frame::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(30,27,22,.10)}
+figcaption{display:flex;gap:12px;font-family:var(--sans);font-size:12px;line-height:1.5;color:var(--ink-2);margin-top:11px;max-width:62ch}
+figcaption span{font-family:var(--mono);color:var(--accent);flex:none}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:46px}
+p{font-size:17px;line-height:1.62;color:var(--ink-2)}
+p+p{margin-top:1em;text-indent:1.4em}
+.drop::first-letter{float:left;font-size:62px;line-height:.82;padding:4px 9px 0 0;color:var(--ink);font-weight:400}
+blockquote{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:22px 0;margin:38px 0}
+blockquote p{font-family:var(--serif);font-size:30px;line-height:1.25;color:var(--ink);font-weight:300;text-indent:0}
+blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-top:14px}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:#20211C;padding:9px 9px 4px;margin-top:16px}
+.strip div{aspect-ratio:1;background:#6E6656;position:relative}
+.strip div:nth-child(2){background:#7C7462}.strip div:nth-child(3){background:#615A4C}.strip div:nth-child(4){background:#857C69}
+.strip .lab{grid-column:1/-1;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:#B3A98F;aspect-ratio:auto;background:none;padding:4px 0 2px}
+.stamp{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent);padding:3px 7px;display:inline-block;transform:rotate(-1.5deg);opacity:.85}
+.cjk{font-family:"Noto Serif SC",var(--serif);font-weight:300}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:54px;padding-top:12px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.pagenum{font-family:var(--serif);font-size:26px;letter-spacing:0;color:var(--ink);text-transform:none}
+</style></head><body>
+<div class="page">
+<header class="masthead"><div class="wordmark">Paper</div><nav><a>Essays</a><a>Portfolio</a><a>Archive</a><a>Colophon</a></nav></header>
+<div class="runner"><span>Issue Nº 04 — Northern Light</span><span>Field Notes</span></div>
+<div class="kicker">Photo Essay</div>
+<h1>The Slow Return of Winter Light</h1>
+<p class="standfirst">Four months on the Baltic coast, photographed on expired film and printed the following spring.</p>
+<div class="meta"><div>Words<b>Ana Rehn</b></div><div>Photographs<b>M. Sørensen</b></div><div>Published<b>March 2026</b></div><div>Reading<b>12 min</b></div></div>
+<figure><div class="frame"></div><figcaption><span>Fig. 01</span>Låtefossen at first light, 06:12. The exposure ran long by a full stop; the fog did the rest.</figcaption></figure>
+<div class="cols">
+<div><p class="drop">The road north empties in November. What remains is a particular quality of light that arrives late, stays low, and leaves early — an hour, then two, then a whole afternoon of it by February.</p><p>We kept a notebook of the returns. Sunrise times, film stock, the temperature at the moment of exposure. The record is unremarkable on its own and becomes something else entirely when read in sequence.</p><p class="cjk" style="margin-top:1.2em;text-indent:0;font-size:15.5px;line-height:1.85">光线回来的那几周，我们几乎不说话，只记录时间和温度。</p></div>
+<div><blockquote><p>You cannot photograph the return of the light. You can only photograph the things it lands on.</p><cite>— M. Sørensen, interview, 2025</cite></blockquote><div class="strip"><div></div><div></div><div></div><div></div><div class="lab">36 · KODAK 400TX · FEB 1996</div></div><div style="margin-top:18px"><span class="stamp">14 · 02 · 2026</span></div></div>
+</div>
+<div class="foot"><span>Paper — Issue Nº 04</span><span>The Slow Return of Winter Light</span><span class="pagemum pagenum">37</span></div>
+</div></body></html>

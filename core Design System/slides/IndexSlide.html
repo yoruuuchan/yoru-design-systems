@@ -1,0 +1,65 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="index slide" subtitle="table of contents — chapter list with pixel numerals" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;height:100%}
+  .slide{
+    width:1280px; height:720px; position:relative; overflow:hidden;
+    background-color: var(--paper);
+    color: var(--ink);
+    padding: 64px 96px;
+    box-sizing: border-box;
+  }
+  .slide::before{
+    content:""; position:absolute; inset:0;
+    background-image: url("../assets/grain.svg");
+    background-size: 300px 300px; opacity: .14; mix-blend-mode: multiply; pointer-events: none;
+  }
+  header {
+    display:flex; align-items:baseline; justify-content:space-between;
+    border-bottom: 1px solid var(--ink); padding-bottom: 14px;
+  }
+  header h1 {
+    font-family: var(--font-pixel-display); font-size: 72px; margin: 0; line-height: 1;
+  }
+  header .stamp {
+    font-family: var(--font-pixel-mono); font-size: 16px; color: var(--text-muted);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  ol {
+    list-style: none; margin: 40px 0 0; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px 56px;
+  }
+  ol li {
+    display: grid; grid-template-columns: 80px 1fr auto; gap: 18px;
+    align-items: baseline; border-bottom: 1px dashed var(--ink-muted); padding-bottom: 14px;
+  }
+  ol li .n {
+    font-family: var(--font-pixel-display); font-size: 56px; line-height: 1;
+    color: var(--bondi-500); text-shadow: 2px 2px 0 var(--chrome-100);
+  }
+  ol li .t {
+    font-family: var(--font-body-serif); font-size: 28px; line-height: 1.15;
+  }
+  ol li .pg {
+    font-family: var(--font-pixel-mono); font-size: 16px; color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+</style></head>
+<body>
+<div class="slide">
+  <header>
+    <h1>contents</h1>
+    <div class="stamp">core / 06.23.2026</div>
+  </header>
+  <ol>
+    <li><span class="n">01</span><span class="t">overture · the archive</span><span class="pg">p. 02</span></li>
+    <li><span class="n">02</span><span class="t">poolcore</span><span class="pg">p. 08</span></li>
+    <li><span class="n">03</span><span class="t">backrooms · field notes</span><span class="pg">p. 14</span></li>
+    <li><span class="n">04</span><span class="t">dreamcore</span><span class="pg">p. 22</span></li>
+    <li><span class="n">05</span><span class="t">on keeping a record</span><span class="pg">p. 28</span></li>
+    <li><span class="n">06</span><span class="t">colophon · guestbook</span><span class="pg">p. 32</span></li>
+  </ol>
+</div>
+</body></html>

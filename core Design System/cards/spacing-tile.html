@@ -1,0 +1,20 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Tile grid" subtitle="32px cells + 2px grout — used as layout AND background" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--paper-grout); }
+  .grid { display: grid; grid-template-columns: repeat(20, 32px); grid-auto-rows: 32px; gap: 2px; width: max-content; }
+  .grid > div { background: var(--tile-300); }
+  .grid > div.dark { background: var(--tile-500); }
+  .grid > div.warm { background: var(--sodium-300); }
+  .grid > div.peach { background: var(--peach-300); }
+  .lab { font-family: var(--font-pixel-mono); font-size: 11px; color: var(--ink); margin-top: 8px; letter-spacing: 0.08em; }
+</style>
+</head><body>
+<div class="grid">
+  <div></div><div></div><div class="dark"></div><div></div><div></div><div class="warm"></div><div></div><div></div><div></div><div class="dark"></div><div></div><div></div><div></div><div class="peach"></div><div></div><div></div><div class="dark"></div><div></div><div></div><div></div>
+  <div></div><div class="warm"></div><div></div><div></div><div></div><div></div><div class="dark"></div><div></div><div></div><div></div><div></div><div class="warm"></div><div></div><div></div><div></div><div></div><div></div><div class="dark"></div><div></div><div></div>
+  <div class="dark"></div><div></div><div></div><div></div><div class="peach"></div><div></div><div></div><div></div><div class="dark"></div><div></div><div></div><div></div><div></div><div class="dark"></div><div></div><div></div><div></div><div></div><div class="warm"></div><div></div>
+</div>
+<div class="lab">--tile-size 32px · --grout-size 2px</div>
+</body></html>

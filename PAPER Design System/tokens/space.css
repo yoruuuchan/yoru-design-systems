@@ -1,0 +1,37 @@
+/* PAPER — space, grid, motion. 4px base unit, 8px baseline, 24-column page. */
+:root{
+  --space-1:4px;   --space-2:8px;   --space-3:12px;  --space-4:16px;
+  --space-5:24px;  --space-6:32px;  --space-7:48px;  --space-8:64px;
+  --space-9:96px;  --space-10:128px; --space-11:192px; --space-12:256px;
+
+  --baseline:8px;
+
+  /* GRID — 24 columns lets a page split 2/3/4/6/8 and still align */
+  --grid-columns:24; /* @kind other */
+  --grid-gutter:20px;
+  --grid-gutter-tight:12px;
+  --page-margin:64px;
+  --page-margin-wide:96px;
+  --page-margin-mobile:20px;
+  --page-max:1280px;
+  --page-max-text:720px;
+  --spread-max:1680px;
+
+  /* RADII — this system is square. 2px exists only for tape and stamps. */
+  --radius-0:0;
+  --radius-1:2px;
+  --radius-round:999px;
+
+  --border-hair:1px;
+  --border-rule:2px;
+  --border-heavy:3px;
+
+  /* MOTION — paper does not bounce. Fades, and short travel. */
+  --ease-paper:cubic-bezier(.2,.6,.2,1); /* @kind other */
+  --ease-out:cubic-bezier(.16,1,.3,1); /* @kind other */
+  --dur-1:120ms; /* @kind other */
+  --dur-2:220ms; /* @kind other */
+  --dur-3:420ms; /* @kind other */
+  --dur-4:800ms; /* @kind other */
+}
+@media (max-width:900px){:root{--page-margin:24px;--page-margin-wide:24px;--grid-gutter:14px}}

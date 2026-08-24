@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>方向 Y — 竖排书封</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#EEF1F4;font-family:var(--font-body);display:flex;flex-direction:column;align-items:center;padding:24px;gap:12px}
+.stage{position:relative;width:810px;height:356px}
+.rack{position:absolute;top:0;left:0;width:3766px;display:flex;gap:20px;transform:scale(.215);transform-origin:top left}
+.caps{display:flex;gap:20px;width:810px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8A94A2}
+.caps span{flex:1}
+.pg{width:1242px;height:1656px;background:#fff;position:relative;overflow:hidden}
+.rail{position:absolute;top:0;left:0;right:0;height:100px;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:30px;padding:0 96px;border-bottom:3px solid var(--ink-1);font-family:var(--font-mono);font-size:26px;letter-spacing:.14em;color:var(--ink-4);z-index:3}
+.wm{font-family:var(--font-title);font-weight:900;letter-spacing:.26em;color:var(--yoru-blue);font-size:30px}
+.rail .col{color:var(--accent);font-weight:600}
+.rail .no{justify-self:end}
+/* 竖排版心：标题从右起排，副题在其左，中间一条栏线 —— 竖排本身的行界，不是装饰条 */
+.vbody{position:absolute;top:100px;right:0;bottom:0;left:0;display:flex;flex-direction:row-reverse;align-items:flex-start;padding:120px 96px 0}
+.vt{writing-mode:vertical-rl;text-orientation:mixed;font-family:var(--font-title);font-weight:900;font-size:140px;line-height:1.34;letter-spacing:.04em;color:var(--ink-1);height:1180px;margin:0}
+.em{text-emphasis:filled dot var(--ink-1);text-emphasis-position:over right;-webkit-text-emphasis:filled dot var(--ink-1);-webkit-text-emphasis-position:over right}
+.vsub{writing-mode:vertical-rl;text-orientation:mixed;font-weight:300;font-size:40px;line-height:2.1;letter-spacing:.08em;color:var(--ink-3);height:820px;margin:0 64px 0 0;padding-right:56px;border-right:2px solid var(--line-2)}
+/* 左下角一块 accent 实底，压住整个版面的重心 */
+.blk{position:absolute;left:96px;bottom:88px;background:var(--accent);color:#fff;padding:26px 34px;display:flex;flex-direction:column;gap:10px}
+.blk b{font-family:var(--font-mono);font-size:30px;letter-spacing:.2em;font-weight:700}
+.blk span{font-family:var(--font-mono);font-size:24px;letter-spacing:.12em;opacity:.82}
+.tags{position:absolute;left:96px;bottom:300px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.tag{font-family:var(--font-ui);font-weight:500;font-size:26px;letter-spacing:.05em;padding:10px 22px;color:var(--accent-ink);border:2px solid var(--accent-hair)}
+.hand{position:absolute;left:96px;bottom:470px;font-size:30px;color:var(--ink-4);transform:rotate(-1.4deg);border-bottom:2px solid var(--line-2);padding-bottom:6px}
+/* 结尾页：印章 */
+.seal{position:absolute;right:150px;top:420px;width:330px;height:330px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+.seal span{font-family:var(--font-title);font-weight:900;font-size:210px;line-height:1;color:#fff}
+.endv{position:absolute;top:100px;right:0;bottom:0;left:0;padding:150px 96px 0;display:flex;flex-direction:row-reverse}
+.endv h2{writing-mode:vertical-rl;text-orientation:mixed;margin:0 540px 0 0;font-family:var(--font-title);font-weight:900;font-size:104px;line-height:1.4;letter-spacing:.04em;color:var(--ink-1);height:900px}
+.endlines{position:absolute;left:96px;bottom:300px;display:flex;flex-direction:column;gap:26px;max-width:560px}
+.endlines li{display:flex;gap:22px;font-size:38px;line-height:1.6;color:var(--ink-3);list-style:none}
+.endlines i{color:var(--accent);font-style:normal}
+.foot{position:absolute;left:96px;right:96px;bottom:88px;display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--font-mono);font-size:26px;letter-spacing:.14em;color:var(--ink-5)}
+</style></head><body>
+<div class="stage"><div class="rack">
+
+<div class="pg" data-yoru="lab">
+  <div class="rail"><span class="wm">YORU</span><span class="col">LAB</span><span></span><span class="no">2026.08 · 01/06</span></div>
+  <div class="vbody">
+    <h1 class="vt">把一条提示词拆成<span class="em">三层</span>结构</h1>
+    <p class="vsub">改需求就崩，是因为触发、步骤和兜底写在了同一段话里。</p>
+  </div>
+  <div class="hand">第四十遍才定下来</div>
+  <div class="tags"><span class="tag">工作流</span><span class="tag">Claude Code</span></div>
+  <div class="blk"><b>VIBE CODING</b><span>04 · 2026.08</span></div>
+</div>
+
+<div class="pg" data-yoru="studio">
+  <div class="rail"><span class="wm">YORU</span><span class="col">STUDIO</span><span></span><span class="no">2026.08 · 01/04</span></div>
+  <div class="vbody">
+    <h1 class="vt">排版换宋体之后<span class="em">整套</span>都变了</h1>
+    <p class="vsub">卡片终于像一本刊物，而不像一张海报。</p>
+  </div>
+  <div class="hand">色板也跟着重调了</div>
+  <div class="tags"><span class="tag">排版</span><span class="tag">设计系统</span></div>
+  <div class="blk"><b>PROJECT LOG</b><span>09 · 2026.08</span></div>
+</div>
+
+<div class="pg" data-yoru="lab">
+  <div class="rail"><span class="wm">YORU</span><span class="col">LAB</span><span></span><span class="no">2026.08 · 06/06</span></div>
+  <div class="endv"><h2>看完顺手点个收藏</h2></div>
+  <div class="seal"><span>完</span></div>
+  <ul class="endlines">
+    <li><i>—</i><span>三层结构的模板放在正文第四页</span></li>
+    <li><i>—</i><span>兜底那段可以直接抄走</span></li>
+  </ul>
+  <div class="foot"><span style="font-family:var(--font-title);font-weight:900;letter-spacing:.24em;color:var(--yoru-blue);font-size:30px">YORU</span><span>@yoru.hq</span></div>
+</div>
+
+</div></div>
+<div class="caps"><span>封面 · lab · 竖排</span><span>封面 · studio · 竖排</span><span>结尾页 · 印章</span></div>
+</body></html>

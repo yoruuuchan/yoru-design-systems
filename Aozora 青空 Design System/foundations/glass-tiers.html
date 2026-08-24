@@ -1,0 +1,33 @@
+<!-- @dsCard group="Spacing" viewport="700x260" name="Glass · three tiers" subtitle="Thin / Regular / Thick — always over color" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:24px;background:radial-gradient(at 20% 10%,#FFE34D 0%,transparent 40%),radial-gradient(at 80% 20%,#5FE3CC 0%,transparent 40%),radial-gradient(at 50% 80%,#66B7FF 0%,transparent 50%),#EAF5FF;">
+  <style>
+    .row { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; height:100%; }
+    .pane { border-radius:24px; padding:20px; display:flex; flex-direction:column;
+            justify-content:space-between; border:1px solid var(--glass-stroke);
+            box-shadow:var(--glass-edge), var(--shadow-md); }
+    .thin    { background:rgba(255,255,255,0.30); backdrop-filter:blur(12px) saturate(140%); -webkit-backdrop-filter:blur(12px) saturate(140%); }
+    .regular { background:rgba(255,255,255,0.48); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); }
+    .thick   { background:rgba(255,255,255,0.68); backdrop-filter:blur(40px) saturate(180%); -webkit-backdrop-filter:blur(40px) saturate(180%); }
+    .pane b { font-family:var(--font-display); font-weight:800; font-size:24px;
+              letter-spacing:-0.02em; color:var(--neutral-900); }
+    .pane small { font-family:var(--font-mono); font-size:10px;
+                  color:var(--neutral-700); display:block; line-height:1.6; }
+    .pane small em { color:var(--neutral-500); font-style:normal; }
+  </style>
+  <div class="row">
+    <div class="pane thin">
+      <b>Thin</b>
+      <small><em>--glass-bg-thin</em><br>0.30 white · 12px blur<br>nav, top bar, overlay tint</small>
+    </div>
+    <div class="pane regular">
+      <b>Regular</b>
+      <small><em>--glass-bg-regular</em><br>0.48 white · 24px blur<br>card, sidebar, default</small>
+    </div>
+    <div class="pane thick">
+      <b>Thick</b>
+      <small><em>--glass-bg-thick</em><br>0.68 white · 40px blur<br>modal, sheet, focused surface</small>
+    </div>
+  </div>
+</body></html>

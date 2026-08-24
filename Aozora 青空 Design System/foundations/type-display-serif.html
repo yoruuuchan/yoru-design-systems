@@ -1,0 +1,35 @@
+<!-- @dsCard group="Type" viewport="700x200" name="Editorial serif (alt)" subtitle="--font-display-serif — opt-in alternate for posters & activity pages" -->
+<!doctype html>
+<html><head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body style="margin:0;padding:24px;background:var(--neutral-0);">
+  <style>
+    .wrap { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:center; }
+    .panel { padding:24px 26px; border-radius:18px; background:var(--neutral-50); }
+    .panel .eyebrow { font-family:var(--font-mono); font-size:10px;
+                      letter-spacing:0.22em; text-transform:uppercase;
+                      color:var(--text-muted); margin-bottom:10px; }
+    .panel h1 { margin:0; line-height:1.0; }
+    .latin { font-family:var(--font-display-serif); font-weight:400;
+             font-variation-settings:'opsz' 144; letter-spacing:-0.015em;
+             color:var(--neutral-900); }
+    .cjk { font-family:'Noto Serif JP','Songti SC',serif; font-weight:700;
+           letter-spacing:0.04em; color:var(--neutral-900); }
+    .caption { margin-top:14px; font-family:'Space Grotesk',Inter,sans-serif;
+               font-size:11px; letter-spacing:0.16em; color:var(--text-muted); }
+  </style>
+  <div class="wrap">
+    <div class="panel">
+      <div class="eyebrow">Roman · Fraunces 400</div>
+      <h1 class="latin" style="font-size:56px">Aozora<span style="color:var(--blue-600)">.</span></h1>
+      <div class="caption">SUMMER · 2026</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">CJK · Noto Serif JP 700</div>
+      <h1 class="cjk" style="font-size:52px">蒼い空、<br>冷たい一杯。</h1>
+      <div class="caption">夏キャンペーン</div>
+    </div>
+  </div>
+</body></html>

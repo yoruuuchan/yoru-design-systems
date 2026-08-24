@@ -1,0 +1,14 @@
+/* Aozora 青空 Design System — global entry
+   Consumers link this single file. Keep it as @import lines only. */
+
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/radius.css";
+@import "./tokens/shadow.css";
+@import "./tokens/glass.css";
+@import "./tokens/gradients.css";
+@import "./tokens/motion.css";
+@import "./tokens/semantic.css";
+@import "./tokens/reset.css";

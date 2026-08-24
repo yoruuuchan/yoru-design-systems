@@ -1,0 +1,18 @@
+<!-- @dsCard group="Effects" viewport="700x180" name="Drop shadows" subtitle="offset, no blur — like a clipping mask" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--paper); display: flex; gap: 24px; font-family: var(--font-ui-sans); font-size: 11px; }
+  .box { width: 140px; height: 88px; background: var(--paper-stained); border: 1px solid var(--ink);
+         display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
+  .card { box-shadow: var(--shadow-card); }
+  .win  { box-shadow: var(--shadow-window); }
+  .winlg { box-shadow: var(--shadow-window-lg); background: var(--tile-100); }
+  .lab { font-family: var(--font-pixel-mono); font-size: 10px; color: var(--text-muted); margin-top: 10px; letter-spacing: 0.05em; text-align: center; }
+  .col { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head><body>
+<div class="col"><div class="box card">--shadow-card</div><div class="lab">2px 2px 0</div></div>
+<div class="col"><div class="box win">--shadow-window</div><div class="lab">3+6 stacked</div></div>
+<div class="col"><div class="box winlg">--shadow-window-lg</div><div class="lab">4+10 deep</div></div>
+</body></html>

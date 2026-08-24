@@ -1,0 +1,17 @@
+/* Motion — easing curves, durations, glow primitives. */
+
+:root {
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-rise: cubic-bezier(0.16, 1, 0.30, 1); /* @kind other */
+
+  --dur-fast: 140ms; /* @kind other */
+  --dur-base: 320ms; /* @kind other */
+  --dur-slow: 720ms; /* @kind other */
+
+  /* Glow primitives — used by .rift-dot and accent halos. */
+  --glow-ice:   0 0 12px rgba(143, 210, 245, 0.50);
+  --glow-royal: 0 0 16px rgba( 92, 123, 255, 0.50);
+  --glow-ok:    0 0  8px rgba( 77, 203, 151, 0.50);
+  --glow-warn:  0 0  8px rgba(236, 184,  95, 0.50);
+  --glow-bad:   0 0  8px rgba(255, 116, 128, 0.50);
+}

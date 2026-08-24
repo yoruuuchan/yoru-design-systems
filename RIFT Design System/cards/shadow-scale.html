@@ -1,0 +1,52 @@
+<!-- @dsCard group="Spacing" viewport="700x260" name="Shadows" subtitle="sm · md · lg · xl · glow — layered contact + ambient" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* drop the grid background — shadows need a clean field to read */
+    body { background: var(--canvas) fixed; padding: 48px 28px 32px; }
+    .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
+    .cell { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .sw {
+      width: 100px; height: 72px; border-radius: var(--r-md);
+      background: var(--bg-elevated);
+      border: 1px solid var(--line-2);
+    }
+    [data-theme="light"] .sw { background: #FFFFFF; border-color: rgba(20,45,95,0.10); }
+    .tok { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--ink-1); font-weight: 600; }
+    .meta { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.06em; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell">
+      <div class="sw" style="box-shadow: var(--shadow-sm)"></div>
+      <span class="tok">shadow-sm</span>
+      <span class="meta">contact only</span>
+    </div>
+    <div class="cell">
+      <div class="sw" style="box-shadow: var(--shadow-md)"></div>
+      <span class="tok">shadow-md</span>
+      <span class="meta">hover / dropdown</span>
+    </div>
+    <div class="cell">
+      <div class="sw" style="box-shadow: var(--shadow-lg)"></div>
+      <span class="tok">shadow-lg</span>
+      <span class="meta">card lift / popover</span>
+    </div>
+    <div class="cell">
+      <div class="sw" style="box-shadow: var(--shadow-xl)"></div>
+      <span class="tok">shadow-xl</span>
+      <span class="meta">modal / dialog</span>
+    </div>
+    <div class="cell">
+      <div class="sw" style="background: linear-gradient(135deg, var(--royal), var(--cobalt)); border-color: transparent; box-shadow: var(--shadow-glow)"></div>
+      <span class="tok">shadow-glow</span>
+      <span class="meta">royal cast</span>
+    </div>
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

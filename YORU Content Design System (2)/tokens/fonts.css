@@ -1,0 +1,102 @@
+/* ---------------------------------------------------------------------------
+   FONTS
+
+   Latin faces are self-hosted; the CJK faces come from the reader's system.
+   Self-hosted binaries live in assets/fonts/; the url() paths below are relative
+   to THIS file (tokens/fonts.css), so they resolve wherever styles.css is
+   imported from.
+
+     Inter 4.1               SIL OFL 1.1 — assets/fonts/inter/LICENSE.txt
+     JetBrains Mono 2.304    SIL OFL 1.1 — assets/fonts/jetbrains-mono/OFL.txt
+     Source Han Sans SC     SIL OFL 1.1 — user-provided subsets, fonts/ (300/400/500/700)
+     Source Han Serif SC    SIL OFL 1.1 — user-provided subsets, fonts/ (400/500/700/900)
+
+   Inter ships as the variable font only: one file covers weight 100-900 and
+   carries the opsz optical-size axis, applied automatically by the browser.
+   JetBrains Mono has no upstream variable woff2, so it ships static at the four
+   weights the system declares (400/500/600/700) plus a 400 italic.
+
+   CJK — SOURCE HAN.
+   Both CJK families are self-hosted subsets in fonts/ (user-provided woff2,
+   weights: sans 300/400/500/700, serif 400/500/700/900 — serif has no 600;
+   a 600 request resolves to 700 per css font-matching). Each rule keeps
+   local() first so an installed copy skips the download entirely.
+
+   Why not slice via Google Fonts: it declares ~100 unicode-range @font-face
+   rules per family — at 4 sans + 3 serif weights ~700 FontFace objects — and
+   every DOM capture inlines all of them. Image-card export goes from instant to
+   timing out. Self-hosted subsets bypass that entirely.
+
+   FALLBACK NOTES:
+
+   CJK ASKS THE OS FOR ITS OWN FACES.
+   Every CJK stack in this file names concrete families ("PingFang SC",
+   "Songti SC", ...) rather than just the generic `system-ui` / `ui-serif`
+   keywords. Earlier revisions used only the keywords on the (documented)
+   assumption that they resolved to the same platform faces. In practice Chrome
+   on macOS splits a CJK run between multiple fallback families per code point
+   when the stack starts with `ui-serif` — titles came out half Songti, half
+   Heiti in the same headline. Naming the family fixes the split without
+   loading anything: each family below has a `local()`-only `@font-face`
+   declaration further down, so the token registers as "pointing at a real
+   family" without any network request.
+
+   PingFang SC is a modern 黑体 with generous counters and even colour —
+   readable at every size in the system. Songti SC is a proper 印刷宋体 with real
+   stroke contrast, which is what the display face is here for. On Windows the
+   stacks resolve to Microsoft YaHei / SimSun; the fallback @font-face rules
+   further down keep the family name legal on both platforms.
+
+   WeChat strips <link> and never loads webfonts, so the article layout is
+   designed against the system fallback regardless — the Source Han upgrade only
+   improves in-browser and image-card renders.
+--------------------------------------------------------------------------- */
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("../assets/fonts/inter/InterVariable.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:italic;font-weight:100 900;font-display:swap;src:url("../assets/fonts/inter/InterVariable-Italic.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:italic;font-weight:400;font-display:swap;src:url("../assets/fonts/jetbrains-mono/JetBrainsMono-Italic.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:500;font-display:swap;src:url("../assets/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:600;font-display:swap;src:url("../assets/fonts/jetbrains-mono/JetBrainsMono-SemiBold.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2") format("woff2")}
+/* --- Source Han — self-hosted subsets (fonts/) ----------------------------- */
+@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:300;font-display:swap;src:local("Source Han Sans SC Light"),local("SourceHanSansSC-Light"),url("../fonts/SourceHanSansSC-Light.woff2") format("woff2")}
+@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:400;font-display:swap;src:local("Source Han Sans SC"),local("SourceHanSansSC-Regular"),url("../fonts/SourceHanSansSC-Regular.woff2") format("woff2")}
+@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:500;font-display:swap;src:local("Source Han Sans SC Medium"),local("SourceHanSansSC-Medium"),url("../fonts/SourceHanSansSC-Medium.woff2") format("woff2")}
+@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:700;font-display:swap;src:local("Source Han Sans SC Bold"),local("SourceHanSansSC-Bold"),url("../fonts/SourceHanSansSC-Bold.woff2") format("woff2")}
+@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:400;font-display:swap;src:local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),url("../fonts/SourceHanSerifSC-Regular.woff2") format("woff2")}
+@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:500;font-display:swap;src:local("Source Han Serif SC Medium"),local("SourceHanSerifSC-Medium"),url("../fonts/SourceHanSerifSC-Medium.woff2") format("woff2")}
+@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:700;font-display:swap;src:local("Source Han Serif SC Bold"),local("SourceHanSerifSC-Bold"),url("../fonts/SourceHanSerifSC-Bold.woff2") format("woff2")}
+@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:900;font-display:swap;src:local("Source Han Serif SC Heavy"),local("SourceHanSerifSC-Heavy"),url("../fonts/SourceHanSerifSC-Heavy.woff2") format("woff2")}
+/* --- OS fallback aliases ---------------------------------------------------
+   These families sit AFTER the Source Han head in every stack. They exist as
+   local()-only aliases so Chrome resolves each name to a real installed face
+   (no ui-serif per-glyph splitting) without any network request. */
+@font-face{font-family:"Songti SC";font-style:normal;font-weight:400 900;src:local("Songti SC"),local("STSongti-SC-Black"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun")}
+@font-face{font-family:"PingFang SC";font-style:normal;font-weight:100 900;src:local("PingFang SC"),local("PingFangSC-Regular"),local("Hiragino Sans GB"),local("Microsoft YaHei")}
+@font-face{font-family:"Hiragino Sans GB";font-style:normal;font-weight:100 900;src:local("Hiragino Sans GB"),local("PingFang SC"),local("Microsoft YaHei")}
+@font-face{font-family:"Microsoft YaHei";font-style:normal;font-weight:100 900;src:local("Microsoft YaHei"),local("PingFang SC"),local("Hiragino Sans GB")}
+/* 仿宋 — 引言、书脊栏、提示词正文、页码的「抄写体」。仅本地：macOS STFangsong，
+   Windows FangSong；都没有时落到思源宋 subset，不另加载文件。 */
+@font-face{font-family:"STFangsong";font-style:normal;font-weight:400 700;src:local("STFangsong"),local("ST FangSong"),local("FangSong")}
+@font-face{font-family:"FangSong";font-style:normal;font-weight:400 700;src:local("FangSong"),local("FangSong_GB2312"),local("STFangsong")}
+:root{
+--font-serif-display:"Source Han Serif SC","Noto Serif SC","Songti SC","STSongti-SC-Black","STSong","SimSun",serif;
+--font-sans-cjk:"Source Han Sans SC","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+--font-mono:"JetBrains Mono","SF Mono",Menlo,Consolas,var(--font-sans-cjk);
+--font-fangsong:"STFangsong","FangSong","Source Han Serif SC","Noto Serif SC","Songti SC","SimSun",serif;
+--font-sans-latin:Inter,"Helvetica Neue",Arial,sans-serif;
+/* semantic */
+--font-title:var(--font-serif-display);
+/* Latin-first, CJK fallback: Inter renders the Latin run inside Chinese body
+   text (AI, Claude Code, v2.1), the CJK face picks up the Chinese.
+   NOTE --font-mono ends in the CJK stack, NOT in the generic `monospace`. Every
+   mono face here is Latin-only, so Chinese inside a label, a node meta line or a
+   code block has to fall somewhere; `monospace` would send it to the platform
+   monospace default — a 宋体 on macOS — sitting next to a JetBrains Mono Latin
+   run in the same line. Ending on the CJK stack puts that Chinese on 黑体, which
+   is what every mixed-script label in this system expects. */
+--font-body:Inter,var(--font-sans-cjk);
+--font-ui:var(--font-sans-latin),var(--font-sans-cjk);
+--font-code:var(--font-mono);
+--font-label:var(--font-mono);
+}

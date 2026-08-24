@@ -1,0 +1,41 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Glass stack" subtitle="3 elevations of translucent panel" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 24px;
+      background:
+        radial-gradient(80% 70% at 20% 30%, rgba(92,123,255,0.40), transparent 60%),
+        radial-gradient(60% 60% at 85% 80%, rgba(138, 216, 208, 0.28), transparent 60%),
+        var(--canvas) fixed; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .panel { padding: 18px; min-height: 130px; display: flex; flex-direction: column; gap: 6px; }
+    .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+      color: var(--ink-3); text-transform: uppercase; }
+    .title { font-family: var(--font-display); font-weight: 600; color: var(--ink-1); font-size: 18px; }
+    .body { color: var(--ink-2); font-size: 12px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="rift-glass-1 panel">
+      <span class="name">glass-1</span>
+      <span class="title">Subtle</span>
+      <span class="body">10px blur. The everyday surface — cards, list rows.</span>
+    </div>
+    <div class="rift-glass-2 panel">
+      <span class="name">glass-2</span>
+      <span class="title">Mid</span>
+      <span class="body">14px blur. Hero panels, toolbars, sticky bars.</span>
+    </div>
+    <div class="rift-glass-3 panel">
+      <span class="name">glass-3</span>
+      <span class="title">Strong</span>
+      <span class="body">18px blur. Modals and popovers that need separation.</span>
+    </div>
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Wordmark" subtitle="KUNLUN · 昆仑 · 主标识" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px 24px; background: var(--bg-void); display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden; }
+  body::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: var(--bg-scanlines); z-index: 1;
+  }
+  .row { display: flex; align-items: center; gap: 14px; position: relative; z-index: 2; }
+  .mark {
+    width: 36px; height: 36px;
+    background: var(--cyan-500); color: var(--bg-void);
+    clip-path: var(--clip-chamfer-all-md);
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-weight: 900; font-size: 18px;
+    box-shadow: var(--glow-cyan-md);
+  }
+  .word {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: 36px; letter-spacing: var(--tracking-widest);
+    color: var(--neutral-50); text-shadow: var(--text-glow-cyan);
+  }
+  .cjk {
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 18px; color: var(--cyan-300);
+    letter-spacing: 0.3em; margin-left: 4px;
+  }
+  .meta {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-tertiary);
+    letter-spacing: var(--tracking-wide); position: relative; z-index: 2;
+  }
+</style></head>
+<body>
+  <div class="row">
+    <div class="mark">K</div>
+    <div class="word">KUNLUN</div>
+    <div class="cjk">昆 仑</div>
+  </div>
+  <div class="meta">// CORE-9 · DESIGN SYSTEM · v0.1.0</div>
+</body></html>

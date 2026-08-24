@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" viewport="700x390" name="Page & PageFooter" subtitle="卡片画布：边距、栏目角标、页码、署名条" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>Page</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.YORUContentDesignSystem_a0b73e;
+
+const {Page,PageFooter,Heading,Body,Lede,Callout}=NS;
+function Mini({w=1242,h=1656,scale,label,children}){
+  return <div style={{display:"flex",flexDirection:"column",gap:7}}>
+    <div style={{width:w*scale,height:h*scale,overflow:"hidden",border:"1px solid var(--line-2)"}}>
+      <div style={{transform:"scale("+scale+")",transformOrigin:"top left"}}>{children}</div></div>
+    <span className="lbl">{label}</span></div>;
+}
+const s=0.185;
+function Demo(){return <div style={{display:"flex",gap:18,alignItems:"flex-start"}}>
+  <Mini scale={s} label='variant="signal" · tone="paper"'>
+    <Page variant="signal" kicker="AI NEWS" index={3} total={8} footer={<PageFooter note="2026.08"/>}>
+      <Heading level={1} mark>四个工具，只有一个留下来</Heading>
+      <Lede>装完第二天就删了三个，剩下这个用到现在。</Lede>
+      <Body>判断标准很简单：一周之后我还会主动打开它吗。这一轮里只有一个通过。</Body>
+      <Callout kind="warn" title="先说清楚">全部在 macOS 上测的，Windows 的表现可能不一样。</Callout>
+    </Page>
+  </Mini>
+  <Mini scale={s} label='variant="lab" · align="center"'>
+    <Page variant="lab" kicker="VIBE CODING" index={1} total={6} align="center" footer={<PageFooter/>}>
+      <Heading level={1}>先把 Skill 拆成三层</Heading>
+      <Lede>触发条件、执行步骤、失败兜底。缺一层，Agent 就开始自由发挥。</Lede>
+    </Page>
+  </Mini>
+  <div style={{flex:1,display:"flex",flexDirection:"column",gap:9,fontSize:11,color:"var(--ink-4)",lineHeight:1.7,paddingTop:4}}>
+    <div className="lbl" style={{color:"var(--ink-2)"}}>Page 负责什么</div>
+    <div>画布尺寸、左右 96 / 上下 104 的边距、栏目角标、页码、块间距。内容组件不再设置任何外边距。</div>
+    <div className="lbl" style={{color:"var(--ink-2)",marginTop:6}}>props</div>
+    <div style={{fontFamily:"var(--font-mono)",fontSize:10,color:"var(--ink-3)"}}>variant · size · kicker · index / total · tone · align · bleed · footer</div>
+  </div>
+</div>}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

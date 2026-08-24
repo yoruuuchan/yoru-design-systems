@@ -1,0 +1,41 @@
+/* reset.css — minimal page baseline so consumers' pages
+   open already inside the core aesthetic. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body-serif);
+  font-size:   var(--text-base);
+  line-height: var(--leading-body);
+  color:       var(--text-body);
+  background:  var(--surface-page);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--select-bg);
+  color:      var(--select-fg);
+}
+
+a {
+  color: var(--text-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a:visited { color: var(--accent-link-visited); }
+a:hover   { color: var(--text-link-hover); }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-pixel-display);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+img { max-width: 100%; display: block; }

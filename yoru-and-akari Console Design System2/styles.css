@@ -1,0 +1,5 @@
+/* yoru-and-akari Console — root stylesheet
+   Consumers: link this single file to get all design tokens,
+   font imports, theme definitions, and utility classes.
+   -------------------------------------------------------- */
+@import url("colors_and_type.css");

@@ -1,0 +1,93 @@
+/* Type scale — poster-grade contrast.
+   Display sizes go BIG (the brand lives on the headline). Body stays calm. */
+
+:root {
+  /* ── Font families. Latin first so kerning wins on mixed strings; CJK
+     fallbacks pick up Japanese and Chinese glyphs as needed. */
+  --font-sans:
+    "Inter",
+    "PingFang SC",
+    "Noto Sans JP",
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Microsoft YaHei",
+    system-ui,
+    -apple-system,
+    sans-serif;
+
+  /* Display stack — same families, used at headline sizes with tight
+     tracking and dense weight. */
+  --font-display:
+    "Inter",
+    "Noto Sans JP",
+    "PingFang SC",
+    "Hiragino Sans",
+    system-ui,
+    sans-serif;
+
+  /* Poster — for hero/marketing headlines. Tall condensed all-caps voice. */
+  --font-poster:
+    "Bebas Neue",
+    "Inter",
+    "Noto Sans JP",
+    sans-serif;
+
+  /* Digital wordmark — used in product chrome where Inter feels too neutral. */
+  --font-wordmark:
+    "Space Grotesk",
+    "Inter",
+    "Noto Sans JP",
+    sans-serif;
+
+  /* Editorial display serif — opt-in alternate for posters/activity pages
+     that want a more elegant, magazine-y voice. NOT the brand default;
+     reach for it only when sans feels too plain for the moment. */
+  --font-display-serif:
+    "Fraunces",
+    "Noto Serif JP",
+    "Songti SC",
+    "STSong",
+    serif;
+
+  /* Mono — for numerals, timestamps, code snippets. */
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+
+  /* ── Sizes (px). The jump from --text-2xl to --text-display-sm is
+     intentional — the brand's voice is BIG headline or tiny caption,
+     little in between. */
+  --text-3xs:        10px;
+  --text-2xs:        11px;
+  --text-xs:         12px;
+  --text-sm:         14px;
+  --text-base:       16px;
+  --text-lg:         18px;
+  --text-xl:         22px;
+  --text-2xl:        28px;
+  --text-3xl:        36px;
+  --text-display-xs: 48px;
+  --text-display-sm: 64px;
+  --text-display-md: 96px;
+  --text-display-lg: 144px;
+  --text-display-xl: 200px;   /* poster hero */
+
+  /* ── Weights */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    900;
+
+  /* ── Line heights */
+  --leading-tight:   1.05;   /* display */
+  --leading-snug:    1.2;    /* headings */
+  --leading-normal:  1.4;    /* body */
+  --leading-relaxed: 1.6;    /* long-form */
+
+  /* ── Tracking */
+  --tracking-tighter: -0.03em;   /* huge display */
+  --tracking-tight:   -0.015em;  /* headings */
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;    /* eyebrow / caption */
+  --tracking-wider:   0.16em;    /* tiny all-caps */
+}

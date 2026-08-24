@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Interview" description="A two-column interview spread — big opening quote, portrait, vertical running label, Q&A." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<script src="../../assets/image-slot.js"></script>
+<style>body{margin:0;background:var(--surface-page)}body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;background-image:var(--tex-grain);opacity:var(--grain,.035);mix-blend-mode:multiply}</style>
+</helmet>
+<article style="max-width:1120px;margin:0 auto;padding:40px 64px 80px;font-family:var(--font-serif);color:var(--text-body)">
+<header style="display:flex;align-items:baseline;justify-content:space-between;gap:32px;padding-bottom:12px">
+<span style="font-family:var(--font-display);font-size:19px;letter-spacing:.42em;text-transform:uppercase;color:var(--text-display);margin-left:-1px">Paper</span>
+<nav style="display:flex;gap:24px;font-family:var(--font-sans);font-size:12.5px;letter-spacing:.08em;color:var(--text-secondary)"><a href="#" style="border-bottom:0">Essays</a><a href="#" style="border-bottom:0">Portfolio</a><a href="#" style="border-bottom:0">Archive</a><a href="#" style="border-bottom:0">Colophon</a></nav>
+</header>
+<div style="height:1px;background:var(--rule-hair)"></div>
+<div style="display:flex;justify-content:space-between;padding-top:8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)"><span>Interview</span><span>P. 17</span></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:64px;align-items:stretch">
+<div style="display:flex;flex-direction:column;justify-content:space-between;padding-right:24px">
+<blockquote style="margin:0">
+<div style="display:grid;grid-template-columns:52px 1fr;column-gap:18px;align-items:start">
+<span style="font-family:var(--font-display);font-size:82px;line-height:.74;color:var(--rust-300)">&#8220;</span>
+<p style="font-family:var(--font-display);font-weight:400;font-size:58px;line-height:1.12;letter-spacing:-.008em;color:var(--text-display);margin:0">I collect <em style="font-style:italic">moments</em>, not <em style="font-style:italic">things</em>.</p>
+</div>
+</blockquote>
+<div>
+<div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-top:48px">— Laura K.</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px">
+<div><div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Interview</div><div style="font-size:15px;margin-top:5px">Mira Andersson</div></div>
+<div><div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Location</div><div style="font-size:15px;margin-top:5px">Brooklyn, NY</div></div>
+<div><div style="font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Date</div><div style="font-size:15px;margin-top:5px">March 3, 2024</div></div>
+</div>
+</div>
+</div>
+<div style="position:relative">
+<div style="position:relative;aspect-ratio:4/5;height:100%;background:var(--placeholder-tone);box-shadow:inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:var(--photo-filter,none)"><image-slot id="iv-portrait" shape="rect" placeholder="Portrait — 4:5"></image-slot></div>
+<div style="position:absolute;right:-38px;top:50%;transform:translateY(-50%) rotate(90deg);font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap">Light shapes — Empty spaces</div>
+</div>
+</div>
+
+<div style="height:1px;background:var(--rule-strong);margin:64px 0"></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:64px">
+<div>
+<p style="font-family:var(--font-sans);font-weight:500;font-size:15px;line-height:1.5;color:var(--text-display);margin:0">You've said the studio is the least interesting room in the house.</p>
+<p style="font-size:15px;line-height:1.68;margin:12px 0 0">It is where the work gets finished, which is not the same as where it happens. The kitchen has better light and worse chairs. I do most of my thinking standing up.</p>
+<p style="font-family:var(--font-sans);font-weight:500;font-size:15px;line-height:1.5;color:var(--text-display);margin:24px 0 0">And the archive?</p>
+<p style="font-size:15px;line-height:1.68;margin:12px 0 0">Twelve boxes, unsorted. Every few years I open one and find a roll I have no memory of shooting. Those are usually the good ones — I had no intentions left in them.</p>
+</div>
+<div>
+<p style="font-family:var(--font-sans);font-weight:500;font-size:15px;line-height:1.5;color:var(--text-display);margin:0">What stays?</p>
+<p style="font-size:15px;line-height:1.68;margin:12px 0 0">Very little, and I have stopped minding. A print is a record of an afternoon. If the afternoon was worth having, the print will hold.</p>
+<p lang="zh" style="font-size:14.5px;line-height:1.9;color:var(--text-secondary);margin:20px 0 0">一张照片记录的是一个下午。如果那个下午值得，照片自然留得住。</p>
+</div>
+</div>
+
+<footer style="display:flex;justify-content:space-between;align-items:baseline;margin-top:64px;padding-top:12px;border-top:1px solid var(--rule-hair);font-family:var(--font-sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">
+<span>Paper — Issue Nº 04</span><span>Interview: Laura K.</span><span style="font-family:var(--font-display);font-size:21px;letter-spacing:0;text-transform:none;color:var(--text-display)">17</span>
+</footer>
+</article>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;editorial&quot;,&quot;analog&quot;],&quot;default&quot;:&quot;editorial&quot;,&quot;tsType&quot;:&quot;\&quot;editorial\&quot; | \&quot;analog\&quot;&quot;,&quot;section&quot;:&quot;Voice&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { document.body.setAttribute("data-mode", this.props.mode ?? "editorial"); }
+  componentDidUpdate() { document.body.setAttribute("data-mode", this.props.mode ?? "editorial"); }
+  renderVals() { return {}; }
+}
+
+</script>
+</body>
+</html>

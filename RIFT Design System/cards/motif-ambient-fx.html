@@ -1,0 +1,62 @@
+<!-- @dsCard group="Brand" viewport="700x320" name="Ambient FX" subtitle=".rift-frame · .rift-scan · .rift-mark" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 28px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 16px; }
+    .panel {
+      padding: 22px; min-height: 220px; border-radius: var(--r-md);
+      background: var(--glass-1-bg);
+      border: 1px solid var(--line-2);
+      -webkit-backdrop-filter: blur(10px) saturate(160%);
+      backdrop-filter: blur(10px) saturate(160%);
+      box-shadow: inset 0 1px 0 var(--glass-inner-hi);
+    }
+    .lbl {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+      color: var(--ink-3); text-transform: uppercase;
+    }
+    .title { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--ink-1); margin: 6px 0 8px; }
+    .body { color: var(--ink-2); font-size: 12px; line-height: 1.5; }
+    .codetag {
+      display:inline-block; margin-top:10px; padding:3px 8px;
+      font-family:var(--font-mono); font-size:10px; color:var(--ink-2);
+      border:1px solid var(--line-1); border-radius:var(--r-xs);
+      background:var(--bg-sunken);
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+
+    <!-- FRAME -->
+    <div class="rift-frame panel" style="--frame-len:22px; --frame-overhang:5px; --frame-color:var(--ice);">
+      <span class="lbl">tactical frame</span>
+      <div class="title">Lock on.</div>
+      <div class="body">Four corner brackets, no full border. The eye reads "this is a focus region" without the box closing.</div>
+      <span class="codetag">.rift-frame</span>
+    </div>
+
+    <!-- SCAN -->
+    <div class="rift-scan panel">
+      <span class="lbl">scan lines</span>
+      <div class="title">CRT raster.</div>
+      <div class="body">1px lines at 3px pitch, ~4% alpha. Drop on any glass surface for a faint operating-monitor texture.</div>
+      <span class="codetag">.rift-scan</span>
+    </div>
+
+    <!-- MARK -->
+    <div class="rift-mark panel" data-mark="裂隙">
+      <span class="lbl">brand watermark</span>
+      <div class="title">裂隙 — the seam.</div>
+      <div class="body">Faded JP glyph anchored to a corner — the silent attribution that says "you are inside a RIFT surface."</div>
+      <span class="codetag">.rift-mark[data-mark="裂隙"]</span>
+    </div>
+
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

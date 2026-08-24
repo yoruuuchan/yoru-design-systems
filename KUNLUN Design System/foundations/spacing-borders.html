@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Borders & Dividers" subtitle="实线 / 虚线 / ASCII 分隔，及强度等级" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--bg-base); color: var(--text-primary); display: grid; gap: 10px; }
+  .row { display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 11px; }
+  .key { color: var(--text-tertiary); text-transform: uppercase; letter-spacing: var(--tracking-wide); font-size: 10px; }
+  .meta { color: var(--text-tertiary); font-size: 10px; }
+  .line { height: 14px; display: flex; align-items: center; }
+  .line span { display: block; width: 100%; }
+  .ascii { font-family: var(--font-mono); color: var(--hud-ink-bright); font-size: 11px; }
+</style></head>
+<body>
+  <div class="row"><span class="key">border</span><div class="line"><span style="border-top:1px solid var(--border)"></span></div><span class="meta">1px · #1A2540</span></div>
+  <div class="row"><span class="key">strong</span><div class="line"><span style="border-top:1px solid var(--border-strong)"></span></div><span class="meta">1px · #2A3A5C</span></div>
+  <div class="row"><span class="key">signal</span><div class="line"><span style="border-top:1px solid var(--border-signal); box-shadow:0 0 6px var(--accent-glow)"></span></div><span class="meta">1px cyan + glow</span></div>
+  <div class="row"><span class="key">dashed</span><div class="line"><span style="border-top:1px dashed var(--border-strong)"></span></div><span class="meta">dashed 1px</span></div>
+  <div class="row"><span class="key">ascii</span><div class="ascii">├───────────────────────── ▣ ─────────────────────────┤</div><span class="meta">章节分隔</span></div>
+</body></html>

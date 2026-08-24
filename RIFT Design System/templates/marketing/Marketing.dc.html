@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Marketing" description="Marketing landing — hero wordmark, dual CTA, 3-up feature grid" -->
+<helmet>
+<script src="./ds-base.js"></script>
+</helmet>
+<div class="rift-mark" data-mark="裂隙" style="min-height:100vh; color:var(--ink-1); font-family:var(--font-ui); overflow:hidden;">
+
+  <!-- NAV -->
+  <nav style="display:flex; align-items:center; gap:32px; padding:24px 48px;">
+    <span class="rift-glitch" data-text="RIFT" style="font-family:var(--font-wordmark); font-weight:700; font-size:22px; letter-spacing:0.06em;">RIFT</span>
+    <div style="display:flex; gap:22px; font-size:13px; color:var(--ink-2);">
+      <a href="#" style="color:inherit; text-decoration:none;">Console</a>
+      <a href="#" style="color:inherit; text-decoration:none;">Channels</a>
+      <a href="#" style="color:inherit; text-decoration:none;">Docs</a>
+      <a href="#" style="color:inherit; text-decoration:none;">Changelog</a>
+    </div>
+    <div style="margin-left:auto; display:flex; gap:10px; align-items:center;">
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Button" variant="ghost" size="sm" hint-size="auto,32px">Sign in</x-import>
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Button" variant="primary" size="sm" hint-size="auto,32px">Get access</x-import>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="padding:80px 48px 64px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:24px;">
+    <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Badge" variant="ok" hint-size="auto,28px">v2.0 — DAYBREAK / 黎明 SHIPPED</x-import>
+
+    <h1 style="margin:0; font-family:var(--font-wordmark); font-weight:700; font-size:120px; letter-spacing:0.04em; line-height:1;">
+      <span class="rift-glitch" data-text="THE&nbsp;RIFT">THE&nbsp;RIFT</span>
+    </h1>
+
+    <p style="max-width:640px; font-family:var(--font-italic); font-style:italic; font-size:28px; line-height:1.3; color:var(--ink-2); margin:0;">
+      Listen — there is a <span style="color:var(--royal)">seam</span> in the signal.
+    </p>
+
+    <p style="max-width:560px; font-size:15px; color:var(--ink-2); line-height:1.6; margin:0;">
+      A blue-spectrum cyber-glitch operating console for distributed nodes. Stream every packet, every handshake, every fracture — in dark <em style="font-style:normal; color:var(--ink-1);">and</em> daybreak.
+    </p>
+
+    <div style="display:flex; gap:14px; margin-top:8px;">
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Button" variant="primary" size="lg" glow="{{ true }}" hint-size="auto,50px">Enter the console →</x-import>
+      <x-import component-from-global-scope="RIFTDesignSystem_b2dbfe.Button" size="lg" hint-size="auto,50px">Read the manifesto</x-import>
+    </div>
+
+    <div style="display:flex; gap:18px; margin-top:14px; font-family:var(--font-mono); font-size:11px; color:var(--ink-3); letter-spacing:0.12em; text-transform:uppercase;">
+      <span style="display:inline-flex; gap:8px; align-items:center;"><span class="rift-dot rift-dot--ok"></span> 47 nodes online</span>
+      <span style="display:inline-flex; gap:8px; align-items:center;"><span class="rift-dot rift-dot--ok"></span> p95 38ms</span>
+      <span style="display:inline-flex; gap:8px; align-items:center;"><span class="rift-dot rift-dot--warn"></span> 1 region degraded</span>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section style="max-width:1100px; margin:0 auto; padding:32px 48px 96px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px;">
+
+    <div class="rift-card" style="padding:28px; display:flex; flex-direction:column; gap:12px; min-height:260px;">
+      <div style="font-family:var(--font-mono); font-size:10px; color:var(--ice); letter-spacing:0.2em; text-transform:uppercase;">01 / signal</div>
+      <h3 style="margin:0; font-family:var(--font-display); font-size:28px; font-weight:600; letter-spacing:-0.01em;">Every packet.</h3>
+      <p style="margin:0; color:var(--ink-2); font-size:14px; line-height:1.6;">Sub-millisecond timestamps, mono-grade legibility, color-coded levels. Filter by channel, by node, by anything else you can name.</p>
+    </div>
+
+    <div class="rift-card" style="padding:28px; display:flex; flex-direction:column; gap:12px; min-height:260px;">
+      <div style="font-family:var(--font-mono); font-size:10px; color:var(--ice); letter-spacing:0.2em; text-transform:uppercase;">02 / theme</div>
+      <h3 style="margin:0; font-family:var(--font-display); font-size:28px; font-weight:600; letter-spacing:-0.01em;">Dark and daybreak.</h3>
+      <p style="margin:0; color:var(--ink-2); font-size:14px; line-height:1.6;">One token override flips the entire system — surfaces, glass, ink, glow. No component code changes, ever.</p>
+    </div>
+
+    <div class="rift-card" style="padding:28px; display:flex; flex-direction:column; gap:12px; min-height:260px;">
+      <div style="font-family:var(--font-mono); font-size:10px; color:var(--ice); letter-spacing:0.2em; text-transform:uppercase;">03 / edge</div>
+      <h3 style="margin:0; font-family:var(--font-display); font-size:28px; font-weight:600; letter-spacing:-0.01em;">A chromatic signature.</h3>
+      <p style="margin:0; color:var(--ink-2); font-size:14px; line-height:1.6;">Always-on cyan↔magenta duotone — the seam through every wordmark. Dial it from <span style="font-family:var(--font-mono);">subtle</span> to <span style="font-family:var(--font-mono);">heavy</span>.</p>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 },
+  &quot;theme&quot;:  { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;dark&quot;,      &quot;options&quot;: [&quot;dark&quot;, &quot;light&quot;],                          &quot;tsType&quot;: &quot;\&quot;dark\&quot; | \&quot;light\&quot;&quot; },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;royal&quot;,     &quot;options&quot;: [&quot;royal&quot;, &quot;aqua&quot;],                          &quot;tsType&quot;: &quot;\&quot;royal\&quot; | \&quot;aqua\&quot;&quot; },
+  &quot;glitch&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;signature&quot;, &quot;options&quot;: [&quot;off&quot;, &quot;subtle&quot;, &quot;signature&quot;, &quot;heavy&quot;],    &quot;tsType&quot;: &quot;\&quot;off\&quot; | \&quot;subtle\&quot; | \&quot;signature\&quot; | \&quot;heavy\&quot;&quot; }
+}">class Component extends DCLogic {
+  componentDidMount()  { this._sync(); }
+  componentDidUpdate() { this._sync(); }
+  componentWillUnmount() {
+    const h = document.documentElement;
+    delete h.dataset.theme; delete h.dataset.glitch; delete h.dataset.accent;
+  }
+  _sync() {
+    const h = document.documentElement;
+    h.dataset.theme  = this.props.theme  || "dark";
+    h.dataset.glitch = this.props.glitch || "signature";
+    h.dataset.accent = this.props.accent || "royal";
+  }
+}</script>
+</body>
+</html>

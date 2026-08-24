@@ -1,0 +1,25 @@
+<!-- @dsCard group="Diagram" viewport="700x280" name="Connectors" subtitle="四种连线 + 圆角正交走线。没有曲线、没有装饰箭头" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.YORUContentDesignSystem_a0b73e;
+
+const {Diagram,DiagramLegend}=NS;
+function Demo(){return <div data-yoru="lab" style={{display:"flex",gap:26}}>
+  <div style={{flex:1}}><Diagram fit
+    nodes={[{id:"a",role:"input",label:"输入",showRole:false},{id:"b",role:"process",label:"处理",showRole:false},{id:"c",role:"output",label:"输出",showRole:false},{id:"d",role:"tool",label:"工具",showRole:false,col:1,row:1}]}
+    edges={[{from:"a",to:"b",kind:"flow",label:"flow"},{from:"b",to:"c",kind:"data",label:"data"},{from:"a",to:"d",kind:"dep"},{from:"d",to:"c",kind:"weak"},{from:"c",to:"a",kind:"dep",label:"retry"}]}/></div>
+  <div style={{width:170,display:"flex",flexDirection:"column",gap:12,justifyContent:"center"}}>
+    <DiagramLegend edges={["flow","data","dep","weak"]} style={{flexDirection:"column",alignItems:"flex-start",gap:10}}/>
+    <div style={{fontSize:11,lineHeight:1.7,color:"var(--ink-4)"}}>同行直线，跨行走中缝圆角肘；回边落到下方通道。弱关联不带箭头。</div>
+  </div>
+</div>}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

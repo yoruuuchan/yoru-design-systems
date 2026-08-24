@@ -1,0 +1,15 @@
+/* ============================================================
+   RIFT 2.0 — Design System
+   裂隙 · blue-spectrum cyber-glitch
+   Entry point. Consumers link this one file.
+   ============================================================ */
+
+@import url("tokens/typography.css");
+@import url("tokens/palette.css");
+@import url("tokens/spacing.css");
+@import url("tokens/motion.css");
+@import url("tokens/theme-dark.css");
+@import url("tokens/theme-light.css");
+@import url("base.css");
+@import url("components.css");
+@import url("effects.css");

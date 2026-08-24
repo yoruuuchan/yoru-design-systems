@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Accent · Sun Yellow" subtitle="--sun-400 is the brand pop. Use sparingly." -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"></head>
+<body style="margin:0;padding:20px;background:var(--neutral-0);">
+  <style>
+    .row { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
+    .sw { aspect-ratio:1.6; border-radius:12px; padding:10px; color:var(--neutral-800);
+          font-family:var(--font-mono); font-size:10px; display:flex;
+          flex-direction:column; justify-content:flex-end; }
+    .sw small { display:block; opacity:0.7; font-weight:500; }
+    .demo { grid-column:span 2; aspect-ratio:auto; background:var(--neutral-900);
+            color:var(--neutral-0); padding:14px; display:flex; align-items:center;
+            justify-content:center; font-family:var(--font-display);
+            font-weight:800; font-size:16px; letter-spacing:-0.01em;
+            border-radius:12px; gap:10px; }
+    .demo .dot { width:10px; height:10px; border-radius:50%; background:#FFE34D;
+                 box-shadow:0 0 16px #FFE34D; }
+  </style>
+  <div class="row">
+    <div class="sw" style="background:#FFF6CC">100<small>FFF6CC</small></div>
+    <div class="sw" style="background:#FFEE99">200<small>FFEE99</small></div>
+    <div class="sw" style="background:#FFE980">300<small>FFE980</small></div>
+    <div class="sw" style="background:#FFE34D">400 ★<small>FFE34D</small></div>
+    <div class="demo"><span class="dot"></span>SUMMER · 2026</div>
+  </div>
+</body></html>

@@ -1,0 +1,66 @@
+:root {
+  /* === Base palette — Vaporwave Midnight === */
+  --void:        #07000f;   /* deepest, true background */
+  --midnight:    #100225;   /* primary surface */
+  --aubergine:   #1c0838;   /* raised surface */
+  --plum:        #2d0a55;   /* card / panel */
+  --orchid:      #4a1a8a;   /* hover surface */
+
+  --magenta:     #ff2bd6;   /* primary accent */
+  --hot-pink:    #ff71ce;   /* secondary pink */
+  --cyan:        #19e6ff;   /* primary cool accent */
+  --aqua:        #00fff0;   /* electric edge */
+  --lavender:    #b59cff;   /* soft accent */
+  --violet:      #8a2be2;   /* deep accent */
+  --sunset:      #f97e72;   /* citypop sunset glow */
+  --amber:       #ffcc66;   /* warm point */
+
+  /* Blue family — secondary spine of the system */
+  --electric:    #2d6cff;   /* primary blue — bold, CRT */
+  --azure:       #4aa3ff;   /* lighter accent */
+  --neon-blue:   #00b3ff;   /* glowing edge */
+  --deep-blue:   #0a1654;   /* deep surface tint */
+  --indigo:      #3a1a8a;   /* between plum + blue */
+
+  --chrome:      #f0eaff;   /* near-white text */
+  --silver:      #c8bce0;   /* muted text */
+  --dusk:        #7a6ba0;   /* low-emphasis */
+  --shadow-ink:  #03000a;   /* shadow base */
+
+  /* Semantic — light / "dark mode by default" */
+  --bg-void:     var(--void);
+  --bg-base:     var(--midnight);
+  --bg-raised:   var(--aubergine);
+  --bg-card:     var(--deep-blue);
+  --bg-hover:    var(--indigo);
+
+  --text-primary:   var(--chrome);
+  --text-secondary: var(--silver);
+  --text-muted:     var(--dusk);
+  --text-accent:    var(--magenta);
+  --text-link:      var(--azure);
+
+  --border-default: rgba(74, 163, 255, 0.28);
+  --border-strong:  rgba(255, 43, 214, 0.6);
+  --border-cyan:    rgba(25, 230, 255, 0.55);
+  --border-blue:    rgba(45, 108, 255, 0.6);
+
+  --accent-primary:   var(--magenta);
+  --accent-secondary: var(--electric);
+  --accent-tertiary:  var(--cyan);
+  --accent-support:   var(--violet);
+  --accent-warm:      var(--sunset);
+
+  --success: #6dffb5;
+  --warning: var(--amber);
+  --danger:  #ff3860;
+
+  /* Signature gradients */
+  --grad-sunset: linear-gradient(180deg, #0a1654 0%, #3a1a8a 30%, #ff2bd6 70%, #ff71ce 100%); /* @kind color */
+  --grad-neon:   linear-gradient(90deg, var(--magenta) 0%, var(--hot-pink) 35%, var(--electric) 70%, var(--neon-blue) 100%); /* @kind color */
+  --grad-night:  linear-gradient(180deg, var(--void) 0%, var(--deep-blue) 60%, var(--midnight) 100%); /* @kind color */
+  --grad-grid:   linear-gradient(180deg, transparent 60%, var(--magenta) 100%); /* @kind color */
+  --grad-cyber:  linear-gradient(135deg, #0a1654 0%, #2d6cff 35%, #ff2bd6 75%, #ff71ce 100%); /* @kind color */
+  --grad-trans:  linear-gradient(90deg, var(--electric) 0%, var(--magenta) 50%, var(--hot-pink) 100%); /* @kind color */
+  --grad-bipolar: linear-gradient(135deg, var(--electric) 0%, var(--neon-blue) 35%, var(--hot-pink) 65%, var(--magenta) 100%); /* @kind color */
+}

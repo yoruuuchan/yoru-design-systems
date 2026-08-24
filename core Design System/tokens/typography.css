@@ -1,0 +1,53 @@
+/* typography.css — font families + scale.
+   The system layers three voices on purpose:
+   - pixel display (Pixelify Sans) for headings and oversized statements
+   - serif body   (Tinos / Times) for reading
+   - system sans for chrome (window titles, buttons, captions)
+   This mismatch IS the design. Don't unify them. */
+
+:root {
+  /* ── Families ──────────────────────────────────────────────── */
+  --font-pixel-display: "Pixelify Sans", "VT323", "Courier New", monospace;
+  --font-pixel-mono:    "VT323", "Courier New", monospace;
+  --font-body-serif:    "Tinos", "Times New Roman", "Times", "Songti SC", serif;
+  --font-ui-sans:       -apple-system, BlinkMacSystemFont, "MS Sans Serif",
+                        "Tahoma", "Segoe UI", system-ui, sans-serif;
+
+  /* ── Size scale (intentionally extreme) ────────────────────── */
+  --text-xxs:    10px;   /* window chrome captions */
+  --text-xs:     11px;   /* system UI labels */
+  --text-sm:     13px;
+  --text-base:   15px;   /* slightly smaller body for that "old web" feel */
+  --text-md:     18px;
+  --text-lg:     24px;
+  --text-xl:     36px;
+  --text-2xl:    56px;
+  --text-3xl:    88px;
+  --text-mega:   144px;  /* hero display */
+
+  /* ── Weights ───────────────────────────────────────────────── */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* ── Line heights — tight for pixel, generous for serif ────── */
+  --leading-pixel: 1;
+  --leading-tight: 1.1;
+  --leading-snug:  1.3;
+  --leading-body:  1.55;
+  --leading-loose: 1.8;
+
+  /* ── Letter spacing ────────────────────────────────────────── */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.08em;
+  --tracking-mega:   0.18em;   /* spaced-out display headers */
+
+  /* ── Semantic ──────────────────────────────────────────────── */
+  --text-hero:    var(--text-mega);
+  --text-h1:      var(--text-3xl);
+  --text-h2:      var(--text-2xl);
+  --text-h3:      var(--text-xl);
+  --text-h4:      var(--text-lg);
+  --text-caption: var(--text-xs);
+}

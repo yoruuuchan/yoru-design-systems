@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>新拟态融合 · 三档</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:36px 40px 60px;background:#F4F6F9;font-family:var(--font-body);color:var(--ink-2)}
+h1{font-family:var(--font-title);font-weight:700;font-size:22px;color:var(--ink-1);margin:0 0 6px}
+.sub{font-size:13px;color:var(--ink-4);margin:0 0 30px;max-width:760px;line-height:1.7}
+.row{display:grid;grid-template-columns:repeat(3,380px);gap:34px}
+.opt{display:flex;flex-direction:column;gap:12px}
+.optlbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4)}
+.optlbl b{color:var(--accent);font-weight:500}
+.verdict{font-size:12px;line-height:1.65;color:var(--ink-4);min-height:56px}
+
+/* ---- the card shell, 3:4 at 380 ---- */
+.card{width:380px;height:506px;padding:30px 29px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.rail{display:flex;align-items:baseline;gap:11px;padding-bottom:9px;font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4)}
+.rail b{font-family:var(--font-title);font-weight:900;letter-spacing:.24em;color:var(--yoru-blue)}
+.rail .sp{flex:1}
+.rail .col{color:var(--accent);font-weight:500}
+.h{font-family:var(--font-title);font-weight:700;font-size:25px;line-height:1.42;color:var(--ink-1);margin:24px 0 0}
+.p{font-size:13.5px;line-height:1.92;margin:14px 0 0;color:var(--ink-2)}
+.blk{margin-top:20px;padding:15px 16px;font-family:var(--font-mono);font-size:11px;line-height:1.7;color:var(--ink-2)}
+.blk .bt{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.foot{margin-top:auto;padding-top:12px;display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;color:var(--ink-5)}
+
+/* ===== A · 现状：纯白 + 发丝线 ===== */
+.a{background:#fff;border:1px solid var(--line-1)}
+.a .rail{border-bottom:2px solid var(--line-3)}
+.a .blk{background:var(--paper-3)}
+.a .foot{border-top:1px solid var(--line-1)}
+
+/* ===== B · 纸面仍纯白，只有内嵌块下沉 ===== */
+.b{background:#fff;border:1px solid var(--line-1)}
+.b .rail{border-bottom:2px solid var(--line-3)}
+.b .blk{background:#EAF3FB;border-radius:10px;
+  box-shadow:inset 2px 2px 5px rgba(120,150,185,.26), inset -2px -2px 5px rgba(255,255,255,.92)}
+.b .foot{border-top:1px solid var(--line-1)}
+
+/* ===== C · 卡面改冷瓷，全面新拟态 ===== */
+.c{background:#E9EFF6;border-radius:20px;
+  box-shadow:-6px -6px 18px rgba(255,255,255,.9), 8px 8px 22px rgba(120,150,185,.34)}
+.c .rail{border-bottom:1px solid rgba(120,150,185,.28)}
+.c .blk{background:#E9EFF6;border-radius:12px;
+  box-shadow:inset 3px 3px 6px rgba(120,150,185,.32), inset -3px -3px 6px rgba(255,255,255,.95)}
+.c .h,.c .p{color:var(--ink-1)}
+.c .foot{border-top:1px solid rgba(120,150,185,.28)}
+.c .chip{position:absolute;right:26px;top:110px;padding:5px 11px;border-radius:999px;background:#E9EFF6;
+  font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;color:var(--accent);
+  box-shadow:-3px -3px 8px rgba(255,255,255,.95), 3px 3px 9px rgba(120,150,185,.3)}
+</style></head><body>
+<h1>新拟态能融进 YORU 吗 —— 三档强度</h1>
+<p class="sub">同一页内容，同一套字号与间距，只有表面处理不同。判断标准是小红书信息流里 375px 宽、被压成 JPEG 之后还成不成立。</p>
+
+<div class="row">
+
+<div class="opt">
+  <div class="optlbl">A · 现状 <b>flat</b></div>
+  <div class="card a" data-yoru="lab">
+    <div class="rail"><b>YORU</b><span class="sp"></span><span class="col">LAB</span><span>2026.08</span><span>03 / 06</span></div>
+    <h2 class="h">把一条提示词<br>拆成三层结构</h2>
+    <p class="p">改需求就崩，是因为触发、步骤和兜底被写进了同一段话里。先把这三件事分开。</p>
+    <div class="blk"><div class="bt">PROMPT</div>当用户给出完整需求文档时 →<br>逐条拆解为可验收项<br>若信息缺失 → 先提问，不臆测</div>
+    <div class="foot"><span>YORU</span><span>03</span></div>
+  </div>
+  <div class="verdict">线条承担全部结构。压成 JPEG 不会有任何损失，公众号里粘过去也一模一样。</div>
+</div>
+
+<div class="opt">
+  <div class="optlbl">B · 只让内嵌块下沉 <b>inset only</b></div>
+  <div class="card b" data-yoru="lab">
+    <div class="rail"><b>YORU</b><span class="sp"></span><span class="col">LAB</span><span>2026.08</span><span>03 / 06</span></div>
+    <h2 class="h">把一条提示词<br>拆成三层结构</h2>
+    <p class="p">改需求就崩，是因为触发、步骤和兜底被写进了同一段话里。先把这三件事分开。</p>
+    <div class="blk"><div class="bt">PROMPT</div>当用户给出完整需求文档时 →<br>逐条拆解为可验收项<br>若信息缺失 → 先提问，不臆测</div>
+    <div class="foot"><span>YORU</span><span>03</span></div>
+  </div>
+  <div class="verdict">纸面仍是纯白，只有提示词块像被压进纸里。语义是对的：这是一块要被抄走的东西，不是正文。</div>
+</div>
+
+<div class="opt">
+  <div class="optlbl">C · 全面新拟态 <b>full neo</b></div>
+  <div class="card c" data-yoru="lab">
+    <div class="rail"><b>YORU</b><span class="sp"></span><span class="col">LAB</span><span>2026.08</span><span>03 / 06</span></div>
+    <span class="chip">LAB</span>
+    <h2 class="h">把一条提示词<br>拆成三层结构</h2>
+    <p class="p">改需求就崩，是因为触发、步骤和兜底被写进了同一段话里。先把这三件事分开。</p>
+    <div class="blk"><div class="bt">PROMPT</div>当用户给出完整需求文档时 →<br>逐条拆解为可验收项<br>若信息缺失 → 先提问，不臆测</div>
+    <div class="foot"><span>YORU</span><span>03</span></div>
+  </div>
+  <div class="verdict">要换掉纯白底才成立 —— 新拟态的高光是白色，白纸上看不见。灰底在信息流里比邻居暗一档，正文对比度也掉了。</div>
+</div>
+
+</div>
+</body></html>

@@ -1,0 +1,79 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="title slide" subtitle="hero opener with logo, marquee, overexposed title" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;height:100%}
+  .slide{
+    width:1280px; height:720px; position:relative; overflow:hidden;
+    background-color: var(--paper-grout);
+    background-image: url("../assets/tile.svg");
+    background-size: 64px 64px;
+    image-rendering: pixelated;
+    display:flex; flex-direction:column;
+  }
+  .grain{position:absolute;inset:0;background-image:url("../assets/grain.svg");
+         background-size:300px 300px;opacity:.18;mix-blend-mode:multiply;pointer-events:none}
+  .marq{
+    background:var(--ink); color:var(--paper);
+    padding:6px 0; white-space:nowrap; overflow:hidden;
+    font-family: var(--font-pixel-display); font-size: 28px;
+    letter-spacing: .08em;
+    border-bottom: 1px solid var(--ink);
+  }
+  .core { padding: 84px 96px 0; display:flex; align-items:flex-start; gap: 40px; }
+  .logo { width: 96px; height: 96px; flex:none; box-shadow: var(--glow-bondi); }
+  .titles { flex:1; min-width:0; }
+  .kicker {
+    display:inline-block;
+    font-family: var(--font-pixel-mono); font-size: 18px; color: var(--ink);
+    background: var(--bubblegum-300); padding: 4px 14px;
+    border: 1px solid var(--ink); letter-spacing: 0.1em; text-transform: uppercase;
+    box-shadow: var(--shadow-card);
+  }
+  h1 {
+    font-family: var(--font-pixel-display); font-weight: 400;
+    font-size: 200px; line-height: .9; letter-spacing: -0.02em;
+    margin: 18px 0 0;
+    color: var(--frost-50);
+    text-shadow:
+      0 0 12px var(--frost-50), 0 0 24px var(--bondi-200),
+      0 0 56px var(--bondi-300), 0 0 96px var(--bubblegum-300),
+      4px 4px 0 var(--ink);
+  }
+  .sub {
+    margin-top: 12px;
+    font-family: var(--font-body-serif); font-size: 28px; font-style: italic;
+    color: var(--ink-soft);
+  }
+  .meta {
+    position:absolute; left:96px; bottom:48px; right:96px;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    font-family: var(--font-pixel-mono); font-size: 14px; color: var(--ink);
+    letter-spacing: 0.06em;
+  }
+  .meta .stamp {
+    border: 1px solid var(--ink); padding: 4px 10px; background: var(--paper);
+    box-shadow: var(--bevel-out);
+  }
+</style></head>
+<body>
+<div class="slide">
+  <div class="marq">
+    welcome ░ welcome ░ welcome ░ welcome ░ welcome ░ welcome ░ welcome ░ welcome ░
+  </div>
+  <div class="core">
+    <img src="../assets/logo-mark.svg" class="logo" alt="">
+    <div class="titles">
+      <span class="kicker">a talk · 06.23.2026</span>
+      <h1>mostly empty.</h1>
+      <div class="sub">on liminal places, and the people who keep their records.</div>
+    </div>
+  </div>
+  <div class="meta">
+    <span class="stamp">curated by hand since 1999</span>
+    <span class="stamp">core/</span>
+  </div>
+  <div class="grain"></div>
+</div>
+</body></html>

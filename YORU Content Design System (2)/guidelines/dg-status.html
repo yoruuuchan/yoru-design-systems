@@ -1,0 +1,21 @@
+<!-- @dsCard group="Diagram" viewport="700x170" name="Status markers" subtitle="已验证 / 失败 / 未知 — 一个圆点，语义色只用在这里" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.YORUContentDesignSystem_a0b73e;
+
+const {DiagramNode}=NS;
+function Demo(){return <div data-yoru="lab" className="yoru-diagram" style={{display:"flex",gap:16}}>
+  {[["verified","跑通了"],["failed","这条崩了"],["unknown","没测过"]].map(([s,l])=>
+    <div key={s} style={{flex:1}}><DiagramNode role="process" status={s} statusLabel label={l} meta="node.status" style={{minHeight:88}}/></div>)}
+  <div style={{flex:1,fontSize:11,lineHeight:1.7,color:"var(--ink-4)",alignSelf:"center"}}>状态不改节点角色的形状与描边——只加一个圆点。<br/>不用勾叉图标，不用 emoji。</div>
+</div>}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

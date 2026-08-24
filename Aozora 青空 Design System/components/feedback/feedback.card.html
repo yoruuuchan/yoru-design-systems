@@ -1,0 +1,36 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Dialog" subtitle="Thick-glass modal — soft scrim, spring entrance" -->
+<!doctype html>
+<html><head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../styles.css">
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin></script>
+  <script src="../../_ds_bundle.js"></script>
+</head>
+<body style="margin:0;background:linear-gradient(180deg,#33A8FF 0%,#66D0FF 55%,#FFD84D 100%);height:100vh;overflow:hidden;">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Dialog, Button } = window.AozoraDesignSystem_e61996;
+    function App() {
+      // open by default for the preview card
+      const [open, setOpen] = React.useState(true);
+      return (
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          kicker="夏キャンペーン · SUMMER 2026"
+          title="Aozora Pro へ ようこそ"
+          footer={<>
+            <Button variant="ghost" onClick={() => setOpen(false)}>Maybe later</Button>
+            <Button tone="accent" onClick={() => setOpen(false)}>Subscribe · ¥980/mo</Button>
+          </>}
+        >
+          Unlimited refills, 限定フレーバー, and shipping on us through August.
+          Cancel anytime, no questions asked.
+        </Dialog>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body></html>

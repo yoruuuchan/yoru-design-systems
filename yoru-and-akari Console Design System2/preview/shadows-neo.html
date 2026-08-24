@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Neumorphism shadows" subtitle="raised · lifted · inset — akari + yoru" viewport="700x200" --><html><head><meta charset="utf-8"><title>neumorphism shadow system</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 20px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 18px; border-radius: 16px; }
+  .pane.akari { background: #E8ECF3; }
+  .pane.yoru  { background: #0B1020; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .demo { aspect-ratio: 1.4/1; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); text-align: center; line-height: 1.4; }
+  .pane.akari .raised  { background: #E8ECF3; box-shadow: -4px -4px 12px rgba(255,255,255,0.95), 4px 4px 14px rgba(143,158,191,0.28); }
+  .pane.akari .lifted  { background: #E8ECF3; box-shadow: -6px -6px 18px rgba(255,255,255,0.95), 8px 8px 22px rgba(143,158,191,0.45); }
+  .pane.akari .inset   { background: #E8ECF3; box-shadow: inset 3px 3px 6px rgba(143,158,191,0.28), inset -3px -3px 6px rgba(255,255,255,0.95); }
+  .pane.yoru .raised  { background: #0B1020; box-shadow: -3px -3px 10px rgba(255,255,255,0.05), 5px 5px 16px rgba(0,0,0,0.35); color: #6B7691; }
+  .pane.yoru .lifted  { background: #0B1020; box-shadow: -4px -4px 14px rgba(255,255,255,0.05), 8px 8px 24px rgba(0,0,0,0.55); color: #6B7691; }
+  .pane.yoru .inset   { background: #0B1020; box-shadow: inset 3px 3px 7px rgba(0,0,0,0.35), inset -2px -2px 5px rgba(255,255,255,0.05); color: #6B7691; }
+  .tag { position: relative; top: -6px; left: 4px; font-size: 10px; font-family: var(--font-mono); color: var(--ink-3); margin-bottom: 4px; display: block; letter-spacing: 0.04em; }
+  .pane.yoru .tag { color: #6B7691; }
+</style></head>
+<body>
+  <div class="pair">
+    <div class="pane akari">
+      <span class="tag">akari</span>
+      <div class="grid">
+        <div class="demo raised">raised<br>$shadow-raised</div>
+        <div class="demo lifted">lifted<br>$shadow-lifted</div>
+        <div class="demo inset">inset<br>$shadow-inset</div>
+      </div>
+    </div>
+    <div class="pane yoru">
+      <span class="tag">yoru</span>
+      <div class="grid">
+        <div class="demo raised">raised<br>$shadow-raised</div>
+        <div class="demo lifted">lifted<br>$shadow-lifted</div>
+        <div class="demo inset">inset<br>$shadow-inset</div>
+      </div>
+    </div>
+  </div>
+</body></html>

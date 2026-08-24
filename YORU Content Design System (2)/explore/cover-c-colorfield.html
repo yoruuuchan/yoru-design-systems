@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>方向 C — 色场大字</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F2F5F8;font-family:var(--font-body);display:flex;justify-content:center;padding:26px}
+.rack{display:flex;gap:22px;transform:scale(.298);transform-origin:top center;margin-bottom:-1160px}
+.pg{width:1242px;height:1656px;background:#fff;position:relative;display:flex;flex-direction:column;overflow:hidden}
+/* ── the fixed device: a colour field pinned to the top, always the same
+      fraction of the page. Recognisable in the feed grid before the title reads ── */
+.field{height:58%;background:var(--accent);padding:78px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.fhead{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-mono);font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.82)}
+.fhead b{font-family:var(--font-title);font-weight:900;letter-spacing:.26em;color:#fff;font-size:29px}
+h1{margin:0;font-family:var(--font-title);font-weight:900;font-size:116px;line-height:1.2;letter-spacing:-.025em;color:#fff}
+/* ── the personal detail: an ink slash struck through the field's lower edge ── */
+.slash{position:absolute;left:78px;bottom:-2px;width:132px;height:9px;background:var(--ink-1)}
+.under{flex:1;padding:70px 78px;display:flex;flex-direction:column}
+.lede{margin:0;font-weight:300;font-size:38px;line-height:1.74;color:var(--ink-3)}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end}
+.tags{display:flex;gap:14px}
+.tag{font-family:var(--font-ui);font-weight:500;font-size:24px;padding:9px 20px;color:var(--accent-ink);border:1.5px solid var(--accent-hair)}
+.num{font-family:var(--font-mono);font-size:25px;letter-spacing:.14em;color:var(--ink-5);font-variant-numeric:tabular-nums}
+/* body page: the field shrinks to a band, same colour, same left edge ── */
+.band{height:150px;background:var(--accent);padding:0 78px;display:flex;align-items:center;justify-content:space-between;position:relative}
+.band h2{margin:0;font-family:var(--font-title);font-weight:900;font-size:52px;color:#fff;letter-spacing:-.01em}
+.band .n{font-family:var(--font-mono);font-size:26px;letter-spacing:.16em;color:rgba(255,255,255,.8)}
+.p{margin:0 0 30px;font-size:34px;line-height:1.95;color:var(--ink-2)}
+.p:first-child{margin-top:0}
+.hl{background:var(--accent-soft);padding:0 .1em}
+.box{margin:14px 0 34px;border-top:3px solid var(--ink-1);padding-top:30px}
+.box b{display:block;font-family:var(--font-title);font-weight:700;font-size:44px;line-height:1.5;color:var(--ink-1)}
+</style></head><body>
+<div class="rack">
+  <div class="pg" data-yoru="lab">
+    <div class="field">
+      <div class="fhead"><b>YORU</b><span>LAB · 2026.08 · 01/06</span></div>
+      <h1>把一条提示词<br>拆成三层结构</h1>
+      <div class="slash"></div>
+    </div>
+    <div class="under">
+      <p class="lede">改需求就崩，是因为你把触发、步骤和兜底<br>写在了同一段话里。</p>
+      <div class="foot"><div class="tags"><span class="tag">工作流</span><span class="tag">实测</span></div><span class="num">踩坑三天</span></div>
+    </div>
+  </div>
+  <div class="pg" data-yoru="lab">
+    <div class="band"><h2>第一层：触发条件</h2><span class="n">03 / 06</span><div class="slash"></div></div>
+    <div class="under" style="padding-top:64px">
+      <p class="p">先写清楚什么时候该跑这条流程，什么时候不该。大多数人跳过这一步，直接写“你是一个……”，于是模型在不该动手的场合也动手。</p>
+      <div class="box"><b>触发条件不写死，后面两层写得再细也会被绕过。</b></div>
+      <p class="p">把它写成一句可以判真假的话：<span class="hl">“当用户给出完整需求文档时”</span>，而不是“当用户需要帮助时”。</p>
+      <p class="p">否定条件比肯定条件有用。写“文档不完整时先反问”，比写十条“你应该”都管用。</p>
+      <div class="foot"><span class="num">第一层 / 共三层</span><span class="num">YORU · LAB</span></div>
+    </div>
+  </div>
+</div>
+</body></html>

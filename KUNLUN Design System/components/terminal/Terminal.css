@@ -1,0 +1,138 @@
+/* Terminal + CodeBlock */
+
+/* ─── Terminal ─── */
+.kl-terminal {
+  position: relative;
+  background: var(--bg-void);
+  border: 1px solid var(--cyan-700);
+  color: var(--cyan-300);
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  clip-path: var(--clip-chamfer-md);
+  display: flex; flex-direction: column;
+  min-height: 200px;
+  overflow: hidden;
+}
+.kl-terminal__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 12px;
+  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-panel));
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: var(--text-2xs);
+  text-transform: uppercase; letter-spacing: var(--tracking-widest);
+  color: var(--text-tertiary);
+}
+.kl-terminal__head-title { color: var(--text-signal); text-shadow: var(--text-glow-cyan); }
+.kl-terminal__head-title::before { content: "▸ "; }
+.kl-terminal__head-dots { display: inline-flex; gap: 4px; }
+.kl-terminal__head-dots span { width: 8px; height: 8px; clip-path: var(--clip-chamfer-sm); background: var(--neutral-700); }
+.kl-terminal__head-dots span:nth-child(1) { background: var(--red-700); }
+.kl-terminal__head-dots span:nth-child(2) { background: var(--amber-700); }
+.kl-terminal__head-dots span:nth-child(3) { background: var(--green-700); }
+.kl-terminal__body {
+  flex: 1;
+  padding: 12px 16px;
+  overflow-y: auto;
+  position: relative;
+}
+.kl-terminal__body::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--bg-scanlines);
+  pointer-events: none;
+}
+.kl-terminal__line {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 2px;
+  position: relative;
+}
+.kl-terminal__prompt {
+  color: var(--cyan-500);
+  user-select: none;
+  text-shadow: var(--text-glow-cyan);
+  flex-shrink: 0;
+}
+.kl-terminal__text { color: var(--cyan-300); }
+.kl-terminal__text--muted   { color: var(--neutral-400); }
+.kl-terminal__text--success { color: var(--green-500); }
+.kl-terminal__text--warn    { color: var(--amber-500); }
+.kl-terminal__text--error   { color: var(--red-500); text-shadow: var(--text-glow-red); }
+.kl-terminal__text--user    { color: var(--neutral-100); }
+
+.kl-terminal__input-row {
+  display: flex; gap: 8px; align-items: center;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-inset);
+}
+.kl-terminal__input {
+  flex: 1;
+  background: transparent;
+  border: none; outline: none;
+  font-family: inherit; font-size: inherit;
+  color: var(--neutral-100);
+  caret-color: var(--cyan-400);
+}
+.kl-terminal__caret {
+  display: inline-block; width: 9px; height: 14px;
+  background: var(--cyan-400); box-shadow: var(--glow-cyan-sm);
+  vertical-align: middle; margin-left: 2px;
+  animation: kl-blink 1s steps(2, end) infinite;
+}
+
+/* ─── CodeBlock ─── */
+.kl-code {
+  position: relative;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  clip-path: var(--clip-chamfer-sm);
+  overflow: hidden;
+}
+.kl-code__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 12px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: var(--text-2xs);
+  text-transform: uppercase; letter-spacing: var(--tracking-wider);
+  color: var(--text-tertiary);
+}
+.kl-code__lang { color: var(--text-signal); }
+.kl-code__copy {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-tertiary);
+  font-family: inherit; font-size: 10px;
+  text-transform: uppercase; letter-spacing: var(--tracking-wider);
+  padding: 2px 8px;
+  cursor: pointer;
+  clip-path: var(--clip-chamfer-sm);
+  transition: var(--transition-base);
+}
+.kl-code__copy:hover { color: var(--text-signal); border-color: var(--cyan-700); }
+.kl-code__body {
+  display: flex;
+  overflow-x: auto;
+  padding: 12px 0;
+}
+.kl-code__gutter {
+  flex-shrink: 0;
+  padding: 0 12px;
+  text-align: right;
+  color: var(--text-tertiary);
+  user-select: none;
+  border-right: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+.kl-code__lines {
+  flex: 1;
+  padding: 0 16px;
+  white-space: pre;
+}
+.kl-code__lines code { background: transparent; padding: 0; }

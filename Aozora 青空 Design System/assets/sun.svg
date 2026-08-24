@@ -1,0 +1,13 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Sun glow">
+  <defs>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#FFFFFF"></stop>
+      <stop offset="35%" stop-color="#FFE980" stop-opacity="0.9"></stop>
+      <stop offset="70%" stop-color="#FFE34D" stop-opacity="0.35"></stop>
+      <stop offset="100%" stop-color="#FFE34D" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+  <circle cx="200" cy="200" r="200" fill="url(#sun)"></circle>
+  <circle cx="200" cy="200" r="56" fill="#FFFFFF" opacity="0.95"></circle>
+</svg>

@@ -1,0 +1,26 @@
+<!-- @dsCard group="Borders" viewport="700x250" name="Structure without decoration" subtitle="层级靠排版、留白、色块、细线和文字标签建立 —— 不靠侧边色条" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5)}h4{margin:0;font-family:var(--font-title);font-weight:700;font-size:15px;color:var(--ink-1)}</style></head><body>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="height:3px;background:var(--line-3)"></div>
+<span class="lbl" style="color:var(--yoru-blue)">03 · 工作流</span>
+<h4>标题上方的横线</h4>
+<div style="font-size:11px;line-height:1.7;color:var(--ink-4)">&lt;Heading mark&gt; 是一条压在标题上方的墨色横线，不是左侧色条。</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:var(--paper-3);padding:12px 14px;display:flex;flex-direction:column;gap:6px">
+<span class="lbl" style="color:var(--note)">先说清楚</span>
+<div style="font-size:12px;line-height:1.6">Callout 是一整块底色加一个彩色标签，没有描边、没有顶线。</div>
+</div>
+<div style="font-size:11px;line-height:1.7;color:var(--ink-4)">色块 + 文字标签，替代彩色边框。</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="display:grid;grid-template-columns:auto 1fr;gap:12px"><span style="font-family:var(--font-mono);font-size:15px;color:var(--yoru-blue)">01</span><div style="font-size:12px">先装上，别看介绍</div></div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:12px;border-top:1px solid var(--line-1);padding-top:10px"><span style="font-family:var(--font-mono);font-size:15px;color:var(--yoru-blue)">02</span><div style="font-size:12px">一周后再回来看</div></div>
+<div style="font-size:11px;line-height:1.7;color:var(--ink-4)">步骤之间用横向发丝线，不用竖线串起来。</div>
+</div>
+</div>
+<div style="margin-top:18px;border-top:1px solid var(--line-1);padding-top:12px;font-size:11px;line-height:1.8;color:var(--ink-4)">
+不使用：左侧 accent bar · 彩色 border-left · 时间轴式竖线作为版块装饰 · 用侧边色条区分类别或制造层级。<br>
+结构交给排版层级、空间关系、色块、细线和文字标签，不交给侧边色条。
+</div></body></html>

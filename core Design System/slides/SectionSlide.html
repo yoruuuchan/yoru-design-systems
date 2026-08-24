@@ -1,0 +1,54 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="section slide" subtitle="chapter divider — big numeral + section label" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0;height:100%}
+  .slide{
+    width:1280px; height:720px; position:relative; overflow:hidden;
+    background: var(--ink);
+    color: var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+  }
+  .slide::before{
+    content:""; position:absolute; inset:0;
+    background-image: url("../assets/tile.svg");
+    background-size: 64px 64px;
+    image-rendering: pixelated;
+    opacity: .25;
+    mix-blend-mode: screen;
+  }
+  .num {
+    font-family: var(--font-pixel-display); font-size: 360px; line-height: .85;
+    color: var(--frost-50);
+    text-shadow:
+      0 0 24px var(--bondi-300), 0 0 64px var(--bondi-500),
+      0 0 120px rgba(95,200,234,.6);
+    letter-spacing: -0.03em;
+    position: relative;
+  }
+  .lab {
+    margin-top: 12px;
+    font-family: var(--font-pixel-mono); font-size: 22px;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--paper);
+    position: relative;
+  }
+  .title {
+    margin-top: 28px;
+    font-family: var(--font-body-serif); font-size: 48px; font-style: italic;
+    color: var(--paper); text-align:center; max-width: 900px;
+    position: relative; line-height: 1.15;
+  }
+  .grain{position:absolute;inset:0;background-image:url("../assets/grain.svg");
+         background-size:300px 300px;opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+</style></head>
+<body>
+<div class="slide">
+  <div class="num">02</div>
+  <div class="lab">░ chapter ░ poolcore</div>
+  <div class="title">"the particular kind of quiet you only get at a pool that no one has been in for months."</div>
+  <div class="grain"></div>
+</div>
+</body></html>

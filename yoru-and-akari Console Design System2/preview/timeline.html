@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Timeline rail" subtitle="Real rail · day grouping · now marker" viewport="700x360" --><html><head><meta charset="utf-8"><title>timeline rail</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 14px 16px; border-radius: 16px; position: relative; }
+  .pane.akari { background: #E8ECF3; color: #0E1525; }
+  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 12px; display: block; }
+  .pane.akari .tag { color: #6B7793; }
+  .pane.yoru .tag { color: #A8B2CC; }
+
+  .rail { position: relative; padding-left: 26px; }
+  .rail::before {
+    content: ""; position: absolute; left: 9px; top: 8px; bottom: 4px; width: 2px;
+    background: linear-gradient(to bottom, transparent, currentColor 12%, currentColor 88%, transparent);
+    opacity: 0.12; border-radius: 2px;
+  }
+  .ev { position: relative; padding: 4px 0 10px; }
+  .ev::before {
+    content: ""; position: absolute; left: -22px; top: 6px;
+    width: 10px; height: 10px; border-radius: 99px;
+  }
+  .akari .ev::before { background: #EFF2F8; box-shadow: 0 0 0 2px #E8ECF3, inset 0 0 0 1.5px #4F6CE8; }
+  .yoru .ev::before { background: #131A2E; box-shadow: 0 0 0 2px #0B1020, inset 0 0 0 1.5px #7A95FA; }
+  .ev.now::before { background: #4F6CE8; box-shadow: 0 0 0 2px #E8ECF3, 0 0 12px rgba(79,108,232,0.5); }
+  .yoru .ev.now::before { background: #7A95FA; box-shadow: 0 0 0 2px #0B1020, 0 0 14px rgba(122,149,250,0.55); }
+  .ev.warm::before { box-shadow: 0 0 0 2px #E8ECF3, inset 0 0 0 1.5px #F06A20; }
+  .yoru .ev.warm::before { box-shadow: 0 0 0 2px #0B1020, inset 0 0 0 1.5px #F07830; }
+
+  .t  { font-size: 10px; opacity: 0.55; font-family: var(--font-mono); letter-spacing: 0.02em; }
+  .hd { font-size: 13px; font-weight: 600; margin-top: 1px; }
+  .sb { font-size: 12px; opacity: 0.65; margin-top: 2px; line-height: 1.45; }
+
+  .day-h { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; margin: 4px 0 8px; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="pane akari">
+      <span class="tag">akari · timeline</span>
+      <div class="rail">
+        <div class="day-h">today · 27 may</div>
+        <div class="ev now">
+          <div class="t">14:02</div>
+          <div class="hd">akari · daily picked up your thread</div>
+          <div class="sb">"the 14:00 reminder is queued — want me to soften it?"</div>
+        </div>
+        <div class="ev warm">
+          <div class="t">13:48</div>
+          <div class="hd">memory · added "yoru drinks oat milk"</div>
+          <div class="sb">long-term · confidence 0.86</div>
+        </div>
+        <div class="ev">
+          <div class="t">12:15</div>
+          <div class="hd">worldbook · "the small kitchen" edited</div>
+          <div class="sb">3 phrases added</div>
+        </div>
+        <div class="ev">
+          <div class="t">09:02</div>
+          <div class="hd">good morning</div>
+          <div class="sb">opened akari · daily, 4 minutes of conversation</div>
+        </div>
+      </div>
+    </div>
+    <div class="pane yoru">
+      <span class="tag">yoru · timeline</span>
+      <div class="rail">
+        <div class="day-h">last night · 26 may</div>
+        <div class="ev now">
+          <div class="t">23:41</div>
+          <div class="hd">yoru · night log opened</div>
+          <div class="sb">"can't sleep. one tiny thought, then bed."</div>
+        </div>
+        <div class="ev warm">
+          <div class="t">22:50</div>
+          <div class="hd">proactive · 1 message held</div>
+          <div class="sb">held by quiet hours · 21:00–07:30</div>
+        </div>
+        <div class="ev">
+          <div class="t">21:14</div>
+          <div class="hd">model · switched to claude-haiku-4-5</div>
+          <div class="sb">cost-cap rule · auto</div>
+        </div>
+        <div class="ev">
+          <div class="t">20:02</div>
+          <div class="hd">reading partner · session ended</div>
+          <div class="sb">3 highlights saved to memory</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body></html>

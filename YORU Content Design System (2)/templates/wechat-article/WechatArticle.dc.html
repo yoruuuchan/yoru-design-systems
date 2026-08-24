@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="公众号文章" description="677px 阅读版式，同一套 token，导出行内样式 HTML" -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>body{margin:0;background:#D6DFE1}</style>
+</helmet>
+<div style="display:flex;justify-content:center;padding:40px 16px 80px;font-family:"Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif">
+<article class="yoru-article" data-yoru="{{ variant }}" style="width:677px;max-width:100%;background:var(--surface-page);padding:56px 32px 72px;display:flex;flex-direction:column;gap:32px">
+<header style="display:flex;flex-direction:column;gap:16px">
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Masthead" hint-size="100%,30px"></x-import>
+<div style="display:flex;align-items:center;font-family:var(--font-label);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-accent)">VIBE CODING</div>
+<h1 style="margin:0;font-family:var(--font-title);font-weight:900;font-size:28px;line-height:1.3;color:var(--text-title)">把提示词写成模块</h1>
+<p style="margin:0;font-family:var(--font-fangsong);font-size:17px;line-height:1.85;color:var(--ink-3)">四十遍之后留下来的写法。</p>
+<div style="font-family:var(--font-fangsong);font-size:13px;letter-spacing:.14em;color:var(--text-muted)">二〇二六年八月 · 约六分钟</div>
+</header>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Body" hint-size="100%,90px">一开始我也是把所有要求堆在一条提示词里。前十次都还行，第十一次改需求的时候就傻眼了 —— 不知道该动<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Emphasis" style="display:inline" hint-size="2em,1em">哪一句</x-import>。</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n2 }}" hint-size="100%,50px">拆成<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Emphasis" style="display:inline" hint-size="2em,1em">三层</x-import></x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.StepList" steps="{{ steps }}" hint-size="100%,300px"></x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Callout" kind="warn" title="先说清楚" hint-size="100%,110px">这套流程依赖 Claude Code 的本地权限，云端 IDE 里跑不通。</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n2 }}" hint-size="100%,50px">模块长什么样</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.CodeBlock" filename=".claude/skills/review.md" lang="md" code="{{ code }}" lines="{{ true }}" hint-size="100%,200px"></x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.PromptBlock" model="Claude Sonnet 4.5" hint-size="100%,150px">你是我的代码审查搭子。只看 diff，先说风险，再说风格。拿不准的地方直接问我，不要猜。</x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Heading" level="{{ n2 }}" hint-size="100%,50px">改之前和改之后</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.CompareTable" columns="{{ cols }}" rows="{{ rows }}" highlight="{{ n2 }}" caption="同一个任务，四十次之后的体感差异。" hint-size="100%,220px"></x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.MarginNote" hint-size="360px,80px">第四十次才敢写这篇</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Figure" ratio="16 / 10" index="{{ n1 }}" caption="左边是默认输出，右边加了模块约束之后的输出。" placeholder="拖入截图" hint-size="100%,420px"></x-import>
+
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.Quote" cite="Anthropic" source="Claude Code docs" hint-size="100%,120px">Skills 是给 Agent 的说明书，不是给人的文档。</x-import>
+<x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.ReferenceList" items="{{ refs }}" hint-size="100%,160px"></x-import>
+
+<footer style="display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line-1);padding-top:24px;font-family:var(--font-body);font-size:13px;color:var(--text-muted)">
+<div style="font-family:var(--font-title);font-weight:700;font-size:18px;color:var(--text-title)">下期讲怎么让它自己写测试</div>
+<div style="display:flex;gap:8px"><span style="color:var(--accent)">—</span><span>模块模板在评论区</span></div>
+<div style="display:flex;gap:8px"><span style="color:var(--accent)">—</span><span>有问题直接问，我都看</span></div>
+<div style="margin-top:12px;display:flex;gap:12px;align-items:center"><x-import component-from-global-scope="YORUContentDesignSystem_a0b73e.MoonPhases" size="12px" hint-size="44px,12px"></x-import><span style="font-family:var(--font-fangsong);letter-spacing:.12em">二〇二六年八月 · 转载请注明出处</span></div>
+</footer>
+</article>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:1400},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;signal&quot;,&quot;lab&quot;,&quot;studio&quot;,&quot;special&quot;],&quot;default&quot;:&quot;lab&quot;,&quot;tsType&quot;:&quot;\&quot;signal\&quot;|\&quot;lab\&quot;|\&quot;studio\&quot;|\&quot;special\&quot;&quot;,&quot;section&quot;:&quot;YORU&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      variant: this.props.variant ?? "lab",
+      n1: 1, n2: 2, true: true,
+      steps: [
+        { title: "触发条件", body: "什么时候该用这个模块。写死，不要写“视情况”。" },
+        { title: "执行步骤", body: "按顺序列出来，每一步只做一件事。" },
+        { title: "失败兜底", body: "做不到的时候要回什么。缺这层，Agent 就开始自由发挥。" }
+      ],
+      code: "---\nname: review\ndescription: 只在有 diff 的时候触发\n---\n\n1. 先读 diff，不要读整个文件\n2. 先说风险，再说风格\n3. 拿不准就问，不要猜",
+      cols: ["", "单条提示词", "模块化"],
+      rows: [["改需求", "整条重写", "改一层"], ["复用", "复制粘贴", "直接引用"], ["排错", "看不出哪句错", "定位到层"]],
+      refs: [
+        { title: "Claude Code 文档", source: "Anthropic", url: "docs.anthropic.com/claude-code" },
+        { title: "Agent Skills 规范", source: "Anthropic", url: "docs.anthropic.com/agent-skills" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

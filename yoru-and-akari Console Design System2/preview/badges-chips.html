@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Badges & chips" subtitle="Status badges and selectable chips" viewport="700x200" --><html><head><meta charset="utf-8"><title>badges & chips</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 14px 16px; border-radius: 16px; }
+  .pane.akari { background: #E8ECF3; color: #0E1525; }
+  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
+  .pane.akari .tag { color: #6B7793; }
+  .pane.yoru .tag { color: #A8B2CC; }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+  .lbl { font-size: 10px; font-family: var(--font-mono); width: 64px; }
+  .pane.akari .lbl { color: #6B7793; }
+  .pane.yoru .lbl { color: #6B7691; }
+
+  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 99px; font-size: 11px; font-weight: 500; }
+  .dot { width: 6px; height: 6px; border-radius: 99px; }
+
+  /* akari semantics */
+  .akari .b-ok    { background: #DCF3E8; color: #1F7E58; }
+  .akari .b-warn  { background: #FBEAC9; color: #A57427; }
+  .akari .b-err   { background: #FADBDB; color: #A23F3F; }
+  .akari .b-info  { background: #DCE3FE; color: #2E44B0; }
+  .akari .b-mute  { background: #DEE3EC; color: #6B7793; }
+  .akari .b-ember { background: #FFE4D6; color: #C05015; }
+  .akari .b-frost { background: #DBF2F0; color: #188078; }
+  /* yoru semantics */
+  .yoru .b-ok    { background: #143025; color: #7CE0B6; }
+  .yoru .b-warn  { background: #3A2E14; color: #F4D193; }
+  .yoru .b-err   { background: #3A1A1A; color: #F5B0B0; }
+  .yoru .b-info  { background: #1F2A55; color: #B4C3FC; }
+  .yoru .b-mute  { background: #131A2E; color: #A8B2CC; }
+  .yoru .b-ember { background: #2A1408; color: #FF9456; }
+  .yoru .b-frost { background: #0A2624; color: #78E0D8; }
+
+  /* chip (selectable) */
+  .chip { padding: 5px 10px; border-radius: 99px; font-size: 11px; font-weight: 500; cursor: pointer; }
+  .akari .chip { background: #E8ECF3; color: #394560; box-shadow: -1px -1px 3px rgba(255,255,255,0.95), 2px 2px 5px rgba(143,158,191,0.30); }
+  .akari .chip.on { background: #4F6CE8; color: #fff; box-shadow: inset 2px 2px 4px rgba(0,0,0,0.18); }
+  .yoru .chip { background: #131A2E; color: #A8B2CC; box-shadow: -1px -1px 3px rgba(255,255,255,0.04), 2px 2px 6px rgba(0,0,0,0.4); }
+  .yoru .chip.on { background: #7A95FA; color: #0B1020; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.25); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="pane akari">
+      <span class="tag">akari · badges & chips</span>
+      <div class="row"><span class="lbl">status</span>
+        <span class="badge b-ok"><span class="dot" style="background:#2BA672"></span>saved</span>
+        <span class="badge b-warn"><span class="dot" style="background:#D89A3A"></span>unsaved</span>
+        <span class="badge b-err"><span class="dot" style="background:#D45D5D"></span>error</span>
+        <span class="badge b-info"><span class="dot" style="background:#4F6CE8"></span>syncing</span>
+        <span class="badge b-mute">draft</span>
+        <span class="badge b-ember">ember</span>
+        <span class="badge b-frost">frost</span>
+      </div>
+      <div class="row" style="margin-top:8px"><span class="lbl">chips</span>
+        <span class="chip on">memory</span>
+        <span class="chip">worldbook</span>
+        <span class="chip">tools</span>
+        <span class="chip">safety</span>
+      </div>
+    </div>
+    <div class="pane yoru">
+      <span class="tag">yoru · badges & chips</span>
+      <div class="row"><span class="lbl">status</span>
+        <span class="badge b-ok"><span class="dot" style="background:#3FCB94"></span>saved</span>
+        <span class="badge b-warn"><span class="dot" style="background:#ECB85F"></span>unsaved</span>
+        <span class="badge b-err"><span class="dot" style="background:#F08484"></span>error</span>
+        <span class="badge b-info"><span class="dot" style="background:#7A95FA"></span>syncing</span>
+        <span class="badge b-mute">draft</span>
+        <span class="badge b-ember">ember</span>
+        <span class="badge b-frost">frost</span>
+      </div>
+      <div class="row" style="margin-top:8px"><span class="lbl">chips</span>
+        <span class="chip on">memory</span>
+        <span class="chip">worldbook</span>
+        <span class="chip">tools</span>
+        <span class="chip">safety</span>
+      </div>
+    </div>
+  </div>
+</body></html>

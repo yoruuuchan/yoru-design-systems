@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x900" name="Plates, figures & sheets" subtitle="Plate, Figure, HeroImage, Gallery, ContactSheet, FullBleed, ExhibitionLabel" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px 28px;background:var(--surface-page)}body::before{opacity:.03}.sec{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);border-top:1px solid var(--rule-hair);padding-top:6px;margin:26px 0 12px}.sec:first-child{margin-top:0;border-top:0;padding-top:0}</style>
+</head><body><div id="root"></div><script type="text/babel">
+const { Plate, Figure, HeroImage, Gallery, ContactSheet, FullBleed, ExhibitionLabel } = window.PAPERDesignSystem_7d8f86;
+const S = ({children}) => <div className="sec">{children}</div>;
+function Card(){
+  return (<div>
+    <S>Plate — ratio, tone, label</S>
+    <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:"var(--space-3)"}}>
+      <Plate ratio="1/1" label="1:1" />
+      <Plate ratio="4/5" label="4:5" />
+      <Plate ratio="3/2" tone="cool" label="cool" />
+      <Plate ratio="3/2" shadow label="shadow" />
+    </div>
+
+    <S>Figure — caption below / caption beside</S>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--space-6)"}}>
+      <Figure number="Fig. 01" ratio="3/2" caption="Låtefossen at first light, 06:12. The exposure ran long by a full stop; the fog did the rest." credit="M. Sørensen" />
+      <Figure align="side" number="Fig. 02" ratio="3/2" caption="Printed the following spring at 24 × 30 cm on Ilford MGFB." />
+    </div>
+
+    <S>Gallery — 3 columns, 4:5</S>
+    <Gallery columns={3} ratio="4/5" items={[{},{tone:"cool"},{},{},{},{tone:"cool"}]} />
+
+    <S>ContactSheet</S>
+    <ContactSheet columns={4} startAt={17} note="Favourites" sequence="3/8"
+      frames={[{},{mark:"circle"},{},{mark:"cross"},{},{},{mark:"circle"},{}]} />
+
+    <S>ExhibitionLabel + Plate</S>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--space-6)",alignItems:"stretch",minHeight:"230px"}}>
+      <ExhibitionLabel artist="Mira Andersson" title="Drift" year="2023"
+        medium="Archival pigment print" dimensions="50 × 70 cm" edition="Edition of 10"
+        venue="Gallery North, Copenhagen" dates="Jan 12 – Feb 18, 2024" monogram="M/A" />
+      <Plate ratio="4/5" tone="cool" />
+    </div>
+  </div>);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Card/>);
+</script></body></html>

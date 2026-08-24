@@ -1,0 +1,38 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Status / Accent" subtitle="Amber + Red + Green，仅用于状态" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 12px; background: var(--bg-base); display: grid; gap: 10px; }
+  .group { display: grid; grid-template-columns: 80px repeat(4, 1fr); gap: 6px; align-items: stretch; }
+  .gname { font: var(--type-label); text-transform: uppercase; color: var(--text-tertiary); align-self: center; letter-spacing: var(--tracking-wide); }
+  .sw { height: 36px; padding: 0 10px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--bg-void);
+    clip-path: var(--clip-chamfer-sm);
+    font-family: var(--font-mono); font-size: 11px;
+  }
+  .sw.dark { color: var(--neutral-50); }
+</style></head>
+<body>
+  <div class="group">
+    <span class="gname">amber ⚠</span>
+    <div class="sw" style="background:var(--amber-100)">100 <span>FFF1C2</span></div>
+    <div class="sw" style="background:var(--amber-300)">300 <span>FFD166</span></div>
+    <div class="sw" style="background:var(--amber-500); box-shadow:var(--glow-amber-md)">500★ <span>FFB000</span></div>
+    <div class="sw" style="background:transparent; color:var(--text-tertiary); border:1px dashed var(--border)">仅 100/300/500</div>
+  </div>
+  <div class="group">
+    <span class="gname">danger</span>
+    <div class="sw" style="background:var(--red-100)">100 <span>FFD9D9</span></div>
+    <div class="sw" style="background:var(--red-300)">300 <span>FF7878</span></div>
+    <div class="sw" style="background:var(--red-500); box-shadow:var(--glow-red-md)">500★ <span>FF3A3A</span></div>
+    <div class="sw dark" style="background:var(--red-700)">700 <span>B22020</span></div>
+  </div>
+  <div class="group">
+    <span class="gname">success</span>
+    <div class="sw" style="background:var(--green-300)">300 <span>5CFFB8</span></div>
+    <div class="sw" style="background:var(--green-500); box-shadow:var(--glow-green-md)">500 <span>00E891</span></div>
+    <div class="sw dark" style="background:var(--green-700)">700 <span>008F55</span></div>
+    <div class="sw" style="background:transparent; color:var(--text-tertiary); border:1px dashed var(--border)">★ 仅警示</div>
+  </div>
+</body></html>

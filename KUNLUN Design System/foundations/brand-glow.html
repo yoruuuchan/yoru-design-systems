@@ -1,0 +1,27 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Glow & Shadow" subtitle="霓虹辉光 + 投影分级" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 22px; background: var(--bg-base); display: flex; gap: 20px; align-items: center; justify-content: center; }
+  .swatch {
+    width: 80px; height: 80px;
+    background: var(--bg-panel); border: 1px solid var(--cyan-700);
+    clip-path: var(--clip-chamfer-md);
+    display: flex; align-items: center; justify-content: center;
+    font: var(--type-label); text-transform: uppercase; color: var(--text-signal);
+    flex-direction: column; gap: 4px;
+  }
+  .sm { box-shadow: var(--glow-cyan-sm); }
+  .md { box-shadow: var(--glow-cyan-md); }
+  .lg { box-shadow: var(--glow-cyan-lg); }
+  .amber { box-shadow: var(--glow-amber-md); border-color: var(--amber-700); color: var(--text-warn); }
+  .red   { box-shadow: var(--glow-red-md); border-color: var(--red-700); color: var(--text-danger); }
+  .sub { font-size: 9px; color: var(--text-tertiary); letter-spacing: 0.1em; }
+</style></head>
+<body>
+  <div class="swatch sm">SM<span class="sub">8px</span></div>
+  <div class="swatch md">MD<span class="sub">16px</span></div>
+  <div class="swatch lg">LG<span class="sub">32px</span></div>
+  <div class="swatch amber">⚠<span class="sub">amber</span></div>
+  <div class="swatch red">⨯<span class="sub">danger</span></div>
+</body></html>

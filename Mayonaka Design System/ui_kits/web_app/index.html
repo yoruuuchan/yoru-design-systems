@@ -1,0 +1,183 @@
+<!-- @dsCard group="Web App" viewport="1280x800" name="Midnight FM — Web" subtitle="Late-night music player dashboard" -->
+<!-- @startingPoint section="Web App" subtitle="Midnight FM — vaporwave music player" viewport="1280x800" -->
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>Midnight FM — Web</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  html,body{margin:0;background:var(--bg-base);color:var(--text-primary);font-family:var(--font-body);min-height:100vh;}
+  *{box-sizing:border-box;}
+  .scanlines::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--scanlines);opacity:.55;z-index:9;animation:mnk-scanline-drift 1.2s linear infinite;}
+</style>
+</head><body>
+<div id="root"></div>
+<script type="text/babel" src="./Sidebar.jsx"></script>
+<script type="text/babel" src="./NowPlaying.jsx"></script>
+<script type="text/babel">
+const { Button, Card, Input, Badge, Tabs, Progress, GlitchText } = window.MayonakaDesignSystem_645233;
+
+const TRACKS = [
+  { n:"01", titleJp:"夜の高速",   title:"NIGHT HIGHWAY",  artist:"Mariya Takeuchi", album:"VARIETY",       dur:"4:30", live:true  },
+  { n:"02", titleJp:"雨と灯",     title:"RAIN + LANTERN",  artist:"Toshiki Sugiyama", album:"NIAGARA",       dur:"3:48" },
+  { n:"03", titleJp:"プラスチック・ラブ", title:"PLASTIC LOVE",   artist:"Mariya Takeuchi", album:"VARIETY",       dur:"4:52" },
+  { n:"04", titleJp:"渚にて",     title:"AT THE SHORE",    artist:"Anri",            album:"TIMELY!!",      dur:"3:55" },
+  { n:"05", titleJp:"真夜中のドア", title:"MIDNIGHT DOOR",  artist:"Miki Matsubara",  album:"POCKET PARK",  dur:"4:31", badge:"REMIX" },
+  { n:"06", titleJp:"都会",       title:"CITY",           artist:"Taeko Onuki",     album:"MIGNONNE",     dur:"5:02" },
+  { n:"07", titleJp:"4:00 AM",   title:"4:00 AM",         artist:"Taeko Onuki",     album:"MIGNONNE",     dur:"3:21" },
+];
+
+function Hero(){
+  return (
+    <div className="scanlines" style={{
+      position:"relative", margin:"24px 32px 0", padding:"36px 36px",
+      background:"linear-gradient(135deg, #0a1654 0%, #2d6cff 30%, #ff2bd6 70%, #ff71ce 100%)",
+      border:"2px solid var(--magenta)", boxShadow:"var(--glow-magenta-sm)", overflow:"hidden",
+    }}>
+      <div style={{position:"absolute", right:-40, top:-20, fontFamily:"var(--font-jp)", fontSize:140, color:"rgba(255,255,255,.08)", letterSpacing:".05em", lineHeight:1}}>真夜中</div>
+      <div style={{display:"flex", alignItems:"center", gap:10, marginBottom:14}}>
+        <Badge variant="magenta" style={{animation:"mnk-flicker 3.6s linear infinite"}}>● LIVE</Badge>
+        <Badge variant="blue">FM 88.3</Badge>
+        <Badge variant="cyan">BLUE LINE</Badge>
+        <span style={{fontFamily:"var(--font-body)", color:"#fff", fontSize:15, opacity:.85}}>// signal received_ 03:42 JST</span>
+      </div>
+      <div style={{animation:"mnk-glitch-shake 5s infinite"}}>
+        <GlitchText size={56} as="h1" style={{color:"#fff", display:"block", margin:"0 0 6px"}}>MIDNIGHT WAVE</GlitchText>
+      </div>
+      <div style={{fontFamily:"var(--font-jp)", fontSize:22, color:"#fff", opacity:.85, marginBottom:18}}>真夜中の波長 ／ city pop after dark</div>
+      <div style={{display:"flex", gap:12}}>
+        <Button variant="primary" size="lg" glow>TUNE IN</Button>
+        <Button variant="blue-outline" size="lg">▸ EXPLORE MIXTAPES</Button>
+      </div>
+    </div>
+  );
+}
+
+function TrackTable({ tracks, currentIdx, onPlay }){
+  return (
+    <div style={{margin:"24px 32px"}}>
+      <div style={{display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:14}}>
+        <div style={{fontFamily:"var(--font-display)", fontSize:12, letterSpacing:".18em", color:"var(--magenta)", textShadow:"var(--text-glow-magenta)"}}>// HEAVY ROTATION_</div>
+        <div style={{fontFamily:"var(--font-body)", fontSize:15, color:"var(--text-muted)"}}>updated 03:42 JST · 47 tracks</div>
+      </div>
+      <table style={{width:"100%", borderCollapse:"collapse", fontFamily:"var(--font-body)"}}>
+        <thead>
+          <tr style={{borderBottom:"2px solid var(--border-default)"}}>
+            {["#","TITLE","ARTIST","ALBUM","TIME",""].map((h,i)=>(
+              <th key={i} style={{textAlign:"left", padding:"8px 10px", fontFamily:"var(--font-display)", fontSize:9, letterSpacing:".15em", color:"var(--text-muted)", fontWeight:400}}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {tracks.map((t,i)=>{
+            const on = i===currentIdx;
+            return (
+              <tr key={t.n} onClick={()=>onPlay(i)} style={{
+                cursor:"pointer", borderBottom:"1px solid var(--border-default)",
+                background: on ? "rgba(255,43,214,.08)" : "transparent",
+              }}>
+                <td style={{padding:"10px", color:"var(--text-muted)", fontFamily:"var(--font-display)", fontSize:9, width:50}}>{on ? <span style={{color:"var(--magenta)"}}>▶</span> : t.n}</td>
+                <td style={{padding:"10px"}}>
+                  <div style={{fontFamily:"var(--font-jp)", fontSize:17, color: on ? "var(--magenta)" : "var(--text-primary)", textShadow: on ? "var(--text-glow-magenta)" : "none"}}>{t.titleJp}</div>
+                  <div style={{fontFamily:"var(--font-display)", fontSize:9, letterSpacing:".14em", color:"var(--text-muted)", marginTop:2}}>{t.title}</div>
+                </td>
+                <td style={{padding:"10px", color:"var(--text-secondary)", fontSize:15}}>{t.artist}</td>
+                <td style={{padding:"10px", color:"var(--text-muted)", fontSize:15}}>{t.album}</td>
+                <td style={{padding:"10px", color:"var(--text-muted)", fontSize:15}}>{t.dur}</td>
+                <td style={{padding:"10px", width:80}}>
+                  {t.live && <Badge variant="magenta">LIVE</Badge>}
+                  {t.badge && <Badge variant="cyan">{t.badge}</Badge>}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function App(){
+  const [nav, setNav] = React.useState("home");
+  const [tab, setTab] = React.useState("HEAVY ROTATION");
+  const [idx, setIdx] = React.useState(0);
+  const [playing, setPlaying] = React.useState(true);
+  const [progress, setProgress] = React.useState(42);
+  const [q, setQ] = React.useState("");
+
+  React.useEffect(()=>{ window.lucide && window.lucide.createIcons(); });
+
+  return (
+    <div style={{display:"flex", minHeight:"100vh"}}>
+      <MNK_Sidebar active={nav} onNav={setNav} />
+      <main style={{flex:1, display:"flex", flexDirection:"column", minWidth:0, background:"var(--bg-base)"}}>
+        {/* TOP BAR */}
+        <div style={{padding:"14px 32px", borderBottom:"2px solid var(--border-default)", display:"flex", alignItems:"center", gap:18, background:"var(--bg-void)"}}>
+          <div style={{display:"flex", gap:6}}>
+            <button style={{all:"unset", cursor:"pointer", width:28, height:28, display:"grid", placeItems:"center", border:"2px solid var(--border-default)", color:"var(--text-muted)"}}><i data-lucide="chevron-left" style={{width:14,height:14}}></i></button>
+            <button style={{all:"unset", cursor:"pointer", width:28, height:28, display:"grid", placeItems:"center", border:"2px solid var(--border-default)", color:"var(--text-muted)"}}><i data-lucide="chevron-right" style={{width:14,height:14}}></i></button>
+          </div>
+          <div style={{flex:1, maxWidth:480}}>
+            <Input prefix="▸" placeholder="search artists, tracks, mixes…" value={q} onChange={e=>setQ(e.target.value)} />
+          </div>
+          <div style={{marginLeft:"auto", display:"flex", gap:10, alignItems:"center"}}>
+            <Badge variant="success" style={{animation:"mnk-pulse-blue 2s ease-in-out infinite"}}>● ONLINE</Badge>
+            <Button variant="ghost" size="sm">▸ UPLOAD MIX</Button>
+            <Button variant="blue" size="sm" glow>88.3 LIVE</Button>
+          </div>
+        </div>
+
+        <div style={{flex:1, overflowY:"auto"}}>
+          <Hero/>
+
+          <div style={{margin:"28px 32px 0"}}>
+            <Tabs tabs={[{label:"HEAVY ROTATION"},{label:"NEW DROPS"},{label:"CITY POP"},{label:"VAPORWAVE"},{label:"AMBIENT 4AM"}]} value={tab} onChange={setTab}/>
+          </div>
+
+          <TrackTable tracks={TRACKS} currentIdx={idx} onPlay={i=>{setIdx(i); setPlaying(true);}}/>
+
+          <div style={{margin:"8px 32px 32px", display:"grid", gridTemplateColumns:"1fr 1fr", gap:16}}>
+            <Card variant="blue" title="STATION STATS" meta="this week" glow>
+              <div style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:12, marginTop:6}}>
+                <Stat label="LISTENERS" value="2,049" />
+                <Stat label="SPINS" value="14.7K" />
+                <Stat label="UPTIME" value="100%" />
+              </div>
+            </Card>
+            <Card variant="default" title="DJ NOTES" meta="// 03:42_">
+              <div style={{fontFamily:"var(--font-body)", fontSize:16, lineHeight:1.5, color:"var(--text-secondary)"}}>
+                tonight's set leans into the rain. heavy on Mariya, light on bass.<br/>
+                <span style={{fontFamily:"var(--font-jp)", color:"var(--text-primary)"}}>雨の夜にぴったり。窓を開けて、音量を上げて。</span>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </main>
+      <MNK_NowPlaying
+        track={TRACKS[idx]}
+        playing={playing}
+        onToggle={()=>setPlaying(p=>!p)}
+        progress={progress}
+        onSeek={setProgress}
+      />
+    </div>
+  );
+}
+
+function Stat({label,value}){
+  return (
+    <div>
+      <div style={{fontFamily:"var(--font-display)", fontSize:8, letterSpacing:".18em", color:"var(--text-muted)"}}>{label}</div>
+      <div style={{fontFamily:"var(--font-display)", fontSize:22, color:"var(--azure)", textShadow:"var(--text-glow-blue)", marginTop:6}}>{value}</div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body></html>

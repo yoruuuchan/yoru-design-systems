@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Surface" subtitle="Card · Badge · Tag" -->
+<!doctype html>
+<html><head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../styles.css">
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin></script>
+  <script src="../../_ds_bundle.js"></script>
+</head>
+<body style="margin:0;padding:24px;background:linear-gradient(180deg,#33A8FF 0%,#9DD2FF 50%,#FFD84D 100%);position:relative;overflow:hidden;">
+  <!-- Busy decoration so the three glass tiers actually differ -->
+  <div style="position:absolute;left:8%;top:30px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#FFEE99,#FF6B6B);filter:blur(2px);"></div>
+  <div style="position:absolute;left:42%;top:0;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#FFE34D,#FFD000);filter:blur(2px);"></div>
+  <div style="position:absolute;right:8%;top:40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#A8DCFF,#0A84FF);filter:blur(2px);"></div>
+  <div id="root" style="position:relative;z-index:1"></div>
+  <script type="text/babel">
+    const { Card, Badge, Tag } = window.AozoraDesignSystem_e61996;
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:14 }}>
+        {/* Row 1 — three card tiers */}
+        <Card tier="thin"    padding="md"><b style={{display:'block',fontFamily:'var(--font-display)',fontSize:18,fontWeight:800,letterSpacing:'-0.02em'}}>Thin</b><span style={{fontSize:12,color:'var(--text-muted)'}}>nav · subtle</span></Card>
+        <Card tier="regular" padding="md"><b style={{display:'block',fontFamily:'var(--font-display)',fontSize:18,fontWeight:800,letterSpacing:'-0.02em'}}>Regular</b><span style={{fontSize:12,color:'var(--text-muted)'}}>the default</span></Card>
+        <Card tier="thick"   padding="md"><b style={{display:'block',fontFamily:'var(--font-display)',fontSize:18,fontWeight:800,letterSpacing:'-0.02em'}}>Thick</b><span style={{fontSize:12,color:'var(--text-muted)'}}>modal · sheet</span></Card>
+
+        {/* Row 2 — tinted */}
+        <Card tint="blue" padding="md"><b style={{display:'block',fontFamily:'var(--font-display)',fontSize:18,fontWeight:800,color:'#fff'}}>Blue tint</b><span style={{fontSize:12,color:'rgba(255,255,255,0.8)'}}>brand context</span></Card>
+        <Card tint="sun"  padding="md"><b style={{display:'block',fontFamily:'var(--font-display)',fontSize:18,fontWeight:800,color:'var(--neutral-900)'}}>Sun tint</b><span style={{fontSize:12,color:'var(--neutral-700)'}}>accent · promo</span></Card>
+        <Card tint="dark" padding="md"><b style={{display:'block',fontFamily:'var(--font-display)',fontSize:18,fontWeight:800}}>Dark tint</b><span style={{fontSize:12,opacity:0.7}}>on bright bg</span></Card>
+
+        {/* Row 3 — badges */}
+        <Card padding="md" style={{gridColumn:'span 3'}}>
+          <div style={{display:'flex',alignItems:'center',gap:8,flexWrap:'wrap',marginBottom:12}}>
+            <Badge>New</Badge>
+            <Badge tone="success" dot>Online</Badge>
+            <Badge tone="warn">Beta</Badge>
+            <Badge tone="danger">Sold out</Badge>
+            <Badge tone="accent" variant="solid">SUMMER</Badge>
+            <Badge tone="brand" variant="solid">Pro</Badge>
+            <Badge tone="neutral" variant="outline">Draft</Badge>
+            <Badge tone="brand" variant="outline">v0.5</Badge>
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:8,flexWrap:'wrap'}}>
+            <Tag selected tone="brand">All</Tag>
+            <Tag>Citrus</Tag>
+            <Tag>Sugar-free</Tag>
+            <Tag>Limited</Tag>
+            <Tag removable tone="brand">夏 Summer</Tag>
+            <Tag removable tone="accent">¥1,280 ↓</Tag>
+            <Tag tone="accent" selected>Recommended</Tag>
+          </div>
+        </Card>
+      </div>
+    );
+  </script>
+</body></html>

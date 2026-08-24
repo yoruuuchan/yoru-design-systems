@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Buttons, links & mode badges" subtitle="Button, TextLink, ModeBadge" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px 28px;background:var(--surface-page)}body::before{opacity:.03}.sec{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);border-top:1px solid var(--rule-hair);padding-top:6px;margin:26px 0 12px}.sec:first-child{margin-top:0;border-top:0;padding-top:0}</style>
+</head><body><div id="root"></div><script type="text/babel">
+const { Button, TextLink, ModeBadge } = window.PAPERDesignSystem_7d8f86;
+const S = ({children}) => <div className="sec">{children}</div>;
+function Card(){
+  return (<div>
+    <S>Button — solid / outline / quiet / accent</S>
+    <div style={{display:"flex",gap:"var(--space-3)",alignItems:"center",flexWrap:"wrap"}}>
+      <Button variant="solid">Subscribe</Button>
+      <Button variant="outline">View selected work</Button>
+      <Button variant="quiet">Archive</Button>
+      <Button variant="accent">Buy the print</Button>
+      <Button variant="solid" disabled>Sold out</Button>
+    </div>
+
+    <S>Sizes</S>
+    <div style={{display:"flex",gap:"var(--space-3)",alignItems:"center"}}>
+      <Button size="sm" variant="outline">Small</Button>
+      <Button size="md" variant="outline">Medium</Button>
+      <Button size="lg" variant="outline">Large</Button>
+    </div>
+
+    <S>TextLink</S>
+    <div style={{display:"flex",gap:"var(--space-7)",alignItems:"baseline",flexWrap:"wrap",fontFamily:"var(--font-serif)"}}>
+      <TextLink href="#" arrow>View selected work</TextLink>
+      <TextLink href="#" tone="accent">Fig. 04</TextLink>
+      <TextLink href="#" tone="muted" size="var(--type-caption)">colophon</TextLink>
+      <span style={{fontSize:"var(--type-body)",color:"var(--text-body)"}}>…printed at <TextLink href="#">Narayana Press</TextLink> in Odder.</span>
+    </div>
+
+    <S>ModeBadge</S>
+    <div style={{display:"flex",gap:"var(--space-8)",flexWrap:"wrap"}}>
+      <ModeBadge mode="editorial" label />
+      <ModeBadge mode="analog" label />
+    </div>
+  </div>);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Card/>);
+</script></body></html>

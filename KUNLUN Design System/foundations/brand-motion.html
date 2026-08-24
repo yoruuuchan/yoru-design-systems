@@ -1,0 +1,26 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Motion Library" subtitle="呼吸、闪烁、扫描、打字 — 全部 keyframes" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 18px; background: var(--bg-base); display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: center; }
+  .demo { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+  .label { font: var(--type-label); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  .blink { color: var(--text-signal); font-family: var(--font-mono); font-size: 24px; animation: kl-blink 1s var(--ease-step-2) infinite; }
+  .pulse {
+    width: 50px; height: 50px; background: var(--cyan-700); clip-path: var(--clip-chamfer-md);
+    border: 1px solid var(--cyan-400); animation: kl-pulse-glow 2s var(--ease-out) infinite;
+  }
+  .flick { color: var(--cyan-300); font-family: var(--font-crt); font-size: 28px; animation: kl-flicker 3s linear infinite; }
+  .type {
+    font-family: var(--font-mono); color: var(--text-signal); font-size: 13px;
+    overflow: hidden; white-space: nowrap; border-right: 2px solid var(--cyan-400);
+    width: 0;
+    animation: kl-typewriter 2.5s var(--ease-step) infinite, kl-caret 0.6s step-end infinite;
+  }
+</style></head>
+<body>
+  <div class="demo"><span class="blink">▮</span><span class="label">blink</span></div>
+  <div class="demo"><div class="pulse"></div><span class="label">pulse-glow</span></div>
+  <div class="demo"><span class="flick">FLICKER</span><span class="label">flicker</span></div>
+  <div class="demo"><span class="type">&gt; LOADING DATA...</span><span class="label">typewriter</span></div>
+</body></html>

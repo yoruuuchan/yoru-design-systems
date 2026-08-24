@@ -1,0 +1,114 @@
+/* COLORS — cyan/blue dominant. Amber + red are sparing accents.
+ * Base scale uses dark void backgrounds, cyan as primary "signal",
+ * full neutral grayscale for type, plus warm warning hues.
+ */
+
+:root {
+  /* ─── Base background scale (void → elevated) ─── */
+  --bg-void:        #04060a;   /* deepest layer, between panels */
+  --bg-base:        #06080d;   /* default page background */
+  --bg-surface:     #0a0f17;   /* primary surface */
+  --bg-panel:       #0d1320;   /* panel / card background */
+  --bg-elevated:    #131a2a;   /* modals, dropdowns */
+  --bg-inset:       #02040a;   /* recessed, e.g. input wells */
+
+  /* ─── Neutral / grayscale (text + chrome) ─── */
+  --neutral-50:     #f5f9ff;
+  --neutral-100:    #e3eaf3;
+  --neutral-200:    #c2cdda;
+  --neutral-300:    #95a3b4;
+  --neutral-400:    #6c7a8c;
+  --neutral-500:    #4d5a6e;
+  --neutral-600:    #364154;
+  --neutral-700:    #232c3d;
+  --neutral-800:    #161e2c;
+  --neutral-900:    #0a0f17;
+
+  /* ─── Primary — Cyan (signal / glow) ─── */
+  --cyan-100:       #d5f6ff;
+  --cyan-200:       #a7ecff;
+  --cyan-300:       #5fd9ff;
+  --cyan-400:       #1fc8ff;
+  --cyan-500:       #00b8ff;   /* PRIMARY */
+  --cyan-600:       #0098d4;
+  --cyan-700:       #0075a8;
+  --cyan-800:       #00547a;
+  --cyan-900:       #00374e;
+
+  /* ─── Secondary — Steel Blue (structure / depth) ─── */
+  --blue-100:       #dbe6ff;
+  --blue-200:       #a7c1ff;
+  --blue-300:       #6c95ff;
+  --blue-400:       #3d72f0;
+  --blue-500:       #2a5fd6;
+  --blue-600:       #1f47a8;
+  --blue-700:       #18377f;
+  --blue-800:       #112759;
+  --blue-900:       #0a1738;
+
+  /* ─── Accent — Amber (highlight, used sparingly) ─── */
+  --amber-100:      #fff1c2;
+  --amber-300:      #ffd166;
+  --amber-500:      #ffb000;   /* HIGHLIGHT */
+  --amber-700:      #b07300;
+
+  /* ─── Danger — Red (warning state, sparing) ─── */
+  --red-100:        #ffd9d9;
+  --red-300:        #ff7878;
+  --red-500:        #ff3a3a;   /* DANGER */
+  --red-700:        #b22020;
+
+  /* ─── Success — Cyan-green ─── */
+  --green-300:      #5cffb8;
+  --green-500:      #00e891;
+  --green-700:      #008f55;
+
+  /* ─── Semantic aliases (use these in components) ─── */
+  --bg:                  var(--bg-base);
+  --bg-card:             var(--bg-panel);
+  --bg-input:            var(--bg-inset);
+  --bg-hover:            #131c2e;
+  --bg-active:           #1a2540;
+
+  --text-primary:        var(--neutral-100);
+  --text-secondary:      var(--neutral-300);
+  --text-tertiary:       var(--neutral-400);
+  --text-disabled:       var(--neutral-500);
+  --text-inverse:        var(--bg-void);
+  --text-link:           var(--cyan-400);
+  --text-signal:         var(--cyan-300);
+  --text-warn:           var(--amber-500);
+  --text-danger:         var(--red-500);
+  --text-success:        var(--green-500);
+
+  --border:              #1a2540;
+  --border-strong:       #2a3a5c;
+  --border-signal:       var(--cyan-700);
+  --border-warn:         var(--amber-700);
+  --border-danger:       var(--red-700);
+
+  --accent:              var(--cyan-500);
+  --accent-hover:        var(--cyan-400);
+  --accent-press:        var(--cyan-600);
+  --accent-dim:          var(--cyan-700);
+  --accent-glow:         rgba(0, 184, 255, 0.45);
+  --accent-glow-soft:    rgba(0, 184, 255, 0.18);
+
+  --warn:                var(--amber-500);
+  --warn-glow:           rgba(255, 176, 0, 0.4);
+
+  --danger:              var(--red-500);
+  --danger-glow:         rgba(255, 58, 58, 0.4);
+
+  --success:             var(--green-500);
+  --success-glow:        rgba(0, 232, 145, 0.4);
+
+  /* HUD ornament ink — used for corner marks, coordinates, ASCII frames */
+  --hud-ink:             var(--cyan-700);
+  --hud-ink-bright:      var(--cyan-400);
+
+  /* Grid / scanline overlay color */
+  --scanline:            rgba(0, 184, 255, 0.04);
+  --grid-line:           rgba(120, 180, 255, 0.06);
+  --grain:               rgba(255, 255, 255, 0.025);
+}

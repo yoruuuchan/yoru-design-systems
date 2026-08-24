@@ -1,0 +1,48 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="HUD Ornaments" subtitle="角标、瞄准框、坐标 — 装饰系统" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--bg-base); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .frame {
+    height: 110px; background: var(--bg-panel);
+    position: relative; padding: 12px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font: var(--type-label); text-transform: uppercase; color: var(--text-signal);
+    letter-spacing: var(--tracking-wide);
+  }
+  .meta { font-family: var(--font-mono); font-size: 9px; color: var(--text-tertiary); position: absolute; bottom: 6px; left: 8px; }
+  .coord { font-family: var(--font-mono); font-size: 9px; color: var(--cyan-700); position: absolute; }
+  .crosshair {
+    position: absolute; inset: 50% 50% 50% 50%;
+    width: 20px; height: 20px; transform: translate(-50%, -50%);
+  }
+  .crosshair::before, .crosshair::after { content: ""; position: absolute; background: var(--cyan-400); box-shadow: var(--glow-cyan-sm); }
+  .crosshair::before { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); }
+  .crosshair::after  { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
+</style></head>
+<body>
+<div class="grid">
+  <div class="frame">
+    <span class="kl-corner kl-corner-tl"></span>
+    <span class="kl-corner kl-corner-tr"></span>
+    <span class="kl-corner kl-corner-bl"></span>
+    <span class="kl-corner kl-corner-br"></span>
+    四角刻度
+    <span class="meta">CORNER-TICKS</span>
+  </div>
+  <div class="frame">
+    <div class="crosshair"></div>
+    <span class="coord" style="top:6px; left:8px">37.54° N</span>
+    <span class="coord" style="bottom:6px; right:8px">112.91° E</span>
+    <span class="meta">CROSSHAIR</span>
+  </div>
+  <div class="frame" style="font-family: var(--font-mono); flex-direction: column; gap: 4px; font-size:10px; color: var(--cyan-400); letter-spacing:0;">
+    ╔═════ NODE-07 ═════╗<br>
+    ║ STATUS: NOMINAL&nbsp;&nbsp;&nbsp;║<br>
+    ╚═══════════════════╝
+    <span class="meta">ASCII FRAME</span>
+  </div>
+</div>
+</body></html>

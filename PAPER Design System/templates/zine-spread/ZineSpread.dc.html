@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Zine spread (printable)" description="A two-page analog spread on one landscape sheet — photo left, text right. Exports straight to PDF." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<script src="./doc-page.js"></script>
+<script src="../../assets/image-slot.js"></script>
+<style>body{margin:0}doc-page:not(:defined){visibility:hidden}</style>
+</helmet>
+<doc-page size="letter" orientation="landscape">
+<section class="page" style="padding:0;background:var(--paper-300);font-family:var(--font-serif);color:var(--text-body)">
+<div style="display:grid;grid-template-columns:1fr 1fr;width:100%;height:100%;box-sizing:border-box">
+
+<div style="padding:0.62in 0.55in;display:flex;flex-direction:column;box-sizing:border-box;border-right:1px solid var(--rule-hair);position:relative">
+<div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);padding-bottom:8px;border-bottom:1px solid var(--rule-hair)"><span>Drift</span><span>chapter 02</span></div>
+<div style="position:relative;aspect-ratio:3/4;margin-top:0.34in;background:var(--placeholder-tone);box-shadow:0 1px 2px rgba(38,36,30,.11),0 12px 26px -16px rgba(38,36,30,.42),inset 0 0 0 1px var(--frame-edge);overflow:hidden;filter:sepia(.16) saturate(.82) contrast(1.03)"><image-slot id="zine-left" shape="rect" placeholder="Full-page plate — 3:4"></image-slot></div>
+<div style="margin-top:auto;padding-top:0.22in;font-family:var(--font-hand);font-size:15pt;line-height:1.35;color:var(--hand-ink)">Sunday light<br>in the kitchen</div>
+</div>
+
+<div style="padding:0.62in 0.55in;display:flex;flex-direction:column;box-sizing:border-box">
+<div style="display:flex;justify-content:flex-end;font-family:var(--font-mono);font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);padding-bottom:8px;border-bottom:1px solid var(--rule-hair)"><span>12</span></div>
+<h2 style="font-family:var(--font-display);font-weight:400;font-size:28pt;line-height:1.1;color:var(--text-display);margin:0.38in 0 0">Small Observations</h2>
+<div style="margin-top:0.22in;max-width:34ch">
+<p style="font-size:10.5pt;line-height:1.85;margin:0">The way the curtain moves before the window opens. A cup left on the table. Footsteps down the hall. These are the notes I keep returning to.<sup style="font-size:.62em;line-height:0;vertical-align:super;font-family:var(--font-mono);color:var(--text-accent)">1</sup></p>
+<p style="font-size:10.5pt;line-height:1.85;margin:1em 0 0;text-indent:1.5em">None of it is worth photographing on its own. Together, over a winter, it is the only record I have of that year.</p>
+<p lang="zh" style="font-size:9.5pt;line-height:1.95;color:var(--text-secondary);margin:1.1em 0 0">单独看都不值得拍。可是一个冬天攒下来，那就是我留下的全部记录。</p>
+</div>
+<div style="margin-top:0.26in;border-top:1px solid var(--rule-hair);padding-top:10px;display:grid;grid-template-columns:16px 1fr;font-family:var(--font-sans);font-size:8pt;line-height:1.5;color:var(--text-muted)"><span style="font-family:var(--font-mono);color:var(--text-accent)">1.</span><span>Kodak Portra 400, available light throughout.</span></div>
+<div style="margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;padding-top:0.2in;border-top:1px solid var(--rule-hair)">
+<span style="font-family:var(--font-sans);font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)">Mira Andersson — Drift</span>
+<span style="font-family:var(--font-display);font-size:13pt;color:var(--text-muted)">13</span>
+</div>
+</div>
+
+</div>
+</section>
+</doc-page>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;analog&quot;,&quot;editorial&quot;],&quot;default&quot;:&quot;analog&quot;,&quot;tsType&quot;:&quot;\&quot;analog\&quot; | \&quot;editorial\&quot;&quot;,&quot;section&quot;:&quot;Voice&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { document.body.setAttribute("data-mode", this.props.mode ?? "analog"); }
+  componentDidUpdate() { document.body.setAttribute("data-mode", this.props.mode ?? "analog"); }
+  renderVals() { return {}; }
+}
+
+</script>
+</body>
+</html>

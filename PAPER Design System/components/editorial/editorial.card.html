@@ -1,0 +1,60 @@
+<!-- @dsCard group="Components" viewport="700x1080" name="Editorial text system" subtitle="ArticleHeader, TextBlock, PullQuote, MetaBlock, Divider, Footnotes, Credits, Contents, Columns" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px 28px;background:var(--surface-page)}body::before{opacity:.03}.sec{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);border-top:1px solid var(--rule-hair);padding-top:6px;margin:26px 0 12px}.sec:first-child{margin-top:0;border-top:0;padding-top:0}</style>
+</head><body><div id="root"></div><script type="text/babel">
+const { ArticleHeader, TextBlock, PullQuote, MetaBlock, Divider, Footnotes, Credits, Contents, Columns } = window.PAPERDesignSystem_7d8f86;
+const S = ({children}) => <div className="sec">{children}</div>;
+function Card(){
+  return (<div>
+    <S>ArticleHeader</S>
+    <ArticleHeader kicker="Photo Essay" size="md" title="The Slow Return of" emphasis="Winter Light"
+      standfirst="Four months on the Baltic coast, photographed on expired film and printed the following spring." />
+
+    <S>MetaBlock</S>
+    <MetaBlock items={[{label:"Words",value:"Ana Rehn"},{label:"Photographs",value:"M. Sørensen"},{label:"Published",value:"March 2026"},{label:"Reading",value:"12 min"}]} />
+
+    <S>TextBlock — drop cap, two columns</S>
+    <TextBlock dropCap columns={2}>
+      <p>The road north empties in November. What remains is a particular quality of light that arrives late, stays low, and leaves early — an hour, then two, then a whole afternoon of it by February.<sup>1</sup></p>
+      <p>We kept a notebook of the returns. Sunrise times, film stock, the temperature at the moment of exposure. The record is unremarkable on its own and becomes something else entirely when read in sequence.</p>
+    </TextBlock>
+
+    <S>TextBlock — Chinese setting</S>
+    <TextBlock lang="zh" size="sm"><p>光线回来的那几周，我们几乎不说话，只记录时间和温度。</p></TextBlock>
+
+    <S>PullQuote — rules / mark / hang</S>
+    <Columns split="1/1" gap="var(--space-6)">
+      <PullQuote size="sm" attribution="M. Sørensen — interview, 2025">You cannot photograph the return of the light.</PullQuote>
+      <PullQuote size="sm" variant="mark" italic={false}>I collect moments, not things.</PullQuote>
+    </Columns>
+    <PullQuote size="sm" variant="hang" style={{marginTop:"var(--space-5)"}}>Only the things it lands on.</PullQuote>
+
+    <S>Divider — hair / rule / double / ornament</S>
+    <Divider variant="hair" space="var(--space-4)" />
+    <Divider variant="rule" space="var(--space-4)" />
+    <Divider variant="double" space="var(--space-4)" />
+    <Divider variant="ornament" label="II" space="var(--space-4)" />
+
+    <S>Contents</S>
+    <Contents items={[
+      {title:"The Coast Later",kind:"Photo Essay",page:"02"},
+      {title:"Apartmento",kind:"Interior",page:"08"},
+      {title:"The Gentlewoman",kind:"Still Life",page:"14"},
+      {title:"Drift",kind:"Journal",page:"26"}
+    ]} />
+
+    <S>Footnotes + Credits</S>
+    <Columns split="1/1" gap="var(--space-7)">
+      <Footnotes title="Notes" items={["Sunrise, Bodø, 21 Dec: 11:47. Sunset: 13:12.","All plates printed at 24 × 30 cm on Ilford MGFB."]} />
+      <Credits items={[{role:"Photography",name:"M. Sørensen"},{role:"Words",name:"Ana Rehn"},{role:"Printing",name:"Narayana Press, Odder"}]} />
+    </Columns>
+  </div>);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Card/>);
+</script></body></html>

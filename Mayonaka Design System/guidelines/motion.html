@@ -1,0 +1,18 @@
+<!-- @dsCard group="Brand" viewport="700x220" name="Motion library" subtitle="pulse · flicker · scanline drift · marquee · blink" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--bg-void);color:var(--text-primary);font-family:var(--font-body);padding:18px;height:220px;box-sizing:border-box;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch;}
+  .demo{border:2px solid var(--border-default);padding:12px;display:flex;flex-direction:column;justify-content:space-between;background:var(--bg-card);}
+  .lbl{font-family:var(--font-display);font-size:8px;letter-spacing:.15em;color:var(--text-muted);}
+  .dot{width:48px;height:48px;border-radius:50%;align-self:center;background:var(--magenta);animation:mnk-pulse-magenta 1.8s ease-in-out infinite;}
+  .dot.b{background:var(--electric);animation:mnk-pulse-blue 1.8s ease-in-out infinite;}
+  .flick{align-self:center;font-family:var(--font-display);font-size:18px;color:var(--cyan);text-shadow:var(--text-glow-cyan);animation:mnk-flicker 2.4s linear infinite;}
+  .scan{align-self:center;width:80%;height:36px;background:repeating-linear-gradient(to bottom,transparent 0 2px,var(--magenta) 3px 4px);animation:mnk-scanline-drift .6s linear infinite;}
+  .cursor{align-self:center;font-family:var(--font-body);font-size:22px;color:var(--cyan);}
+  .cursor::after{content:"▮";animation:mnk-blink 1s steps(2,end) infinite;margin-left:4px;}
+</style></head><body>
+  <div class="demo"><span class="lbl">PULSE / MAGENTA</span><div class="dot"></div><span class="lbl">mnk-pulse-magenta</span></div>
+  <div class="demo"><span class="lbl">PULSE / BLUE</span><div class="dot b"></div><span class="lbl">mnk-pulse-blue</span></div>
+  <div class="demo"><span class="lbl">FLICKER</span><div class="flick">SIGNAL</div><span class="lbl">mnk-flicker</span></div>
+  <div class="demo"><span class="lbl">SCANLINE DRIFT</span><div class="scan"></div><span class="lbl">mnk-scanline-drift</span></div>
+</body></html>

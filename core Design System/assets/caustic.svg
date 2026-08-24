@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+  <filter id="c">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="3" seed="3"></feTurbulence>
+    <feColorMatrix values="0 0 0 0 0.93&#xA;                           0 0 0 0 0.96&#xA;                           0 0 0 0 0.93&#xA;                           0 0 0 1.2 -0.6"></feColorMatrix>
+    <feComposite in2="SourceGraphic" operator="in"></feComposite>
+  </filter>
+  <rect width="400" height="400" fill="#6aa9bf"></rect>
+  <rect width="400" height="400" filter="url(#c)" opacity="0.7"></rect>
+</svg>

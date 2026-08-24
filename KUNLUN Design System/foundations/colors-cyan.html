@@ -1,0 +1,32 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Cyan / Primary" subtitle="主色，信号 + 辉光" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 12px; background: var(--bg-base); }
+  .row { display: grid; grid-template-columns: repeat(9, 1fr); gap: 6px; }
+  .sw {
+    height: 100px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--bg-void);
+    clip-path: var(--clip-chamfer-sm);
+  }
+  .sw.dark { color: var(--cyan-100); }
+  .label { font: var(--type-label); text-transform: uppercase; opacity: 0.9; }
+  .hex { font-family: var(--font-mono); font-size: 10px; opacity: 0.85; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw" style="background:var(--cyan-100)"><span class="label">100</span><span class="hex">D5F6FF</span></div>
+    <div class="sw" style="background:var(--cyan-200)"><span class="label">200</span><span class="hex">A7ECFF</span></div>
+    <div class="sw" style="background:var(--cyan-300)"><span class="label">300</span><span class="hex">5FD9FF</span></div>
+    <div class="sw" style="background:var(--cyan-400)"><span class="label">400</span><span class="hex">1FC8FF</span></div>
+    <div class="sw" style="background:var(--cyan-500); box-shadow: var(--glow-cyan-md)"><span class="label">500★</span><span class="hex">00B8FF</span></div>
+    <div class="sw dark" style="background:var(--cyan-600)"><span class="label">600</span><span class="hex">0098D4</span></div>
+    <div class="sw dark" style="background:var(--cyan-700)"><span class="label">700</span><span class="hex">0075A8</span></div>
+    <div class="sw dark" style="background:var(--cyan-800)"><span class="label">800</span><span class="hex">00547A</span></div>
+    <div class="sw dark" style="background:var(--cyan-900)"><span class="label">900</span><span class="hex">00374E</span></div>
+  </div>
+</body></html>

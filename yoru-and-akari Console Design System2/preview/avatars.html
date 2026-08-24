@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Companion glyphs" subtitle="Akari · yoru · reading partner avatars" viewport="700x230" --><html><head><meta charset="utf-8"><title>avatars · companion glyphs</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 16px; border-radius: 16px; }
+  .pane.akari { background: #E8ECF3; }
+  .pane.yoru  { background: #0B1020; }
+  .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 12px; display: block; }
+  .pane.akari .tag { color: #6B7793; }
+  .pane.yoru .tag { color: #A8B2CC; }
+
+  .row { display: flex; gap: 14px; align-items: center; }
+  .av-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .av {
+    border-radius: 50%; display: grid; place-items: center;
+    font-family: "Zen Kaku Gothic New", sans-serif; font-weight: 600; color: #fff;
+    position: relative;
+  }
+  .av .ring { position: absolute; inset: -3px; border-radius: 50%; pointer-events: none; }
+  .av.lg { width: 64px; height: 64px; font-size: 26px; }
+  .av.md { width: 44px; height: 44px; font-size: 18px; }
+  .av.sm { width: 30px; height: 30px; font-size: 12px; }
+  .nm { font-size: 11px; opacity: 0.6; font-family: var(--font-mono); }
+  .pane.akari .nm { color: #394560; }
+  .pane.yoru .nm { color: #A8B2CC; }
+
+  /* akari glyph: porcelain lamp */
+  .glyph-akari {
+    background:
+      radial-gradient(circle at 32% 28%, #FFD4B0 0 12%, transparent 18%),
+      radial-gradient(circle at 65% 70%, #B9C6FD 0 35%, transparent 45%),
+      linear-gradient(135deg, #6E89F2, #2E44B0 90%);
+  }
+  .ring-pulse { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #4F6CE8, 0 0 18px rgba(79,108,232,0.4); }
+  .pane.yoru .ring-pulse { box-shadow: 0 0 0 2px #0B1020, 0 0 0 3.5px #7A95FA, 0 0 22px rgba(122,149,250,0.5); }
+
+  /* yoru glyph: moon */
+  .glyph-yoru {
+    background:
+      radial-gradient(circle at 78% 32%, #D6DEFD 0 6%, transparent 9%),
+      radial-gradient(circle at 28% 28%, rgba(255,255,255,0.18) 0 14%, transparent 22%),
+      radial-gradient(circle at 50% 50%, #1F2A55, #0B1020 90%);
+    box-shadow: inset -8px -8px 14px rgba(0,0,0,0.35), inset 4px 4px 8px rgba(122,149,250,0.18);
+  }
+
+  /* warm — reading partner */
+  .glyph-warm {
+    background:
+      radial-gradient(circle at 38% 32%, #FFC080 0 20%, #F07028 70%, #D05818 100%);
+    box-shadow: inset -4px -6px 10px rgba(160,50,10,0.22);
+  }
+
+  .col-h { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; margin-bottom: 10px; }
+  .pane.akari .col-h { color: #6B7793; }
+  .pane.yoru .col-h { color: #A8B2CC; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="pane akari">
+      <span class="tag">akari · companion glyphs</span>
+      <div class="col-h">companions</div>
+      <div class="row">
+        <div class="av-wrap"><div class="av lg glyph-akari"><div class="ring ring-pulse"></div>灯</div><span class="nm">akari · awake</span></div>
+        <div class="av-wrap"><div class="av lg glyph-yoru">夜</div><span class="nm">yoru</span></div>
+        <div class="av-wrap"><div class="av lg glyph-warm">読</div><span class="nm">reading</span></div>
+      </div>
+      <div class="col-h" style="margin-top:14px">sizes · md · sm</div>
+      <div class="row">
+        <div class="av md glyph-akari">灯</div>
+        <div class="av md glyph-yoru">夜</div>
+        <div class="av md glyph-warm">読</div>
+        <div class="av sm glyph-akari" style="font-size:11px">灯</div>
+        <div class="av sm glyph-yoru" style="font-size:11px">夜</div>
+        <div class="av sm glyph-warm" style="font-size:11px">読</div>
+      </div>
+    </div>
+    <div class="pane yoru">
+      <span class="tag">yoru · companion glyphs</span>
+      <div class="col-h">companions</div>
+      <div class="row">
+        <div class="av-wrap"><div class="av lg glyph-akari"><div class="ring ring-pulse"></div>灯</div><span class="nm">akari · awake</span></div>
+        <div class="av-wrap"><div class="av lg glyph-yoru">夜</div><span class="nm">yoru</span></div>
+        <div class="av-wrap"><div class="av lg glyph-warm">読</div><span class="nm">reading</span></div>
+      </div>
+      <div class="col-h" style="margin-top:14px">sizes · md · sm</div>
+      <div class="row">
+        <div class="av md glyph-akari">灯</div>
+        <div class="av md glyph-yoru">夜</div>
+        <div class="av md glyph-warm">読</div>
+        <div class="av sm glyph-akari" style="font-size:11px">灯</div>
+        <div class="av sm glyph-yoru" style="font-size:11px">夜</div>
+        <div class="av sm glyph-warm" style="font-size:11px">読</div>
+      </div>
+    </div>
+  </div>
+</body></html>

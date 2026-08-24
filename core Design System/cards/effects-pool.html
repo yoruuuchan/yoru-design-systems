@@ -1,0 +1,12 @@
+<!-- @dsCard group="Effects" viewport="700x180" name="Pool depth (inner shadow)" subtitle="the 'looking into water' inset" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--paper); display: flex; gap: 20px; align-items: center; font-family: var(--font-ui-sans); font-size: 11px; }
+  .pool { flex: 1; height: 124px; background: var(--tile-400); background-image: var(--bg-caustic-pattern); background-size: 240px 240px;
+          border: 1px solid var(--ink); box-shadow: var(--shadow-pool-inner); position: relative; }
+  .pool .lab { position: absolute; left: 10px; bottom: 10px; font-family: var(--font-pixel-mono); font-size: 11px; color: var(--paper); letter-spacing: 0.05em; text-shadow: 0 1px 0 var(--tile-900); }
+</style>
+</head><body>
+<div class="pool"><span class="lab">--shadow-pool-inner · on caustic</span></div>
+</body></html>

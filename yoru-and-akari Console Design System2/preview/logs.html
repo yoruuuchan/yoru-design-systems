@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Logs · collapsed/expanded" subtitle="Collapsed by default · error dot only on errors" viewport="700x280" --><html><head><meta charset="utf-8"><title>logs (collapsed + expanded)</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pane { padding: 12px 14px; border-radius: 16px; }
+  .pane.akari { background: #E8ECF3; color: #0E1525; }
+  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
+  .pane.akari .tag { color: #6B7793; }
+  .pane.yoru .tag { color: #A8B2CC; }
+
+  .row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 12px; border-radius: 12px;
+    font-family: var(--font-mono); font-size: 12px;
+    cursor: pointer; margin-bottom: 6px;
+  }
+  .akari .row { background: #EFF2F8; box-shadow: inset 0 0 0 1px rgba(14,21,37,0.05); }
+  .yoru .row { background: #131A2E; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
+
+  .lt { display: flex; align-items: center; gap: 8px; }
+  .chev { width: 10px; height: 10px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); opacity: 0.5; }
+  .chev.open { transform: rotate(45deg); }
+  .rt { font-size: 11px; opacity: 0.6; display: flex; align-items: center; gap: 6px; }
+  .err-dot { width: 7px; height: 7px; border-radius: 99px; background: #D45D5D; box-shadow: 0 0 0 3px rgba(212,93,93,0.18); }
+  .yoru .err-dot { background: #F08484; box-shadow: 0 0 0 3px rgba(240,132,132,0.18); }
+
+  .det {
+    padding: 10px 14px; margin: -3px 0 8px;
+    border-radius: 0 0 12px 12px;
+    font-family: var(--font-mono); font-size: 11px; line-height: 1.7;
+  }
+  .akari .det { background: #DEE3EC; color: #394560; box-shadow: inset 2px 2px 4px rgba(143,158,191,0.30); }
+  .yoru .det { background: #080D1B; color: #A8B2CC; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.4); }
+  .det .k { opacity: 0.55; }
+  .det .v { color: var(--ink-1); }
+  .yoru .det .v { color: #E6EAF6; }
+  .det .e { color: #A23F3F; }
+  .yoru .det .e { color: #F5B0B0; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="pane akari">
+      <span class="tag">akari · logs · collapsed by default</span>
+      <div class="row"><div class="lt"><span class="chev"></span><span>14:02:18  message · akari · daily</span></div><div class="rt">412ms · 1.2k tok</div></div>
+      <div class="row"><div class="lt"><span class="chev"></span><span>14:01:50  tool · search_memory</span></div><div class="rt">84ms · 6 hits</div></div>
+      <div class="row"><div class="lt"><span class="chev open"></span><span>13:58:02  message · yoru · night log</span></div><div class="rt"><span class="err-dot"></span>provider 429</div></div>
+      <div class="det">
+        <div><span class="k">provider</span>  <span class="v">anthropic</span></div>
+        <div><span class="k">model   </span>  <span class="v">claude-sonnet-4-5</span></div>
+        <div><span class="k">status  </span>  <span class="e">429 rate_limit · retrying 12s</span></div>
+        <div><span class="k">retries </span>  <span class="v">2 / 5</span></div>
+      </div>
+      <div class="row"><div class="lt"><span class="chev"></span><span>13:55:30  proactive · queued</span></div><div class="rt">held · quiet hours</div></div>
+    </div>
+    <div class="pane yoru">
+      <span class="tag">yoru · logs</span>
+      <div class="row"><div class="lt"><span class="chev"></span><span>14:02:18  message · akari · daily</span></div><div class="rt">412ms · 1.2k tok</div></div>
+      <div class="row"><div class="lt"><span class="chev"></span><span>14:01:50  tool · search_memory</span></div><div class="rt">84ms · 6 hits</div></div>
+      <div class="row"><div class="lt"><span class="chev open"></span><span>13:58:02  message · yoru · night log</span></div><div class="rt"><span class="err-dot"></span>provider 429</div></div>
+      <div class="det">
+        <div><span class="k">provider</span>  <span class="v">anthropic</span></div>
+        <div><span class="k">model   </span>  <span class="v">claude-sonnet-4-5</span></div>
+        <div><span class="k">status  </span>  <span class="e">429 rate_limit · retrying 12s</span></div>
+        <div><span class="k">retries </span>  <span class="v">2 / 5</span></div>
+      </div>
+      <div class="row"><div class="lt"><span class="chev"></span><span>13:55:30  proactive · queued</span></div><div class="rt">held · quiet hours</div></div>
+    </div>
+  </div>
+</body></html>

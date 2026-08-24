@@ -1,0 +1,25 @@
+<!-- @dsCard group="Type" viewport="700x140" name="Mono · Share Tech Mono" subtitle="Logs, code, timestamps, labels" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 18px 24px; }
+    .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; color: var(--ink-3); text-transform: uppercase; margin-bottom: 10px; }
+    pre { font-family: var(--font-mono); font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .bad { color: var(--bad); }
+    .ts { color: var(--ink-3); }
+  </style>
+</head>
+<body>
+  <div class="name">--font-mono · Share Tech Mono</div>
+<pre><span class="ts">04:17:32</span>  <span class="ok">OK</span>    handshake → node-04 (RTT 38ms)
+<span class="ts">04:17:33</span>  <span class="warn">WARN</span>  rate-limit window  87/100
+<span class="ts">04:17:34</span>  <span class="bad">FAIL</span>  auth.token expired — refreshing
+<span class="ts">04:17:34</span>  <span class="ok">OK</span>    auth.refresh → ttl 3600s</pre>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

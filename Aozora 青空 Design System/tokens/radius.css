@@ -1,0 +1,17 @@
+/* Corner radii.
+   Glass-era curves: chips are pills, cards are generous (20–28px),
+   page-level surfaces lean larger still. Hard 90° corners are reserved
+   for poster-mode editorial blocks. */
+
+:root {
+  --radius-none: 0;
+  --radius-xs:   4px;    /* tags, chips inline */
+  --radius-sm:   8px;    /* inputs, small buttons */
+  --radius-md:   14px;   /* default button, alert */
+  --radius-lg:   20px;   /* card */
+  --radius-xl:   28px;   /* glass card, modal */
+  --radius-2xl:  36px;   /* hero glass panel */
+  --radius-3xl:  48px;   /* full-bleed bento tile */
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+}

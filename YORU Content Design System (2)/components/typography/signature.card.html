@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Signature marks" subtitle="着重号 / 荧光笔 / 手写旁批 —— 每篇都出现的三个固定小动作" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:22px 26px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}
+.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-5);margin-bottom:9px}
+.row{display:flex;flex-direction:column;gap:22px}
+.t{font-family:var(--font-title);font-weight:700;font-size:26px;line-height:1.45;color:var(--ink-1);margin:0}
+.p{font-size:15px;line-height:1.85;margin:0;max-width:560px}
+.two{display:grid;grid-template-columns:1fr 300px;gap:34px;align-items:start}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const SG = window.YORUContentDesignSystem_a0b73e;
+const {Emphasis, Marker, MarginNote, Masthead} = SG;
+
+function Demo(){return <div data-yoru="lab" className="row">
+  <div>
+    <div className="lbl">Masthead — 每页顶部，顺序永不变</div>
+    <Masthead column="LAB" date="2026.08" index={3} total={6}/>
+  </div>
+  <div className="two">
+    <div>
+      <div className="lbl">Emphasis 着重号 / Marker 荧光笔</div>
+      <p className="t">把一条提示词拆成<Emphasis>三层结构</Emphasis></p>
+      <p className="p" style={{marginTop:12}}>把它写成一句可以判真假的话：<Marker>“当用户给出完整需求文档时”</Marker>，而不是“当用户需要帮助时”。</p>
+      <p className="p" style={{marginTop:10,lineHeight:2.4}}>行高 2.4 下同一条 <Marker>Marker</Marker> 不跑位。</p>
+    </div>
+    <div>
+      <div className="lbl">MarginNote 手写旁批</div>
+      <MarginNote>上一版我写了 800 字，还是崩。问题不在长度。</MarginNote>
+      <div style={{height:14}}></div>
+      <MarginNote tone="quiet" tilt={0.9}>这条最容易被忽略</MarginNote>
+    </div>
+  </div>
+</div>}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

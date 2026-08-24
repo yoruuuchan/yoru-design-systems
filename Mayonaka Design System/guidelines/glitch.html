@@ -1,0 +1,14 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Glitch / scanlines" subtitle="RGB split + CRT scanline overlay" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--bg-void);height:200px;box-sizing:border-box;padding:24px;font-family:var(--font-display);display:flex;flex-direction:column;justify-content:center;gap:16px;position:relative;overflow:hidden;}
+  body::after{content:"";position:absolute;inset:0;background:var(--scanlines);pointer-events:none;}
+  .glitch{position:relative;font-size:42px;color:#fff;letter-spacing:.08em;}
+  .glitch::before,.glitch::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;}
+  .glitch::before{color:var(--magenta);transform:translate(-3px,0);clip-path:polygon(0 0,100% 0,100% 45%,0 45%);}
+  .glitch::after {color:var(--cyan);   transform:translate(3px,0); clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%);}
+  .meta{font-family:var(--font-body);font-size:14px;color:var(--text-muted);letter-spacing:.15em;}
+</style></head><body>
+  <div class="glitch" data-t="SIGNAL LOST">SIGNAL LOST</div>
+  <div class="meta">// RGB SPLIT · SCANLINES · USE SPARINGLY — ERRORS, LOADING, EASTER EGGS</div>
+</body></html>

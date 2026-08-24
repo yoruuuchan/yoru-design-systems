@@ -1,0 +1,26 @@
+:root {
+  /* 4px base — but UIs often snap to 8px pixel grid */
+  --s-0:  0; /* @kind spacing */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  48px;
+  --s-8:  64px;
+  --s-9:  96px;
+  --s-10: 128px;
+
+  /* Radii — pixel UI is mostly SHARP. Use small radii sparingly. */
+  --radius-none: 0;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-pill: 999px;
+
+  /* Border widths — 2px is the pixel default */
+  --bw-hair:   1px;
+  --bw-default: 2px;
+  --bw-bold:   3px;
+  --bw-chonk:  4px;
+}

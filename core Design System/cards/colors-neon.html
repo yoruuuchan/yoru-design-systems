@@ -1,0 +1,22 @@
+<!-- @dsCard group="Colors" viewport="700x120" name="Y2K neon" subtitle="marquees + visited links only — never primary surfaces" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 16px; background: var(--ink); }
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+  .sw { aspect-ratio: 1.5 / 1; display: flex; flex-direction: column; justify-content: flex-end;
+        padding: 4px 6px; font-family: var(--font-ui-sans); font-size: 9px; color: var(--ink); }
+  .sw small { display: block; font-family: var(--font-pixel-mono); opacity: 0.7; font-size: 10px; }
+  .label { font-family: var(--font-pixel-mono); font-size: 10px; color: var(--paper-stained);
+           padding: 0 4px 6px; letter-spacing: 0.08em; text-transform: uppercase; }
+</style>
+</head><body>
+<div class="label">y2k neon · use against ink, never paper</div>
+<div class="row">
+  <div class="sw" style="background:var(--neon-magenta)">magenta<small>ff2bbb</small></div>
+  <div class="sw" style="background:var(--neon-cyan)">cyan<small>00e8ff</small></div>
+  <div class="sw" style="background:var(--neon-lime)">lime<small>c8ff2b</small></div>
+  <div class="sw" style="background:var(--neon-orange)">orange<small>ff6f1f</small></div>
+  <div class="sw" style="background:var(--neon-violet);color:var(--paper)">violet<small>9b4bff</small></div>
+</div>
+</body></html>

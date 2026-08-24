@@ -1,0 +1,64 @@
+<!-- @dsCard group="Components" viewport="700x220" name="Surface" subtitle="Card hover + 3 glass elevations" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <style>
+    body { padding: 24px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+    .lbl {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px;
+    }
+    .body { color: var(--ink-2); font-size: 12px; line-height: 1.45; }
+    .ttl { color: var(--ink-1); font-family: var(--font-display); font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .panel { padding: 14px; min-height: 130px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Card, Glass } = window.RIFTDesignSystem_b2dbfe;
+    ReactDOM.createRoot(document.getElementById("root")).render(
+      <div>
+        <div className="grid">
+          <div>
+            <div className="lbl">Card</div>
+            <Card style={{ padding: 14, minHeight: 130 }}>
+              <div className="ttl">Hover lift</div>
+              <div className="body">Default surface for grouped content.</div>
+            </Card>
+          </div>
+          <div>
+            <div className="lbl">Glass 1</div>
+            <Glass elevation={1} className="panel">
+              <div className="ttl">Subtle</div>
+              <div className="body">10px blur, lightest tint.</div>
+            </Glass>
+          </div>
+          <div>
+            <div className="lbl">Glass 2</div>
+            <Glass elevation={2} className="panel">
+              <div className="ttl">Mid</div>
+              <div className="body">14px blur, hero panels.</div>
+            </Glass>
+          </div>
+          <div>
+            <div className="lbl">Glass 3</div>
+            <Glass elevation={3} className="panel">
+              <div className="ttl">Strong</div>
+              <div className="body">18px blur, modals.</div>
+            </Glass>
+          </div>
+        </div>
+      </div>
+    );
+  </script>
+  <script src="../../assets/theme-toggle.js"></script>
+</body>
+</html>

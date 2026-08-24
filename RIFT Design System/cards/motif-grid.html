@@ -1,0 +1,29 @@
+<!-- @dsCard group="Brand" viewport="700x220" name="Canvas grid" subtitle="The 72px grid + radial gradient ground" -->
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 0; }
+    .scene { position: relative; height: 220px; overflow: hidden;
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px) 0 0/72px 72px,
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/72px 72px,
+        var(--canvas);
+    }
+    .label { position: absolute; bottom: 14px; left: 16px; font-family: var(--font-mono);
+      font-size: 10px; color: var(--ink-3); letter-spacing: 0.18em; text-transform: uppercase; }
+    .center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-jp); font-weight: 700; font-size: 110px; color: var(--ink-1);
+      letter-spacing: 0.08em; }
+  </style>
+</head>
+<body data-glitch="signature" data-accent="royal">
+  <div class="scene">
+    <div class="center"><span class="rift-glitch" data-text="裂隙">裂隙</span></div>
+    <div class="label">72 × 72 grid · --canvas + --grid</div>
+  </div>
+  <script src="../assets/theme-toggle.js"></script>
+</body>
+</html>

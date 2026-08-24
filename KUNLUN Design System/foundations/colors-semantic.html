@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Semantic Roles" subtitle="语义别名 — text / border / accent / surface" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 14px; background: var(--bg-base); }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .row { display: grid; grid-template-columns: 16px 1fr auto; gap: 10px; align-items: center;
+    padding: 6px 10px; background: var(--bg-panel); border: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: 11px;
+    clip-path: var(--clip-chamfer-sm);
+  }
+  .dot { width: 12px; height: 12px; border: 1px solid var(--border-strong); }
+  .key { color: var(--text-primary); }
+  .val { color: var(--text-tertiary); font-size: 10px; }
+</style></head>
+<body>
+<div class="grid">
+  <div class="row"><span class="dot" style="background:var(--text-primary)"></span><span class="key">--text-primary</span><span class="val">E3EAF3</span></div>
+  <div class="row"><span class="dot" style="background:var(--text-secondary)"></span><span class="key">--text-secondary</span><span class="val">95A3B4</span></div>
+  <div class="row"><span class="dot" style="background:var(--text-tertiary)"></span><span class="key">--text-tertiary</span><span class="val">6C7A8C</span></div>
+  <div class="row"><span class="dot" style="background:var(--text-signal); box-shadow:var(--glow-cyan-sm)"></span><span class="key">--text-signal</span><span class="val">5FD9FF</span></div>
+  <div class="row"><span class="dot" style="background:var(--text-warn)"></span><span class="key">--text-warn</span><span class="val">FFB000</span></div>
+  <div class="row"><span class="dot" style="background:var(--text-danger)"></span><span class="key">--text-danger</span><span class="val">FF3A3A</span></div>
+  <div class="row"><span class="dot" style="background:var(--accent); box-shadow:var(--glow-cyan-sm)"></span><span class="key">--accent</span><span class="val">00B8FF</span></div>
+  <div class="row"><span class="dot" style="background:var(--border)"></span><span class="key">--border</span><span class="val">1A2540</span></div>
+</div>
+</body></html>

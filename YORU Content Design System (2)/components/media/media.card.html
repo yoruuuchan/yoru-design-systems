@@ -1,0 +1,24 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Figure" subtitle="三种图片处理：frame / inset / bleed，缺图时是明确的占位而不是假图" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>Media</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;padding:20px 24px;background:#fff;font-family:var(--font-body);color:var(--ink-2)}.lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.YORUContentDesignSystem_a0b73e;
+
+const {Figure}=NS;
+function Demo(){return <div className="yoru-article" data-yoru="signal" style={{display:"flex",gap:16}}>
+  <div style={{flex:1}}><Figure ratio="16 / 10" index={1} caption="截图：默认带发丝边与极轻投影。"/></div>
+  <div style={{flex:1}}><Figure treatment="inset" ratio="16 / 10" placeholder="示意图" index={2} caption="示意图与数据图：灰底，无边无影。"/></div>
+  <div style={{flex:1,display:"flex",flexDirection:"column",gap:8}}>
+    <div style={{height:126,overflow:"hidden"}}><Figure treatment="bleed" placeholder="全幅作品图"/></div>
+    <span style={{fontSize:12,color:"var(--text-muted)"}}>出血图：配合 &lt;Page bleed&gt; 使用。</span>
+  </div>
+</div>}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>
