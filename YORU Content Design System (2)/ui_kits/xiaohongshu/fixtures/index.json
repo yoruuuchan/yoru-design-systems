@@ -1,0 +1,55 @@
+{
+  "_comment": "改分页器或间距 token 之后，跑 node ui_kits/xiaohongshu/export_cards.mjs --all-fixtures 全量过一遍。expect 是这份 fixture 应有的结局：clean = 零错误零告警；findings = 它就是用来失败的，一声不吭反而说明检查坏了。",
+  "fixtures": [
+    {
+      "name": "hot-take",
+      "expect": "clean",
+      "note": "短热点，3-4 块，页数由内容决定"
+    },
+    {
+      "name": "long-tutorial",
+      "expect": "clean",
+      "note": "长教程，22 块，跨七八页"
+    },
+    {
+      "name": "long-para",
+      "expect": "clean",
+      "note": "单段 500 字，整块不切分"
+    },
+    {
+      "name": "mixed",
+      "expect": "clean",
+      "note": "中英数字混排 + emoji（verbatim 压力测试，不是可用风格）"
+    },
+    {
+      "name": "big-code",
+      "expect": "clean",
+      "note": "大代码块，不可切分的高块"
+    },
+    {
+      "name": "screenshots",
+      "expect": "clean",
+      "note": "三张竖长社交截图的正确写法"
+    },
+    {
+      "name": "signature",
+      "expect": "clean",
+      "note": "四个签名动作 + 全部 block 类型，行内标记"
+    },
+    {
+      "name": "bad-cover",
+      "expect": "findings",
+      "note": "负例：只有标题的封面，应报 cover-fields + thin"
+    },
+    {
+      "name": "bad-media",
+      "expect": "findings",
+      "note": "负例：超高竖图 + 扁框文字截图，应报 overflow + screenshot"
+    },
+    {
+      "name": "bad-caps",
+      "expect": "findings",
+      "note": "负例：荧光笔/旁批/Callout/Tag 全部超上限，应报四条 cap 告警"
+    }
+  ]
+}

@@ -1,11 +1,23 @@
+/* The Xiaohongshu workbench.
+
+   Note what is NOT in this file: page padding, block gap, footer height. Those
+   live in the CSS tokens and are read back off the real DOM by usePagination().
+   SIZES keeps only the two numbers that are genuinely the workbench's own
+   business — the canvas dimensions, used to size and scale the preview slots.
+
+   URL parameters (used by export_cards.mjs, handy by hand too):
+     ?variant=lab   ?size=1080x1350   ?fixture=long-tutorial
+     ?scale=1       full size, no transform — what the exporter screenshots
+     ?bare=1        drop the toolbar and slot captions, cards only */
 const WB = window.YORUContentDesignSystem_a0b73e;
+const Q = new URLSearchParams(location.search);
 const CN_D = "〇一二三四五六七八九";
 const cnDate = (s) => { const m = String(s).match(/(\d{4})\D?(\d{1,2})/); if (!m) return s; const t = "零一二三四五六七八九十"; const mo = +m[2]; return m[1].split("").map(d => CN_D[+d]).join("") + "年" + (mo <= 10 ? t[mo] : "十" + t[mo - 10]) + "月"; };
 const cnIss = (n) => { n = parseInt(n, 10); const t = "零一二三四五六七八九十"; return n <= 10 ? t[n] : String(n).split("").map(d => CN_D[+d]).join(""); };
 const SIZES = {
-  "1242x1656": { w: 1242, h: 1656, px: 96, py: 104, footer: 110, gap: 32 },
-  "1080x1440": { w: 1080, h: 1440, px: 84, py: 90, footer: 96, gap: 32 },
-  "1080x1350": { w: 1080, h: 1350, px: 84, py: 80, footer: 88, gap: 32 }
+  "1242x1656": { w: 1242, h: 1656 },
+  "1080x1440": { w: 1080, h: 1440 },
+  "1080x1350": { w: 1080, h: 1350 }
 };
 const VARIANTS = [
   { id: "signal", label: "Signal", desc: "AI 新闻 · 工具速评" },
@@ -13,6 +25,7 @@ const VARIANTS = [
   { id: "studio", label: "Studio", desc: "创作项目 · 视觉实验" },
   { id: "special", label: "Special", desc: "FPV · 摄影 · 生活" }
 ];
+const EXPORT_CMD = "node ui_kits/xiaohongshu/export_cards.mjs";
 
 function Chip({ active, onClick, children, dot }) {
   return <button onClick={onClick} style={{
@@ -23,7 +36,7 @@ function Chip({ active, onClick, children, dot }) {
   }}>{dot && <i style={{ width: 8, height: 8, borderRadius: 999, background: dot }} />}{children}</button>;
 }
 
-function Toolbar({ variant, setVariant, size, setSize, scale, setScale, count }) {
+function Toolbar({ variant, setVariant, size, setSize, scale, setScale, count, warn }) {
   return <header style={{
     position: "sticky", top: 0, zIndex: 5, background: "rgba(255,255,255,.94)", backdropFilter: "blur(8px)",
     borderBottom: "1px solid var(--line-1)", padding: "14px 28px", display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap"
@@ -44,61 +57,87 @@ function Toolbar({ variant, setVariant, size, setSize, scale, setScale, count })
       <span style={{ width: 30, color: "var(--ink-2)" }}>{Math.round(scale * 100)}%</span>
     </label>
     <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16 }}>
+      {warn && <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: ".08em", color: "var(--stop)" }}>{warn}</span>}
       <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: ".1em", color: "var(--ink-4)" }}>
         自动分页 · 共 <b style={{ color: "var(--yoru-blue)" }}>{String(count).padStart(2, "0")}</b> 页
       </span>
+      {/* Exporting images is a Node script, not a browser button — a browser can only
+          print. Showing the command beats a button that claims to do something else. */}
+      <code style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: ".04em", color: "var(--ink-3)",
+        background: "var(--paper-3)", border: "1px solid var(--line-1)", borderRadius: 2, padding: "5px 8px", userSelect: "all" }}>
+        出图 · {EXPORT_CMD}
+      </code>
       <button onClick={() => window.print()} style={{
         padding: "7px 14px", cursor: "pointer", fontFamily: "var(--font-sans-latin)", fontSize: 12, fontWeight: 500,
         border: "1px solid var(--yoru-blue)", borderRadius: 2, background: "var(--yoru-blue)", color: "#fff"
-      }}>导出图片</button>
+      }}>打印 / PDF</button>
     </div>
   </header>;
 }
 
-function Slot({ n, total, scale, w, h, children }) {
+function Slot({ n, total, scale, w, h, bare, children }) {
   return <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-    <div style={{ width: w * scale, height: h * scale, overflow: "hidden", boxShadow: "0 1px 2px rgba(17,24,39,.06),0 14px 40px rgba(17,24,39,.10)" }}>
-      <div style={{ transform: "scale(" + scale + ")", transformOrigin: "top left" }}>{children}</div>
+    <div style={{ width: w * scale, height: h * scale, overflow: "hidden",
+      boxShadow: bare ? "none" : "0 1px 2px rgba(17,24,39,.06),0 14px 40px rgba(17,24,39,.10)" }}>
+      {/* at 1:1 the transform is skipped entirely, so an element screenshot comes out
+          at native pixels instead of through a rasterised scale layer */}
+      {scale === 1 ? children : <div style={{ transform: "scale(" + scale + ")", transformOrigin: "top left" }}>{children}</div>}
     </div>
-    <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: ".1em", color: "var(--ink-5)" }}>
+    {!bare && <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: ".1em", color: "var(--ink-5)" }}>
       <span>{String(n).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
       <span>{n === 1 ? "COVER" : n === total ? "END" : "CONTENT"}</span>
-    </div>
+    </div>}
   </div>;
 }
 
 function Workbench() {
   const post = window.YORU_POST;
-  const [variant, setVariant] = React.useState(post.variant);
-  const [size, setSize] = React.useState("1242x1656");
-  const [scale, setScale] = React.useState(0.3);
+  const bare = Q.get("bare") === "1";
+  const [variant, setVariant] = React.useState(Q.get("variant") || post.variant);
+  const [size, setSize] = React.useState(SIZES[Q.get("size")] ? Q.get("size") : "1242x1656");
+  const [scale, setScale] = React.useState(Q.get("scale") ? Number(Q.get("scale")) : 0.3);
   const S = SIZES[size];
-  const { pages, Probe } = usePagination(post.blocks, {
-    variant, size, contentWidth: S.w - S.px * 2, contentHeight: S.h - S.py * 2 - S.footer, gap: S.gap
-  });
+  const foot = <WB.PageFooter note={post.issue} />;
+
+  /* One props object, spread onto the probe page and onto every real content page.
+     This is what keeps measurement and rendering from drifting apart. */
+  const pageProps = {
+    variant, size, kicker: post.kicker, footer: foot,
+    spine: cnDate(post.cover.date) + " · 卷" + cnIss(post.cover.issueNumber) + " · " + post.cover.title
+  };
+  const { pages, report, Probe } = usePagination(post.blocks, { ...pageProps, index: 2 });
+
   const list = pages || [];
   const total = list.length + 2;
-  const foot = <WB.PageFooter note={post.issue} />;
   const wh = { w: S.w, h: S.h };
 
-  return <div style={{ minHeight: "100vh", background: "var(--paper-3)" }}>
+  React.useEffect(() => {
+    if (!pages) { delete document.body.dataset.paginated; return; }
+    window.__YORU_PAGINATION__ = { total, variant, size, pages, report };
+    document.body.dataset.paginated = String(total);
+  }, [pages, report, total, variant, size]);
+
+  const warn = report && report.oversized.length
+    ? "警告 · " + report.oversized.length + " 个块高于整页可用高度" : null;
+
+  return <div style={{ minHeight: "100vh", background: bare ? "var(--paper-1)" : "var(--paper-3)" }}>
     {Probe}
-    <Toolbar {...{ variant, setVariant, size, setSize, scale, setScale }} count={total} />
-    <main style={{ padding: "36px 28px 72px", display: "flex", flexWrap: "wrap", gap: 32, alignItems: "flex-start" }}>
-      <Slot n={1} total={total} scale={scale} {...wh}>
-        <WB.CoverOverprint variant={variant} size={size} column={post.cover.column}
+    {!bare && <Toolbar {...{ variant, setVariant, size, setSize, scale, setScale, warn }} count={total} />}
+    <main style={{ padding: bare ? 0 : "36px 28px 72px", display: "flex", flexWrap: "wrap", gap: bare ? 0 : 32, alignItems: "flex-start" }}>
+      <Slot n={1} total={total} scale={scale} bare={bare} {...wh}>
+        <WB.CoverOverprint variant={variant} size={size} column={post.cover.column} data-yoru-role="cover"
           date={post.cover.date} index={1} total={total} title={post.cover.title}
           subtitle={post.cover.subtitle} tags={post.cover.tags} aside={post.cover.aside}
           issueNumber={post.cover.issueNumber} />
       </Slot>
-      {list.map((idxs, i) => <Slot key={i} n={i + 2} total={total} scale={scale} {...wh}>
-        <WB.Page variant={variant} size={size} kicker={post.kicker} index={i + 2} total={total} footer={foot}
-          spine={cnDate(post.cover.date) + " · 卷" + cnIss(post.cover.issueNumber) + " · " + post.cover.title}>
+      {list.map((idxs, i) => <Slot key={i} n={i + 2} total={total} scale={scale} bare={bare} {...wh}>
+        <WB.Page {...pageProps} index={i + 2} total={total} data-yoru-role="content">
           {idxs.map(j => <YoruBlock key={j} b={post.blocks[j]} />)}
         </WB.Page>
       </Slot>)}
-      {pages && <Slot n={total} total={total} scale={scale} {...wh}>
-        <WB.EndCard variant={variant} size={size} headline={post.end.headline} lines={post.end.lines} note={post.issue} />
+      {pages && <Slot n={total} total={total} scale={scale} bare={bare} {...wh}>
+        <WB.EndCard variant={variant} size={size} headline={post.end.headline} lines={post.end.lines}
+          note={post.issue} data-yoru-role="end" />
       </Slot>}
     </main>
   </div>;

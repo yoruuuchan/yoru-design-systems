@@ -2,12 +2,30 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>YORU · 小红书图文台</title>
 <link rel="stylesheet" href="../../styles.css">
 <style>*{box-sizing:border-box}html,body{margin:0}body{background:var(--paper-3);font-family:var(--font-body);-webkit-font-smoothing:antialiased}button{font:inherit}
-@media print{header{display:none}main{padding:0!important;gap:0!important}}</style>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+@media print{
+  /* One card per printed page at native size. This path makes PDFs, not PNGs —
+     for images run `node ui_kits/xiaohongshu/export_cards.mjs`. */
+  @page{size:1242px 1656px;margin:0}
+  header{display:none}
+  main{padding:0!important;gap:0!important;display:block!important}
+  main>div{gap:0!important}
+  main>div>div{width:auto!important;height:auto!important;box-shadow:none!important;break-after:page;page-break-after:always}
+  main>div>div>div{transform:none!important}
+  main>div>div+div{display:none}
+}</style>
+<script src="../../assets/vendor/react.production.min.js"></script>
+<script src="../../assets/vendor/react-dom.production.min.js"></script>
+<script src="../../assets/vendor/babel.min.js"></script>
 <script src="../../_ds_bundle.js"></script>
-<script src="content.js"></script>
+<script>
+/* ?fixture=long-tutorial loads fixtures/content.long-tutorial.js instead of the
+   real post. document.write keeps the load synchronous and in order, which the
+   scripts below depend on. */
+(function(){
+  var f = (new URLSearchParams(location.search).get("fixture") || "").replace(/[^a-z0-9-]/gi, "");
+  document.write('<script src="' + (f ? "fixtures/content." + f + ".js" : "content.js") + '"><\/script>');
+})();
+</script>
 </head><body><div id="root"></div>
 <script type="text/babel" data-presets="react" src="blocks.jsx"></script>
 <script type="text/babel" data-presets="react" src="paginate.jsx"></script>

@@ -8,8 +8,10 @@ export interface FigureProps extends React.HTMLAttributes<HTMLElement> {
   index?: number;
   /** frame = hairline + soft shadow (screenshots) · inset = flat grey well (diagrams) · bleed = edge to edge, fills its parent. */
   treatment?: "frame" | "inset" | "bleed";
-  /** CSS aspect-ratio string. Ignored when treatment is "bleed". */
+  /** CSS aspect-ratio string, or "auto" to keep the image's natural proportions. Ignored when treatment is "bleed". */
   ratio?: string;
+  /** cover crops to fill the frame (photos) · contain fits the whole image inside it (text screenshots). */
+  fit?: "cover" | "contain";
   /** Placeholder text shown when src is absent. */
   placeholder?: string;
 }

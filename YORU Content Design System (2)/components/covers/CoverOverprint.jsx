@@ -46,8 +46,10 @@ export function CoverOverprint({
         }}>{cnIssue(issueNumber)}</span>
       )}
 
-      {/* the overprint title */}
-      <div style={{
+      {/* the overprint title — data-yoru-plate lets the render check measure how
+          much of the cover this stack actually fills (a title with no issueNumber,
+          tags or aside leaves the plate nearly empty) */}
+      <div data-yoru-plate="" style={{
         position:"absolute",inset:"calc(var(--page-pad-y) + var(--sp-8)) var(--page-pad-x) calc(var(--page-pad-y) + var(--sp-8))",
         display:"flex",flexDirection:"column",justifyContent:"center",gap:"var(--sp-5)",zIndex:2
       }}>

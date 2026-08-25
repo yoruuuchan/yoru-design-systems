@@ -1815,7 +1815,16 @@ Object.assign(__ds_scope, { Tag });
 // components/media/Figure.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* Screenshot / image frame. Empty state is an explicit placeholder, never a fake image. */
+
+/* Screenshot / image frame. Empty state is an explicit placeholder, never a fake image.
+
+   `fit` decides what happens when the image and the frame disagree:
+   - "cover" (default) fills the frame and crops — right for photographs.
+   - "contain" fits the whole image inside the frame — required for text
+     screenshots (tweets, chat logs, code), which lose their meaning the
+     moment the top or bottom is cropped away.
+   `ratio="auto"` drops the fixed aspect ratio entirely and lets the image
+   keep its natural proportions — the safest option for a tall screenshot. */
 function Figure({
   src,
   alt = "",
@@ -1823,6 +1832,7 @@ function Figure({
   index,
   treatment = "frame",
   ratio = "16 / 10",
+  fit = "cover",
   placeholder = "拖入截图",
   style,
   ...rest
@@ -1830,6 +1840,7 @@ function Figure({
   const framed = treatment === "frame",
     inset = treatment === "inset",
     bleed = treatment === "bleed";
+  const auto = ratio === "auto" && !bleed;
   return /*#__PURE__*/React.createElement("figure", _extends({
     style: {
       margin: 0,
@@ -1840,9 +1851,10 @@ function Figure({
     }
   }, rest), /*#__PURE__*/React.createElement("div", {
     style: {
-      aspectRatio: bleed ? undefined : ratio,
+      aspectRatio: bleed || auto ? undefined : ratio,
       height: bleed ? "100%" : undefined,
       width: "100%",
+      minHeight: auto && !src ? "var(--sp-9)" : undefined,
       overflow: "hidden",
       borderRadius: bleed ? 0 : "var(--radius-media)",
       border: framed ? "var(--hair) solid var(--border-rule)" : "none",
@@ -1857,8 +1869,8 @@ function Figure({
     alt: alt,
     style: {
       width: "100%",
-      height: "100%",
-      objectFit: "cover",
+      height: auto ? "auto" : "100%",
+      objectFit: fit,
       display: "block"
     }
   }) : /*#__PURE__*/React.createElement("span", {
@@ -2092,6 +2104,7 @@ function Page({
       color: tone === "ink" ? "rgba(255,255,255,.5)" : "var(--text-muted)"
     }
   }, spine)), /*#__PURE__*/React.createElement("div", {
+    "data-yoru-flow": "",
     style: {
       flex: 1,
       minHeight: 0,
@@ -2170,6 +2183,7 @@ function CoverOverprint({
       userSelect: "none"
     }
   }, __ds_scope.cnIssue(issueNumber)), /*#__PURE__*/React.createElement("div", {
+    "data-yoru-plate": "",
     style: {
       position: "absolute",
       inset: "calc(var(--page-pad-y) + var(--sp-8)) var(--page-pad-x) calc(var(--page-pad-y) + var(--sp-8))",
@@ -2526,6 +2540,7 @@ function PageFooter({
   align = "between"
 }) {
   return /*#__PURE__*/React.createElement("div", {
+    "data-yoru-footer": "",
     style: {
       position: "absolute",
       left: "var(--page-pad-x)",

@@ -26,7 +26,7 @@ export function Page({variant="signal",size="1242x1656",column,date,kicker,index
             fontSize:"var(--fs-caption)",letterSpacing:".4em",color:tone==="ink"?"rgba(255,255,255,.5)":"var(--text-muted)"}}>{spine}</span>
         </div>
       )}
-      <div style={{flex:1,minHeight:0,position:"relative",display:"flex",flexDirection:"column",justifyContent:align==="center"?"center":"flex-start",
+      <div data-yoru-flow="" style={{flex:1,minHeight:0,position:"relative",display:"flex",flexDirection:"column",justifyContent:align==="center"?"center":"flex-start",
         padding:bleed?0:"var(--page-pad-y) var(--page-pad-x)",
         paddingRight:bleed?0:(spine?"calc(var(--page-pad-x) + var(--sp-6))":"var(--page-pad-x)"),
         paddingTop:bleed?0:(mast?"calc(var(--page-pad-y) + var(--sp-7))":"var(--page-pad-y)"),

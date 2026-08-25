@@ -1,6 +1,14 @@
-/* One real post, written as a linear block stream. This is the shape the pagination engine eats. */
+/* One real post, written as a linear block stream. This is the shape the pagination engine eats.
+
+   contentMode 决定系统能不能动这些字：
+     "editable"  文案由系统一起产出 —— readme 的 CONTENT FUNDAMENTALS 全套生效
+                 （无 emoji、封面 ≤14 字、结尾两行封顶、中英之间留半角空格……）。
+     "verbatim"  用户给的定稿 —— 系统只做分页、排版、缩放媒体，
+                 **不得增删改任何文字 / 标点 / emoji / 顺序**，也不得顺手润色。
+                 装不下是排版要解决的问题，不是改字的理由；真要改，先问。 */
 window.YORU_POST = {
   variant: "lab",
+  contentMode: "editable",
   kicker: "VIBE CODING",
   issue: "2026.08 / 04",
   cover: { column: "VIBE CODING", date: "2026.08", issueNumber: "04", title: "把提示词写成模块", subtitle: "四十遍之后留下来的写法。", tags: ["工作流", "Claude Code"], aside: "第四十遍才定下来" },

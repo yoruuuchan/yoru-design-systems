@@ -1,5 +1,11 @@
 /* Four child variants of one parent language.
    They differ ONLY in: accent, decorative detail, cover treatment, tag shape, density.
+
+   Density is TWO variables, not one: --lh-body sets the texture inside a
+   paragraph, --flow-block sets the air between blocks. --lh-body lives in the
+   variant blocks below; --flow-block is card-scoped and lives at the bottom of
+   this file. The paginator reads --flow-block off the real DOM, so retuning it
+   reflows the cards with no second edit anywhere.
    Type, grid, hairline system and the YORU family blue stay identical.
 
    All four accents come from one cool palette — blue, teal, mint, coral. No purple,
@@ -73,3 +79,18 @@
    this default only kicks in on an un-scoped element. */
 --hand-underline:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='10' viewBox='0 0 120 10' preserveAspectRatio='none'><path d='M2 7C22 3 38 8 58 5s40-3 60 1' fill='none' stroke='%23C1D7EF' stroke-width='4.4' stroke-linecap='round'/></svg>"); /* @kind other */
 }
+
+/* Block flow — density axis two, card scope only.
+
+   Kept out of the [data-yoru] blocks above on purpose: the article channel
+   freezes its computed styles into inline style attributes for pasting into
+   WeChat, and its rhythm is tuned for a 677px column. Cards are where the four
+   variants are allowed to breathe differently.
+
+   Written as --sp-* tokens, never raw px: the .yoru-card scope redefines the
+   whole --sp ladder, so var(--sp-5) is 56px here. Card values —
+   Signal / Lab 56px, Special 76px, Studio 100px. */
+.yoru-card[data-yoru="signal"]{--flow-block:var(--sp-5)}
+.yoru-card[data-yoru="lab"]{--flow-block:var(--sp-5)}
+.yoru-card[data-yoru="studio"]{--flow-block:var(--sp-7)}
+.yoru-card[data-yoru="special"]{--flow-block:var(--sp-6)}

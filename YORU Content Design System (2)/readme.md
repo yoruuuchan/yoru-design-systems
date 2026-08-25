@@ -22,14 +22,19 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 
 | 变体 | 内容类型 | 强调色 | 装饰 | 密度 |
 | --- | --- | --- | --- | --- |
-| **Signal** | AI 新闻、新工具、产品更新、快测与对比 | 蓝 `#3186FF` | 直角标签，实线分隔，无手绘 | 正文行高 1.72，最紧凑 |
-| **Lab** | AI / Vibe Coding 教程、工作流、Skills、提示词、排错 | 青 `#00A9BB` | 直角标签，虚线分隔，代码块比重高 | 行高 1.68，信息量最大 |
-| **Studio** | 创作项目、视觉实验、过程与复盘 | 薄荷绿 `#45C496` | 胶囊标签，圆角块，手绘下划线 | 行高 1.9，留白最多，图占比最高 |
-| **Special** | FPV、摄影、设备、创作生活、实验性内容 | 珊瑚红 `#FF6B78` | 胶囊标签微倾斜，手绘下划线，可用反白封面 | 行高 1.85 |
+| **Signal** | AI 新闻、新工具、产品更新、快测与对比 | 蓝 `#3186FF` | 直角标签，实线分隔，无手绘 | 行高 1.72 · 块间距 56 |
+| **Lab** | AI / Vibe Coding 教程、工作流、Skills、提示词、排错 | 青 `#00A9BB` | 直角标签，虚线分隔，代码块比重高 | 行高 1.68 · 块间距 56 · 信息量最大 |
+| **Studio** | 创作项目、视觉实验、过程与复盘 | 薄荷绿 `#45C496` | 胶囊标签，圆角块，手绘下划线 | 行高 1.9 · 块间距 100 · 留白最多 |
+| **Special** | FPV、摄影、设备、创作生活、实验性内容 | 珊瑚红 `#FF6B78` | 胶囊标签微倾斜，手绘下划线，可用反白封面 | 行高 1.85 · 块间距 76 |
 
 四个都取自同一块冷色板：三个冷色加一个唯一的暖色留给最个人的内容。**整套系统里没有紫色、没有橙色、没有黄色。**
 **家族线索一**：报头满月吃变体强调色，其余月相永远是墨——变体换色，月相行的构成不变。
 **家族线索二**：`--yoru-blue` 靖青 `#2E4A68` 在四个变体里都不变，只用于印章位细节与工具台主按钮，永远不跟强调色抢戏。
+
+密度是两个变量：`--lh-body` 管段落内部的质地，`--flow-block` 管块与块之间的空气。
+两个都在 `tokens/variants.css`（块间距那组在文件末尾，只作用于卡片作用域——公众号文章的
+块间距是按 677px 栏宽调的，不跟着变体走）。分页器从 computed style 读 `--flow-block`，
+所以调密度不需要碰分页器，改完跑一遍渲染验收就行。
 
 切换变体只需要 `data-yoru="lab"`，不需要换组件、不需要改文案结构。
 
@@ -59,7 +64,18 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 
 **结尾**：一句下一步 + 一句邀请，两行封顶。不写「三连」，写「工具都在评论区」「有问题直接问，我都看」。
 
-**长度**：小红书单页正文 2–4 段，整篇 6–9 页；公众号 1500–3000 字。超出就拆成系列，用 `<CoverOverprint issueNumber="04">` 把汉字卷号变成封面上最抢镜的图形。
+**长度**：小红书单页正文 2–4 段。**整篇页数由内容决定，不是配额**——Signal 快讯 4–7 页很正常，
+长教程跑到十页也正常，六到九页只是常见区间，不要为了凑数注水或者硬压。公众号 1500–3000 字。
+真的长到装不下就拆成系列，用 `<CoverOverprint issueNumber="04">` 把汉字卷号变成封面上最抢镜的图形。
+**结尾页 `<EndCard>` 是可选的**——四页的快讯不必强塞一页「下期再见」。
+
+**内容模式**：这一节以上的全部写作规则（人称、结论先行、无 emoji、封面 ≤14 字、结尾两行封顶）
+**只适用于 `contentMode: "editable"`**，也就是文案由系统一起产出的情况。
+
+用户给定稿的时候，在 `content.js` 顶层写 `contentMode: "verbatim"`。这时系统只做三件事：
+分页、排版、缩放媒体。**不得增删改任何文字、标点、emoji 或顺序**，也不得「顺手润色」。
+用户写了 emoji 就留着 emoji，标题十八个字就十八个字——装不下是排版要解决的问题，不是改字的理由。
+需要改字的时候先问，不要自己动手。
 
 **日期与页码的口径**：出现在页面家具上的数字一律汉字——页码 `〇三 / 〇八`、卷号 `卷十二`、日期 `二〇二六年八月`（`cnPage` / `cnIssue` / `cnDate` 负责转换）。内容里的数字（测试次数、版本号、价格）保持阿拉伯数字。
 
@@ -75,16 +91,33 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 
 **① 报头 `<Masthead>`** —— 每个内页顶部：左边一行**月相**（新月→上弦→满月→残月，满月吃变体强调色，其余永远是墨），右边**汉字页码**（仿宋 `〇二 / 〇七`），下面一对**文武线**（粗线 + 细线隔 4px）。没有刊名、没有栏目名、没有日期。`<CoverOverprint>` 用同款报头；`<CoverType>` 传 `kicker` 可选开启；`<EndCard>` 把月相竖排放在书脊位。**全系统没有文字字标**——结尾页左下角只有一条仿宋 note（日期 · 页数）作收尾。
 
-**② 着重号 `<Emphasis>`** —— 中文印刷的重点符，打在词下方。系统的主要强调手段，也是为什么全系统没有下划线、没有彩色正文。只打在扛整句的那两三个字上。
+**② 着重号 `<Emphasis>`** —— 中文印刷的重点符，打在词下方。系统的主要强调手段，也是为什么全系统没有下划线、没有彩色正文。只打在扛整句的那两三个字上。内容流里写成 `·两三个字·`（见「内容契约 · 行内标记」）。
 
-**③ 荧光笔 `<Marker>`** —— 关键短语背后的浅色带，压在行盒下部约 42%。**每页只准一条**。英文、代码标识符、带引号的字符串用它，不用着重号。
+**③ 荧光笔 `<Marker>`** —— 关键短语背后的浅色带，压在行盒下部约 42%。**每页只准一条**，渲染验收会数。英文、代码标识符、带引号的字符串用它，不用着重号。内容流里写成 `==关键短语==`。
 
-**④ 手写旁批 `<MarginNote>`** —— 歪 1.4 度的便签，写文章本身不会说的那句话。每页最多一条，内容必须非承重——读者真正需要的信息属于 `<Callout>`。
+**④ 手写旁批 `<MarginNote>`** —— 歪 1.4 度的便签，写文章本身不会说的那句话。每页最多一条（验收会数），内容必须非承重——读者真正需要的信息属于 `<Callout>`。内容流里是 `{ t: "marginnote", text }`。
 
 ### 页面家具（签名动作之外的一件）
 
 - **书脊栏 `<Page spine>`**：右边距的直排仿宋窄条（`.4em` 字距），装 `日期 · 卷号 · 系列名`。日期从报头迁到这里。
 - 页心落月水印已取消（`watermark` 属性保留为空操作）。
+
+### 封面：套印靠四件东西撑住
+
+`<CoverOverprint>` 的版心是一块居中的竖排堆栈。只给 `title` 的话，堆栈只有标题那一行，
+上下各留掉半页——**这就是大空白封面的成因**，不是留白语言，是缺件。四件必填：
+
+| 字段 | 作用 | 缺了会怎样 |
+| --- | --- | --- |
+| `title` | 标题两遍套印，页面主体 | 没有封面 |
+| `subtitle` | 仿宋一行，把标题压住 | 标题悬空 |
+| `tags`（1–3 个）+ `aside` | 底部那条横排，堆栈的下沿 | 堆栈只剩标题，版心塌一半 |
+| `issueNumber` | 被页缘裁切的巨号汉字，右下角的图形重量 | 右下角整块空白 |
+
+渲染验收查这四件，也量标题堆栈占版心的比例——完整的封面在 35% 上下（这套语言本来就留白多），
+只有标题的会掉到 12% 左右，两条告警一起报。
+
+结尾页 `<EndCard>` 是可选的，见 CONTENT FUNDAMENTALS 的「长度」。
 
 **不做「卡片模板感」装饰。** 硬规则：
 
@@ -119,7 +152,7 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 
 **间距与网格**
 - 卡片画布 1242×1656，左右边距 96、上下 104。带书脊的页右侧再让出 `--sp-6`。四个变体边距一致。
-- 单栏。多栏只出现在对比表内部。块间距 `--flow-block`（卡片 76px / 文章 32px）。
+- 单栏。多栏只出现在对比表内部。块间距 `--flow-block` 是变体 token：卡片上 Signal / Lab 56px、Special 76px、Studio 100px；文章一律 32px。
 - 唯一允许突破边距的是 `Figure treatment="bleed"` 配合 `<Page bleed>`。
 
 **圆角**：默认接近直角（`--radius-1` 2px）。圆角是 Studio / Special 的变体特权。**不要出现 8px / 12px 的通用圆角卡片**。
@@ -129,6 +162,14 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 **透明与模糊**：内容完全不透明；只有工具台吸顶工具条用半透明 + blur。导出物里没有任何透明或模糊。
 
 **图片处理**（`Figure` 三种 treatment）：`frame` 截图默认（发丝边 + 极轻投影）；`inset` 示意图（灰底无边无影）；`bleed` 作品图（出血无边无影无圆角）。缺图渲染明确占位文字，**不生成假图**。
+
+**照片用 `cover`，文字截图用 `contain` 或 `ratio="auto"`。** `fit` 默认 `"cover"`，会把图裁到填满框——
+照片没问题，推特 / 聊天记录 / 代码截图会被裁头去尾，读者看到的是一段没头没尾的话。
+文字类截图一律 `ratio="auto"`（不设固定比例，按图片自身比例排）或 `fit="contain"`。
+
+**截图在卡片上的渲染宽度不得低于内容列宽的 90%。** 装不下的时候允许一张证据截图独占整页；
+再装不下就裁出关键局部、或者拆成多页——**不允许继续缩小**。手机上看不清的证据等于没有证据。
+渲染验收会测这一条，低于 90% 报告警。
 
 **动效**：内容里没有动效。工具台交互 `.12s` 线性色彩过渡一档。
 
@@ -194,6 +235,85 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 
 ---
 
+## 内容契约（`blocks[]`）
+
+一篇小红书图文就是一个 `window.YORU_POST` 对象，写在 `ui_kits/xiaohongshu/content.js`
+（压力测试内容写在 `fixtures/content.<名字>.js`，用 `--fixture <名字>` 跑）。
+**这一节是唯一的字段来源；改 `ui_kits/xiaohongshu/blocks.jsx` 就要同步改这里。**
+
+```js
+window.YORU_POST = {
+  variant: "lab",                 // signal | lab | studio | special
+  contentMode: "editable",        // editable | verbatim —— 见 CONTENT FUNDAMENTALS「内容模式」
+  kicker: "VIBE CODING",          // 内页报头开关兼分类标签
+  issue: "2026.08 / 04",          // 页脚那行小字
+  cover: { date, issueNumber, title, subtitle, tags: [], aside },   // 四件必填，见「封面」
+  blocks: [ /* 下表 */ ],
+  end: { headline, lines: [] }    // 结尾页，可选，见「长度」
+};
+```
+
+`blocks[]` 是一条线性流，**不分页、不排版**——那是 `usePagination()` 的事。
+
+| `t` | 必填 | 可选 | 渲染成 |
+| --- | --- | --- | --- |
+| `heading` | `text` `level`(1/2/3) | `mark` 标题上方墨线 · `kicker` 等宽大写小字 | `<Heading>` |
+| `lede` | `text` | — | `<Lede>` 仿宋引言，一篇一个 |
+| `body` | `text` | `size:"small"` · `muted` | `<Body>` |
+| `callout` | `text` | `kind:"note"｜"warn"｜"stop"｜"ok"｜"plain"` · `title` | `<Callout>` 文武线框 + 单字标记 |
+| `quote` | `text` | `cite` `source` | `<Quote>` |
+| `code` | `code` | `filename` `lang` | `<CodeBlock>` **正文不解析行内标记** |
+| `prompt` | `text` | `model` | `<PromptBlock>` **正文不解析行内标记** |
+| `steps` | `items:[{title, body?}]` | `start` 续号用 | `<StepList>` 汉字编号 壹貳叁 |
+| `compare` | `columns:[]` `rows:[[]]` | `highlight` 列号 · `caption` | `<CompareTable>` |
+| `figure` | — | `src` `ratio` `fit` `treatment` `index` `caption` `placeholder` | `<Figure>` 见「图片处理」 |
+| `refs` | `items:[{title, source?, url?}]` | — | `<ReferenceList>` |
+| `marginnote` | `text` | `tone:"tint"｜"plain"` · `tilt` | `<MarginNote>` 手写旁批 |
+| `labels` | — | `tags:[]` · `status:[{status, label?}]` · `tone` `filled` | `<Tag>` / `<StatusLabel>` 横排 |
+| `section` | `index` | `total` `label` `size:"lg"` | `<SectionMark>` 区段号 |
+| `timeline` | `items:[{date, label, meta?, body?, status?}]` | `title` `kicker` `caption` `source` `orientation` | `<Timeline>` |
+| `diagram` | `nodes:[]` `edges:[]` | `groups` `annotations` `layout` `title` `kicker` `caption` `source` `legend` `grid` `stack` | `<Diagram>`，卡片上一律等比缩小 |
+
+`figure` 无 `src` 时渲染明确占位，不生成假图。`diagram` 的节点 / 连线字段见 DIAGRAM SUBSYSTEM。
+`status` 取值：`new` `ok` `warn` `stop` `note` `beta`。
+
+### 行内标记
+
+正文里的两个签名动作是句子内部的东西，没法当成一种 block：
+
+```js
+{ t: "body", text: "三个月里我把这套流程跑了·四十多遍·，==留下来的部分==就是这篇。" }
+```
+
+- `·贴着字·` → `<Emphasis>` 着重号，中文强调的默认手段；
+- `==贴着字==` → `<Marker>` 荧光笔，给英文、代码标识符、带引号的字符串。
+
+**分隔符里侧不许有空格。** 这条规则是为了跟标点共存：`·` 是这套系统里合法的正文字符，
+但它当分隔符用的时候永远写成 ` · `（两侧带空格）。贴着写才算标记，隔开写就是标点。
+`code` 与 `prompt` 的正文**永不解析**——那两块是读者要原样抄走的东西。
+
+行内标记在 `heading` `lede` `body` `callout` `quote` `steps` `figure.caption` `marginnote` 里生效。
+
+### 每页上限（渲染验收会数）
+
+| 上限 | 为什么 |
+| --- | --- |
+| 荧光笔每页 **1** 条 | 第二条会把第一条抵消——读者只认页面上最亮的那一块 |
+| 手写旁批每页 **1** 条 | 两张歪便签就不像手写了，像模板 |
+| `Callout` 每页 **1** 个 | 一页只能有一件「停下来看」的事 |
+| `Tag` 每页 **3** 个 | 再多就成了标签云 |
+
+一页一个 `Heading level={1}`，一篇一个 `Lede`。这两条验收不数，但照样是规矩。
+
+### `blocks[]` 表达不了的
+
+不是漏掉，是刻意不给：`<CoverType>` 另一种封面（封面由 `post.cover` 决定，一篇一个）、
+`<Page bleed>` 出血页与 `Figure treatment="bleed"` 的配套（那是页级属性，不是块级）、
+`<MarginNote float>` 浮动旁批（浮动版走绝对定位，在流里不占高度，分页器会把它当零高块）。
+需要这些就是需要新版式——按「作业规则 6」先问，不要自己动手加 block 类型。
+
+---
+
 ## 索引
 
 **根目录**：`styles.css`（唯一入口，只有 `@import`）· `readme.md` · `SKILL.md` · `thumbnail.html`
@@ -213,7 +333,10 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 | `diagram/` | `Diagram` `DiagramNode` `DiagramEdge` `DiagramGroup` `DiagramAnnotation` `DiagramLegend`，`diagramLayout.js` 纯几何 |
 | `timeline/` | `Timeline` |
 
-**ui_kits/**：`xiaohongshu/` 图文台（`blocks[]` → `usePagination()` 自动分页） · `wechat/` 公众号排版（冻结行内样式导出；文武线用 border 表达，因为冻结白名单没有 height） · `diagrams/` 图谱系统
+**ui_kits/**：`xiaohongshu/` 图文台（`blocks[]` → `usePagination()` 自动分页 → `export_cards.mjs` 渲染验收与出图 → `render_check.mjs` 单独验收 → `fixtures/` 压力测试） · `wechat/` 公众号排版（冻结行内样式导出；文武线用 border 表达，因为冻结白名单没有 height） · `diagrams/` 图谱系统
+
+**assets/vendor/**：React / ReactDOM / Babel standalone 的本地副本。所有 HTML 都引本地，**不走 CDN**——
+这台机器的国际线路会塌到 20KB/s，unpkg 一挂工具台就整页打不开，headless 出图更是随机超时。
 
 **templates/**：`xhs-post/` 六页小红书骨架 · `wechat-article/` 677px 文章骨架 · `diagram-card/` 图谱卡骨架——三份都已带书脊、汉字页码与新报头。
 
@@ -223,13 +346,31 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 
 ## 生产流程
 
-**小红书**：结构化内容（`blocks[]`）→ `usePagination()` 自动分页 → 每页 1242×1656 → 出图 @1x。装不下就开新页，**永不切分单个 block**；落单在页尾的标题自动推到下一页。
+**小红书**（闭环，不许抄近路）：
+
+```
+blocks[] → usePagination() 自动分页 → 真实渲染 → contact sheet → 亲眼检查 → 修正 → 再渲染 → PNG @1x
+```
+
+装不下就开新页，**永不切分单个 block**；落单在页尾的标题跟着下一块走，但只在下一页装得下它们
+俩的时候才跟。出图只有一条路：
+
+```bash
+node ui_kits/xiaohongshu/export_cards.mjs            # 渲染 + 验收 + 出 PNG
+node ui_kits/xiaohongshu/export_cards.mjs --check    # 只验收
+```
+
+**HTML 只是中间产物，没跑渲染验收不得宣称完成。** `check_design_system` 是静态 lint，它读源码，
+不知道页面空了 60%、图挂了、内容压到页脚上——那是第二关的事。产物在 `out/`：卡片 PNG、
+`contact-sheet.png`（全部页面缩略拼图，人眼过一遍）、`render-report.json`。
+改了分页器、间距 token 或任何组件高度，跑 `--all-fixtures` 全量回归。
 
 **公众号**：同一份 `blocks[]` → 677px 文章版式 → 冻结计算样式为行内 `style` → 粘贴。
 
 **给 Agent 的作业规则**
 1. 先选变体，只写 `data-yoru`，不要改 token。
-2. 内容写成 `blocks[]`，不要手工排每一页。
+2. 内容写成 `blocks[]`，交给 `usePagination()`。**不得手工排每一页**——手排绕过了分页器，
+   也绕过了渲染验收，视为验收失败。同理，不要用浏览器打印当出图。
 3. 一页一个 `Heading level={1}`，一篇一个 `Lede`。
 4. 一页最多一个 `Callout`，最多三个 `Tag`。
 5. 页面家具的数字用汉字（`cnPage` / `cnIssue` / `cnDate`），内容数字用阿拉伯数字。

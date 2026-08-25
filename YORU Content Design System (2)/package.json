@@ -1,0 +1,15 @@
+{
+  "name": "yoru-content-design-system",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Tooling for the YORU Content Design System — headless render check and card export for the Xiaohongshu kit. Browsers come from the local Playwright cache; playwright is pinned to the version matching it.",
+  "scripts": {
+    "export": "node ui_kits/xiaohongshu/export_cards.mjs",
+    "check": "node ui_kits/xiaohongshu/render_check.mjs",
+    "fixtures": "node ui_kits/xiaohongshu/export_cards.mjs --all-fixtures --check",
+    "variants": "node ui_kits/xiaohongshu/export_cards.mjs --all-variants --check"
+  },
+  "devDependencies": {
+    "playwright": "1.58.0"
+  }
+}
