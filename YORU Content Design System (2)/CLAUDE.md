@@ -6,17 +6,33 @@
 ## 两道关，不是一道
 
 `check_design_system` 是静态 lint：它读源码，查 raw hex、非法 import、字体白名单。
-它不知道页面空了 60%、图片挂了、内容压到页脚上、截图缩到手机上看不清。那些要跑第二关：
+它不知道页面空了 60%、图片挂了、内容压到页脚上、截图缩到手机上看不清、渲染环境把套印偏移
+搞成了 55px。那些要跑第二关：
 
 ```bash
-node ui_kits/xiaohongshu/export_cards.mjs --check        # 渲染验收
+node ui_kits/xiaohongshu/export_cards.mjs --selftest     # 只跑环境自证（golden geometry + 字体健康）
+node ui_kits/xiaohongshu/export_cards.mjs --check        # selftest + 渲染验收
 node ui_kits/xiaohongshu/export_cards.mjs --all-fixtures # 改了分页器/间距/组件高度就跑全量
+node tools/font_audit.mjs                                # 字体子集覆盖率 + 缺字清单
+node ui_kits/wechat/export_wechat.mjs                    # 公众号侧：出自包含冻结 HTML
 ```
 
-**小红书内容的闭环是：`blocks[]` → `usePagination()` → 真实渲染 → contact sheet → 亲眼看 →
-修正 → 再渲染 → PNG。HTML 只是中间产物，没跑渲染验收不得说"做完了"。**
+**小红书内容的闭环是：`blocks[]` → `usePagination()` → **selftest** → 真实渲染 → contact sheet →
+亲眼看 → 修正 → 再渲染 → PNG。HTML 只是中间产物，没跑渲染验收不得说"做完了"。**
 不得手工排每一页（绕过分页器就绕过了验收），不得用浏览器打印当出图（那出的是 A4 预览）。
 出图只有 `export_cards.mjs` 一条路，PNG 原生 1242×1656 @1x。
+
+**selftest 是防伪线**。GPT sandbox 出的图曾经封面套印偏移 ~55px（正确 dy -10 / dx +14），
+但那环境的 `--check` 全绿——普通检查查空页 / 溢出 / 挂图，查不出"这个环境把渲染搞坏了"。
+每次导出 / `--check` 先跑 selftest：渲染 `fixtures/content.golden.js` → 量一组 CSS 决定的
+几何指标 → 与 `fixtures/golden.geometry.json` 对比 → 超差立即中止。字体加载失败也一并报——
+CSS `line-height:1.06` 是 CSS 决定的值，font 挂了它不变，光靠几何量不到，要单独查 FontFaceSet。
+
+**公众号侧的复制是富文本，不是 text/plain**。`navigator.clipboard.writeText()` 写 text/plain，
+粘进公众号编辑器出来是源码。工作台按钮与 `out/wechat-article.frozen.html` 顶部按钮都用
+range 选中 + `document.execCommand("copy")`——同时给剪贴板写 text/plain + text/html，
+公众号编辑器吃后者。`ClipboardItem` 双格式在别的编辑器里更干净，对公众号编辑器 paste 实测
+不如 execCommand 稳。改这条路径前先在真编辑器里粘一遍看。
 
 **`blocks.jsx` 与 readme「内容契约」是一份东西的两半。** 前者是唯一解释 block 语义的代码，
 后者是唯一写下字段的文档。加 block 类型、改字段、动行内标记，两边一起改，否则下一个 agent

@@ -4,7 +4,7 @@ window.YORU_POST = {
   variant: "lab",
   contentMode: "editable",
   kicker: "VIBE CODING",
-  issue: "2026.08 / 09",
+  issue: "二〇二六年八月 · 第九期",
   cover: { date: "2026.08", issueNumber: "09", title: "把一个 Skill 拆成三层",
     subtitle: "四十遍之后留下来的写法。", tags: ["Skills", "Claude Code"], aside: "第四十遍才定下来" },
   blocks: [

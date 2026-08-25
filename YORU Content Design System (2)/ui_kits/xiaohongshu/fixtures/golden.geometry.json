@@ -1,0 +1,15 @@
+{
+  "note": "T2 golden geometry — auto-captured. Regenerate with --capture-golden.",
+  "metrics": {
+    "cover_ghost_dy": -10.234375,
+    "cover_ghost_dx": 14.078125,
+    "fs_cover": 128,
+    "lh_cover_px": 135.68,
+    "content_row_gap": 56,
+    "content_masthead_to_first_block": 94.3125,
+    "content_footer_top_from_card": 1534.328125,
+    "body_line_height_px": 73.92,
+    "_fonts_errored": [],
+    "_fonts_fellback": []
+  }
+}

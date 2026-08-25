@@ -10,7 +10,7 @@ window.YORU_POST = {
   variant: "lab",
   contentMode: "editable",
   kicker: "VIBE CODING",
-  issue: "2026.08 / 04",
+  issue: "二〇二六年八月 · 第四期",
   cover: { column: "VIBE CODING", date: "2026.08", issueNumber: "04", title: "把提示词写成模块", subtitle: "四十遍之后留下来的写法。", tags: ["工作流", "Claude Code"], aside: "第四十遍才定下来" },
   blocks: [
     { t: "heading", level: 1, text: "为什么单条提示词撑不住" },

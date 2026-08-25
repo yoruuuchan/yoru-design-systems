@@ -6,7 +6,7 @@ window.YORU_POST = {
   variant: "signal",
   contentMode: "editable",
   kicker: "AI NEWS",
-  issue: "2026.08 / 16",
+  issue: "二〇二六年八月 · 第十六期",
   cover: { date: "2026.08", title: "只有标题的封面" },
   blocks: [
     { t: "heading", level: 1, mark: true, text: "这份 fixture 应当报告警" },

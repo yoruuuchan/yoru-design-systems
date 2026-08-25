@@ -14,6 +14,9 @@
  *
  * Options
  *   --check              skip jpg/zip, print the report
+ *   --selftest           only run the golden geometry selftest and exit
+ *   --skip-selftest      run without gating on selftest (escape hatch, don't use in CI)
+ *   --capture-golden     re-baseline fixtures/golden.geometry.json from the current render
  *   --fixture <name>     load fixtures/content.<name>.js instead of content.js
  *   --variant <id>       signal | lab | studio | special   (default: the post's own)
  *   --all-variants       run all four in sequence
@@ -23,10 +26,20 @@
  *   --zip                pack the output folder into a .zip
  *   --port <n>           static server port (default: an open one)
  *
+ * Selftest gate: every run — export, --check, --all-fixtures, --all-variants —
+ * FIRST renders fixtures/content.golden.js and measures a fixed set of
+ * CSS-decided geometry (cover ghost dy/dx, --fs-cover, --lh-cover, rowGap,
+ * masthead-to-column gap, footer top, body line-height). Out-of-tolerance
+ * aborts before anything else runs — this is the fence that catches "this
+ * environment silently broke the render" (fonts missing, tokens overridden,
+ * a broken CSS import), which every other check misses because they only see
+ * whether the finished page overflows.
+ *
  * Exits non-zero if any card fails a check, so it can gate a build.
  */
 
 import { chromium } from "playwright";
+import * as fontkit from "fontkit";
 import http from "node:http";
 import fs from "node:fs";
 import fsp from "node:fs/promises";
@@ -37,6 +50,44 @@ import { fileURLToPath } from "node:url";
 const KIT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(KIT_DIR, "../..");
 const VARIANTS = ["signal", "lab", "studio", "special"];
+const FONTS_DIR = path.join(ROOT, "fonts");
+/* Which face on disk backs a given CSS family name. Each family has multiple
+   weights; we take the union of all their cmaps so a family "has" a codepoint
+   if any weight can render it — matching what browser font matching does when
+   the weight-exact face lacks a glyph and it falls to a neighbour. */
+const FAMILY_FILES = {
+  "Source Han Sans SC": [
+    "SourceHanSansSC-Light.woff2", "SourceHanSansSC-Regular.woff2",
+    "SourceHanSansSC-Medium.woff2", "SourceHanSansSC-Bold.woff2"
+  ],
+  "Source Han Serif SC": [
+    "SourceHanSerifSC-Regular.woff2", "SourceHanSerifSC-Medium.woff2",
+    "SourceHanSerifSC-Bold.woff2", "SourceHanSerifSC-Heavy.woff2"
+  ]
+};
+
+// Lazily load and union the character sets on first render pass.
+let __familyCoverage = null;
+async function familyCoverage() {
+  if (__familyCoverage) return __familyCoverage;
+  const cov = {};
+  for (const [family, files] of Object.entries(FAMILY_FILES)) {
+    const set = new Set();
+    for (const f of files) {
+      let buf;
+      try { buf = await fsp.readFile(path.join(FONTS_DIR, f)); }
+      catch { continue; }
+      const font = fontkit.create(buf);
+      const cps = font.characterSet && font.characterSet.length
+        ? font.characterSet
+        : (function scan() { const s = []; for (let cp = 0; cp < 0xffff; cp++) { const g = font.glyphForCodePoint(cp); if (g && g.id !== 0) s.push(cp); } return s; })();
+      for (const cp of cps) set.add(cp);
+    }
+    cov[family] = set;
+  }
+  __familyCoverage = cov;
+  return cov;
+}
 
 /* Occupancy floors. A page that is mostly white is almost always a pagination or
    authoring mistake, but covers are supposed to be airy and end cards are one
@@ -54,6 +105,9 @@ function parseArgs(argv) {
     else if (k === "--zip") a.zip = true;
     else if (k === "--all-variants") a.allVariants = true;
     else if (k === "--all-fixtures") a.allFixtures = true;
+    else if (k === "--selftest") a.selftest = true;
+    else if (k === "--skip-selftest") a.skipSelftest = true;
+    else if (k === "--capture-golden") a.captureGolden = true;
     else if (k === "--fixture") a.fixture = argv[++i];
     else if (k === "--variant") a.variant = argv[++i];
     else if (k === "--size") a.size = argv[++i];
@@ -267,11 +321,223 @@ const COLLECT = () => {
   const SELF_HOSTED = ["Source Han Sans SC", "Source Han Serif SC", "Inter", "JetBrains Mono"];
   const fellBack = SELF_HOSTED.filter(f => asked.has(f) && !loaded.has(f));
 
+  /* Per-character usage (T3). For every self-hosted 思源 family, gather the
+     unique CJK/BMP-punct chars that actually render in it, along with the
+     page they landed on. Node cross-references against the woff2 cmap
+     (fontkit) to find real subset misses — the browser side alone cannot
+     do this reliably: document.fonts.check() answers "is this family
+     loaded", not "does this specific glyph exist in the loaded subset".
+     Latin & mono are Latin-by-design, so Chinese in a mono label
+     legitimately walks the CJK tail; only 思源 gets checked here. */
+  const usageByFamily = { "Source Han Sans SC": new Map(), "Source Han Serif SC": new Map() };
+  /* Ranges 思源 subsets are expected to cover — CJK-adjacent codepoints only.
+     Emoji (1F000+, 2600-27BF), variation selectors (FE00-FE0F), and other
+     symbols legitimately fall through to the OS emoji/symbol face — flagging
+     them here is a false positive. Real subset regressions like 「捋」 live
+     inside these ranges. */
+  const inCjkRange = cp => (
+    (cp >= 0x3000 && cp <= 0x303F) ||   // CJK Symbols & Punctuation
+    (cp >= 0x3400 && cp <= 0x4DBF) ||   // CJK Ext A
+    (cp >= 0x4E00 && cp <= 0x9FFF) ||   // CJK Unified
+    (cp >= 0xF900 && cp <= 0xFAFF) ||   // CJK Compatibility
+    (cp >= 0xFF00 && cp <= 0xFFEF)      // Halfwidth & Fullwidth
+  );
+  const els = document.querySelectorAll("main [data-yoru-role] *");
+  for (const el of els) {
+    const texts = Array.from(el.childNodes).filter(n => n.nodeType === 3 && n.textContent.trim());
+    if (!texts.length) continue;
+    const cs = getComputedStyle(el);
+    const family = strip(cs.fontFamily.split(",")[0].trim());
+    if (!usageByFamily[family]) continue;
+    const card = el.closest("[data-yoru-role]");
+    const pageIdx = card ? Array.from(document.querySelectorAll("main [data-yoru-role]")).indexOf(card) + 1 : null;
+    for (const t of texts) {
+      for (const ch of t.textContent) {
+        if (/\s/.test(ch)) continue;
+        const cp = ch.codePointAt(0);
+        if (cp < 128 || !inCjkRange(cp)) continue;
+        const key = ch + "|" + pageIdx;
+        if (!usageByFamily[family].has(key)) usageByFamily[family].set(key, { cp, page: pageIdx });
+      }
+    }
+  }
+  const charUsage = [];
+  for (const [family, m] of Object.entries(usageByFamily)) {
+    for (const v of m.values()) charUsage.push({ family, cp: v.cp, page: v.page });
+  }
+
   return { cards: out, fonts: uniqFonts, variant: pg.variant || null, fellBack,
     fontErrors: Array.from(new Set(errored)),
+    charUsage,
     bundleErrors: (window.YORUContentDesignSystem_a0b73e || {}).__errors || [],
     oversized: pg.report ? pg.report.oversized : [] };
 };
+
+// ---------------------------------------------------------------- golden geometry
+
+/* T2 selftest. Reads a fixed set of CSS-decided geometric numbers off the
+   golden fixture's cover and content page and returns a flat object of
+   metrics. The paired golden.geometry.json holds the numbers that came out
+   of a known-good render; the runner compares and aborts on divergence.
+
+   Everything here is CSS-decided (em × --fs-cover, computed rowGap, absolute
+   offsets read off the DOM), NOT font-derived — so cross-platform font
+   hinting drift stays within tolerance. Body line-height IS font-slightly
+   sensitive so it gets a looser bound. */
+const MEASURE_GOLDEN = () => {
+  const cards = Array.from(document.querySelectorAll("main [data-yoru-role]"));
+  const cover = cards.find(c => c.getAttribute("data-yoru-role") === "cover");
+  const content = cards.find(c => c.getAttribute("data-yoru-role") === "content");
+  if (!cover || !content) return { error: "golden fixture 没有渲染出 cover + content 两张卡片" };
+
+  // COVER — ghost offset & type sizing
+  const plate = cover.querySelector("[data-yoru-plate]");
+  const h1 = plate && plate.querySelector("h1");
+  const ghost = h1 && h1.querySelector('span[aria-hidden="true"]');
+  const solid = h1 && Array.from(h1.querySelectorAll("span")).find(s => s.getAttribute("aria-hidden") !== "true");
+  const gh = ghost && ghost.getBoundingClientRect();
+  const so = solid && solid.getBoundingClientRect();
+  const csCover = ghost && getComputedStyle(ghost);
+  const coverGhostDy = (gh && so) ? gh.top - so.top : null;
+  const coverGhostDx = (gh && so) ? gh.left - so.left : null;
+  const fsCover = csCover ? parseFloat(csCover.fontSize) : null;
+  const lhCoverPx = csCover ? parseFloat(csCover.lineHeight) : null;
+
+  // CONTENT PAGE — flow rhythm, masthead-to-column, footer top, body line-height
+  const col = content.querySelector("[data-yoru-flow]");
+  const csCol = col && getComputedStyle(col);
+  const rowGap = csCol ? parseFloat(csCol.rowGap) : null;
+  const cardRect = content.getBoundingClientRect();
+
+  const mast = content.firstElementChild;   // absolute-positioned masthead wrapper
+  const mastRect = mast ? mast.getBoundingClientRect() : null;
+  // first block in the flow column
+  const firstChild = col && col.children[0];
+  const firstChildRect = firstChild ? firstChild.getBoundingClientRect() : null;
+  const mastToBlock = (mastRect && firstChildRect) ? firstChildRect.top - mastRect.bottom : null;
+
+  const foot = content.querySelector("[data-yoru-footer]");
+  const footTopFromCard = foot ? (foot.getBoundingClientRect().top - cardRect.top) : null;
+
+  // body line-height on a body block (first .yoru-body element in the column, else fall back)
+  const bodyEl = content.querySelector("p") || (firstChild && firstChild.querySelector("p"));
+  const lhBodyPx = bodyEl ? parseFloat(getComputedStyle(bodyEl).lineHeight) : null;
+
+  /* Font health. CSS-computed line-height doesn't move when a webfont fails
+     to load — a broken font url() leaves the geometric metrics identical.
+     Ask the FontFaceSet directly: which self-hosted families were asked for
+     on this page, which loaded, which errored. selftest treats any of those
+     as environment failure. */
+  const stripQuotes = s => s.replace(/^["']|["']$/g, "");
+  const askedFamilies = new Set();
+  for (const el of document.querySelectorAll("main [data-yoru-role] *")) {
+    if (!Array.from(el.childNodes).some(n => n.nodeType === 3 && n.textContent.trim())) continue;
+    askedFamilies.add(stripQuotes(getComputedStyle(el).fontFamily.split(",")[0].trim()));
+  }
+  const loadedFamilies = new Set(Array.from(document.fonts).filter(f => f.status === "loaded").map(f => stripQuotes(f.family)));
+  const erroredFamilies = Array.from(new Set(Array.from(document.fonts).filter(f => f.status === "error").map(f => stripQuotes(f.family))));
+  const SELF_HOSTED_HEAD = ["Source Han Sans SC", "Source Han Serif SC", "Inter", "JetBrains Mono"];
+  const fellBackFamilies = SELF_HOSTED_HEAD.filter(f => askedFamilies.has(f) && !loadedFamilies.has(f));
+
+  return {
+    cover_ghost_dy: coverGhostDy,
+    cover_ghost_dx: coverGhostDx,
+    fs_cover: fsCover,
+    lh_cover_px: lhCoverPx,
+    content_row_gap: rowGap,
+    content_masthead_to_first_block: mastToBlock,
+    content_footer_top_from_card: footTopFromCard,
+    body_line_height_px: lhBodyPx,
+    _fonts_errored: erroredFamilies,
+    _fonts_fellback: fellBackFamilies
+  };
+};
+
+// Per-metric tolerance. CSS-decided pixels stay tight; anything font-hint
+// sensitive (line-heights) gets more room because platform-level hinting
+// drifts a pixel or two between OS versions and browser builds.
+const GOLDEN_TOLERANCE = {
+  cover_ghost_dy: 3, cover_ghost_dx: 3,
+  fs_cover: 1, lh_cover_px: 6,
+  content_row_gap: 2,
+  content_masthead_to_first_block: 6,
+  content_footer_top_from_card: 4,
+  body_line_height_px: 6
+};
+
+async function runSelftest(browser, origin, args, opts) {
+  const page = await browser.newPage({ viewport: { width: 1360, height: 1800 }, deviceScaleFactor: 1 });
+  const q = new URLSearchParams({ scale: "1", bare: "1", size: "1242x1656", fixture: "golden" });
+  await page.goto(origin + "/ui_kits/xiaohongshu/index.html?" + q, { waitUntil: "load" });
+  await page.waitForFunction(() => document.body.dataset.paginated, null, { timeout: 60000 });
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  });
+  const measured = await page.evaluate(MEASURE_GOLDEN);
+  await page.close();
+
+  if (measured.error) return { ok: false, measured, why: measured.error };
+
+  const goldenPath = path.join(KIT_DIR, "fixtures", "golden.geometry.json");
+  let golden;
+  try {
+    golden = JSON.parse(await fsp.readFile(goldenPath, "utf8"));
+  } catch (e) {
+    if (opts.captureGolden) {
+      const payload = { note: "T2 golden geometry — auto-captured. Regenerate with --capture-golden.", metrics: measured };
+      await fsp.writeFile(goldenPath, JSON.stringify(payload, null, 2) + "\n", "utf8");
+      return { ok: true, measured, captured: true, path: goldenPath };
+    }
+    return { ok: false, measured, why: "读不到 golden.geometry.json（" + e.message + "）——首次用 --capture-golden 生成基准" };
+  }
+
+  if (opts.captureGolden) {
+    const payload = { ...golden, metrics: measured };
+    await fsp.writeFile(goldenPath, JSON.stringify(payload, null, 2) + "\n", "utf8");
+    return { ok: true, measured, captured: true, path: goldenPath };
+  }
+
+  const diffs = [];
+  for (const [k, expected] of Object.entries(golden.metrics || {})) {
+    if (k.startsWith("_")) continue;   // font health is fresh every run, not baselined
+    const actual = measured[k];
+    if (actual == null) { diffs.push({ metric: k, expected, actual: "缺失", tol: GOLDEN_TOLERANCE[k] }); continue; }
+    const tol = GOLDEN_TOLERANCE[k] ?? 3;
+    if (Math.abs(actual - expected) > tol) diffs.push({ metric: k, expected, actual: Number(actual.toFixed(2)), tol });
+  }
+  const fontIssues = [];
+  for (const f of measured._fonts_errored || []) fontIssues.push({ kind: "字体加载失败", family: f, note: "@font-face url 取不到" });
+  for (const f of measured._fonts_fellback || []) fontIssues.push({ kind: "字体回退", family: f, note: "页面用到了该家族但没有一档加载成功" });
+  return { ok: diffs.length === 0 && fontIssues.length === 0, measured, diffs, fontIssues, golden };
+}
+
+function printSelftest(label, s) {
+  console.log("\n  ── selftest · " + label + " ──");
+  if (s.captured) {
+    console.log("   已重新捕获 golden.geometry.json（" + path.relative(ROOT, s.path) + "）");
+    for (const [k, v] of Object.entries(s.measured)) {
+      if (k.startsWith("_")) continue;
+      console.log("     " + k.padEnd(34) + " = " + (typeof v === "number" ? v.toFixed(2) : v));
+    }
+    return;
+  }
+  if (s.ok) {
+    console.log("   通过 · 8 项几何指标 + 字体健康检查全部在容差内");
+    return;
+  }
+  if (s.why) { console.log("   " + s.why); return; }
+  console.log("   未通过 · 渲染环境失真，此环境出的图不可交付：");
+  if (s.diffs && s.diffs.length) {
+    console.log("     " + "指标".padEnd(34) + "  " + "期望".padStart(9) + "  " + "实测".padStart(9) + "  容差");
+    for (const d of s.diffs) {
+      console.log("     " + d.metric.padEnd(34) + "  " + String(d.expected).padStart(9) + "  " + String(d.actual).padStart(9) + "  ±" + d.tol);
+    }
+  }
+  if (s.fontIssues && s.fontIssues.length) {
+    for (const f of s.fontIssues) console.log("     " + f.kind + "：" + f.family + "（" + f.note + "）");
+  }
+}
 
 // ---------------------------------------------------------------- one pass
 
@@ -304,6 +570,27 @@ async function renderPass(browser, origin, opts) {
   for (const family of report.fontErrors) {
     report.consoleErrors.push("字体加载失败：" + family + "（@font-face 的 url 取不到）");
   }
+
+  /* Node-side per-char cross-check (T3). The browser can't tell us whether a
+     specific glyph exists in the loaded subset — document.fonts.check() only
+     answers "is this family loaded". So we shipped every (family, codepoint,
+     page) tuple that actually renders in a self-hosted 思源 family, and here
+     we look each codepoint up in the fontkit-parsed union of that family's
+     woff2 cmaps. Anything missing means Chrome had to reach past the family
+     to a system CJK face — the exact bug that hit the real "捋" heading. */
+  const cov = await familyCoverage();
+  const missing = [];
+  const seen = new Set();
+  for (const { family, cp, page } of (report.charUsage || [])) {
+    if (!cov[family]) continue;
+    if (cov[family].has(cp)) continue;
+    const key = family + ":" + cp + ":" + page;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    missing.push({ family, ch: String.fromCodePoint(cp), cp: "U+" + cp.toString(16).toUpperCase().padStart(4, "0"), page });
+  }
+  report.missingChars = missing;
+
   return { page, report };
 }
 
@@ -431,9 +718,28 @@ function printReport(label, report) {
       c.rect.w + "x" + c.rect.h + (c.fill == null ? "" : "  占用 " + String(Math.round(c.fill * 100)).padStart(3) + "%"));
     for (const f of c.findings) console.log("        " + (f.level === "error" ? "错误" : "告警") + " · " + f.msg);
   }
+  // T3 · per-character fallback. If document.fonts.check() said the declared
+  // family cannot render this char, Chrome reached past 思源 to a system CJK
+  // face — invisible to the family-level check because 思源 itself loaded fine.
+  let charErrors = 0;
+  if (report.missingChars && report.missingChars.length) {
+    // Group by family for a readable dump; every miss is an error.
+    const byFamily = new Map();
+    for (const c of report.missingChars) {
+      const arr = byFamily.get(c.family) || [];
+      arr.push(c);
+      byFamily.set(c.family, arr);
+    }
+    for (const [family, list] of byFamily) {
+      console.log("   x 字体子集漏字：" + family + " 未覆盖 " + list.length + " 个字符");
+      const sample = list.slice(0, 12).map(c => c.ch + "(" + c.cp + " · 第" + c.page + "张)").join(" ");
+      console.log("        " + sample + (list.length > 12 ? "  …" : ""));
+      charErrors += list.length;
+    }
+  }
   for (const e of report.bundleErrors) console.log("   x 组件加载失败 " + e.path + ": " + e.error);
   for (const e of report.consoleErrors) console.log("   x " + e);
-  const errors = errs.length + report.bundleErrors.length + report.consoleErrors.length;
+  const errors = errs.length + report.bundleErrors.length + report.consoleErrors.length + charErrors;
   console.log("   " + errors + " 错误 · " + warns.length + " 告警 · 字体 " + report.fonts.length + " 族已加载");
   return { errors, warns: warns.length };
 }
@@ -475,11 +781,19 @@ async function main() {
   if (args.out && (args.allFixtures || args.allVariants)) {
     throw new Error("--out 不能和 --all-fixtures / --all-variants 一起用：多轮会写进同一个目录，互相覆盖");
   }
+  // Golden is not a normal fixture — it's the selftest sample. Never run it
+  // through the fixtures loop; a bare --fixture golden call still works if
+  // someone really wants to look at it, but --all-fixtures should skip it.
+  const GOLDEN_FIXTURE = "golden";
 
   let jobs;
-  if (args.allFixtures) {
+  if (args.selftest) {
+    jobs = [];   // selftest only, no rendering pass
+  } else if (args.allFixtures) {
     const manifest = JSON.parse(await fsp.readFile(path.join(KIT_DIR, "fixtures", "index.json"), "utf8"));
-    jobs = manifest.fixtures.map(f => ({ fixture: f.name, expect: f.expect, variant: args.variant || null }));
+    jobs = manifest.fixtures
+      .filter(f => f.name !== GOLDEN_FIXTURE)
+      .map(f => ({ fixture: f.name, expect: f.expect, variant: args.variant || null }));
   } else if (args.allVariants) {
     jobs = VARIANTS.map(v => ({ variant: v, fixture: args.fixture || null }));
   } else {
@@ -489,19 +803,40 @@ async function main() {
   const srv = await startServer(ROOT, args.port || 0);
   const browser = await chromium.launch();
   const verdicts = [];
+  let selftestFailed = false;
   try {
-    for (const job of jobs) {
-      const tally = await runOne(browser, srv.origin, args, job);
-      let ok = true, why = "";
-      if (job.expect === "clean" && (tally.errors || tally.warns)) { ok = false; why = "应当零错误零告警"; }
-      if (job.expect === "findings" && !tally.errors && !tally.warns) { ok = false; why = "这是负例，应当报出问题却什么都没报——检查退化了"; }
-      if (!job.expect && tally.errors) { ok = false; why = tally.errors + " 个错误"; }
-      verdicts.push({ name: (job.fixture || "post") + (job.variant ? " · " + job.variant : ""), ok, why });
+    /* T2 gate. Runs before anything else — a bad environment silently damages
+       every downstream render, and the fixture checks (empty page, overflow,
+       broken image) cannot see that damage because they only see the finished
+       page. Skipping is possible via --skip-selftest, but that's not for CI. */
+    if (!args.skipSelftest) {
+      const s = await runSelftest(browser, srv.origin, args, { captureGolden: args.captureGolden });
+      printSelftest("golden 样张", s);
+      if (!s.ok && !args.captureGolden) {
+        selftestFailed = true;
+        console.log("\n  selftest 未通过 —— 渲染环境失真，此环境出的图不可交付。跳过后续渲染。\n");
+      }
+      if (args.selftest || args.captureGolden) {
+        return s.ok ? 0 : 1;
+      }
+    }
+
+    if (!selftestFailed) {
+      for (const job of jobs) {
+        const tally = await runOne(browser, srv.origin, args, job);
+        let ok = true, why = "";
+        if (job.expect === "clean" && (tally.errors || tally.warns)) { ok = false; why = "应当零错误零告警"; }
+        if (job.expect === "findings" && !tally.errors && !tally.warns) { ok = false; why = "这是负例，应当报出问题却什么都没报——检查退化了"; }
+        if (!job.expect && tally.errors) { ok = false; why = tally.errors + " 个错误"; }
+        verdicts.push({ name: (job.fixture || "post") + (job.variant ? " · " + job.variant : ""), ok, why });
+      }
     }
   } finally {
     await browser.close();
     await srv.close();
   }
+
+  if (selftestFailed) return 1;
 
   const bad = verdicts.filter(v => !v.ok);
   if (jobs.length > 1) {

@@ -458,7 +458,7 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* Numbered walkthrough，铅字房版：汉字编号 壹貳叁，宋体，变体深色。Steps are separated
    by a hairline ABOVE each one — the numeral column itself is the structure. */
-const CN_STEP = ["壹", "貳", "叁", "肆", "伍", "陸", "柒", "捌", "玖", "拾"];
+const CN_STEP = ["壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖", "拾"];
 function StepList({
   steps = [],
   start = 1,
@@ -2127,16 +2127,10 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* Cover B — the "套印" cover.
 
-   The title prints twice: a solid ink pass at z-index 2, and a pale accent
-   pass 8px above and 14px to the left, mix-blend-mode:multiply so the two
-   pass through each other rather than fighting for the eye. It reads as a
-   riso print that came off the press a hair misaligned. A very large mono
-   issue number sits behind everything, cropped by the page edge, so the
-   card carries the current number as a graphic instead of a caption.
-
-   The masthead is identical to interior pages: 月相 + 汉字页码 + 文武线.
-   No wordmark, no column, no date — `column`/`date` are still accepted
-   from old callers but render nothing; the date lives in the Page spine. */
+   No more giant corner卷号. The title prints twice; issueNumber is still
+   accepted (masthead + spine use cnIssue) but the cover renders none of its
+   own. Optional cover image sits under the title as a quiet Figure. See
+   the source jsx header for the full rationale. */
 function CoverOverprint({
   variant = "signal",
   size = "1242x1656",
@@ -2149,6 +2143,9 @@ function CoverOverprint({
   tags = [],
   aside,
   issueNumber,
+  image,
+  imageCaption,
+  imageRatio = "16 / 10",
   style,
   ...rest
 }) {
@@ -2168,21 +2165,7 @@ function CoverOverprint({
   }, /*#__PURE__*/React.createElement(__ds_scope.Masthead, {
     index: index,
     total: total
-  })), issueNumber && /*#__PURE__*/React.createElement("span", {
-    "aria-hidden": "true",
-    style: {
-      position: "absolute",
-      right: "calc(var(--page-pad-x) * -.45)",
-      bottom: "calc(var(--page-pad-y) * -1.1)",
-      fontFamily: "var(--font-title)",
-      fontWeight: 900,
-      fontSize: "calc(var(--fs-cover) * 4.6)",
-      lineHeight: .9,
-      color: "var(--accent-soft)",
-      zIndex: 0,
-      userSelect: "none"
-    }
-  }, __ds_scope.cnIssue(issueNumber)), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("div", {
     "data-yoru-plate": "",
     style: {
       position: "absolute",
@@ -2236,7 +2219,42 @@ function CoverOverprint({
       lineHeight: "var(--lh-body)",
       color: "var(--ink-3)"
     }
-  }, subtitle), (tags.length > 0 || aside) && /*#__PURE__*/React.createElement("div", {
+  }, subtitle), image && /*#__PURE__*/React.createElement("figure", {
+    style: {
+      margin: 0,
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sp-3)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: "100%",
+      aspectRatio: imageRatio,
+      overflow: "hidden",
+      borderRadius: "var(--radius-media)",
+      border: "var(--hair) solid var(--border-rule)",
+      background: "var(--paper-2)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: image,
+    alt: typeof imageCaption === "string" ? imageCaption : "",
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block"
+    }
+  })), imageCaption && /*#__PURE__*/React.createElement("figcaption", {
+    style: {
+      fontFamily: "var(--font-body)",
+      fontSize: "var(--fs-caption)",
+      lineHeight: "var(--lh-tight)",
+      color: "var(--text-muted)"
+    }
+  }, imageCaption)), (tags.length > 0 || aside) && /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexWrap: "wrap",

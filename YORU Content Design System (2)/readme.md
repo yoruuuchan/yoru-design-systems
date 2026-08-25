@@ -102,19 +102,34 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 - **书脊栏 `<Page spine>`**：右边距的直排仿宋窄条（`.4em` 字距），装 `日期 · 卷号 · 系列名`。日期从报头迁到这里。
 - 页心落月水印已取消（`watermark` 属性保留为空操作）。
 
-### 封面：套印靠四件东西撑住
+### 封面：套印靠这几件东西撑住
 
 `<CoverOverprint>` 的版心是一块居中的竖排堆栈。只给 `title` 的话，堆栈只有标题那一行，
-上下各留掉半页——**这就是大空白封面的成因**，不是留白语言，是缺件。四件必填：
+上下各留掉半页——**这就是大空白封面的成因**，不是留白语言，是缺件。三件必填 + 一件可选：
 
 | 字段 | 作用 | 缺了会怎样 |
 | --- | --- | --- |
 | `title` | 标题两遍套印，页面主体 | 没有封面 |
 | `subtitle` | 仿宋一行，把标题压住 | 标题悬空 |
 | `tags`（1–3 个）+ `aside` | 底部那条横排，堆栈的下沿 | 堆栈只剩标题，版心塌一半 |
-| `issueNumber` | 被页缘裁切的巨号汉字，右下角的图形重量 | 右下角整块空白 |
+| `image` + `imageCaption?` + `imageRatio?` | 可选。有图时排在标题块下方 | 无图形态，见下一段 |
+| `issueNumber` | 仍然接受（报头页码对与书脊字符串会读），但**封面不再渲染巨字**；缺了不影响封面版面 | 只影响报头页码可读性 |
 
-渲染验收查这四件，也量标题堆栈占版心的比例——完整的封面在 35% 上下（这套语言本来就留白多），
+**为什么撤了巨字卷号**：以前 `issueNumber` 会渲染成 `--fs-cover * 4.6`（约 590px）的巨字塞在
+右下角、被页缘裁切当图形。对笔画多的号（04 / 12 / 17）尚可，对笔画少的（1=「一」、2=「二」、
+10=「十」）裁切后只剩起笔顿笔，读者根本看不出是号。号仍在——它在报头的汉字页码对里、也在
+书脊那一行——封面就不再当它的广告牌了。
+
+**有图形态**：`image` 传截图 / 照片 src，可选 `imageCaption`（一行短说明）、`imageRatio`（默认
+`"16 / 10"`）。图走 Figure 的 frame treatment 风格——细线框、`--radius-media`、`objectFit:cover`、
+无阴影——**保证套印标题仍然是页面最响的东西**。什么时候放：有主图的证据帖、单机器/单地点的
+记录合适；纯观点、纯教程用无图封面就够。
+
+**无图形态**：不用做任何事——不填 `image` 就没有。plate 会把 title/subtitle/tags/aside 居中撑住，
+渲染验收的 `FILL_FLOORS.cover`（30%）判定过关（完整封面通常落在 35–48% 之间）。**不要**为了填空
+加装饰图形或多余色块——CLAUDE.md 那条「不做卡片模板感」是硬规则。
+
+渲染验收查这四件必填，也量标题堆栈占版心的比例：完整封面在 35% 上下（这套语言本来就留白多），
 只有标题的会掉到 12% 左右，两条告警一起报。
 
 结尾页 `<EndCard>` 是可选的，见 CONTENT FUNDAMENTALS 的「长度」。
@@ -170,6 +185,20 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 **截图在卡片上的渲染宽度不得低于内容列宽的 90%。** 装不下的时候允许一张证据截图独占整页；
 再装不下就裁出关键局部、或者拆成多页——**不允许继续缩小**。手机上看不清的证据等于没有证据。
 渲染验收会测这一条，低于 90% 报告警。
+
+**证据截图 = 完整语义单元**（走 verbatim 更严格）。裁切的三条硬约束：
+
+1. 一张图里的每条推文 / 评论 / 消息**必须完整**：正文完整，互动栏可留可去；不得只剩头像和用户名、
+   正文全无，也不得下方露出下一条评论的头像残影。
+2. 裁局部时**切口必须落在条目之间的分隔处**——推文之间的分割线、评论之间的间距、消息之间的
+   气泡缝隙。不能斜切、不能割半个头像、不能留半行文字。
+3. 太长优先**拆多页**（一页一张大图完全合法），其次裁到语义边界；**禁止**为塞下而缩小到不可读。
+
+**verbatim 模式的媒体口径**：决定引用某条就完整引用；放不下宁可整条不放，不得斩半。改稿子的
+权限本来就没有；对截图动裁刀跟对文字动笔性质一样，得先问。
+
+contact sheet 亲眼过一遍时，除了看版式，也要**逐张查边缘残影与语义完整**——这一条 render_check
+测不出来（它测的是宽度与加载），得人眼过。
 
 **动效**：内容里没有动效。工具台交互 `.12s` 线性色彩过渡一档。
 
@@ -246,12 +275,26 @@ window.YORU_POST = {
   variant: "lab",                 // signal | lab | studio | special
   contentMode: "editable",        // editable | verbatim —— 见 CONTENT FUNDAMENTALS「内容模式」
   kicker: "VIBE CODING",          // 内页报头开关兼分类标签
-  issue: "2026.08 / 04",          // 页脚那行小字
-  cover: { date, issueNumber, title, subtitle, tags: [], aside },   // 四件必填，见「封面」
+  issue: "二〇二六年八月 · 第四期",  // 页脚那行小字（汉字口径，见下）
+  cover: {                        // 见「封面」；三件必填 + image 可选
+    date, issueNumber, title, subtitle, tags: [], aside,
+    image?, imageCaption?, imageRatio?   // 可选封面图
+  },
   blocks: [ /* 下表 */ ],
   end: { headline, lines: [] }    // 结尾页，可选，见「长度」
 };
 ```
+
+**`issue` 字段一律汉字。** 页面家具的数字用汉字（CLAUDE.md 硬规则）——`issue` 会渲染进
+`PageFooter` 与 `EndCard`，属于页面家具的一部分。格式跟书脊、日期口径一致：
+
+- ✅ `"二〇二六年八月 · 第四期"`（`cnDate` + `cnIssue` 的自然文本形态）
+- ✅ `"二〇二六年八月 · 卷十四"`（想用「卷」代替「期」也可以）
+- ❌ `"2026.08 / 04"`（阿拉伯数字进页脚，破坏「铅字房」调子）
+- ❌ `"Aug 2026 · Issue 04"`（拉丁化，同上）
+
+需要机读的数字（版本号、价格、跑次）**继续用阿拉伯数字**——那是「内容」，不是「家具」。
+两个规矩不冲突。
 
 `blocks[]` 是一条线性流，**不分页、不排版**——那是 `usePagination()` 的事。
 
@@ -293,6 +336,32 @@ window.YORU_POST = {
 `code` 与 `prompt` 的正文**永不解析**——那两块是读者要原样抄走的东西。
 
 行内标记在 `heading` `lede` `body` `callout` `quote` `steps` `figure.caption` `marginnote` 里生效。
+
+**`@handle` 不可断（T5）**。正文里出现 `@` + 字母数字下划线的段（`@thsottiaux`、`@a_long_name`），
+`inline()` 会自动包一层 `white-space: nowrap`——handle 走到窄行边缘时整块换到下一行，不会
+被切成 `@thsot | tiaux`。这条规则**只作用于 @handle**：`#话题标签` **不做特殊处理**，因为按
+契约话题本来就不该进图。
+
+### 金句怎么处理
+
+情绪承重句是内容里最容易被排版糟蹋的一块——写的人觉得这句最重要，排的人却把它排成普通段落。
+三种落点，按承重强弱选一种：
+
+- 句中两三个字扛整句 → `·着重号·`（每句只打一次；见硬约束）
+  ```js
+  { t: "body", text: "四十次之后我才明白，·差的不是模型，是我问的方式·。" }
+  ```
+- 关键短语要读者一眼扫到 → `==荧光笔==`（每页只准一条；英文 / 代码标识符 / 带引号的短语用它）
+  ```js
+  { t: "body", text: "改需求的时候==只改一层==，其余保持不动。" }
+  ```
+- 独立成句的一句话金句 → `quote` 块（有作者归属就填 `cite` / `source`；没有就留空）
+  ```js
+  { t: "quote", text: "快乐的日子，结束了。" }
+  ```
+
+**不要三种叠用**：一句话既打着重号又刷荧光笔，读者会以为这是两件事；金句既做 quote 又打
+着重号，就把金句本身削弱了。选一种，其余留白。
 
 ### 每页上限（渲染验收会数）
 
@@ -349,15 +418,16 @@ window.YORU_POST = {
 **小红书**（闭环，不许抄近路）：
 
 ```
-blocks[] → usePagination() 自动分页 → 真实渲染 → contact sheet → 亲眼检查 → 修正 → 再渲染 → PNG @1x
+blocks[] → usePagination() 自动分页 → selftest → 真实渲染 → contact sheet → 亲眼检查 → 修正 → 再渲染 → PNG @1x
 ```
 
 装不下就开新页，**永不切分单个 block**；落单在页尾的标题跟着下一块走，但只在下一页装得下它们
 俩的时候才跟。出图只有一条路：
 
 ```bash
-node ui_kits/xiaohongshu/export_cards.mjs            # 渲染 + 验收 + 出 PNG
-node ui_kits/xiaohongshu/export_cards.mjs --check    # 只验收
+node ui_kits/xiaohongshu/export_cards.mjs            # selftest + 渲染 + 验收 + 出 PNG
+node ui_kits/xiaohongshu/export_cards.mjs --check    # selftest + 只验收
+node ui_kits/xiaohongshu/export_cards.mjs --selftest # 只跑环境自证
 ```
 
 **HTML 只是中间产物，没跑渲染验收不得宣称完成。** `check_design_system` 是静态 lint，它读源码，
@@ -365,7 +435,35 @@ node ui_kits/xiaohongshu/export_cards.mjs --check    # 只验收
 `contact-sheet.png`（全部页面缩略拼图，人眼过一遍）、`render-report.json`。
 改了分页器、间距 token 或任何组件高度，跑 `--all-fixtures` 全量回归。
 
-**公众号**：同一份 `blocks[]` → 677px 文章版式 → 冻结计算样式为行内 `style` → 粘贴。
+**T2 · 渲染保真自证（selftest）**。GPT sandbox 与本机之间可能有几何漂移——之前观察到 sandbox
+出的封面套印偏移 ~55px（正确是 dy -10 / dx +14），但那份环境的 `--check` 全绿。原因：既有验收
+查空页 / 溢出 / 挂图，查不出「这个环境把渲染搞坏了」。selftest 是第二道门：
+
+- `fixtures/content.golden.js` 是固定样张（一页套印封面 + 一页含 heading/lede/body 的内容页）；
+- `fixtures/golden.geometry.json` 存了这份样张在正常环境下 8 项 CSS-决定的几何指标（封面 ghost 层
+  dy/dx、`--fs-cover` / `--lh-cover`、内容列 rowGap、Masthead 到内容列的距离、PageFooter 顶边、
+  正文行高）；
+- 每次导出 / `--check` **先跑 selftest**：渲染样张 → 量同一组指标 → 与 golden 对比 → 超差立刻中止，
+  报错信息里直说「渲染环境失真，此环境出的图不可交付」。
+
+想重量基准（升级 tokens、换字体、改了 CoverOverprint / Page / PageFooter）时跑
+`--capture-golden` 重刷一次。文件很小，看着 diff 检查。
+
+**验证记录（防伪测试）**：故意破坏环境跑 selftest 必须变红——两种破坏都在 CI 前跑过：
+(a) 临时把 `--lh-cover` 从 1.06 改到 1.30 → `lh_cover_px` 差 32px、`content_footer_top_from_card`
+差 20+ px，红；(b) 临时把 `tokens/fonts.css` 里思源宋两条 `url(...)` 都改成 `url("nope.woff2")`
+→ 字体加载失败、`body_line_height_px` 与`content_masthead_to_first_block` 双双超差，红。
+
+**T3 · 字体子集审计 + 逐字回退检测**。`tools/font_audit.mjs` 读 `fonts/` 下 8 个 woff2 的 cmap，
+按每档 weight 报告覆盖率与缺字清单（GB2312 一二级作为基线；也可 `--char <字>` 查单字）。
+render_check 在每次渲染里也做逐字检查：把页面上真正落在思源宋 / 思源黑上的每个 CJK 码位，
+在 Node 一端用 fontkit 读 woff2 union cmap 交叉验证，缺字直接报 error（附字符、码位、所在页）。
+
+**公众号**：同一份 `blocks[]` → 677px 文章版式 → 冻结计算样式为行内 `style` → **富文本复制**（range 选中 +
+`execCommand("copy")`，同时写 text/plain + text/html，公众号编辑器吃后者）。工作台里点复制粘贴即成品；
+外部 agent（没有剪贴板的 sandbox）跑 `node ui_kits/wechat/export_wechat.mjs` 出
+`out/wechat-article.frozen.html`——**自包含冻结文件**，正文区全行内样式、零 class / 零 var()，
+顶部自带同款复制按钮，任何机器打开点一下即可粘贴。**预览 HTML 不是交付物**，见 `ui_kits/wechat/README.md`。
 
 **给 Agent 的作业规则**
 1. 先选变体，只写 `data-yoru`，不要改 token。

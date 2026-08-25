@@ -9,7 +9,7 @@ window.YORU_POST = {
   variant: "studio",
   contentMode: "editable",
   kicker: "PROCESS",
-  issue: "2026.08 / 17",
+  issue: "二〇二六年八月 · 第十七期",
   cover: { date: "2026.08", issueNumber: "17", title: "四个签名动作长什么样",
     subtitle: "报头、着重号、荧光笔、旁批，一页一个。", tags: ["排版", "组件"], aside: "都能从 blocks 里走出来" },
   blocks: [

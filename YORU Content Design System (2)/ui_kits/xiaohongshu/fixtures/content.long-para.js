@@ -6,7 +6,7 @@ window.YORU_POST = {
   variant: "lab",
   contentMode: "editable",
   kicker: "VIBE CODING",
-  issue: "2026.08 / 12",
+  issue: "二〇二六年八月 · 第十二期",
   cover: { date: "2026.08", issueNumber: "12", title: "一段话能有多长",
     subtitle: "五百字，不切分。", tags: ["排版", "测试"], aside: "撞页高用的" },
   blocks: [

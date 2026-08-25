@@ -10,6 +10,7 @@
     "variants": "node ui_kits/xiaohongshu/export_cards.mjs --all-variants --check"
   },
   "devDependencies": {
+    "fontkit": "^2.0.4",
     "playwright": "1.58.0"
   }
 }

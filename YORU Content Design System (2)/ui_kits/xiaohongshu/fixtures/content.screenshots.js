@@ -6,7 +6,7 @@ window.YORU_POST = {
   variant: "special",
   contentMode: "verbatim",
   kicker: "FIELD NOTES",
-  issue: "2026.08 / 11",
+  issue: "二〇二六年八月 · 第十一期",
   cover: { date: "2026.08", issueNumber: "11", title: "那条把我劝退的回复",
     subtitle: "证据全在，一个字没改。", tags: ["记录", "对话"], aside: "截图原样贴" },
   blocks: [

@@ -54,16 +54,45 @@ function Article({ post, variant }) {
   </article>;
 }
 
+/* Range-selection rich-text copy.
+   `navigator.clipboard.writeText(html)` writes text/plain — pasting into the
+   WeChat editor drops a wall of HTML source. What the editor wants is
+   text/html, and the most compatible way to hand it that is to select real
+   DOM and call execCommand("copy") — the browser fills BOTH text/plain and
+   text/html from the live selection. Modern `ClipboardItem` with a Blob is
+   cleaner in theory but flakier against the WeChat editor's paste path in
+   practice. The container is off-screen (opacity/pointer-events keep it out
+   of layout & interaction), inserted just long enough to select and copy. */
+function copyHtmlAsRichText(html) {
+  const holder = document.createElement("div");
+  holder.setAttribute("aria-hidden", "true");
+  holder.style.cssText = "position:fixed;left:-99999px;top:0;opacity:0;pointer-events:none;user-select:text";
+  holder.innerHTML = html;
+  document.body.appendChild(holder);
+  const range = document.createRange();
+  range.selectNodeContents(holder);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  let ok = false;
+  try { ok = document.execCommand("copy"); } catch { ok = false; }
+  sel.removeAllRanges();
+  document.body.removeChild(holder);
+  return ok;
+}
+
 function WeChatKit() {
   const post = window.YORU_POST;
   const [variant, setVariant] = React.useState(post.variant);
   const [width, setWidth] = React.useState(677);
   const [copied, setCopied] = React.useState("");
-  const copy = async () => {
+  const copy = () => {
     const html = inlineStyles(document.getElementById("yoru-article"));
-    try { await navigator.clipboard.writeText(html); setCopied("已复制 " + Math.round(html.length / 1024) + "KB 行内样式 HTML"); }
-    catch (e) { setCopied("复制失败，请手动导出"); }
-    setTimeout(() => setCopied(""), 2600);
+    const ok = copyHtmlAsRichText(html);
+    setCopied(ok
+      ? "已复制富文本 · " + Math.round(html.length / 1024) + "KB · 直接粘贴到公众号编辑器"
+      : "复制失败，请用键盘复制屏幕上选中的部分");
+    setTimeout(() => setCopied(""), 3200);
   };
   const btn = (on) => ({ padding: "6px 12px", cursor: "pointer", fontFamily: "var(--font-sans-latin)", fontSize: 12, fontWeight: 500,
     border: "1px solid " + (on ? "var(--ink-1)" : "var(--line-2)"), borderRadius: 2, background: on ? "var(--ink-1)" : "#fff", color: on ? "#fff" : "var(--ink-3)" });

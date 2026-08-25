@@ -1,14 +1,17 @@
 import * as React from "react";
 
 /**
- * Cover C — 套印 (overprint) cover.
+ * Cover B — 套印 (overprint) cover.
  *
- * Same footprint as <CoverType> but the title prints twice with a small
- * offset, one solid pass in ink and one pale accent pass in `multiply` blend —
- * a riso print that came off the press a hair misaligned. A huge issue number
- * in Chinese numerals sits behind everything, cropped by the page edge. The
- * masthead is the same moon-phase rail as interior pages — no wordmark
- * anywhere; the set signs off on the end card corner in fangsong.
+ * Same footprint as <CoverType> but the title prints twice with a small offset,
+ * one solid pass in ink and one pale accent pass in `multiply` blend — a riso
+ * print that came off the press a hair misaligned. No corner卷号: the giant
+ * 汉字 collapsed to a stroke for 一 / 二 / 十, so it moved out. The卷号 still
+ * lives in the masthead page-number pair and in the spine string.
+ *
+ * Optional `image` sits below the subtitle inside the title plate — quiet
+ * frame treatment (thin border, --radius-media, no shadow) so the套印 title
+ * stays the loudest thing on the page.
  */
 export interface CoverOverprintProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "signal" | "lab" | "studio" | "special";
@@ -26,7 +29,16 @@ export interface CoverOverprintProps extends React.HTMLAttributes<HTMLDivElement
   tags?: string[];
   /** Personal line — the hand-written phrase, bottom of the title block. */
   aside?: React.ReactNode;
-  /** The huge corner graphic, rendered as 汉字 (12 → 一二). Two digits reads best. */
+  /**
+   * Legacy — accepted, not rendered on the cover. The masthead page-number pair
+   * and the Page spine string still use cnIssue(issueNumber).
+   */
   issueNumber?: string;
+  /** Optional cover image (src). Photographs use objectFit:cover. */
+  image?: string;
+  /** Optional caption line under the image. */
+  imageCaption?: React.ReactNode;
+  /** aspect-ratio for the image frame. Default "16 / 10". */
+  imageRatio?: string;
 }
 export declare function CoverOverprint(props: CoverOverprintProps): JSX.Element;

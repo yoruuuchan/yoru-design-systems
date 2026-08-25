@@ -4,7 +4,7 @@ window.YORU_POST = {
   variant: "signal",
   contentMode: "editable",
   kicker: "AI NEWS",
-  issue: "2026.08 / 07",
+  issue: "二〇二六年八月 · 第七期",
   cover: { date: "2026.08", issueNumber: "07", title: "它现在会自己跑测试了",
     subtitle: "更新装完第一件事就是去看这个。", tags: ["Claude Code", "更新"], aside: "跑了六次都过" },
   blocks: [

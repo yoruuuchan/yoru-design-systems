@@ -15,19 +15,24 @@
 
 ## 生产闭环
 
-**HTML 只是中间产物。没跑渲染验收之前不算完成。**
+**HTML 只是中间产物。没跑渲染验收之前不算完成。** 每次导出 / `--check` 都会**先跑 selftest**——
+拿 `fixtures/content.golden.js` 量一组 CSS 决定的几何指标 + 字体健康，对照 `fixtures/golden.geometry.json`，
+超差就中止，不进入渲染。这是给陌生环境（GPT sandbox / Linux CI）的第二道门。
 
 ```bash
-node ui_kits/xiaohongshu/export_cards.mjs                 # 渲染 → 验收 → 出 PNG
-node ui_kits/xiaohongshu/export_cards.mjs --check         # 只验收，不出图
+node ui_kits/xiaohongshu/export_cards.mjs                 # selftest → 渲染 → 验收 → 出 PNG
+node ui_kits/xiaohongshu/export_cards.mjs --check         # selftest → 只验收，不出图
+node ui_kits/xiaohongshu/export_cards.mjs --selftest      # 只跑 selftest（防伪测试用）
 node ui_kits/xiaohongshu/export_cards.mjs --all-fixtures  # 全量回归
 node ui_kits/xiaohongshu/export_cards.mjs --all-variants --jpg --zip
+node ui_kits/xiaohongshu/export_cards.mjs --capture-golden # 重刷 golden 基准（改 tokens/组件之后）
 ```
 
 产物落在仓库根的 `out/<内容>-<变体>/`：`page-01.png` …、`contact-sheet.png`（全部页面的缩略拼图）、
-`render-report.json`。**contact sheet 要人眼过一遍**——脚本能测出溢出和缺图，测不出「这页读起来不通」。
+`render-report.json`。**contact sheet 要人眼过一遍**——脚本能测出溢出和缺图，测不出「这页读起来不通」，
+也测不出「这张证据截图边缘留了半截评论」（见 readme 媒体节的裁切三条约束）。
 
-首次使用需要 `npm install`（只装 playwright；浏览器用本机已有的 chromium）。
+首次使用需要 `npm install`（装 playwright + fontkit；浏览器用本机已有的 chromium）。
 
 ## 分页规则
 
@@ -46,11 +51,16 @@ node ui_kits/xiaohongshu/export_cards.mjs --all-variants --jpg --zip
 
 ## 渲染验收查什么
 
+- **selftest（第一道门）**：golden 样张 8 项几何指标（cover ghost dy/dx、`--fs-cover` / `--lh-cover`、
+  内容列 rowGap、Masthead 到内容列的距离、PageFooter 顶边、正文行高）+ 字体健康（自托管思源
+  两家有没有加载错误、有没有回退到系统字）。任何一项超差就中止，不进入下面这些检查；
 - 卡片实际渲染尺寸 === 声明尺寸；
 - 内容不溢出版心、不压到页脚；
 - 图片全部加载成功；字体没有回退到系统兜底字（半宋半黑那种）；
+- **T3 · 逐字回退**：页面上每个 CJK 码位真正落在思源宋 / 思源黑上时，Node 端用 fontkit 读 woff2
+  的 union cmap 交叉核验；缺字即 error（附字符 · 码位 · 所在页）。工具单跑：`node tools/font_audit.mjs`；
 - 每页内容占用率，普通内容页低于 55% 报告警（封面、结尾页、金句 / 纯图页、末页豁免）；
-- 封面必填字段齐不齐（缺 `issueNumber` / `tags` / `aside` / `subtitle` 会渲染成大空白）；
+- 封面必填字段齐不齐（缺 `subtitle` / `tags` / `aside` / `issueNumber` 会撑不起版面）；
 - 文字型截图渲染宽度不低于内容列宽的 90%；
 - 每页上限：荧光笔 1 条、手写旁批 1 条、`Callout` 1 个、`Tag` 3 个；
 - 组件包加载错误、页面 console 错误。

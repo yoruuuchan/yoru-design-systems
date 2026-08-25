@@ -1,8 +1,12 @@
 import React from "react";
 
-/* Numbered walkthrough，铅字房版：汉字编号 壹貳叁，宋体，变体深色。Steps are separated
-   by a hairline ABOVE each one — the numeral column itself is the structure. */
-const CN_STEP = ["壹", "貳", "叁", "肆", "伍", "陸", "柒", "捌", "玖", "拾"];
+/* Numbered walkthrough，铅字房版：汉字编号 壹贰叁，宋体，变体深色。Steps are separated
+   by a hairline ABOVE each one — the numeral column itself is the structure.
+   NOTE simplified formal digits only — 「贰」 and 「陆」, not 「貳」 / 「陸」.
+   Traditional forms sit outside GB2312, so they fall out of the pyftsubset
+   coverage the readme claims; the render-time character audit fires an error
+   the moment one shows up on a real page. */
+const CN_STEP = ["壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖", "拾"];
 export function StepList({steps=[],start=1,style,...rest}){
   return <ol style={{margin:0,padding:0,listStyle:"none",display:"flex",flexDirection:"column",gap:"var(--sp-4)",...style}} {...rest}>
     {steps.map((s,i)=>(

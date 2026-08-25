@@ -13,8 +13,14 @@ const YB = window.YORUContentDesignSystem_a0b73e;
    带空格。贴着写才算标记，隔开写就是标点，两者不会打架。
 
    code 与 prompt 的正文永不解析——那两块是读者要原样抄走的东西，里面出现
-   `==` 就得是 `==`。 */
-const RE_INLINE = () => /·(\S(?:[^·]*\S)?)·|==(\S(?:[^=]*\S)?)==/g;
+   `==` 就得是 `==`。
+
+   @handle 处理：@ 后紧跟字母数字下划线的段（`@thsottiaux`）在中文正文里会
+   被浏览器按普通英文串处理，恰好碰到窄行时会从中间折行——出现「@thsot|tiaux」
+   这种切法，读者根本看不出这是同一个 handle。这里把 handle 包成 nowrap 的
+   span，让它整块换行到下一行。#话题标签不做特殊处理——按内容契约，话题标签
+   本来就不该进图。 */
+const RE_INLINE = () => /·(\S(?:[^·]*\S)?)·|==(\S(?:[^=]*\S)?)==|(@[A-Za-z0-9_]+)/g;
 
 function inline(text) {
   if (typeof text !== "string") return text;
@@ -22,9 +28,9 @@ function inline(text) {
   const out = []; let last = 0, m, k = 0;
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) out.push(text.slice(last, m.index));
-    out.push(m[1] != null
-      ? <YB.Emphasis key={k++}>{m[1]}</YB.Emphasis>
-      : <YB.Marker key={k++}>{m[2]}</YB.Marker>);
+    if (m[1] != null) out.push(<YB.Emphasis key={k++}>{m[1]}</YB.Emphasis>);
+    else if (m[2] != null) out.push(<YB.Marker key={k++}>{m[2]}</YB.Marker>);
+    else out.push(<span key={k++} style={{ whiteSpace: "nowrap" }}>{m[3]}</span>);
     last = m.index + m[0].length;
   }
   if (!out.length) return text;
@@ -39,7 +45,11 @@ function inlineMarks(text) {
   if (typeof text !== "string") return n;
   const re = RE_INLINE();
   let m;
-  while ((m = re.exec(text)) !== null) { if (m[1] != null) n.emphasis++; else n.marker++; }
+  while ((m = re.exec(text)) !== null) {
+    if (m[1] != null) n.emphasis++;
+    else if (m[2] != null) n.marker++;
+    // m[3] is @handle — not a signature mark, don't count
+  }
   return n;
 }
 

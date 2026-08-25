@@ -128,7 +128,8 @@ function Workbench() {
         <WB.CoverOverprint variant={variant} size={size} column={post.cover.column} data-yoru-role="cover"
           date={post.cover.date} index={1} total={total} title={post.cover.title}
           subtitle={post.cover.subtitle} tags={post.cover.tags} aside={post.cover.aside}
-          issueNumber={post.cover.issueNumber} />
+          issueNumber={post.cover.issueNumber}
+          image={post.cover.image} imageCaption={post.cover.imageCaption} imageRatio={post.cover.imageRatio} />
       </Slot>
       {list.map((idxs, i) => <Slot key={i} n={i + 2} total={total} scale={scale} bare={bare} {...wh}>
         <WB.Page {...pageProps} index={i + 2} total={total} data-yoru-role="content">

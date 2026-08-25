@@ -37,6 +37,21 @@
       "note": "四个签名动作 + 全部 block 类型，行内标记"
     },
     {
+      "name": "cover-image",
+      "expect": "clean",
+      "note": "T1：套印封面 + 可选封面图，验证有图形态"
+    },
+    {
+      "name": "golden",
+      "expect": "clean",
+      "note": "T2 selftest 样张（内容不许改，改了 golden.geometry.json 得重量）"
+    },
+    {
+      "name": "handle",
+      "expect": "clean",
+      "note": "T5：长 @handle 出现在窄行边缘，验证 nowrap 不折"
+    },
+    {
       "name": "bad-cover",
       "expect": "findings",
       "note": "负例：只有标题的封面，应报 cover-fields + thin"
@@ -50,6 +65,11 @@
       "name": "bad-caps",
       "expect": "findings",
       "note": "负例：荧光笔/旁批/Callout/Tag 全部超上限，应报四条 cap 告警"
+    },
+    {
+      "name": "bad-font",
+      "expect": "findings",
+      "note": "T3 负例：宋体标题里放「捋」，应报字体子集漏字错误"
     }
   ]
 }

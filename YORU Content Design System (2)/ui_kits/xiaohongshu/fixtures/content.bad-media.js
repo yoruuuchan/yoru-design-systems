@@ -7,7 +7,7 @@ window.YORU_POST = {
   variant: "studio",
   contentMode: "editable",
   kicker: "PROCESS",
-  issue: "2026.08 / 15",
+  issue: "二〇二六年八月 · 第十五期",
   cover: { date: "2026.08", issueNumber: "15", title: "两种做坏的截图",
     subtitle: "这份 fixture 就是用来失败的。", tags: ["负例", "截图"], aside: "别照抄" },
   blocks: [

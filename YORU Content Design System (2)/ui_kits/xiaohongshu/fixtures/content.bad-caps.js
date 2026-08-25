@@ -6,7 +6,7 @@ window.YORU_POST = {
   variant: "signal",
   contentMode: "editable",
   kicker: "AI NEWS",
-  issue: "2026.08 / 18",
+  issue: "二〇二六年八月 · 第十八期",
   cover: { date: "2026.08", issueNumber: "18", title: "把上限全撞破",
     subtitle: "这一页应该报四条告警。", tags: ["负例", "上限"], aside: "别照抄" },
   blocks: [

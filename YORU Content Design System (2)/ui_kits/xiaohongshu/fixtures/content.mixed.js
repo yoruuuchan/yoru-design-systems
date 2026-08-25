@@ -7,7 +7,7 @@ window.YORU_POST = {
   variant: "signal",
   contentMode: "verbatim",
   kicker: "AI NEWS",
-  issue: "2026.08 / 13",
+  issue: "二〇二六年八月 · 第十三期",
   cover: { date: "2026.08", issueNumber: "13", title: "混排到底会不会崩",
     subtitle: "中英数字加 emoji，一次全上。", tags: ["排版", "字体"], aside: "verbatim 原样排" },
   blocks: [
