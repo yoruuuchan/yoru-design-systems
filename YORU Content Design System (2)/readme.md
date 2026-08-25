@@ -12,7 +12,7 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 用户没有提供 codebase、Figma 文件或 logo。系统按用户的书面 brief 与多轮问答建立，后经一次「冷纸铅印」方向重构定稿：
 
 - **确认过的决定**：中文标题思源宋体 / 正文思源黑体（卡片上正文也走宋体，见「字体」）；英文 Inter，代码 JetBrains Mono；页面底青白纸 `#F2F5F5`；家族色靖青 `#2E4A68`；四个变体强调色取自用户给的冷色板（蓝 / 青 / 薄荷 / 珊瑚红）；变体差异限定在强调色 / 装饰细节 / 封面排版 / 标签形状；小红书出图 1242×1656；公众号输出必须是可直接粘贴的行内样式。
-- **字体现状**：Inter 4.1 与 JetBrains Mono 2.304 自托管（`assets/fonts/`）；思源黑体（300/400/500/700）与思源宋体（400/500/700/900）为用户提供的自托管 subset（`fonts/`，pyftsubset：3500 常用字 + GB2312 + 拉丁 + 标点，每档 ≤1.5MB）。`@font-face` 全部在 `tokens/fonts.css`，消费方只 link `styles.css`，不走任何 CDN。**不要用 Google Fonts 的切片方案接思源**——约 700 个 FontFace 对象会把 DOM 出图拖到超时。
+- **字体现状**：Inter 4.1 与 JetBrains Mono 2.304 自托管（`assets/fonts/`）；思源黑体（300/400/500/700）与思源宋体（400/500/700/900）为用户提供的自托管 subset（`fonts/`，pyftsubset：3500 常用字 + GB2312 一二级 + 拉丁 + 标点，每档 ≤1.5MB、合计 ≤12MB；改子集后跑 `node tools/font_audit.mjs` 验证覆盖）。`@font-face` 全部在 `tokens/fonts.css`，消费方只 link `styles.css`，不走任何 CDN。**不要用 Google Fonts 的切片方案接思源**——约 700 个 FontFace 对象会把 DOM 出图拖到超时。
 - **没有 logo，也没有文字字标**：标识是报头的**月相行**（见「四个签名动作」）。任何位置都不再渲染 `YORU` 字样——工具台窗口标题除外，那是工具界面不是内容。
 - **待补**：语气样本（CONTENT FUNDAMENTALS 里的语气规则是提案）、真实截图素材。
 
