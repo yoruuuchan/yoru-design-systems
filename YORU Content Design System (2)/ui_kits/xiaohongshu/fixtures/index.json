@@ -69,7 +69,7 @@
     {
       "name": "bad-font",
       "expect": "findings",
-      "note": "T3 负例：宋体标题里放「捋」，应报字体子集漏字错误"
+      "note": "T3 负例：宋体标题里放「丟」(U+4E1F, GBK-only)，应报字体子集漏字错误"
     }
   ]
 }
