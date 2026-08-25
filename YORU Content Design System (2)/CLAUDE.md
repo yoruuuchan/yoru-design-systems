@@ -55,8 +55,17 @@ FOUNDATIONS）。能跑的那关是渲染验收，任何有 Node 的地方都跑
 Songti SC 完全相同」——实测 Chrome/macOS 上 `ui-serif` 的中文回退是分码段的，同一句里一半宋体
 一半黑体，标题最明显。所以家族名必须列出来。每个显式家族都要有一条 `@font-face` 声明；本地
 家族用 `local(...)`-only 的形式（不加载文件）；思源两家已接自托管 subset（`fonts/`，
-sans 300/400/500/700、serif 400/500/700/900），每档一条 `url()` 声明、`local()` 优先，
-不要改回系统回退。
+sans 300/400/500/700、serif 400/500/700/900），每档一条 `url()` 声明。
+
+**思源两家的 `@font-face` 只允许 `url()`，禁止 `local()` 劫持。** 以前那两组 face 把 `local(...)`
+排在 url 前面，本意是省下自托管字节。教训：**渲染确定性 > 省流量**。任何装了同名但不完整的
+「思源宋 / 思源黑」（Linux 发行版常见、GPT sandbox 之类的服务端环境常见）的宿主，浏览器会
+直接命中 local 并跳过自托管 subset 下载；而 Node 端 fontkit 读的是 repo 里的 woff2 cmap，
+「捋」这类字自托管子集里有，local face 里没有，检测端喊全绿、渲染端出回退字。第四轮修复把
+`local()` 从思源两家彻底删掉——`fonts.css` 里 sans 300/400/500/700 + serif 400/500/700/900
+共八条只留 `url()`。其他显式家族（PingFang / Songti / YaHei / STFangsong / FangSong 等）继续
+`local()`-only。**校验对象必须是实际生效对象**：selftest 用 `document.fonts.check` 打正/负哨兵
+（正靶「捋」U+634B 四档 Serif 必须 true；负靶「丟」U+4E1F 必须 false），一旦反了立即中止导出。
 
 **不要用 Google Fonts 的切片方案接思源。** 它会声明约 700 个 FontFace 对象，把小红书出图截图
 这一步从瞬间拖到超时。用 pyftsubset 自己子集化（3500 常用字 + GB2312 一二级 + 拉丁 + 标点），

@@ -36,11 +36,13 @@ window.YORU_POST = {
       ["排错", "看不出哪句错", "定位到层"], ["交接", "口头解释", "读文件就够"]
     ], caption: "同一个任务，四十次之后的体感差异。" },
     { t: "quote", text: "Skills 是给 Agent 的说明书，不是给人的文档。", cite: "Anthropic", source: "Claude Code docs" },
-    { t: "body", text: "最后一句：三层不是规矩，是我踩完坑之后剩下的最省事的形状。你的活如果只有一层就够，那就一层。" },
     { t: "refs", items: [
       { title: "Claude Code 文档", source: "Anthropic", url: "docs.anthropic.com/claude-code" },
       { title: "Agent Skills 规范", source: "Anthropic", url: "docs.anthropic.com/agent-skills" }
     ]}
   ],
-  end: { headline: "下期讲怎么让它自己写测试", lines: ["三层模板在评论区", "有问题直接问，我都看"] }
+  /* F4 · 尾页折叠：原来的「最后一句：三层不是规矩……」独立成块，让分页器把 refs
+     推到第 8 页，那页只有 22% 装满被新尾页规则 (>= 45%) 抓住。按 brief 的建议
+     「把尾段回填上一页、或并入 EndCard 的 lines」，那句话搬进 end.lines。 */
+  end: { headline: "下期讲怎么让它自己写测试", lines: ["三层不是规矩，是踩完坑剩下的最省事的形状——只需要一层就写一层", "三层模板在评论区，有问题直接问我"] }
 };

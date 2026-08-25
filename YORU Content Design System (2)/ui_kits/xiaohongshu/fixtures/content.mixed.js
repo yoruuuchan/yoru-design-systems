@@ -2,7 +2,12 @@
    注意：emoji 在这里只是渲染压力测试，不是可用的内容风格——
    readme 的 CONTENT FUNDAMENTALS 里 emoji 数量是零，这条不变。
    这份 fixture 存在的意义是：万一用户给的定稿里带 emoji（verbatim 模式），
-   排版不能崩、不能吞字、行高不能被撑歪。 */
+   排版不能崩、不能吞字、行高不能被撑歪。
+
+   F2 正靶：标题里的「捋」(U+634B) 是自托管思源宋 subset 已包含的字。
+   逐字检测这时候不能报「捋」缺失——如果哪天报了，要么是子集重新打了、
+   要么是渲染端没用自托管子集（三层哨兵会先在 selftest 就拦下来）。
+   跟 bad-font 的负靶「丟」/「磳」互为一正一负。 */
 window.YORU_POST = {
   variant: "signal",
   contentMode: "verbatim",
@@ -11,7 +16,7 @@ window.YORU_POST = {
   cover: { date: "2026.08", issueNumber: "13", title: "混排到底会不会崩",
     subtitle: "中英数字加 emoji，一次全上。", tags: ["排版", "字体"], aside: "verbatim 原样排" },
   blocks: [
-    { t: "heading", level: 1, mark: true, text: "混排压力测试" },
+    { t: "heading", level: 1, mark: true, text: "捋一遍混排压力测试" },
     { t: "lede", text: "Claude Opus 5 在 M4 Pro / 48GB 上跑 40 次，平均 12.4 秒，P95 是 21.8 秒。" },
     { t: "body", text: "命令是 npx @anthropic-ai/claude-code@2.1.200 --model claude-opus-5，路径写成 ~/.claude/settings.json，中英之间留一个半角空格。" },
     { t: "body", text: "这一行带 emoji 🚀 用来验证行盒不会被撑歪，后面接中文继续排，再来一个 ✅ 和一个 ⚠️ 看看基线。" },

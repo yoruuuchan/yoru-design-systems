@@ -19,8 +19,17 @@
    CJK — SOURCE HAN.
    Both CJK families are self-hosted subsets in fonts/ (user-provided woff2,
    weights: sans 300/400/500/700, serif 400/500/700/900 — serif has no 600;
-   a 600 request resolves to 700 per css font-matching). Each rule keeps
-   local() first so an installed copy skips the download entirely.
+   a 600 request resolves to 700 per css font-matching). Each rule uses
+   url() as the ONLY source — no local(). Rationale: an earlier revision put
+   local() first so an installed copy skipped the download. That saved bytes
+   but broke render determinism. On any host where the OS carries an
+   installed-but-incomplete "Source Han Serif SC" (Linux distros ship one),
+   the browser matched local() and never fetched the self-hosted woff2. The
+   Node-side per-char detection (fontkit reading our repo woff2 cmaps) still
+   said "the subset covers 捋", so the check went green — but on screen 捋
+   was a system fallback glyph. Rendering determinism > bandwidth: the reader
+   must see the exact face our detector measured. `local()` stays banned on
+   the two Source Han families; other bundled fallbacks below still use it.
 
    Why not slice via Google Fonts: it declares ~100 unicode-range @font-face
    rules per family — at 4 sans + 3 serif weights ~700 FontFace objects — and
@@ -59,14 +68,14 @@
 @font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:600;font-display:swap;src:url("../assets/fonts/jetbrains-mono/JetBrainsMono-SemiBold.woff2") format("woff2")}
 @font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2") format("woff2")}
 /* --- Source Han — self-hosted subsets (fonts/) ----------------------------- */
-@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:300;font-display:swap;src:local("Source Han Sans SC Light"),local("SourceHanSansSC-Light"),url("../fonts/SourceHanSansSC-Light.woff2") format("woff2")}
-@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:400;font-display:swap;src:local("Source Han Sans SC"),local("SourceHanSansSC-Regular"),url("../fonts/SourceHanSansSC-Regular.woff2") format("woff2")}
-@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:500;font-display:swap;src:local("Source Han Sans SC Medium"),local("SourceHanSansSC-Medium"),url("../fonts/SourceHanSansSC-Medium.woff2") format("woff2")}
-@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:700;font-display:swap;src:local("Source Han Sans SC Bold"),local("SourceHanSansSC-Bold"),url("../fonts/SourceHanSansSC-Bold.woff2") format("woff2")}
-@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:400;font-display:swap;src:local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),url("../fonts/SourceHanSerifSC-Regular.woff2") format("woff2")}
-@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:500;font-display:swap;src:local("Source Han Serif SC Medium"),local("SourceHanSerifSC-Medium"),url("../fonts/SourceHanSerifSC-Medium.woff2") format("woff2")}
-@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:700;font-display:swap;src:local("Source Han Serif SC Bold"),local("SourceHanSerifSC-Bold"),url("../fonts/SourceHanSerifSC-Bold.woff2") format("woff2")}
-@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:900;font-display:swap;src:local("Source Han Serif SC Heavy"),local("SourceHanSerifSC-Heavy"),url("../fonts/SourceHanSerifSC-Heavy.woff2") format("woff2")}
+@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/SourceHanSansSC-Light.woff2") format("woff2")}
+@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/SourceHanSansSC-Regular.woff2") format("woff2")}
+@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/SourceHanSansSC-Medium.woff2") format("woff2")}
+@font-face{font-family:"Source Han Sans SC";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/SourceHanSansSC-Bold.woff2") format("woff2")}
+@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/SourceHanSerifSC-Regular.woff2") format("woff2")}
+@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/SourceHanSerifSC-Medium.woff2") format("woff2")}
+@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/SourceHanSerifSC-Bold.woff2") format("woff2")}
+@font-face{font-family:"Source Han Serif SC";font-style:normal;font-weight:900;font-display:swap;src:url("../fonts/SourceHanSerifSC-Heavy.woff2") format("woff2")}
 /* --- OS fallback aliases ---------------------------------------------------
    These families sit AFTER the Source Han head in every stack. They exist as
    local()-only aliases so Chrome resolves each name to a real installed face

@@ -242,12 +242,23 @@ const COLLECT = () => {
           if (n[key] > cap) findings.push({ level: "warn", code: "cap",
             msg: name + " " + n[key] + " 个，超过上限 " + cap + "（" + why + "）" });
         }
-        // 金句页、纯图页天生就空；末页装不满是正常余量，不是缺陷
+        // 金句页、纯图页天生就空；末页有独立下限（F4）—— 之前对 lastContent 无条件豁免，
+        // 让第 13 页 31.4% 静默放行、下 2/3 全空。现在 SPARSE_OK 块类型仍然免检，
+        // 但末页也要过一道下限（0.45），低于则告警提示把尾段回填或并入 EndCard.lines。
         const types = pageTypes[p] || [];
-        const exempt = p === lastContent || (types.length > 0 && types.every(t => SPARSE_OK.includes(t)));
-        if (!exempt && fill < FILL_FLOORS.content) {
-          findings.push({ level: "warn", code: "thin",
-            msg: "内容占用率 " + Math.round(fill * 100) + "%，低于 " + Math.round(FILL_FLOORS.content * 100) + "%（分页没装满，检查是否有超大块把这页顶开了）" });
+        const sparseOk = types.length > 0 && types.every(t => SPARSE_OK.includes(t));
+        const isTail = p === lastContent;
+        const TAIL_FLOOR = 0.45;
+        if (!sparseOk) {
+          const floor = isTail ? TAIL_FLOOR : FILL_FLOORS.content;
+          if (fill < floor) {
+            const pct = Math.round(fill * 100), floorPct = Math.round(floor * 100);
+            findings.push({ level: "warn", code: "thin",
+              msg: isTail
+                ? "尾页占用率 " + pct + "%，低于尾页下限 " + floorPct + "%（把尾段回填上一页、或并入 EndCard 的 lines）"
+                : "内容占用率 " + pct + "%，低于 " + floorPct + "%（分页没装满，检查是否有超大块把这页顶开了）"
+            });
+          }
         }
       }
     }
@@ -268,15 +279,37 @@ const COLLECT = () => {
         findings.push({ level: "warn", code: "cover-fields",
           msg: "封面缺 " + missing.join(" / ") + "，套印封面靠这几件撑住版面（见 readme「封面」）" });
       }
+      /* F5: null 不许穿过阈值比较。以前是 `if (plate && kids.length)` 包住整段测量 +
+         比较，plate 或 kids 缺席时 fill 保持 null、`fill < FILL_FLOORS.cover` 直接被
+         跳过、warning 不触发，静默通过。GPT sandbox 的 render-report 就是这么绿的：
+         它渲染的封面结构里根本没有 data-yoru-plate（很可能没用 CoverOverprint、或者
+         plate 属性被覆盖丢了），所以 fill 落成 null。真凶排查结论写在 yoru-xhs-fix-round4.md
+         的报告里。修法：把 plate/kids/fill 每一步都测出来，任何一步塌掉都是 error，
+         不让「量不出来」和「量出来是 0」共用同一个通道。 */
       const plate = card.querySelector("[data-yoru-plate]");
-      const kids = plate ? Array.from(plate.children) : [];
-      if (plate && kids.length) {
-        const top = Math.min(...kids.map(k => k.getBoundingClientRect().top));
-        const bottom = Math.max(...kids.map(k => k.getBoundingClientRect().bottom));
-        fill = (bottom - top) / plate.getBoundingClientRect().height;
-        if (fill < FILL_FLOORS.cover) {
-          findings.push({ level: "warn", code: "thin",
-            msg: "封面标题区只占版心 " + Math.round(fill * 100) + "%，其余是空白" });
+      if (!plate) {
+        findings.push({ level: "error", code: "cover-fill",
+          msg: "封面占用率无法测量：找不到 data-yoru-plate 抓手（走 CoverOverprint 还是自定义封面漏了 data 属性？）" });
+      } else {
+        const kids = Array.from(plate.children);
+        if (!kids.length) {
+          findings.push({ level: "error", code: "cover-fill",
+            msg: "封面占用率无法测量：plate 里一个孩子都没有——版心是空的" });
+        } else {
+          const top = Math.min(...kids.map(k => k.getBoundingClientRect().top));
+          const bottom = Math.max(...kids.map(k => k.getBoundingClientRect().bottom));
+          const plateH = plate.getBoundingClientRect().height;
+          const span = bottom - top;
+          if (!plateH || !Number.isFinite(span) || span < 0) {
+            findings.push({ level: "error", code: "cover-fill",
+              msg: "封面占用率无法测量：plate 高度 " + Math.round(plateH) + "px，内容跨度 " + Math.round(span) + "px" });
+          } else {
+            fill = span / plateH;
+            if (fill < FILL_FLOORS.cover) {
+              findings.push({ level: "warn", code: "thin",
+                msg: "封面标题区只占版心 " + Math.round(fill * 100) + "%，其余是空白" });
+            }
+          }
         }
       }
     }
@@ -321,14 +354,25 @@ const COLLECT = () => {
   const SELF_HOSTED = ["Source Han Sans SC", "Source Han Serif SC", "Inter", "JetBrains Mono"];
   const fellBack = SELF_HOSTED.filter(f => asked.has(f) && !loaded.has(f));
 
-  /* Per-character usage (T3). For every self-hosted 思源 family, gather the
-     unique CJK/BMP-punct chars that actually render in it, along with the
-     page they landed on. Node cross-references against the woff2 cmap
-     (fontkit) to find real subset misses — the browser side alone cannot
-     do this reliably: document.fonts.check() answers "is this family
-     loaded", not "does this specific glyph exist in the loaded subset".
-     Latin & mono are Latin-by-design, so Chinese in a mono label
-     legitimately walks the CJK tail; only 思源 gets checked here. */
+  /* Per-character check (T3 · F2). For every self-hosted 思源 family, gather
+     unique (char, page, weight) tuples that actually render in it. Node then
+     cross-references each tuple against the self-hosted subset's cmap
+     (fontkit reading the exact woff2 the browser fetched — F1 removed local()
+     so the browser can only load our url() subset, which means the Node cmap
+     IS what the browser has).
+
+     Why not also run `document.fonts.check(family, ch)` here: Chromium's
+     check() is family-level, not per-glyph. Tested: for a made-up family AND
+     any character (including out-of-subset 「丟」), check() returns true
+     whenever the family has any loaded FontFace. So it can't tell us "does
+     this specific glyph exist in the loaded face". Chose Node fontkit + F1
+     invariant instead; the loaded-face-is-our-subset guarantee is enforced
+     upstream by the F3 selftest sentinels (fonts.css must not contain
+     local() on Source Han; all four Serif woff2 must show in resource-timing;
+     subset cmap must include 「捋」 and exclude 「丟」).
+
+     Latin & mono are Latin-by-design, so Chinese in a mono label legitimately
+     walks the CJK tail; only 思源 gets checked here. */
   const usageByFamily = { "Source Han Sans SC": new Map(), "Source Han Serif SC": new Map() };
   /* Ranges 思源 subsets are expected to cover — CJK-adjacent codepoints only.
      Emoji (1F000+, 2600-27BF), variation selectors (FE00-FE0F), and other
@@ -349,6 +393,7 @@ const COLLECT = () => {
     const cs = getComputedStyle(el);
     const family = strip(cs.fontFamily.split(",")[0].trim());
     if (!usageByFamily[family]) continue;
+    const weight = String(cs.fontWeight || "400");
     const card = el.closest("[data-yoru-role]");
     const pageIdx = card ? Array.from(document.querySelectorAll("main [data-yoru-role]")).indexOf(card) + 1 : null;
     for (const t of texts) {
@@ -356,14 +401,16 @@ const COLLECT = () => {
         if (/\s/.test(ch)) continue;
         const cp = ch.codePointAt(0);
         if (cp < 128 || !inCjkRange(cp)) continue;
-        const key = ch + "|" + pageIdx;
-        if (!usageByFamily[family].has(key)) usageByFamily[family].set(key, { cp, page: pageIdx });
+        // key by (ch, page, weight) so a char rendered on the same page in
+        // multiple weights still gets each weight's check answer.
+        const key = ch + "|" + pageIdx + "|" + weight;
+        if (!usageByFamily[family].has(key)) usageByFamily[family].set(key, { cp, page: pageIdx, weight, ch });
       }
     }
   }
   const charUsage = [];
   for (const [family, m] of Object.entries(usageByFamily)) {
-    for (const v of m.values()) charUsage.push({ family, cp: v.cp, page: v.page });
+    for (const v of m.values()) charUsage.push({ family, cp: v.cp, page: v.page, weight: v.weight });
   }
 
   return { cards: out, fonts: uniqFonts, variant: pg.variant || null, fellBack,
@@ -384,7 +431,7 @@ const COLLECT = () => {
    offsets read off the DOM), NOT font-derived — so cross-platform font
    hinting drift stays within tolerance. Body line-height IS font-slightly
    sensitive so it gets a looser bound. */
-const MEASURE_GOLDEN = () => {
+const MEASURE_GOLDEN = async () => {
   const cards = Array.from(document.querySelectorAll("main [data-yoru-role]"));
   const cover = cards.find(c => c.getAttribute("data-yoru-role") === "cover");
   const content = cards.find(c => c.getAttribute("data-yoru-role") === "content");
@@ -439,6 +486,40 @@ const MEASURE_GOLDEN = () => {
   const SELF_HOSTED_HEAD = ["Source Han Sans SC", "Source Han Serif SC", "Inter", "JetBrains Mono"];
   const fellBackFamilies = SELF_HOSTED_HEAD.filter(f => askedFamilies.has(f) && !loadedFamilies.has(f));
 
+  /* F3 · SENTINEL SIGNAL. Prove the loaded "Source Han Serif SC" IS the repo's
+     self-hosted subset — not a copy the OS provided. Two facts to establish:
+       POSITIVE 「捋」 U+634B: in our subset. The subset must be actually
+                              fetched — resource-timing shows the woff2 URL.
+       NEGATIVE 「丟」 U+4E1F: GBK-only, deliberately excluded from the subset.
+                              Cross-checked at the Node side against the woff2
+                              cmap (fontkit) — the subset itself must not
+                              accidentally have grown to include it.
+     Chromium's `document.fonts.check(family, ch)` is family-level, not
+     per-glyph — check("Source Han Serif SC", "丟") returns true whenever a
+     FontFace of that family is loaded, regardless of cmap. That is why the
+     earlier iteration of this sentinel used check() and returned green even
+     when the browser was seeing a system fallback for 丟. We ripped it out.
+
+     What we can prove reliably:
+       1. Force-load all 4 Serif weights, then read
+          performance.getEntriesByType("resource") for woff2 fetches.
+          Every fetched entry names the file path we shipped, and its
+          encodedBodySize matches the file on disk. If a weight's URL is
+          absent from resource-timing, the browser skipped the fetch — url is
+          gone, cache is stale, or a local() re-appeared in fonts.css.
+       2. Node then confirms subset invariants on the served files: 捋 IS
+          in every cmap, 丟 is NOT in any cmap. */
+  const SERIF_WEIGHTS = [400, 500, 700, 900];
+  // Force-load ensures resource-timing shows the fetch even if the golden
+  // fixture didn't render text at every weight itself.
+  for (const w of SERIF_WEIGHTS) {
+    try { await document.fonts.load(w + ' 40px "Source Han Serif SC"'); } catch {}
+  }
+  await document.fonts.ready;
+  const woff2Fetched = performance.getEntriesByType("resource")
+    .filter(r => /\.woff2($|\?)/.test(r.name))
+    .map(r => ({ name: r.name.split("/").pop().split("?")[0], size: r.encodedBodySize }));
+
   return {
     cover_ghost_dy: coverGhostDy,
     cover_ghost_dx: coverGhostDx,
@@ -449,7 +530,8 @@ const MEASURE_GOLDEN = () => {
     content_footer_top_from_card: footTopFromCard,
     body_line_height_px: lhBodyPx,
     _fonts_errored: erroredFamilies,
-    _fonts_fellback: fellBackFamilies
+    _fonts_fellback: fellBackFamilies,
+    _woff2_fetched: woff2Fetched
   };
 };
 
@@ -509,7 +591,86 @@ async function runSelftest(browser, origin, args, opts) {
   const fontIssues = [];
   for (const f of measured._fonts_errored || []) fontIssues.push({ kind: "字体加载失败", family: f, note: "@font-face url 取不到" });
   for (const f of measured._fonts_fellback || []) fontIssues.push({ kind: "字体回退", family: f, note: "页面用到了该家族但没有一档加载成功" });
-  return { ok: diffs.length === 0 && fontIssues.length === 0, measured, diffs, fontIssues, golden };
+
+  /* F3 sentinel — three independent probes on Source Han Serif SC. Any one
+     failing reds selftest, because each catches a different failure mode. */
+  const sentinel = [];
+  // (a) STATIC — fonts.css must not put local() on Source Han lines. That was
+  // the whole point of F1; if a future edit puts local() back and the sandbox
+  // matches it, the browser skips the woff2 fetch and detection goes silent
+  // downstream. Catch it at parse time before ever launching Chromium.
+  try {
+    const cssPath = path.join(ROOT, "tokens", "fonts.css");
+    const cssText = await fsp.readFile(cssPath, "utf8");
+    for (const line of cssText.split(/\r?\n/)) {
+      if (/Source Han (Serif|Sans) SC/.test(line) && /\blocal\(/.test(line)) {
+        sentinel.push({ kind: "fontscss-local",
+          msg: "fonts.css 出现了 `local(` 于 Source Han 行——F1 规则被回退（url 必须是思源两家的唯一来源，见 CLAUDE.md）：\n           " + line.trim() });
+      }
+    }
+  } catch (e) {
+    sentinel.push({ kind: "fontscss-read", msg: "读不到 tokens/fonts.css（" + e.message + "）——selftest 无法完成静态检查" });
+  }
+
+  // (b) DYNAMIC — after MEASURE_GOLDEN force-loaded all 4 Serif weights,
+  // resource-timing must show the 4 woff2 filenames. If a weight is missing,
+  // the browser either matched local (F1 leak) or the file 404'd, or the
+  // cache pretended to serve without a real fetch.
+  const EXPECTED = [
+    "SourceHanSerifSC-Regular.woff2",
+    "SourceHanSerifSC-Medium.woff2",
+    "SourceHanSerifSC-Bold.woff2",
+    "SourceHanSerifSC-Heavy.woff2"
+  ];
+  const fetched = new Map((measured._woff2_fetched || []).map(w => [w.name, w.size]));
+  for (const f of EXPECTED) {
+    if (!fetched.has(f)) {
+      sentinel.push({ kind: "positive-lost",
+        msg: "自托管 Serif 子集 " + f + " 没被浏览器加载 —— resource-timing 里没见到（url 挂了 / 被 local 劫持 / 缓存脏）。正哨兵「捋」(U+634B) 应在该文件里但拿不到" });
+    }
+  }
+  // Size sanity — a fetched file with 0 bytes is a 404 that the browser
+  // masked; a wildly-different size is a caching intermediary rewriting.
+  try {
+    for (const f of EXPECTED) {
+      const disk = fetched.get(f);
+      if (disk == null) continue;
+      const real = (await fsp.stat(path.join(ROOT, "fonts", f))).size;
+      // encodedBodySize can differ from disk size for compressed transfers;
+      // for woff2 it should match closely. Flag only wild disagreement.
+      if (disk === 0 || Math.abs(disk - real) > real * 0.25) {
+        sentinel.push({ kind: "size-mismatch",
+          msg: "自托管 Serif 子集 " + f + " 加载字节数 " + disk + " 与磁盘 " + real + " 不符（服务端/代理改写？）" });
+      }
+    }
+  } catch {}
+
+  // (c) SUBSET INVARIANTS — fontkit reads the woff2s Node has, and asserts
+  // 捋 present in every Serif weight (positive sentinel), 丟 absent from every
+  // Serif weight (negative sentinel). If either flips, the subset itself
+  // regressed and the whole assumption chain breaks.
+  try {
+    const cov = await familyCoverage();
+    const serifFiles = FAMILY_FILES["Source Han Serif SC"];
+    // Per-file check so the report can name the specific weight
+    const fontkit = await import("fontkit");
+    for (const f of serifFiles) {
+      let buf;
+      try { buf = await fsp.readFile(path.join(ROOT, "fonts", f)); }
+      catch { sentinel.push({ kind: "subset-missing", msg: "读不到 " + f + "（fonts/ 里没有）" }); continue; }
+      const font = fontkit.create(buf);
+      const has = cp => { const g = font.glyphForCodePoint(cp); return g && g.id !== 0; };
+      if (!has(0x634B)) sentinel.push({ kind: "positive-cmap",
+        msg: "正哨兵「捋」(U+634B) 不在 " + f + " 的 cmap 里——子集本身回归了（改动 pyftsubset 后没跑 font_audit？）" });
+      if (has(0x4E1F)) sentinel.push({ kind: "negative-cmap",
+        msg: "负哨兵「丟」(U+4E1F) 竟然出现在 " + f + " 的 cmap 里——子集边界移了（bad-font fixture 会跟着变绿）" });
+    }
+  } catch (e) {
+    sentinel.push({ kind: "subset-read", msg: "fontkit 读子集出错（" + e.message + "）" });
+  }
+
+  return { ok: diffs.length === 0 && fontIssues.length === 0 && sentinel.length === 0,
+    measured, diffs, fontIssues, sentinel, golden };
 }
 
 function printSelftest(label, s) {
@@ -523,7 +684,7 @@ function printSelftest(label, s) {
     return;
   }
   if (s.ok) {
-    console.log("   通过 · 8 项几何指标 + 字体健康检查全部在容差内");
+    console.log("   通过 · 8 项几何指标 + 字体健康 + 三层哨兵（fonts.css 静态 · resource-timing · cmap 不变量）全部在容差内");
     return;
   }
   if (s.why) { console.log("   " + s.why); return; }
@@ -536,6 +697,9 @@ function printSelftest(label, s) {
   }
   if (s.fontIssues && s.fontIssues.length) {
     for (const f of s.fontIssues) console.log("     " + f.kind + "：" + f.family + "（" + f.note + "）");
+  }
+  if (s.sentinel && s.sentinel.length) {
+    for (const st of s.sentinel) console.log("     哨兵 · " + st.msg);
   }
 }
 
@@ -571,23 +735,27 @@ async function renderPass(browser, origin, opts) {
     report.consoleErrors.push("字体加载失败：" + family + "（@font-face 的 url 取不到）");
   }
 
-  /* Node-side per-char cross-check (T3). The browser can't tell us whether a
-     specific glyph exists in the loaded subset — document.fonts.check() only
-     answers "is this family loaded". So we shipped every (family, codepoint,
-     page) tuple that actually renders in a self-hosted 思源 family, and here
-     we look each codepoint up in the fontkit-parsed union of that family's
-     woff2 cmaps. Anything missing means Chrome had to reach past the family
-     to a system CJK face — the exact bug that hit the real "捋" heading. */
+  /* Node-side per-char cmap check (T3). For each (family, cp, weight, page)
+     tuple the browser reported, look the codepoint up in fontkit's union of
+     that family's woff2 cmaps. Anything missing is a real subset miss — since
+     F1 forced url()-only for Source Han, the FontFace the browser loaded IS
+     this exact woff2, so what the cmap says the browser can render matches
+     what the browser will render (misses fall through to system fallback).
+     The F3 selftest sentinels guarantee F1 is still in place. Dedup by
+     (family, cp, page) — same char landing on two pages is two problems to
+     look at, but 12 weights of the same char on the same page is one. */
   const cov = await familyCoverage();
   const missing = [];
   const seen = new Set();
-  for (const { family, cp, page } of (report.charUsage || [])) {
+  for (const { family, cp, page, weight } of (report.charUsage || [])) {
     if (!cov[family]) continue;
     if (cov[family].has(cp)) continue;
     const key = family + ":" + cp + ":" + page;
     if (seen.has(key)) continue;
     seen.add(key);
-    missing.push({ family, ch: String.fromCodePoint(cp), cp: "U+" + cp.toString(16).toUpperCase().padStart(4, "0"), page });
+    missing.push({ family, ch: String.fromCodePoint(cp),
+      cp: "U+" + cp.toString(16).toUpperCase().padStart(4, "0"),
+      page, weight });
   }
   report.missingChars = missing;
 
@@ -718,12 +886,12 @@ function printReport(label, report) {
       c.rect.w + "x" + c.rect.h + (c.fill == null ? "" : "  占用 " + String(Math.round(c.fill * 100)).padStart(3) + "%"));
     for (const f of c.findings) console.log("        " + (f.level === "error" ? "错误" : "告警") + " · " + f.msg);
   }
-  // T3 · per-character fallback. If document.fonts.check() said the declared
-  // family cannot render this char, Chrome reached past 思源 to a system CJK
-  // face — invisible to the family-level check because 思源 itself loaded fine.
+  // T3 · per-character check. Every subset miss is an error — the reader sees
+  // a system fallback glyph in place of what our subset should render. The
+  // upstream "who provided the loaded face" question is settled by F1
+  // (url()-only) plus the F3 sentinels; here we only report cmap coverage.
   let charErrors = 0;
   if (report.missingChars && report.missingChars.length) {
-    // Group by family for a readable dump; every miss is an error.
     const byFamily = new Map();
     for (const c of report.missingChars) {
       const arr = byFamily.get(c.family) || [];
@@ -732,7 +900,9 @@ function printReport(label, report) {
     }
     for (const [family, list] of byFamily) {
       console.log("   x 字体子集漏字：" + family + " 未覆盖 " + list.length + " 个字符");
-      const sample = list.slice(0, 12).map(c => c.ch + "(" + c.cp + " · 第" + c.page + "张)").join(" ");
+      const sample = list.slice(0, 12)
+        .map(c => c.ch + "(" + c.cp + " · 第" + c.page + "张 · " + c.weight + ")")
+        .join(" ");
       console.log("        " + sample + (list.length > 12 ? "  …" : ""));
       charErrors += list.length;
     }

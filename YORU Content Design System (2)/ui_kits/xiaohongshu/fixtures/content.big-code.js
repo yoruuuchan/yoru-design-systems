@@ -32,7 +32,10 @@ window.YORU_POST = {
     { t: "code", filename: "ui_kits/xiaohongshu/paginate.jsx", lang: "js", code: BIG },
     { t: "body", text: "上面这块十四行。再来一块同样长的，验证第二块会不会正确落到新页。" },
     { t: "code", filename: "ui_kits/xiaohongshu/paginate.jsx", lang: "js", code: BIG },
+    { t: "body", text: "第二块也应该整块下来。规则不变：装不下就翻页，绝不切开——切开的代码抄回去跑不通，比一页留白更贵。相邻两块之间还得留一整段 flow-block 的间距，眼睛才知道这是两块，而不是同一大段被硬塞成两屏。" },
     { t: "callout", kind: "note", title: "要拆长列表", text: "用 StepList start={n} 手动续号，不要指望分页器帮你切。" }
   ],
+  /* F4 · 尾页收紧：原来 callout 独立在末页 24% 触发新的尾页下限（>= 45%）。
+     加一段承接 body，让末页装到及格线；文本本身也补上「为什么切不得」的收束。 */
   end: { headline: "下期讲测量为什么必须是克隆", lines: ["源码在评论区", "有问题直接问，我都看"] }
 };

@@ -67,7 +67,10 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 **长度**：小红书单页正文 2–4 段。**整篇页数由内容决定，不是配额**——Signal 快讯 4–7 页很正常，
 长教程跑到十页也正常，六到九页只是常见区间，不要为了凑数注水或者硬压。公众号 1500–3000 字。
 真的长到装不下就拆成系列，用 `<CoverOverprint issueNumber="04">` 把汉字卷号变成封面上最抢镜的图形。
-**结尾页 `<EndCard>` 是可选的**——四页的快讯不必强塞一页「下期再见」。
+**结尾页 `<EndCard>` 是可选的**——四页的快讯不必强塞一页「下期再见」。**尾页装不满有下限**：
+最后一个内容页占用率必须 ≥ 45%，低于则渲染验收告警（分页器无条件豁免尾页的老规则在 F4 收紧了——
+上一轮实拍出过一页 31% 静默通过、页面下 2/3 全空）。修法：把尾段回填上一页，或并入 EndCard.lines。
+纯图 / 金句独占页仍然免检（`SPARSE_OK` 块类型）。
 
 **内容模式**：这一节以上的全部写作规则（人称、结论先行、无 emoji、封面 ≤14 字、结尾两行封顶）
 **只适用于 `contentMode: "editable"`**，也就是文案由系统一起产出的情况。
@@ -130,7 +133,11 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 加装饰图形或多余色块——CLAUDE.md 那条「不做卡片模板感」是硬规则。
 
 渲染验收查这四件必填，也量标题堆栈占版心的比例：完整封面在 35% 上下（这套语言本来就留白多），
-只有标题的会掉到 12% 左右，两条告警一起报。
+只有标题的会掉到 12% 左右，两条告警一起报。**如果 fill 量不出来**（找不到 `data-yoru-plate`、
+plate 里没有孩子、或 plate 高度为 0）——不再是 warn 而是 error「封面占用率无法测量」。
+上一轮 GPT sandbox 出的 render-report 里 cover fill 是 null 就是从这个洞漏过去的：
+`fill < FILL_FLOORS.cover` 在 fill=null 时直接不比较，警告静默过关。第四轮 F5 把每一步测量塞进
+显式判断，「量不出来」和「量出来是 0」不共用一个通道。
 
 结尾页 `<EndCard>` 是可选的，见 CONTENT FUNDAMENTALS 的「长度」。
 
@@ -147,7 +154,7 @@ Yoru 个人内容的排版系统。服务两个渠道：**小红书图文卡片*
 - 引言、书脊、页码、提示词正文：**仿宋**（`--font-fangsong`，本地 STFangsong / FangSong，回退思源宋）——系统里的「抄写体」。
 - 代码、角标、版本号：**JetBrains Mono**，开 `tabular-nums`。该栈**以中文黑体栈结尾，不以 `monospace` 结尾**——等宽字全是纯拉丁字库，混排标签里的中文必须落到黑体。
 - 英文术语与表头：**Inter**（`--font-sans-latin`）。`--font-body`（文章）是 Latin 优先、CJK 兜底：`Inter, var(--font-sans-cjk)`。
-- **CJK 栈头写死家族名**（思源两家 + PingFang / Songti / YaHei / SimSun 兜底）：`ui-serif` 这类关键字在 Chrome/macOS 会分码段回退，同一句一半宋一半黑。每个显式家族都有 `@font-face` 声明，本地家族用 `local()`-only。
+- **CJK 栈头写死家族名**（思源两家 + PingFang / Songti / YaHei / SimSun 兜底）：`ui-serif` 这类关键字在 Chrome/macOS 会分码段回退，同一句一半宋一半黑。每个显式家族都有 `@font-face` 声明，本地家族用 `local()`-only；**思源两家用 `url()`-only**——第四轮修复把 `local()` 从 Source Han Sans/Serif SC 彻底删掉了。之前那两组 face 把 `local()` 放在 url 之前是为了省字节，代价是任何装了同名但不完整的思源（Linux 发行版常见）的宿主会让浏览器命中 local 并跳过自托管子集，「捋」等 GB2312 二级字里应有的字就会走系统回退，而 Node 端读 repo woff2 的 cmap 检测还是绿的——检测端 vs 渲染端读的不是同一份字体。规矩：**校验对象必须是实际生效对象**。
 - 卡片与文章是两套数值、同一套语义（`--fs-body` 卡片 40px / 文章 16px）。不是等比缩放。
 
 **颜色**
@@ -449,15 +456,30 @@ node ui_kits/xiaohongshu/export_cards.mjs --selftest # 只跑环境自证
 想重量基准（升级 tokens、换字体、改了 CoverOverprint / Page / PageFooter）时跑
 `--capture-golden` 重刷一次。文件很小，看着 diff 检查。
 
-**验证记录（防伪测试）**：故意破坏环境跑 selftest 必须变红——两种破坏都在 CI 前跑过：
+**F3 · 三层哨兵**：selftest 除了 8 项几何和 FontFace 加载状态，还有三层针对思源 Serif 子集的
+不变量守卫（`export_cards.mjs` 的 `runSelftest`）：
+1. **静态**：`tokens/fonts.css` 里 Source Han 行不许出现 `local(` —— F1 规矩被回退就在这里拦下。
+2. **运行时**：MEASURE_GOLDEN 强制 `document.fonts.load` 全部 4 档 Serif 后，`performance.getEntriesByType('resource')`
+   必须能看到 4 个 SourceHanSerifSC-*.woff2 的 fetch（且字节数与磁盘接近）——本地被 local 劫持或 url 挂了都不会有对应 fetch。
+3. **子集不变量**：Node fontkit 读 4 个 Serif woff2 的 cmap，正哨兵「捋」(U+634B) 必须在每档里存在，
+   负哨兵「丟」(U+4E1F, GBK-only) 必须每档都不在——子集本身回归也拦。
+
+> Chromium 的 `document.fonts.check(family, ch)` 是**家族级**的，不 per-glyph 查；实测对随便一个假家族 + 任何字都返回 true，
+> 所以早期"用 check() 检查每个字符是否覆盖"的思路走不通，改成上面这三层。
+
+**验证记录（防伪测试）**：故意破坏环境跑 selftest 必须变红——已跑过四种破坏：
 (a) 临时把 `--lh-cover` 从 1.06 改到 1.30 → `lh_cover_px` 差 32px、`content_footer_top_from_card`
 差 20+ px，红；(b) 临时把 `tokens/fonts.css` 里思源宋两条 `url(...)` 都改成 `url("nope.woff2")`
-→ 字体加载失败、`body_line_height_px` 与`content_masthead_to_first_block` 双双超差，红。
+→ 字体加载失败、`body_line_height_px` 与 `content_masthead_to_first_block` 双双超差，红；
+(c) 第四轮：把 4 档 Serif `url()` 前缀改为 `../fonts/BROKEN-` → 4 条 resource-timing 哨兵报「Regular/Medium/Bold/Heavy 没被浏览器加载」+ 字体加载失败/回退，红；
+(d) 第四轮：把 Serif 400 的 `url()` 前面重新塞回 `local("Source Han Serif SC"),` → 静态哨兵报「fonts.css 出现了 `local(` 于 Source Han 行——F1 规则被回退」，红。
 
 **T3 · 字体子集审计 + 逐字回退检测**。`tools/font_audit.mjs` 读 `fonts/` 下 8 个 woff2 的 cmap，
 按每档 weight 报告覆盖率与缺字清单（GB2312 一二级作为基线；也可 `--char <字>` 查单字）。
 render_check 在每次渲染里也做逐字检查：把页面上真正落在思源宋 / 思源黑上的每个 CJK 码位，
-在 Node 一端用 fontkit 读 woff2 union cmap 交叉验证，缺字直接报 error（附字符、码位、所在页）。
+在 Node 一端用 fontkit 读 woff2 union cmap 交叉验证，缺字直接报 error（附字符、码位、所在页、字重）。
+既然 F1 让浏览器只能从 `url()` 加载我们的子集，Node 读的 cmap 就是浏览器真的能画的字集；F3
+哨兵保证 F1 不被回退，两者合起来"渲染端为准"就有了地基。
 
 **公众号**：同一份 `blocks[]` → 677px 文章版式 → 冻结计算样式为行内 `style` → **富文本复制**（range 选中 +
 `execCommand("copy")`，同时写 text/plain + text/html，公众号编辑器吃后者）。工作台里点复制粘贴即成品；
