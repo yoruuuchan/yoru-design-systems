@@ -92,6 +92,7 @@ These are the system's strongest non-color signature. Use sparingly — one of e
 
 **Assets shipped** (`assets/`):
 - `cursor-fx.js` — the cursor follower + click ripple. Pairs with `#rift-cursor` / `.rift-ripple` styles in `effects.css`.
+- `theme-toggle.js` — self-contained dark/light toggle chip. Drop `<script src="assets/theme-toggle.js"></script>` before `</body>` and it renders a fixed pill top-right that flips `<html data-theme>` between `dark` and `light`, persisting the choice via `localStorage`. No dependencies, no configuration — just include and forget.
 
 ---
 

@@ -7,9 +7,9 @@
     .pane { border-radius:24px; padding:20px; display:flex; flex-direction:column;
             justify-content:space-between; border:1px solid var(--glass-stroke);
             box-shadow:var(--glass-edge), var(--shadow-md); }
-    .thin    { background:rgba(255,255,255,0.30); backdrop-filter:blur(12px) saturate(140%); -webkit-backdrop-filter:blur(12px) saturate(140%); }
-    .regular { background:rgba(255,255,255,0.48); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); }
-    .thick   { background:rgba(255,255,255,0.68); backdrop-filter:blur(40px) saturate(180%); -webkit-backdrop-filter:blur(40px) saturate(180%); }
+    .thin    { background:var(--glass-bg-thin);    backdrop-filter:var(--glass-blur-thin);    -webkit-backdrop-filter:var(--glass-blur-thin); }
+    .regular { background:var(--glass-bg-regular); backdrop-filter:var(--glass-blur-regular); -webkit-backdrop-filter:var(--glass-blur-regular); }
+    .thick   { background:var(--glass-bg-thick);   backdrop-filter:var(--glass-blur-thick);   -webkit-backdrop-filter:var(--glass-blur-thick); }
     .pane b { font-family:var(--font-display); font-weight:800; font-size:24px;
               letter-spacing:-0.02em; color:var(--neutral-900); }
     .pane small { font-family:var(--font-mono); font-size:10px;

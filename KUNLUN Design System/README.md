@@ -3,6 +3,8 @@
 > **Industrial sci-fi terminal aesthetic for the web.**
 > Chamfered surfaces. Cyan-glow signal. Mono-uppercase voice. Built to feel like an operations console for something massive and quiet.
 
+KUNLUN is a **dark-only** design system — all tokens assume a near-black background. When embedding KUNLUN inside a light-themed host, force `background: var(--bg-base)` and `color-scheme: dark` on the wrapper.
+
 KUNLUN is a general-purpose web design system for landing pages, dashboards, AI chat surfaces, dev tools, and experimental creative work. Aesthetic reference: the 550-series quantum-computing consoles of *The Wandering Earth*, military HUD overlays, classic CRT terminals, and `bash`.
 
 ---
@@ -145,7 +147,7 @@ SKILL.md                         — Claude Skill manifest (download for Claude 
 
 - **Aesthetic reference**: 550-series consoles from *The Wandering Earth* (流浪地球). The user could not provide direct frame references; the kit is an *original* visual that lives in the same genre — military-industrial Chinese sci-fi computing.
 - **No external codebase or Figma** was attached. The system was designed from scratch against a brief: cyber + terminal, cyan/blue forward, amber/red sparing, chamfered, fully monospace.
-- **Fonts**: Google Fonts CDN — Orbitron, JetBrains Mono, Space Mono, VT323, Noto Sans SC.
+- **Fonts**: Google Fonts CDN — Orbitron, JetBrains Mono, VT323, Noto Sans SC.
 
 ---
 

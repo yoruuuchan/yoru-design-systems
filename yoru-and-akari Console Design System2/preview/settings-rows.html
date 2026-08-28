@@ -5,15 +5,15 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 14px; border-radius: 16px; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
 
   .group { border-radius: 14px; overflow: hidden; }
-  .akari .group { background: #EFF2F8; box-shadow: -3px -3px 8px rgba(255,255,255,0.9), 4px 4px 12px rgba(143,158,191,0.25); }
-  .yoru .group  { background: #131A2E; box-shadow: -3px -3px 10px rgba(255,255,255,0.05), 5px 5px 16px rgba(0,0,0,0.4); }
+  .akari .group { background: var(--bg-surface); box-shadow: -3px -3px 8px rgba(255,255,255,0.9), 4px 4px 12px rgba(143,158,191,0.25); }
+  .yoru .group  { background: var(--bg-surface); box-shadow: -3px -3px 10px rgba(255,255,255,0.05), 5px 5px 16px rgba(0,0,0,0.4); }
 
   .grp-h { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; padding: 12px 14px 4px; }
 
@@ -24,18 +24,18 @@
     width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center;
     font-size: 13px; flex-shrink: 0;
   }
-  .akari .row .ico { background: #DCE3FE; color: #2E44B0; }
-  .yoru .row .ico { background: #1F2A55; color: #B4C3FC; }
+  .akari .row .ico { background: var(--primary-100); color: var(--primary-700); }
+  .yoru .row .ico { background: var(--primary-100); color: var(--primary-700); }
   .row .lbl { flex: 1; font-size: 13px; font-weight: 500; }
   .row .val { font-size: 12px; opacity: 0.65; font-family: var(--font-mono); }
   .row .chev { opacity: 0.4; font-size: 14px; }
 
   /* mini toggle */
   .tg { width: 36px; height: 22px; border-radius: 99px; position: relative; }
-  .akari .tg.on { background: #4F6CE8; box-shadow: 0 2px 6px rgba(79,108,232,0.30); }
-  .akari .tg.off { background: #DEE3EC; box-shadow: inset 2px 2px 4px rgba(143,158,191,0.40), inset -1px -1px 3px rgba(255,255,255,0.9); }
-  .yoru .tg.on { background: #7A95FA; box-shadow: 0 2px 8px rgba(122,149,250,0.30); }
-  .yoru .tg.off { background: #080D1B; box-shadow: inset 2px 2px 4px rgba(0,0,0,0.55); }
+  .akari .tg.on { background: var(--primary-500); box-shadow: 0 2px 6px rgba(79,108,232,0.30); }
+  .akari .tg.off { background: var(--bg-sunken); box-shadow: inset 2px 2px 4px rgba(143,158,191,0.40), inset -1px -1px 3px rgba(255,255,255,0.9); }
+  .yoru .tg.on { background: var(--primary-500); box-shadow: 0 2px 8px rgba(122,149,250,0.30); }
+  .yoru .tg.off { background: var(--bg-sunken); box-shadow: inset 2px 2px 4px rgba(0,0,0,0.55); }
   .tg .knob { position: absolute; top: 3px; width: 16px; height: 16px; border-radius: 99px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.18); }
   .tg.on .knob { left: 17px; } .tg.off .knob { left: 3px; }
 </style></head>
@@ -51,7 +51,7 @@
         <div class="row"><div class="ico">⊘</div><span class="lbl">stream tokens</span><div class="tg off"><div class="knob"></div></div></div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · settings</span>
       <div class="group">
         <div class="grp-h">channel · yoru · night log</div>

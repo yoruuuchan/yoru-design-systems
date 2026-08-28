@@ -5,31 +5,31 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 16px; border-radius: 16px; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 12px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
   .field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
   .lbl { font-size: 11px; font-weight: 500; opacity: 0.7; letter-spacing: 0.02em; }
   .input {
     height: 36px; padding: 0 12px; border-radius: 12px; border: none; outline: none;
     font-family: var(--font-ui); font-size: 13px;
   }
-  .akari .input { background: #DEE3EC; color: #0E1525; box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95); }
-  .akari .input::placeholder { color: #A1ABBF; }
-  .akari .input.focused { background: #DEE3EC; box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95), 0 0 0 3px rgba(79,108,232,0.28); }
-  .akari .input.error   { background: #DEE3EC; box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95), 0 0 0 2px #D45D5D; }
-  .yoru .input { background: #080D1B; color: #E6EAF6; box-shadow: inset 3px 3px 7px rgba(0,0,0,0.55), inset -2px -2px 5px rgba(255,255,255,0.04); }
-  .yoru .input::placeholder { color: #434D67; }
+  .akari .input { background: var(--bg-sunken); color: var(--ink-1); box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95); }
+  .akari .input::placeholder { color: var(--ink-4); }
+  .akari .input.focused { background: var(--bg-sunken); box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95), 0 0 0 3px rgba(79,108,232,0.28); }
+  .akari .input.error   { background: var(--bg-sunken); box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95), 0 0 0 2px var(--error-500); }
+  .yoru .input { background: var(--bg-sunken); color: var(--ink-1); box-shadow: inset 3px 3px 7px rgba(0,0,0,0.55), inset -2px -2px 5px rgba(255,255,255,0.04); }
+  .yoru .input::placeholder { color: var(--ink-4); }
   .yoru .input.focused { box-shadow: inset 3px 3px 7px rgba(0,0,0,0.55), inset -2px -2px 5px rgba(255,255,255,0.04), 0 0 0 3px rgba(122,149,250,0.35); }
-  .yoru .input.error   { box-shadow: inset 3px 3px 7px rgba(0,0,0,0.55), inset -2px -2px 5px rgba(255,255,255,0.04), 0 0 0 2px #F08484; }
+  .yoru .input.error   { box-shadow: inset 3px 3px 7px rgba(0,0,0,0.55), inset -2px -2px 5px rgba(255,255,255,0.04), 0 0 0 2px var(--error-500); }
   .err { font-size: 11px; }
-  .akari .err { color: #A23F3F; }
-  .yoru .err { color: #F08484; }
+  .akari .err { color: var(--error-700); }
+  .yoru .err { color: var(--error-500); }
   .textarea { min-height: 56px; padding: 9px 12px; border-radius: 12px; font-family: var(--font-ui); font-size: 13px; line-height: 1.5; border: none; outline: none; resize: none; }
-  .akari .textarea { background: #DEE3EC; color: #0E1525; box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95); }
-  .yoru .textarea { background: #080D1B; color: #E6EAF6; box-shadow: inset 3px 3px 7px rgba(0,0,0,0.55), inset -2px -2px 5px rgba(255,255,255,0.04); }
+  .akari .textarea { background: var(--bg-sunken); color: var(--ink-1); box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95); }
+  .yoru .textarea { background: var(--bg-sunken); color: var(--ink-1); box-shadow: inset 3px 3px 7px rgba(0,0,0,0.55), inset -2px -2px 5px rgba(255,255,255,0.04); }
 </style></head>
 <body>
   <div class="grid">
@@ -40,7 +40,7 @@
       <div class="field"><span class="lbl">model · error</span><input class="input error" value="claude-fake-99"><span class="err">unknown model id</span></div>
       <div class="field" style="margin-bottom:0"><span class="lbl">system prompt</span><textarea class="textarea">You are akari. Warm. Compact. Reply in the user's rhythm.</textarea></div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · inputs</span>
       <div class="field"><span class="lbl">channel name</span><input class="input" placeholder="akari · daily" value="akari · daily"></div>
       <div class="field"><span class="lbl">api key · focused</span><input class="input focused" placeholder="sk-…" value="sk-ant-•••••••••••••••"></div>

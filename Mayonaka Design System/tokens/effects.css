@@ -85,3 +85,12 @@
   0%   { filter: hue-rotate(0deg); }
   100% { filter: hue-rotate(360deg); }
 }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

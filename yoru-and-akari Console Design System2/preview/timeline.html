@@ -5,11 +5,11 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 14px 16px; border-radius: 16px; position: relative; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 12px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
 
   .rail { position: relative; padding-left: 26px; }
   .rail::before {
@@ -22,12 +22,12 @@
     content: ""; position: absolute; left: -22px; top: 6px;
     width: 10px; height: 10px; border-radius: 99px;
   }
-  .akari .ev::before { background: #EFF2F8; box-shadow: 0 0 0 2px #E8ECF3, inset 0 0 0 1.5px #4F6CE8; }
-  .yoru .ev::before { background: #131A2E; box-shadow: 0 0 0 2px #0B1020, inset 0 0 0 1.5px #7A95FA; }
-  .ev.now::before { background: #4F6CE8; box-shadow: 0 0 0 2px #E8ECF3, 0 0 12px rgba(79,108,232,0.5); }
-  .yoru .ev.now::before { background: #7A95FA; box-shadow: 0 0 0 2px #0B1020, 0 0 14px rgba(122,149,250,0.55); }
-  .ev.warm::before { box-shadow: 0 0 0 2px #E8ECF3, inset 0 0 0 1.5px #F06A20; }
-  .yoru .ev.warm::before { box-shadow: 0 0 0 2px #0B1020, inset 0 0 0 1.5px #F07830; }
+  .akari .ev::before { background: var(--bg-surface); box-shadow: 0 0 0 2px var(--bg-base), inset 0 0 0 1.5px var(--primary-500); }
+  .yoru .ev::before { background: var(--bg-surface); box-shadow: 0 0 0 2px var(--bg-base), inset 0 0 0 1.5px var(--primary-500); }
+  .ev.now::before { background: var(--primary-500); box-shadow: 0 0 0 2px var(--bg-base), 0 0 12px rgba(79,108,232,0.5); }
+  .yoru .ev.now::before { background: var(--primary-500); box-shadow: 0 0 0 2px var(--bg-base), 0 0 14px rgba(122,149,250,0.55); }
+  .ev.warm::before { box-shadow: 0 0 0 2px var(--bg-base), inset 0 0 0 1.5px var(--ember-500); }
+  .yoru .ev.warm::before { box-shadow: 0 0 0 2px var(--bg-base), inset 0 0 0 1.5px var(--ember-500); }
 
   .t  { font-size: 10px; opacity: 0.55; font-family: var(--font-mono); letter-spacing: 0.02em; }
   .hd { font-size: 13px; font-weight: 600; margin-top: 1px; }
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · timeline</span>
       <div class="rail">
         <div class="day-h">last night · 26 may</div>

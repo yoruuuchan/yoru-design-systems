@@ -3,3 +3,15 @@
 @import "./tokens/typography.css";
 @import "./tokens/spacing.css";
 @import "./tokens/effects.css";
+
+/* Global focus — cyan ring + glow, never the OS default */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  box-shadow: var(--glow-cyan-sm);
+}

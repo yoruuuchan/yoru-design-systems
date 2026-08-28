@@ -5,8 +5,8 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 22px 20px 20px; border-radius: 18px; display: flex; flex-direction: column; gap: 14px; }
-  .pane.akari { background: linear-gradient(160deg, #F6F8FC, #E8ECF3); color: #0E1525; }
-  .pane.yoru  { background: linear-gradient(160deg, #131A2E, #0B1020); color: #E6EAF6; }
+  .pane.akari { background: linear-gradient(160deg, var(--bg-elevated), var(--bg-base)); color: var(--ink-1); }
+  .pane.yoru  { background: linear-gradient(160deg, var(--bg-surface), var(--bg-base)); color: var(--ink-1); }
 
   /* The mark:
        akari (灯) — warm orange lamp on the LEFT
@@ -28,17 +28,17 @@
   /* akari (lamp) — pure warm orange */
   .pane.akari .akari-side {
     background:
-      radial-gradient(circle at 35% 30%, #FFD4B0 0 16%, #FF9456 48%, #F06A20 100%);
+      radial-gradient(circle at 35% 30%, #FFD4B0 0 16%, var(--ember-300) 48%, var(--ember-500) 100%);
     box-shadow:
-      0 0 0 3px #F6F8FC,
+      0 0 0 3px var(--bg-elevated),
       0 0 44px rgba(240, 106, 32, 0.50),
       inset -5px -7px 12px rgba(192, 80, 21, 0.28);
   }
   .pane.yoru .akari-side {
     background:
-      radial-gradient(circle at 35% 30%, #FFD4B0 0 16%, #FF9456 50%, #F07830 100%);
+      radial-gradient(circle at 35% 30%, #FFD4B0 0 16%, var(--ember-700) 50%, var(--ember-500) 100%);
     box-shadow:
-      0 0 0 3px #131A2E,
+      0 0 0 3px var(--bg-surface),
       0 0 56px rgba(240, 106, 32, 0.55),
       inset -5px -7px 12px rgba(192, 80, 21, 0.40);
   }
@@ -46,20 +46,20 @@
   /* yoru (night) — cool */
   .pane.akari .yoru-side {
     background:
-      radial-gradient(circle at 70% 28%, #B9C6FD 0 8%, transparent 14%),
-      radial-gradient(circle at 32% 30%, #2A3878 0 55%, #182763 90%);
+      radial-gradient(circle at 70% 28%, var(--primary-200) 0 8%, transparent 14%),
+      radial-gradient(circle at 32% 30%, #2A3878 0 55%, var(--primary-900) 90%);
     box-shadow:
-      0 0 0 3px #F6F8FC,
+      0 0 0 3px var(--bg-elevated),
       inset -6px -6px 12px rgba(0, 0, 0, 0.28),
       inset 4px 4px 10px rgba(122, 149, 250, 0.22),
       0 8px 22px rgba(40, 56, 120, 0.18);
   }
   .pane.yoru .yoru-side {
     background:
-      radial-gradient(circle at 70% 28%, #D6DEFD 0 8%, transparent 14%),
-      radial-gradient(circle at 32% 30%, #3D52AE 0 50%, #1F2A55 88%);
+      radial-gradient(circle at 70% 28%, var(--primary-800) 0 8%, transparent 14%),
+      radial-gradient(circle at 32% 30%, var(--primary-300) 0 50%, var(--primary-100) 88%);
     box-shadow:
-      0 0 0 3px #131A2E,
+      0 0 0 3px var(--bg-surface),
       inset -6px -6px 12px rgba(0, 0, 0, 0.45),
       inset 4px 4px 10px rgba(122, 149, 250, 0.28),
       0 10px 26px rgba(0, 0, 0, 0.45);
@@ -74,8 +74,8 @@
   .sw { width: 8px; height: 8px; border-radius: 99px; }
   .sw.warm { background: #D07040; }
   .pane.yoru .sw.warm { background: #E08858; }
-  .sw.cool { background: #2E44B0; }
-  .pane.yoru .sw.cool { background: #7A95FA; }
+  .sw.cool { background: var(--primary-700); }
+  .pane.yoru .sw.cool { background: var(--primary-500); }
   .lab .nm { opacity: 0.72; }
 
   .wm {
@@ -85,8 +85,8 @@
   }
   .wm .a { color: #E07E4A; }
   .pane.yoru .wm .a { color: #F2A070; }
-  .wm .b { color: #2E44B0; }
-  .pane.yoru .wm .b { color: #7A95FA; }
+  .wm .b { color: var(--primary-700); }
+  .pane.yoru .wm .b { color: var(--primary-500); }
   .wm .x { opacity: 0.35; font-weight: 400; transform: translateY(-2px); display: inline-block; }
   .sub { text-align: center; font-family: var(--font-jp); font-size: 12px; opacity: 0.55; }
 </style></head>
@@ -101,7 +101,7 @@
       <div class="wm"><span class="a">akari</span><span class="x">·</span><span class="b">yoru</span></div>
       <div class="sub">灯と夜 — the lamp and the night</div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <div class="mark"><div class="akari-side"></div><div class="yoru-side"></div></div>
       <div class="labels">
         <span class="lab"><span class="sw warm"></span><span class="nm">akari · 灯</span></span>

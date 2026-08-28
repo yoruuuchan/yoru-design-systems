@@ -5,20 +5,20 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 16px; border-radius: 16px; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 12px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
   .block + .block { margin-top: 14px; }
   .label { font-size: 11px; opacity: 0.6; margin-bottom: 6px; font-weight: 500; letter-spacing: 0.02em; }
 
   /* toggle */
   .tg { width: 44px; height: 26px; border-radius: 99px; position: relative; cursor: pointer; }
-  .akari .tg.off { background: #DEE3EC; box-shadow: inset 2px 2px 5px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95); }
-  .akari .tg.on  { background: #4F6CE8; box-shadow: 0 3px 8px rgba(79,108,232,0.30); }
-  .yoru .tg.off { background: #080D1B; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.55), inset -2px -2px 4px rgba(255,255,255,0.04); }
-  .yoru .tg.on  { background: #7A95FA; box-shadow: 0 3px 10px rgba(122,149,250,0.35); }
+  .akari .tg.off { background: var(--bg-sunken); box-shadow: inset 2px 2px 5px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95); }
+  .akari .tg.on  { background: var(--primary-500); box-shadow: 0 3px 8px rgba(79,108,232,0.30); }
+  .yoru .tg.off { background: var(--bg-sunken); box-shadow: inset 2px 2px 5px rgba(0,0,0,0.55), inset -2px -2px 4px rgba(255,255,255,0.04); }
+  .yoru .tg.on  { background: var(--primary-500); box-shadow: 0 3px 10px rgba(122,149,250,0.35); }
   .tg .knob { position: absolute; top: 3px; width: 20px; height: 20px; border-radius: 99px; background: #fff; transition: left 220ms cubic-bezier(0.22,1,0.36,1); box-shadow: 0 1px 3px rgba(0,0,0,0.18); }
   .tg.off .knob { left: 3px; }
   .tg.on  .knob { left: 21px; }
@@ -26,22 +26,22 @@
 
   /* segmented */
   .seg { display: inline-flex; padding: 4px; border-radius: 12px; }
-  .akari .seg { background: #DEE3EC; box-shadow: inset 2px 2px 5px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95); }
-  .yoru .seg { background: #080D1B; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.55), inset -2px -2px 4px rgba(255,255,255,0.04); }
+  .akari .seg { background: var(--bg-sunken); box-shadow: inset 2px 2px 5px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.95); }
+  .yoru .seg { background: var(--bg-sunken); box-shadow: inset 2px 2px 5px rgba(0,0,0,0.55), inset -2px -2px 4px rgba(255,255,255,0.04); }
   .seg button { border: none; background: transparent; padding: 6px 12px; border-radius: 9px; font-family: var(--font-ui); font-size: 12px; font-weight: 500; cursor: pointer; }
-  .akari .seg button { color: #394560; }
-  .yoru .seg button { color: #A8B2CC; }
-  .akari .seg button.active { background: #EFF2F8; color: #0E1525; box-shadow: -2px -2px 5px rgba(255,255,255,0.85), 2px 2px 6px rgba(143,158,191,0.30); }
-  .yoru .seg button.active { background: #1B2340; color: #E6EAF6; box-shadow: -2px -2px 5px rgba(255,255,255,0.04), 2px 2px 7px rgba(0,0,0,0.45); }
+  .akari .seg button { color: var(--ink-2); }
+  .yoru .seg button { color: var(--ink-2); }
+  .akari .seg button.active { background: var(--bg-surface); color: var(--ink-1); box-shadow: -2px -2px 5px rgba(255,255,255,0.85), 2px 2px 6px rgba(143,158,191,0.30); }
+  .yoru .seg button.active { background: var(--bg-elevated); color: var(--ink-1); box-shadow: -2px -2px 5px rgba(255,255,255,0.04), 2px 2px 7px rgba(0,0,0,0.45); }
 
   /* slider */
   .sl { height: 22px; display: flex; align-items: center; position: relative; }
   .tk { height: 6px; flex: 1; border-radius: 99px; position: relative; }
-  .akari .tk { background: #DEE3EC; box-shadow: inset 2px 2px 4px rgba(143,158,191,0.40), inset -1px -1px 3px rgba(255,255,255,0.95); }
-  .yoru .tk { background: #080D1B; box-shadow: inset 2px 2px 4px rgba(0,0,0,0.55); }
+  .akari .tk { background: var(--bg-sunken); box-shadow: inset 2px 2px 4px rgba(143,158,191,0.40), inset -1px -1px 3px rgba(255,255,255,0.95); }
+  .yoru .tk { background: var(--bg-sunken); box-shadow: inset 2px 2px 4px rgba(0,0,0,0.55); }
   .tk .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; }
-  .akari .tk .fill { background: linear-gradient(90deg, #6E89F2, #4F6CE8); }
-  .yoru .tk .fill { background: linear-gradient(90deg, #5C76DE, #7A95FA); }
+  .akari .tk .fill { background: linear-gradient(90deg, var(--primary-400), var(--primary-500)); }
+  .yoru .tk .fill { background: linear-gradient(90deg, var(--primary-400), var(--primary-500)); }
   .tk .knob { position: absolute; top: 50%; transform: translate(-50%,-50%); width: 18px; height: 18px; border-radius: 99px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.18); }
 </style></head>
 <body>
@@ -61,7 +61,7 @@
         <div class="sl"><div class="tk"><div class="fill" style="width:72%"></div><div class="knob" style="left:72%"></div></div></div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · controls</span>
       <div class="block">
         <div class="label">switches</div>

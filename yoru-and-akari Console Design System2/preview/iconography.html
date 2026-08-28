@@ -6,23 +6,23 @@
   body { padding: 16px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 14px; border-radius: 16px; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
   .icons { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
   .ic {
     display: flex; flex-direction: column; align-items: center; gap: 4px;
     padding: 8px 4px; border-radius: 10px;
   }
-  .akari .ic { background: #EFF2F8; }
-  .yoru .ic { background: #131A2E; }
+  .akari .ic { background: var(--bg-surface); }
+  .yoru .ic { background: var(--bg-surface); }
   .ic svg { width: 18px; height: 18px; stroke-width: 1.75; }
-  .akari .ic svg { color: #394560; }
-  .yoru .ic svg { color: #A8B2CC; }
-  .akari .ic.on svg { color: #4F6CE8; }
-  .yoru .ic.on svg { color: #7A95FA; }
+  .akari .ic svg { color: var(--ink-2); }
+  .yoru .ic svg { color: var(--ink-2); }
+  .akari .ic.on svg { color: var(--primary-500); }
+  .yoru .ic.on svg { color: var(--primary-500); }
   .nm { font-size: 9px; font-family: var(--font-mono); opacity: 0.55; letter-spacing: 0.02em; }
 </style></head>
 <body>
@@ -48,7 +48,7 @@
         <div class="ic"><i data-lucide="key"></i><span class="nm">key</span></div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · lucide @ 18px · 1.75</span>
       <div class="icons">
         <div class="ic on"><i data-lucide="message-square-text"></i><span class="nm">chat</span></div>

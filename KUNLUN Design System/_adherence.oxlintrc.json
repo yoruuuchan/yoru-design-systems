@@ -46,8 +46,8 @@
         "message": "Raw px value — use a design-system spacing token via var()."
       },
       {
-        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:JetBrains Mono|Space Mono|VT323|Orbitron|Noto Sans SC))/i]",
-        "message": "Font not provided by the design system. Available: JetBrains Mono, Space Mono, VT323, Orbitron, Noto Sans SC."
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:JetBrains Mono|VT323|Orbitron|Noto Sans SC))/i]",
+        "message": "Font not provided by the design system. Available: JetBrains Mono, VT323, Orbitron, Noto Sans SC."
       },
       {
         "selector": "JSXOpeningElement[name.name='Avatar'] > JSXAttribute > JSXIdentifier[name!=/^(?:size|shape|src|alt|initials|key|ref|className|style|children)$/]",
@@ -691,7 +691,6 @@
       "JetBrains Mono",
       "Noto Sans SC",
       "Orbitron",
-      "Space Mono",
       "VT323"
     ]
   }

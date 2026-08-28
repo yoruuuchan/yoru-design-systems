@@ -5,11 +5,11 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 16px; border-radius: 16px; }
-  .pane.akari { background: #E8ECF3; }
-  .pane.yoru  { background: #0B1020; }
+  .pane.akari { background: var(--bg-base); }
+  .pane.yoru  { background: var(--bg-base); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 12px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
 
   .row { display: flex; gap: 14px; align-items: center; }
   .av-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -23,18 +23,18 @@
   .av.md { width: 44px; height: 44px; font-size: 18px; }
   .av.sm { width: 30px; height: 30px; font-size: 12px; }
   .nm { font-size: 11px; opacity: 0.6; font-family: var(--font-mono); }
-  .pane.akari .nm { color: #394560; }
-  .pane.yoru .nm { color: #A8B2CC; }
+  .pane.akari .nm { color: var(--ink-2); }
+  .pane.yoru .nm { color: var(--ink-2); }
 
   /* akari glyph: porcelain lamp */
   .glyph-akari {
     background:
       radial-gradient(circle at 32% 28%, #FFD4B0 0 12%, transparent 18%),
-      radial-gradient(circle at 65% 70%, #B9C6FD 0 35%, transparent 45%),
-      linear-gradient(135deg, #6E89F2, #2E44B0 90%);
+      radial-gradient(circle at 65% 70%, var(--primary-200) 0 35%, transparent 45%),
+      linear-gradient(135deg, var(--primary-400), var(--primary-700) 90%);
   }
-  .ring-pulse { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #4F6CE8, 0 0 18px rgba(79,108,232,0.4); }
-  .pane.yoru .ring-pulse { box-shadow: 0 0 0 2px #0B1020, 0 0 0 3.5px #7A95FA, 0 0 22px rgba(122,149,250,0.5); }
+  .ring-pulse { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--primary-500), 0 0 18px rgba(79,108,232,0.4); }
+  .pane.yoru .ring-pulse { box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 3.5px var(--primary-500), 0 0 22px rgba(122,149,250,0.5); }
 
   /* yoru glyph: moon */
   .glyph-yoru {
@@ -53,8 +53,8 @@
   }
 
   .col-h { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; margin-bottom: 10px; }
-  .pane.akari .col-h { color: #6B7793; }
-  .pane.yoru .col-h { color: #A8B2CC; }
+  .pane.akari .col-h { color: var(--ink-3); }
+  .pane.yoru .col-h { color: var(--ink-2); }
 </style></head>
 <body>
   <div class="grid">
@@ -76,7 +76,7 @@
         <div class="av sm glyph-warm" style="font-size:11px">読</div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · companion glyphs</span>
       <div class="col-h">companions</div>
       <div class="row">

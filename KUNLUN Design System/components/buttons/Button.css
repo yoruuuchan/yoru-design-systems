@@ -73,7 +73,7 @@
   border-color: var(--red-700);
 }
 .kl-btn--danger:hover {
-  background: rgba(255, 58, 58, 0.08);
+  background: var(--danger-tint);
   border-color: var(--red-500);
   color: var(--red-300);
   box-shadow: var(--glow-red-md);
@@ -87,7 +87,7 @@
   border-color: var(--amber-700);
 }
 .kl-btn--warn:hover {
-  background: rgba(255, 176, 0, 0.08);
+  background: var(--warn-tint);
   border-color: var(--amber-500);
   box-shadow: var(--glow-amber-md);
 }
@@ -138,6 +138,6 @@
 }
 .kl-iconbtn--danger { border-color: var(--red-700); color: var(--text-danger); }
 .kl-iconbtn--danger:hover {
-  background: rgba(255, 58, 58, 0.1); color: var(--red-300);
+  background: var(--danger-tint); color: var(--red-300);
   border-color: var(--red-500); box-shadow: var(--glow-red-md);
 }

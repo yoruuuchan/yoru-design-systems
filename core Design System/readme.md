@@ -25,6 +25,10 @@ This is an **art / portfolio / experimental** system. It is **not** trying to be
 > v2 flipped to cool Bondi-blue substrate while keeping the warm scales available as accents.
 > Tweak: every component re-reads tokens, so you can flip back by editing `tokens/colors.css` aliases.
 
+> **Light-only system.** There is no dark mode and none is planned — the whole premise is an
+> overexposed paper archive. Individual surfaces may sit on ink (SectionSlide does), but the
+> page substrate is always frost paper.
+
 ---
 
 ## Sources
@@ -33,7 +37,7 @@ This system has no attached codebase, Figma, or brand book — it was specified 
 - 梦核 (dreamcore), 后室 (backrooms), 池核 (poolcore)
 - 超现实主义, 怪诞 (surreal, grotesque)
 - 像素拼接 (pixel collage)
-- Loose reference: NEEDY GIRL OVERDOSE (主播女孩重度依赖) — borrowed *structurally* (desktop windows, popups, layered UI), **not** chromatically (we are warm/dingy, not pink/neon).
+- Loose reference: NEEDY GIRL OVERDOSE (主播女孩重度依赖) — borrowed *structurally* (desktop windows, popups, layered UI), **not** chromatically (we are cool/dingy, not neon-pink).
 
 If you later supply a real codebase, brand guide, or photographic library, this README is the place to record those links.
 
@@ -68,7 +72,7 @@ If you later supply a real codebase, brand guide, or photographic library, this 
 ### Color
 - Three pulling-against-each-other scales: **sodium** (warm, dingy), **tile** (cool, wet), **dream** (peach/rose halo).
 - A small **neon** set (magenta/cyan/lime/orange/violet) is reserved for rainbow marquee text and visited-link violet — **never** for primary surfaces.
-- Page paper is a warm cream (`--paper #f6efd9`) — never pure white. Ink is a warm near-black (`#1a140c`) — never pure black. Pure `#fff` / `#000` are forbidden in this system.
+- Page paper is an icy blue-white (`--paper` → `--frost-100` `#eaf4f8`) — never pure white. Ink is a deep cool near-black (`--ink` `#0c1a26`) — never pure black. Pure `#fff` / `#000` are forbidden in this system.
 - Imagery is treated with one of three filters: `--filter-overexposed` (dreamcore), `--filter-jpeg` (artifact-y poolcore), `--filter-vhs` (weirdcore).
 
 ### Type
@@ -115,7 +119,7 @@ If you later supply a real codebase, brand guide, or photographic library, this 
 
 ## Iconography
 
-- **Pixel icons.** Hand-cut 16×16 or 24×24 SVGs with sharp edges, no anti-aliasing. The icon set lives in `assets/icons/` (added in the icons batch — see manifest).
+- **Pixel icons.** Hand-cut 16×16 or 24×24 SVGs with sharp edges, no anti-aliasing. There is no shipped icon directory yet — cut icons per need and inline the SVG in the component.
 - No emoji. No emoji. No emoji.
 - Unicode block characters (░ ▒ ▓ █) and geometric shapes (◇ ◊ ◯ ◆) are welcome as **typographic ornament** but not as functional icons.
 - Cursor: a small crosshair (`assets/cursor-crosshair.svg`) — applied to links and interactive surfaces.

@@ -21,7 +21,7 @@
   color: var(--text-secondary);
 }
 .kl-badge--signal {
-  background: rgba(0, 184, 255, 0.12); border-color: var(--cyan-700);
+  background: var(--accent-tint); border-color: var(--cyan-700);
   color: var(--cyan-300); text-shadow: var(--text-glow-cyan);
 }
 .kl-badge--success {
@@ -29,11 +29,11 @@
   color: var(--green-300);
 }
 .kl-badge--warn {
-  background: rgba(255, 176, 0, 0.1); border-color: var(--amber-700);
+  background: var(--warn-tint); border-color: var(--amber-700);
   color: var(--amber-300);
 }
 .kl-badge--danger {
-  background: rgba(255, 58, 58, 0.1); border-color: var(--red-700);
+  background: var(--danger-tint); border-color: var(--red-700);
   color: var(--red-300); text-shadow: var(--text-glow-red);
 }
 .kl-badge--solid {
@@ -66,7 +66,7 @@
 .kl-tag--accent {
   border-color: var(--cyan-700);
   color: var(--cyan-300);
-  background: rgba(0, 184, 255, 0.06);
+  background: var(--accent-tint-soft);
 }
 
 /* StatusPill — dot + label, animated pulse on "live". */
@@ -102,16 +102,16 @@
 .kl-pill--idle .kl-pill__dot { box-shadow: none; opacity: 0.6; }
 .kl-pill--busy {
   color: var(--cyan-300); border-color: var(--cyan-700);
-  background: rgba(0, 184, 255, 0.06);
+  background: var(--accent-tint-soft);
 }
 .kl-pill--busy .kl-pill__dot { animation: kl-pulse 0.8s linear infinite; }
 .kl-pill--warn {
   color: var(--amber-300); border-color: var(--amber-700);
-  background: rgba(255, 176, 0, 0.05);
+  background: var(--warn-tint-soft);
 }
 .kl-pill--error {
   color: var(--red-300); border-color: var(--red-700);
-  background: rgba(255, 58, 58, 0.06);
+  background: var(--danger-tint-soft);
 }
 .kl-pill--error .kl-pill__dot { animation: kl-blink 0.6s steps(2, end) infinite; }
 

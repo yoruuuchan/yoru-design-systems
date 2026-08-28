@@ -6,11 +6,11 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 14px; border-radius: 16px; position: relative; height: 120px; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
 
   .tabs {
     position: absolute; left: 14px; right: 14px; bottom: 14px;
@@ -35,10 +35,10 @@
     padding: 6px 0; border-radius: 16px; cursor: pointer;
     font-size: 10px; font-weight: 500; letter-spacing: 0.02em;
   }
-  .akari .tab { color: #6B7793; }
-  .yoru .tab  { color: #6B7691; }
-  .akari .tab.active { color: #0E1525; background: #EFF2F8; box-shadow: -2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(143,158,191,0.30); }
-  .yoru .tab.active  { color: #E6EAF6; background: #1B2340; box-shadow: -2px -2px 6px rgba(255,255,255,0.05), 3px 3px 10px rgba(0,0,0,0.45); }
+  .akari .tab { color: var(--ink-3); }
+  .yoru .tab  { color: var(--ink-3); }
+  .akari .tab.active { color: var(--ink-1); background: var(--bg-surface); box-shadow: -2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(143,158,191,0.30); }
+  .yoru .tab.active  { color: var(--ink-1); background: var(--bg-elevated); box-shadow: -2px -2px 6px rgba(255,255,255,0.05), 3px 3px 10px rgba(0,0,0,0.45); }
   .tab svg { width: 18px; height: 18px; stroke-width: 1.75; }
 
   .glow {
@@ -59,7 +59,7 @@
         <div class="tab"><i data-lucide="settings"></i><span>console</span></div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · glass tab bar</span>
       <div class="tabs">
         <div class="tab active"><i data-lucide="message-square-text"></i><span>chat</span></div>

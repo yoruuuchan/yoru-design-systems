@@ -6,38 +6,38 @@
   body { padding: 16px 18px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 14px; border-radius: 16px; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru  .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru  .tag { color: var(--ink-2); }
 
   .row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; margin-bottom: 6px; }
-  .akari .row { background: #EFF2F8; box-shadow: inset 0 0 0 1px rgba(14,21,37,0.04); }
-  .yoru  .row { background: #131A2E; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
-  .akari .row.on { background: #EFF2F8; box-shadow: -3px -3px 8px rgba(255,255,255,0.95), 3px 3px 8px rgba(143,158,191,0.30), 0 0 0 1.5px #4F6CE8 inset; }
-  .yoru  .row.on { background: #131A2E; box-shadow: -3px -3px 9px rgba(255,255,255,0.05), 4px 4px 12px rgba(0,0,0,0.4), 0 0 0 1.5px #7A95FA inset; }
+  .akari .row { background: var(--bg-surface); box-shadow: inset 0 0 0 1px rgba(14,21,37,0.04); }
+  .yoru  .row { background: var(--bg-surface); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
+  .akari .row.on { background: var(--bg-surface); box-shadow: -3px -3px 8px rgba(255,255,255,0.95), 3px 3px 8px rgba(143,158,191,0.30), 0 0 0 1.5px var(--primary-500) inset; }
+  .yoru  .row.on { background: var(--bg-surface); box-shadow: -3px -3px 9px rgba(255,255,255,0.05), 4px 4px 12px rgba(0,0,0,0.4), 0 0 0 1.5px var(--primary-500) inset; }
 
   .logo { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-family: var(--font-mono); font-size: 11px; font-weight: 700; flex-shrink: 0; }
-  .l-an { background: #FFE4D6; color: #C05015; }
-  .l-oa { background: #DCF3E8; color: #1F7E58; }
-  .l-go { background: #DCE3FE; color: #2E44B0; }
-  .l-lo { background: #DEE3EC; color: #394560; }
-  .yoru .l-an { background: #2A1408; color: #FF9456; }
-  .yoru .l-oa { background: #143025; color: #7CE0B6; }
-  .yoru .l-go { background: #1F2A55; color: #B4C3FC; }
-  .yoru .l-lo { background: #131A2E; color: #A8B2CC; }
+  .l-an { background: var(--ember-100); color: var(--ember-700); }
+  .l-oa { background: var(--success-100); color: var(--success-700); }
+  .l-go { background: var(--primary-100); color: var(--primary-700); }
+  .l-lo { background: var(--bg-sunken); color: var(--ink-2); }
+  .yoru .l-an { background: var(--ember-100); color: var(--ember-700); }
+  .yoru .l-oa { background: var(--success-100); color: var(--success-700); }
+  .yoru .l-go { background: var(--primary-100); color: var(--primary-700); }
+  .yoru .l-lo { background: var(--bg-surface); color: var(--ink-2); }
 
   .nm { font-size: 13px; font-weight: 600; }
   .sb { font-size: 11px; opacity: 0.55; margin-top: 1px; font-family: var(--font-mono); }
   .right { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 10px; font-family: var(--font-mono); opacity: 0.6; }
-  .dot { width: 7px; height: 7px; border-radius: 99px; background: #2BA672; }
-  .yoru .dot { background: #3FCB94; }
-  .dot.err { background: #D45D5D; }
-  .yoru .dot.err { background: #F08484; }
+  .dot { width: 7px; height: 7px; border-radius: 99px; background: var(--success-500); }
+  .yoru .dot { background: var(--success-500); }
+  .dot.err { background: var(--error-500); }
+  .yoru .dot.err { background: var(--error-500); }
   .check { width: 16px; height: 16px; }
-  .akari .check { color: #4F6CE8; }
-  .yoru .check  { color: #7A95FA; }
+  .akari .check { color: var(--primary-500); }
+  .yoru .check  { color: var(--primary-500); }
 </style></head>
 <body>
   <div class="grid">
@@ -64,7 +64,7 @@
         <div class="right"><span class="dot err"></span><span>offline</span></div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · model providers</span>
       <div class="row on">
         <div class="logo l-an">A</div>

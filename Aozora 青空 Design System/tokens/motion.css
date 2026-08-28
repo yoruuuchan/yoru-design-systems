@@ -23,3 +23,12 @@
   --transition-glass: backdrop-filter var(--dur-slow) var(--ease-out-expo),
                       background     var(--dur-slow) var(--ease-out-expo); /* @kind other */
 }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

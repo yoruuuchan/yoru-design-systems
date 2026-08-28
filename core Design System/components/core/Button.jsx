@@ -22,6 +22,7 @@ const css = `
 .cds-btn:active { box-shadow: var(--bevel-in); transform: translate(1px, 1px); }
 .cds-btn[disabled] { opacity: 0.45; cursor: not-allowed; box-shadow: var(--bevel-out); transform: none; }
 .cds-btn.glow:hover { box-shadow: var(--bevel-out), var(--glow-bondi); }
+.cds-btn:focus-visible { outline: 2px solid var(--bondi-300); outline-offset: 2px; }
 `;
 function inject() {
   if (typeof document === 'undefined') return;
@@ -36,12 +37,12 @@ const sizes = {
   lg: { padding: '8px 22px', fontSize: 15, minHeight: 36 },
 };
 const variants = {
-  primary:   { background: 'var(--bondi-500)', color: '#ffffff' },
+  primary:   { background: 'var(--bondi-500)', color: 'var(--frost-50)' },
   secondary: { background: 'var(--chrome-100)' },
   ghost:     { background: 'transparent', boxShadow: 'none', border: '1px dashed var(--ink-muted)' },
   pool:      { background: 'var(--bondi-200)' },
   dream:     { background: 'var(--bubblegum-300)' },
-  danger:    { background: 'var(--bubblegum-500)', color: '#ffffff' },
+  danger:    { background: 'var(--bubblegum-500)', color: 'var(--frost-50)' },
   sodium:    { background: 'var(--sodium-300)' },
 };
 

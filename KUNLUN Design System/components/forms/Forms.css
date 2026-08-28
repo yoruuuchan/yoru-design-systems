@@ -51,9 +51,9 @@
 .kl-select:hover {
   border-color: var(--neutral-600);
 }
-.kl-input:focus,
-.kl-textarea:focus,
-.kl-select:focus {
+.kl-input:focus-visible,
+.kl-textarea:focus-visible,
+.kl-select:focus-visible {
   border-color: var(--cyan-500);
   box-shadow: var(--glow-cyan-sm), inset 0 0 0 1px var(--cyan-700);
 }
@@ -68,9 +68,9 @@
 .kl-select--error {
   border-color: var(--red-700);
 }
-.kl-input--error:focus,
-.kl-textarea--error:focus,
-.kl-select--error:focus {
+.kl-input--error:focus-visible,
+.kl-textarea--error:focus-visible,
+.kl-select--error:focus-visible {
   border-color: var(--red-500); box-shadow: var(--glow-red-md);
 }
 
@@ -116,14 +116,14 @@
   clip-path: none;
   box-shadow: none;
 }
-.kl-input-wrap .kl-input:focus { box-shadow: none; }
+.kl-input-wrap .kl-input:focus-visible { box-shadow: none; }
 .kl-input-wrap__adornment {
   display: inline-flex;
   align-items: center;
   padding: 0 10px;
   color: var(--cyan-400);
   font-size: var(--text-xs);
-  background: rgba(0, 184, 255, 0.05);
+  background: var(--accent-tint-soft);
   border-right: 1px solid var(--border);
   text-shadow: var(--text-glow-cyan);
 }

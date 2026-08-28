@@ -9,10 +9,11 @@ const SIZES = {
 };
 
 const TONES = {
-  brand:   { fill: "var(--blue-500)",    hover: "var(--blue-600)", press: "var(--blue-700)", text: "#fff" },
-  accent:  { fill: "var(--sun-400)",     hover: "var(--sun-500)",  press: "var(--sun-600)",  text: "var(--neutral-900)" },
-  neutral: { fill: "var(--neutral-800)", hover: "var(--neutral-900)", press: "#000",          text: "#fff" },
-  danger:  { fill: "var(--danger-500)",  hover: "#E03A30",          press: "#C8322A",         text: "#fff" },
+  brand:   { fill: "var(--blue-500)",    hover: "var(--blue-600)",    press: "var(--blue-700)",   text: "var(--neutral-0)" },
+  accent:  { fill: "var(--sun-400)",     hover: "var(--sun-500)",     press: "var(--sun-600)",    text: "var(--neutral-900)" },
+  neutral: { fill: "var(--neutral-800)", hover: "var(--neutral-900)", press: "var(--neutral-900)", text: "var(--neutral-0)" },
+  // hover/press for danger have no matching token — leaving darker-red literals until a --danger-600/700 scale exists
+  danger:  { fill: "var(--danger-500)",  hover: "#E03A30",            press: "#C8322A",           text: "var(--neutral-0)" },
 };
 
 export function Button({
@@ -55,13 +56,11 @@ export function Button({
     color = "var(--text-strong)";
     border = "1px solid rgba(255,255,255,0.85)";
     shadow = [
-      "inset 0 1.5px 0 rgba(255,255,255,0.95)",         // top rim highlight
-      "inset 0 -1px 0 rgba(10,68,140,0.10)",            // bottom rim shadow
-      "inset 0 0 0 1px rgba(255,255,255,0.25)",         // inner stroke
-      "inset 0 8px 16px -8px rgba(255,255,255,0.65)",   // soft gloss bloom
-      "inset 0 -10px 18px -10px rgba(10,132,255,0.18)", // bottom blue refraction
-      "0 1px 2px rgba(10,68,140,0.10)",
-      "0 8px 24px rgba(10,68,140,0.18)",                // outer drop
+      "var(--glass-edge)",                              // top rim highlight + inner stroke + bottom rim shadow
+      "inset 0 8px 16px -8px rgba(255,255,255,0.65)",   // soft gloss bloom (button-specific — no token match)
+      "inset 0 -10px 18px -10px rgba(10,132,255,0.18)", // bottom blue refraction (button-specific — no token match)
+      "0 1px 2px rgba(10,68,140,0.10)",                 // fine drop (alpha differs from --shadow-xs — no exact token match)
+      "0 8px 24px rgba(10,68,140,0.18)",                // outer drop (between --shadow-md and --shadow-lg — no exact token match)
     ].join(", ");
     backdrop = "blur(28px) saturate(220%) brightness(1.08)";
   } else {

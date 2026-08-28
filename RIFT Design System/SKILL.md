@@ -10,6 +10,7 @@ Read the `readme.md` file in this skill, and explore the other available files:
 - `tokens/` holds the design tokens (palette, type, spacing, motion, dark + light theme layers).
 - `components.css` defines the utility classes (`.rift-btn`, `.rift-card`, `.rift-glass-1/2/3`, `.rift-input`, `.rift-badge`, `.rift-dot`).
 - `effects.css` defines the signature `.rift-glitch` chromatic edge, the `.rift-glow` breathing halo, and the cursor / ripple styles. Pair with `assets/cursor-fx.js`.
+- `assets/theme-toggle.js` — drop-in dark/light toggle. Include it once via `<script src="assets/theme-toggle.js"></script>` near `</body>` and it adds a small fixed pill (top-right) that flips `<html data-theme>` and persists the choice in `localStorage`. No configuration needed.
 - `components/` holds React versions of the primitives (`Button`, `Input`, `Card`, `Glass`, `Badge`, `Dot`, `Glitch`, `Wordmark`). Each has a sibling `.prompt.md` with a usage example.
 - `templates/` holds starting-point templates — `console/`, `marketing/`, `auth/`.
 - `cards/` holds foundation specimen cards (colors, type, spacing, brand). Skim these to see tokens in context.

@@ -5,38 +5,38 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 14px; border-radius: 18px; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
 
   .card {
     border-radius: 16px; padding: 12px 14px; margin-bottom: 8px;
     display: flex; gap: 12px; align-items: center;
   }
-  .akari .card { background: #EFF2F8; box-shadow: -3px -3px 10px rgba(255,255,255,0.95), 4px 4px 12px rgba(143,158,191,0.30); }
-  .akari .card.selected { background: #EFF2F8; box-shadow: inset 3px 3px 6px rgba(143,158,191,0.30), inset -2px -2px 5px rgba(255,255,255,0.95), 0 0 0 1.5px #4F6CE8; }
-  .yoru .card { background: #131A2E; box-shadow: -3px -3px 10px rgba(255,255,255,0.05), 5px 5px 16px rgba(0,0,0,0.35); }
-  .yoru .card.selected { background: #131A2E; box-shadow: inset 3px 3px 7px rgba(0,0,0,0.4), inset -2px -2px 5px rgba(255,255,255,0.04), 0 0 0 1.5px #7A95FA; }
+  .akari .card { background: var(--bg-surface); box-shadow: -3px -3px 10px rgba(255,255,255,0.95), 4px 4px 12px rgba(143,158,191,0.30); }
+  .akari .card.selected { background: var(--bg-surface); box-shadow: inset 3px 3px 6px rgba(143,158,191,0.30), inset -2px -2px 5px rgba(255,255,255,0.95), 0 0 0 1.5px var(--primary-500); }
+  .yoru .card { background: var(--bg-surface); box-shadow: -3px -3px 10px rgba(255,255,255,0.05), 5px 5px 16px rgba(0,0,0,0.35); }
+  .yoru .card.selected { background: var(--bg-surface); box-shadow: inset 3px 3px 7px rgba(0,0,0,0.4), inset -2px -2px 5px rgba(255,255,255,0.04), 0 0 0 1.5px var(--primary-500); }
 
   .av { width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center; font-family: var(--font-jp); font-size: 18px; font-weight: 600; flex-shrink: 0; }
-  .av.a { background: linear-gradient(135deg, #B9C6FD, #4F6CE8); color: #fff; }
+  .av.a { background: linear-gradient(135deg, var(--primary-200), var(--primary-500)); color: #fff; }
   .av.b { background: radial-gradient(circle at 38% 32%, #FFC080 0 20%, #F07028 70%, #D05818 100%); color: #fff; }
-  .av.c { background: linear-gradient(135deg, #DEE3EC, #6B7793); color: #fff; }
-  .yoru .av.a { background: linear-gradient(135deg, #3D52AE, #7A95FA); }
-  .yoru .av.c { background: linear-gradient(135deg, #1B2340, #6B7691); }
+  .av.c { background: linear-gradient(135deg, var(--bg-sunken), var(--ink-3)); color: #fff; }
+  .yoru .av.a { background: linear-gradient(135deg, var(--primary-300), var(--primary-500)); }
+  .yoru .av.c { background: linear-gradient(135deg, var(--bg-elevated), var(--ink-3)); }
 
   .meta { flex: 1; min-width: 0; }
   .nm { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
   .pre { font-size: 11px; opacity: 0.6; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-size: 10px; opacity: 0.6; }
-  .unread { background: #4F6CE8; color: #fff; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; }
-  .yoru .unread { background: #7A95FA; color: #0B1020; }
-  .dot-warn { width: 6px; height: 6px; border-radius: 99px; background: #D89A3A; }
-  .yoru .dot-warn { background: #ECB85F; }
-  .dot-err { width: 6px; height: 6px; border-radius: 99px; background: #D45D5D; }
-  .yoru .dot-err { background: #F08484; }
+  .unread { background: var(--primary-500); color: #fff; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; }
+  .yoru .unread { background: var(--primary-500); color: var(--bg-base); }
+  .dot-warn { width: 6px; height: 6px; border-radius: 99px; background: var(--warning-500); }
+  .yoru .dot-warn { background: var(--warning-500); }
+  .dot-err { width: 6px; height: 6px; border-radius: 99px; background: var(--error-500); }
+  .yoru .dot-err { background: var(--error-500); }
 </style></head>
 <body>
   <div class="grid">
@@ -58,7 +58,7 @@
         <div class="side"><span>02:17</span></div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · channels</span>
       <div class="card selected">
         <div class="av a">灯</div>

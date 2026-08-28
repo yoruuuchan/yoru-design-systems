@@ -22,11 +22,12 @@ export function Input({
 
   let bg, border, shadow, backdrop;
   if (variant === "glass") {
-    bg = "rgba(255,255,255,0.42)";
-    border = `1px solid ${hasError ? "var(--danger-500)" : focus ? "var(--blue-500)" : "rgba(255,255,255,0.7)"}`;
+    // 0.42 fill is a touch lower than --glass-bg-regular (0.48) — closest existing token
+    bg = "var(--glass-bg-regular)";
+    border = `1px solid ${hasError ? "var(--danger-500)" : focus ? "var(--blue-500)" : "var(--glass-stroke)"}`;
     shadow = focus
       ? "var(--ring-focus), var(--glass-edge)"
-      : "var(--glass-edge), 0 2px 8px rgba(10,68,140,0.08)";
+      : "var(--glass-edge), var(--shadow-sm)";
     backdrop = "blur(28px) saturate(200%) brightness(1.08)";
   } else {
     bg = "var(--neutral-0)";

@@ -5,30 +5,30 @@
   body { padding: 16px 18px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 14px; border-radius: 16px; }
-  .pane.akari { background: #E8ECF3; color: #0E1525; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); color: var(--ink-1); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
 
   .stack { display: flex; flex-direction: column; gap: 6px; }
   .b { max-width: 78%; padding: 9px 13px; border-radius: 18px; font-size: 13px; line-height: 1.45; }
   .from-them { align-self: flex-start; border-bottom-left-radius: 6px; }
   .from-me { align-self: flex-end; border-bottom-right-radius: 6px; }
-  .akari .from-them { background: #EFF2F8; color: #0E1525; box-shadow: -2px -2px 6px rgba(255,255,255,0.95), 2px 2px 6px rgba(143,158,191,0.28); }
-  .akari .from-me   { background: #4F6CE8; color: #fff; box-shadow: 0 3px 10px rgba(79,108,232,0.30); }
-  .yoru .from-them  { background: #131A2E; color: #E6EAF6; box-shadow: -2px -2px 7px rgba(255,255,255,0.05), 3px 3px 10px rgba(0,0,0,0.4); }
-  .yoru .from-me    { background: #7A95FA; color: #0B1020; box-shadow: 0 3px 12px rgba(122,149,250,0.28); }
+  .akari .from-them { background: var(--bg-surface); color: var(--ink-1); box-shadow: -2px -2px 6px rgba(255,255,255,0.95), 2px 2px 6px rgba(143,158,191,0.28); }
+  .akari .from-me   { background: var(--primary-500); color: #fff; box-shadow: 0 3px 10px rgba(79,108,232,0.30); }
+  .yoru .from-them  { background: var(--bg-surface); color: var(--ink-1); box-shadow: -2px -2px 7px rgba(255,255,255,0.05), 3px 3px 10px rgba(0,0,0,0.4); }
+  .yoru .from-me    { background: var(--primary-500); color: var(--bg-base); box-shadow: 0 3px 12px rgba(122,149,250,0.28); }
 
   .meta { font-size: 10px; opacity: 0.5; padding: 0 4px; font-family: var(--font-mono); margin-top: 2px; }
   .meta.right { align-self: flex-end; }
 
   .typing { display: inline-flex; gap: 4px; padding: 9px 12px; border-radius: 16px; align-self: flex-start; }
-  .akari .typing { background: #EFF2F8; box-shadow: inset 2px 2px 4px rgba(143,158,191,0.30); }
-  .yoru .typing  { background: #131A2E; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.4); }
+  .akari .typing { background: var(--bg-surface); box-shadow: inset 2px 2px 4px rgba(143,158,191,0.30); }
+  .yoru .typing  { background: var(--bg-surface); box-shadow: inset 2px 2px 5px rgba(0,0,0,0.4); }
   .typing span { width: 6px; height: 6px; border-radius: 99px; opacity: 0.6; }
-  .akari .typing span { background: #4F6CE8; }
-  .yoru .typing span  { background: #7A95FA; }
+  .akari .typing span { background: var(--primary-500); }
+  .yoru .typing span  { background: var(--primary-500); }
 </style></head>
 <body>
   <div class="grid">
@@ -42,7 +42,7 @@
         <div class="typing"><span></span><span></span><span></span></div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · bubbles</span>
       <div class="stack">
         <div class="meta">yoru · 23:42</div>

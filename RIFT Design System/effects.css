@@ -173,3 +173,12 @@
 .rift-mark[data-mark-pos="tl"]::before { left: -0.05em; top: -0.08em; right: auto; bottom: auto; }
 .rift-mark[data-mark-pos="tr"]::before { right: -0.05em; top: -0.08em; bottom: auto; }
 .rift-mark[data-mark-pos="bl"]::before { left: -0.05em; bottom: -0.18em; right: auto; }
+
+/* ── REDUCED MOTION ── kill infinite loops for users who prefer it. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

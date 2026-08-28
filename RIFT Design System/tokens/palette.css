@@ -18,6 +18,13 @@
   --warn: #ECB85F;
   --bad:  #FF7480;
 
+  /* Danger gradient endpoints (used by .rift-btn--danger) */
+  --bad-grad-a: #E04060;
+  --bad-grad-b: #C03050;
+
+  /* Ink on filled accent surfaces (buttons, badges) */
+  --ink-on-accent: #fff;
+
   /* Chromatic edge — default pair (sky × royal). Override via data-accent. */
   --glitch-ca: var(--sky);
   --glitch-cb: var(--royal);

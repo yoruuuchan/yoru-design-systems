@@ -13,4 +13,4 @@ Six 1280×720 slide types, each a standalone `.html` file. Use them as starting 
 
 All six are 1280×720. Backgrounds vary on purpose — paper / ink / tiled — so a deck has rhythm.
 
-Bring them together with `deck_stage.js` when you build a real deck.
+Each slide is standalone — assemble a deck by copying the files in order and editing in place; there is no runtime stage script.

@@ -23,7 +23,7 @@ If a real brief later attaches, point back here for tokens/components and add pr
 - `components/core/` — Button, Card, Input, Badge, Tabs, Progress, GlitchText, ScanlineOverlay
 - `ui_kits/web_app/` — Midnight FM (web music player / dashboard)
 - `ui_kits/mobile_app/` — Midnight FM (mobile player)
-- `assets/` — logos, icons (Lucide via CDN — see ICONOGRAPHY)
+- Icons: Lucide via CDN (see ICONOGRAPHY)
 - `SKILL.md` — agent invocation contract
 
 ---
@@ -90,7 +90,7 @@ Inner shadows are not used. Don't blend the two on the same element except butto
 **System:** [Lucide](https://lucide.dev) loaded from CDN — stroke icons, 1.5–2px stroke, square line caps, currentColor. Lucide pairs cleanly with pixel type (it's not pixel-art itself but reads as crisp linework, which sits well alongside Press Start 2P).
 
 ```html
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@0.452.0"></script>
 <i data-lucide="play" style="color:var(--magenta);width:20px;height:20px"></i>
 <script>lucide.createIcons();</script>
 ```

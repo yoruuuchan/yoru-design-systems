@@ -93,12 +93,18 @@
   --accent-dim:          var(--cyan-700);
   --accent-glow:         rgba(0, 184, 255, 0.45);
   --accent-glow-soft:    rgba(0, 184, 255, 0.18);
+  --accent-tint:         rgba(0, 184, 255, 0.12);
+  --accent-tint-soft:    rgba(0, 184, 255, 0.06);
 
   --warn:                var(--amber-500);
   --warn-glow:           rgba(255, 176, 0, 0.4);
+  --warn-tint:           rgba(255, 176, 0, 0.1);
+  --warn-tint-soft:      rgba(255, 176, 0, 0.05);
 
   --danger:              var(--red-500);
   --danger-glow:         rgba(255, 58, 58, 0.4);
+  --danger-tint:         rgba(255, 58, 58, 0.1);
+  --danger-tint-soft:    rgba(255, 58, 58, 0.06);
 
   --success:             var(--green-500);
   --success-glow:        rgba(0, 232, 145, 0.4);

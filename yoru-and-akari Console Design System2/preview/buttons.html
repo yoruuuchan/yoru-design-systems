@@ -5,11 +5,11 @@
   body { padding: 18px 20px; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 16px; border-radius: 16px; }
-  .pane.akari { background: #E8ECF3; }
-  .pane.yoru  { background: #0B1020; }
+  .pane.akari { background: var(--bg-base); }
+  .pane.yoru  { background: var(--bg-base); }
   .tag { font-size: 10px; font-family: var(--font-mono); margin-bottom: 10px; display: block; }
-  .pane.akari .tag { color: #6B7793; }
-  .pane.yoru .tag { color: #A8B2CC; }
+  .pane.akari .tag { color: var(--ink-3); }
+  .pane.yoru .tag { color: var(--ink-2); }
   .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
   .btn {
     --bg: var(--bg-surface);
@@ -19,24 +19,24 @@
     font-family: var(--font-ui); transition: all 140ms ease;
   }
   /* akari variants */
-  .akari .btn.primary { background: #4F6CE8; color: #fff; box-shadow: 0 4px 12px rgba(79,108,232,0.30), inset 0 1px 0 rgba(255,255,255,0.18); }
-  .akari .btn.secondary { background: #E8ECF3; color: #0E1525; box-shadow: -2px -2px 6px rgba(255,255,255,0.95), 3px 3px 8px rgba(143,158,191,0.35); }
-  .akari .btn.ghost { background: transparent; color: #394560; box-shadow: inset 0 0 0 1px rgba(14,21,37,0.10); }
-  .akari .btn.danger { background: #D45D5D; color: #fff; box-shadow: 0 4px 12px rgba(212,93,93,0.28); }
-  .akari .btn.pressed { background: #E8ECF3; color: #0E1525; box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.85); }
-  .akari .btn.disabled { background: #DEE3EC; color: #A1ABBF; box-shadow: none; cursor: not-allowed; }
+  .akari .btn.primary { background: var(--primary-500); color: #fff; box-shadow: 0 4px 12px rgba(79,108,232,0.30), inset 0 1px 0 rgba(255,255,255,0.18); }
+  .akari .btn.secondary { background: var(--bg-base); color: var(--ink-1); box-shadow: -2px -2px 6px rgba(255,255,255,0.95), 3px 3px 8px rgba(143,158,191,0.35); }
+  .akari .btn.ghost { background: transparent; color: var(--ink-2); box-shadow: inset 0 0 0 1px rgba(14,21,37,0.10); }
+  .akari .btn.danger { background: var(--error-500); color: #fff; box-shadow: 0 4px 12px rgba(212,93,93,0.28); }
+  .akari .btn.pressed { background: var(--bg-base); color: var(--ink-1); box-shadow: inset 3px 3px 6px rgba(143,158,191,0.40), inset -2px -2px 5px rgba(255,255,255,0.85); }
+  .akari .btn.disabled { background: var(--bg-sunken); color: var(--ink-4); box-shadow: none; cursor: not-allowed; }
   /* yoru variants */
-  .yoru .btn.primary { background: #7A95FA; color: #0B1020; box-shadow: 0 4px 14px rgba(122,149,250,0.35); }
-  .yoru .btn.secondary { background: #131A2E; color: #E6EAF6; box-shadow: -2px -2px 6px rgba(255,255,255,0.05), 3px 3px 8px rgba(0,0,0,0.4); }
-  .yoru .btn.ghost { background: transparent; color: #A8B2CC; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); }
-  .yoru .btn.danger { background: #F08484; color: #0B1020; box-shadow: 0 4px 14px rgba(240,132,132,0.30); }
-  .yoru .btn.pressed { background: #0B1020; color: #E6EAF6; box-shadow: inset 3px 3px 7px rgba(0,0,0,0.45), inset -2px -2px 5px rgba(255,255,255,0.04); }
-  .yoru .btn.disabled { background: #080D1B; color: #434D67; cursor: not-allowed; }
+  .yoru .btn.primary { background: var(--primary-500); color: var(--bg-base); box-shadow: 0 4px 14px rgba(122,149,250,0.35); }
+  .yoru .btn.secondary { background: var(--bg-surface); color: var(--ink-1); box-shadow: -2px -2px 6px rgba(255,255,255,0.05), 3px 3px 8px rgba(0,0,0,0.4); }
+  .yoru .btn.ghost { background: transparent; color: var(--ink-2); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); }
+  .yoru .btn.danger { background: var(--error-500); color: var(--bg-base); box-shadow: 0 4px 14px rgba(240,132,132,0.30); }
+  .yoru .btn.pressed { background: var(--bg-base); color: var(--ink-1); box-shadow: inset 3px 3px 7px rgba(0,0,0,0.45), inset -2px -2px 5px rgba(255,255,255,0.04); }
+  .yoru .btn.disabled { background: var(--bg-sunken); color: var(--ink-4); cursor: not-allowed; }
   .btn.sm { height: 28px; padding: 0 11px; font-size: 12px; border-radius: 9px; }
   .btn.icon { width: 36px; padding: 0; justify-content: center; }
   .ico { width: 14px; height: 14px; }
   .lbl { font-size: 10px; color: var(--ink-3); margin-right: 6px; font-family: var(--font-mono); width: 60px; display:inline-block; }
-  .pane.yoru .lbl { color: #6B7691; }
+  .pane.yoru .lbl { color: var(--ink-3); }
 </style></head>
 <body>
   <div class="grid">
@@ -48,7 +48,7 @@
       <div class="row"><span class="lbl">danger</span><button class="btn danger">delete channel</button><button class="btn danger sm">delete</button></div>
       <div class="row"><span class="lbl">states</span><button class="btn pressed">pressed</button><button class="btn disabled" disabled>disabled</button></div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <span class="tag">yoru · buttons</span>
       <div class="row"><span class="lbl">primary</span><button class="btn primary">save changes</button><button class="btn primary sm">save</button><button class="btn primary icon">＋</button></div>
       <div class="row"><span class="lbl">secondary</span><button class="btn secondary">cancel</button><button class="btn secondary sm">retry</button><button class="btn secondary icon">⟳</button></div>

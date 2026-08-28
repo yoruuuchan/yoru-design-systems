@@ -27,6 +27,13 @@
   --rust-300:#D9917A;
   --rust-100:#F1DCD2;
 
+  /* ANALOG — warm archival tones layered on the paper/ink ramps.
+     Used only inside [data-mode="analog"]; light-to-dark like paper-*. */
+  --analog-100:#FBF7EC;  /* warmed leaf, analog raised surface */
+  --analog-200:#D8CDB6;  /* warm hairline, dry-mount rule */
+  --analog-300:#B0A48A;  /* warm faint ink, analog secondary labels */
+  --analog-400:#8B8168;  /* warm muted ink, analog secondary text */
+
   /* SEMANTIC — surfaces */
   --surface-page:var(--paper-200);
   --surface-raised:var(--paper-100);   /* a sheet lying on the page */
@@ -44,6 +51,7 @@
   --text-accent:var(--rust-500);
   --text-on-dark:#E7E2D6;
   --text-on-dark-muted:#9A937F;
+  --text-on-dark-faint:#6E6857;
 
   /* SEMANTIC — rules & borders. Editorial systems live on hairlines. */
   --rule-hair:var(--ink-100);

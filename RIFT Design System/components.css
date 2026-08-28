@@ -75,11 +75,16 @@
 }
 .rift-btn:hover  { transform: translateY(-1px); border-color: var(--line-strong); }
 .rift-btn:active { transform: translateY(0); }
+.rift-btn:focus-visible {
+  outline: 2px solid var(--royal);
+  outline-offset: 2px;
+  box-shadow: var(--glow-royal);
+}
 
 .rift-btn--primary {
   background: linear-gradient(135deg, var(--royal), var(--cobalt));
   border-color: transparent;
-  color: #fff;
+  color: var(--ink-on-accent);
   box-shadow:
     0 8px 24px -8px rgba(92, 123, 255, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.20);
@@ -101,9 +106,9 @@
 .rift-btn--ghost:hover { background: var(--glass-1-bg); color: var(--ink-1); }
 
 .rift-btn--danger {
-  background: linear-gradient(135deg, #E04060, #C03050);
+  background: linear-gradient(135deg, var(--bad-grad-a), var(--bad-grad-b));
   border-color: transparent;
-  color: #fff;
+  color: var(--ink-on-accent);
   box-shadow: 0 8px 24px -8px rgba(224, 64, 96, 0.5);
 }
 
@@ -129,7 +134,7 @@
     box-shadow var(--dur-base);
 }
 .rift-input::placeholder { color: var(--ink-3); }
-.rift-input:focus {
+.rift-input:focus-visible {
   border-color: var(--royal);
   box-shadow: 0 0 0 3px rgba(92, 123, 255, 0.18);
 }

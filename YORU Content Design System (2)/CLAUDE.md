@@ -116,3 +116,7 @@ Signal / Lab / Studio / Special 四个子变体只在强调色、装饰细节、
 其余完全一致。不要让某个变体长成另一套视觉语言。
 密度是两个 token：`--lh-body`（段落内部）和 `--flow-block`（块之间，卡片作用域，
 Signal / Lab 56 · Special 76 · Studio 100）。分页器从 computed style 读后者，改密度不用碰分页器。
+
+## 杂项
+
+`out/` 积累每次全量渲染的产物（PNG、frozen HTML），跑多了能到几十 MB，手动清就行。

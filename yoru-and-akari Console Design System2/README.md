@@ -5,6 +5,9 @@
 
 This design system describes a **mobile-first, daily-driver console** for configuring an AI companion: channels, memory, prompts, worldbook, timeline, logs, model providers, proactive messages, tools, and safety controls. It is *not* a generic SaaS dashboard. It should feel like a real device the user opens many times a day — tactile, calm, dense without being noisy.
 
+![console · chat surface](screenshots/console-chat.jpg)
+![console · timeline · memory · settings surfaces](screenshots/console-views.jpg)
+
 ---
 
 ## Sources
@@ -31,12 +34,19 @@ README.md                 — this file (foundations, voice, iconography, index)
 SKILL.md                  — agent-skill manifest for downstream Claude Code / agent use
 preview/                  — Design-System-tab cards (one HTML per concept)
 ui_kits/console/          — mobile + desktop UI kit (index.html + JSX components)
+uploads/                  — running console instance (index.html + main.css + app.js),
+                             imported from Claude Design; the deployed product surface
+briefs/                   — active implementation plans (see cc-multi-device-and-ios26.md)
+screenshots/              — reference screenshots of the running console
 fonts/                    — webfont notes (Geist, Geist Mono, Zen Kaku Gothic New)
 assets/                   — brand mark notes, icon set reference
 ```
 
+> **On `uploads/`.** The name is a Claude Design artifact — this directory is *not* a scratch drop, it is the deployed console instance we ship against. `uploads/colors_and_type.css` is a snapshot taken when that instance was published; the ROOT `colors_and_type.css` is the design-system **source of truth** going forward. The two files currently diverge: root introduces a **frost** accent family and reshapes the **ember** ramp (root uses a pure-orange ember `#F06A20` and adds `--frost-100…700`; the uploads snapshot uses a warmer terra-cotta ember `#D97757` and has no frost tokens), and root carries `@kind other` annotations on the motion tokens. Treat uploads as a frozen mirror — re-snapshot it when the running console is next redeployed, do not edit it in-place.
+
 UI kits:
 - **`ui_kits/console/`** — the only product surface in this brief. Mobile-first companion console with chat, timeline, settings, memory, logs, and provider sheets.
+- **`uploads/`** — the same console, deployed. See the note above.
 
 ---
 
@@ -220,15 +230,13 @@ The components should communicate state, not decoration. A few non-negotiable ru
 
 ---
 
-## CAVEATS — please help me iterate
+## CAVEATS — current state
 
-1. **No real product was attached.** I designed this from the spec alone. If there's a codebase / Figma / screenshots, please attach via the **Import** menu and I'll re-derive the colors, type, components, and copy from the real source.
-2. **Fonts are Google Fonts substitutes.** Geist + Geist Mono + Zen Kaku Gothic New are loaded from Google Fonts. If you have proprietary fonts (e.g. a custom JP face or a non-Geist UI font), drop them in `fonts/` and I'll swap the `@import`.
-3. **Icons are Lucide.** No icon sprite was provided — Lucide is the substitute. Drop a real sprite/font in `assets/icons/` to replace.
-4. **Brand mark is CSS-only.** I built it from gradients. If you have an SVG/PNG, I'll swap it in.
-5. **No real product copy.** All microcopy in the cards and UI kit is invented in the established voice. Please send 3-5 real strings (settings labels, an empty state, an error message) and I'll align everything.
-6. **Only one product surface.** The brief implied a single mobile companion console. If there's also a web marketing site, a desktop app, or a docs site, tell me and I'll add a UI kit per surface.
+This system is **in production use**: `uploads/` holds the running console instance, and
+`briefs/cc-multi-device-and-ios26.md` is the active plan for the responsive / iOS-26 pass
+(not yet implemented). Remaining real caveats:
 
----
-
-**Bold ask:** open the **Design System tab** and scrub the cards — colors, type, components — and tell me which directions feel wrong. Especially: is the blue the *right* blue? Is the ember the *right* warmth? Is the type *compact enough*, or do you want it even denser? Once those three are locked, the UI kit becomes pixel-perfect very fast.
+1. **Fonts load from Google Fonts** (Geist + Geist Mono + Zen Kaku Gothic New via the `@import` in `colors_and_type.css`) — offline or on a bad international route they fall back to system faces. Self-hosting is a planned batch.
+2. **Icons are Lucide from unpkg CDN** (pinned `0.452.0`) — same network caveat; vendoring locally is planned alongside the fonts.
+3. **Brand mark is CSS-only** (radial gradients + box-shadow, see `preview/brand-mark.html`) — intentional; export an SVG only if a non-web surface needs it.
+4. **Root `colors_and_type.css` is the source of truth**; the copy inside `uploads/` is a frozen snapshot of the deployed instance (see the note in the directory map above).

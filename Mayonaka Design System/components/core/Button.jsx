@@ -1,9 +1,9 @@
 import React from "react";
 
 const sizeMap = {
-  sm: { padding: "6px 12px", fontSize: "10px" },
+  sm: { padding: "6px var(--s-3)", fontSize: "10px" },
   md: { padding: "10px 18px", fontSize: "12px" },
-  lg: { padding: "14px 24px", fontSize: "14px" },
+  lg: { padding: "14px var(--s-5)", fontSize: "14px" },
 };
 
 const variantStyle = (variant) => {
@@ -25,7 +25,7 @@ const variantStyle = (variant) => {
     case "blue":
       return {
         background: "var(--electric)",
-        color: "#fff",
+        color: "var(--chrome)",
         border: "2px solid var(--electric)",
         boxShadow: "var(--shadow-pixel)",
       };
@@ -85,7 +85,7 @@ export function Button({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "8px",
+    gap: "var(--s-2)",
     width: fullWidth ? "100%" : undefined,
     opacity: disabled ? 0.4 : 1,
     imageRendering: "pixelated",

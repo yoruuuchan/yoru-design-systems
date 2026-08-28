@@ -5,15 +5,15 @@
   body { padding: 18px 20px; }
   .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .pane { padding: 16px; border-radius: 16px; position: relative; overflow: hidden; }
-  .pane.akari { background: #E8ECF3; }
-  .pane.yoru  { background: #0B1020; color: #E6EAF6; }
+  .pane.akari { background: var(--bg-base); }
+  .pane.yoru  { background: var(--bg-base); color: var(--ink-1); }
   .lamp {
     width: 84px; height: 84px; border-radius: 50%; margin: 4px auto 12px;
-    background: radial-gradient(circle at 35% 30%, #FFD4B0, #F06A20 55%, #C05015 100%);
+    background: radial-gradient(circle at 35% 30%, #FFD4B0, var(--ember-500) 55%, var(--ember-700) 100%);
     box-shadow: 0 0 30px rgba(240, 106, 32, 0.50), 0 0 60px rgba(240, 106, 32, 0.22);
   }
   .pane.yoru .lamp {
-    background: radial-gradient(circle at 35% 30%, #FFD4B0, #F07830 60%, #804418 100%);
+    background: radial-gradient(circle at 35% 30%, #FFD4B0, var(--ember-500) 60%, var(--ember-300) 100%);
     box-shadow: 0 0 34px rgba(240, 120, 48, 0.55), 0 0 80px rgba(240, 120, 48, 0.22);
   }
   .row { display: flex; gap: 6px; justify-content: center; }
@@ -31,22 +31,22 @@
       <div class="name">pure orange</div>
       <div class="sub">灯 — sparing warmth on cool surfaces</div>
       <div class="row" style="margin-top:12px">
-        <div><div class="sw" style="background:#FFE4D6"></div><div class="nm">100</div></div>
-        <div><div class="sw" style="background:#FF9456"></div><div class="nm">300</div></div>
-        <div><div class="sw" style="background:#F06A20"></div><div class="nm">500</div></div>
-        <div><div class="sw" style="background:#C05015"></div><div class="nm">700</div></div>
+        <div><div class="sw" style="background:var(--ember-100)"></div><div class="nm">100</div></div>
+        <div><div class="sw" style="background:var(--ember-300)"></div><div class="nm">300</div></div>
+        <div><div class="sw" style="background:var(--ember-500)"></div><div class="nm">500</div></div>
+        <div><div class="sw" style="background:var(--ember-700)"></div><div class="nm">700</div></div>
       </div>
     </div>
-    <div class="pane yoru">
+    <div class="pane yoru" data-theme="yoru">
       <div class="role">yoru · ember</div>
       <div class="lamp"></div>
       <div class="name">bright amber</div>
       <div class="sub">琥珀 — warmth that survives the dark</div>
       <div class="row" style="margin-top:12px">
-        <div><div class="sw" style="background:#2A1408"></div><div class="nm">100</div></div>
-        <div><div class="sw" style="background:#804418"></div><div class="nm">300</div></div>
-        <div><div class="sw" style="background:#F07830"></div><div class="nm">500</div></div>
-        <div><div class="sw" style="background:#FF9456"></div><div class="nm">700</div></div>
+        <div><div class="sw" style="background:var(--ember-100)"></div><div class="nm">100</div></div>
+        <div><div class="sw" style="background:var(--ember-300)"></div><div class="nm">300</div></div>
+        <div><div class="sw" style="background:var(--ember-500)"></div><div class="nm">500</div></div>
+        <div><div class="sw" style="background:var(--ember-700)"></div><div class="nm">700</div></div>
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@
   --font-display:   "Orbitron", "JetBrains Mono", "Noto Sans SC", monospace;
   --font-crt:       "VT323", "JetBrains Mono", "Noto Sans SC", monospace;
   --font-body:      "JetBrains Mono", "Noto Sans SC", ui-monospace, monospace;
-  --font-code:      "JetBrains Mono", "Space Mono", ui-monospace, monospace;
+  --font-code:      "JetBrains Mono", ui-monospace, monospace;
 
   /* Type scale — modular, terminal-friendly */
   --text-3xs:       10px;     /* coordinate labels, HUD micro */
