@@ -6,7 +6,8 @@
    want to ship MS Sans Serif as a webfont, drop `ms-sans-serif.woff2` into
    `assets/fonts/` and add a url() line to the src list. */
 
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=VT323&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+/* Self-hosted (was Google Fonts CDN — files under ../assets/fonts/) */
+@import url("../assets/fonts/fonts-local.css");
 
 @font-face {
   font-family: 'MS Sans Serif';

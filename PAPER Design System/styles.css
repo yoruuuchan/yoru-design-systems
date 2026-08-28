@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;600&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@400;500&display=swap");
+/* Self-hosted fonts (was Google Fonts CDN). Latin faces under assets/fonts/files/;
+   Noto SC slices under assets/fonts/noto-*-sc/ (97 unicode-range subsets each). */
+@import url("assets/fonts/fonts-local.css");
+@import url("assets/fonts/noto-sans-sc/noto-sans-sc.css");
+@import url("assets/fonts/noto-serif-sc/noto-serif-sc.css");
 @import url("./tokens/colors.css");
 @import url("./tokens/typography.css");
 @import url("./tokens/space.css");

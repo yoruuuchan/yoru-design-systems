@@ -183,7 +183,7 @@ Cool, calm, slightly blue. No grain. No warm tones except the ember accent. Avat
 
 ## ICONOGRAPHY
 
-**Lucide** (`https://unpkg.com/lucide@0.452.0`) at **18px** with **1.75 stroke** — the default everywhere except the bottom tab bar (which uses 18px / 1.75 as well, just spaced wider). Lucide gives us a thin, calm, consistent set that matches the porcelain/midnight surface vibe better than Heroicons (too geometric) or Phosphor (too playful).
+**Lucide** (vendored at `assets/vendor/lucide.min.js`, v0.452.0) at **18px** with **1.75 stroke** — the default everywhere except the bottom tab bar (which uses 18px / 1.75 as well, just spaced wider). Lucide gives us a thin, calm, consistent set that matches the porcelain/midnight surface vibe better than Heroicons (too geometric) or Phosphor (too playful).
 
 **This is a substitution.** No codebase icons were attached, so I picked the closest CDN-available set. If you have a real icon font / SVG sprite, drop it under `assets/icons/` and I'll swap it in.
 

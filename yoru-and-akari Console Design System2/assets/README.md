@@ -8,7 +8,7 @@ Built as **pure CSS** in `preview/brand-mark.html` — radial-gradient circles +
 ## Icons
 **Lucide** at version 0.452.0 via CDN:
 ```
-<script src="https://unpkg.com/lucide@0.452.0/dist/umd/lucide.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
 ```
 Default sizing: **18px** with stroke-width **1.75**. See `README.md` → ICONOGRAPHY for the concept-to-icon bindings.
 

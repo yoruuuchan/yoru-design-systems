@@ -1,6 +1,7 @@
 /* Google Fonts — substituted for "ideal" pixel + JP pixel + retro mono.
    Flagged in README: swap with self-hosted webfonts if licensing matters. */
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=DotGothic16&family=Major+Mono+Display&display=swap");
+/* Self-hosted (was Google Fonts CDN — files under ../assets/fonts/) */
+@import url("../assets/fonts/fonts-local.css");
 
 :root {
   /* English pixel display — chunky 8-bit */

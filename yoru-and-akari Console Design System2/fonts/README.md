@@ -1,6 +1,6 @@
 # fonts
 
-This system uses three families, all loaded from Google Fonts (see `colors_and_type.css` `@import`):
+This system uses three families, **self-hosted in this folder** (`fonts-local.css` + `files/`, imported by `colors_and_type.css`; was Google Fonts CDN — the international route here is unreliable):
 
 - **Geist** — UI text, headings, buttons, labels.
 - **Geist Mono** — log lines, model ids, numbers, console output.

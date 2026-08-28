@@ -13,7 +13,8 @@
 /* Geist + Geist Mono come from Google Fonts. Zen Kaku Gothic
    New is used for occasional Japanese moments and accent
    labels. All are licensed for embedding. */
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+/* Self-hosted (was Google Fonts CDN — files under fonts/) */
+@import url("fonts/fonts-local.css");
 
 /* ---------- Family stacks ----------------------------------- */
 :root {

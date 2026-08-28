@@ -7,4 +7,5 @@
      stack. If you ship a custom Chinese face later, drop @font-face here and it
      will reach all consumers automatically. */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@500;700;900&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700;9..144,900&family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+/* Self-hosted (was Google Fonts CDN — files under ../assets/fonts/) */
+@import url("../assets/fonts/fonts-local.css");
