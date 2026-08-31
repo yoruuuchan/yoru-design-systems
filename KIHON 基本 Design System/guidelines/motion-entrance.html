@@ -1,0 +1,41 @@
+<!-- @dsCard group="Motion" viewport="700x300" name="入场阶梯 Entrance ladder" subtitle="Which curve and which geometry each class of element arrives with — replays every 4s" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../ui_kits/shared/kit-motion.css">
+<style>body{margin:0;background:var(--bg);font-family:var(--font-core);color:var(--ink)}
+.row{display:grid;grid-template-columns:88px 1fr 210px;align-items:center;gap:16px;padding:9px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.nm{font:600 14px var(--font-core)}
+.dt{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);text-shadow:var(--engrave)}
+</style></head><body>
+<div style="padding:18px 26px" id="stage">
+<div class="row"><span class="nm">text</span>
+<span class="ke-text"><span style="font-size:22px;font-weight:700">让时长从内容长出来</span></span>
+<span class="dt">fade 8f + rise 24px · text 曲线 · 永不过冲</span></div>
+<div class="row"><span class="nm">panel</span>
+<span class="ke-panel" style="animation-delay:266ms"><span class="k-card" style="display:inline-block;padding:9px 20px;font-size:14px">Surface</span></span>
+<span class="dt">fade 8f + rise + scale .985 · surface 弹簧</span></div>
+<div class="row"><span class="nm">solid</span>
+<span style="display:flex;gap:8px;align-items:center">
+<span class="ke-solid" style="animation-delay:533ms;display:inline-block"><span style="display:inline-flex;padding:6px 13px;border-radius:6px;background:var(--accent);color:var(--accent-ink);font:500 13px var(--font-core)">已选中</span></span>
+<span style="display:flex;gap:5px;align-items:flex-end;height:34px">
+<span class="ke-grow-y" style="animation-delay:600ms;width:16px;height:38%;background:var(--ramp-1);border-radius:3px 3px 0 0;box-shadow:var(--bar-cap-up-1)"></span>
+<span class="ke-grow-y" style="animation-delay:833ms;width:16px;height:66%;background:var(--ramp-2);border-radius:3px 3px 0 0;box-shadow:var(--bar-cap-up-2)"></span>
+<span class="ke-grow-y" style="animation-delay:1066ms;width:16px;height:100%;background:var(--ramp-4);border-radius:3px 3px 0 0;box-shadow:var(--bar-cap-up-4)"></span>
+</span></span>
+<span class="dt">pop 弹簧 · 柱体从基线长出，不是淡入</span></div>
+<div class="row"><span class="nm">rule</span>
+<span class="ke-rule" style="animation-delay:1200ms;display:block;height:1px;background:var(--line)"></span>
+<span class="dt">draw 10f · 线是被画出来的</span></div>
+<div class="row"><span class="nm">numeral</span>
+<span class="k-data-value" id="ct" style="--u:.34">0</span>
+<span class="dt">counter 24f · 数字收敛，不淡入</span></div>
+</div>
+<script>
+const st=document.getElementById('stage'),ct=document.getElementById('ct');
+function run(){
+  st.querySelectorAll('[class*="ke-"]').forEach(e=>{const a=e.style.animation;e.style.animation='none';void e.offsetWidth;e.style.animation=a||'';e.className=e.className;});
+  const t0=performance.now()+1400;
+  (function tick(now){const t=Math.max(0,Math.min(1,(now-t0)/800));ct.textContent=Math.round((1-Math.pow(1-t,3))*11.1*10)/10;if(t<1)requestAnimationFrame(tick);})(performance.now());
+}
+function replay(){st.style.display='none';void st.offsetWidth;st.style.display='';run();}
+run();setInterval(replay,4000);
+</script></body></html>

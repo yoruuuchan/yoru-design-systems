@@ -1,0 +1,54 @@
+<!-- @dsCard group="16:9 Frames" viewport="1180x780" name="Landscape kit 16:9" subtitle="Title · Data · Before/After · Relations — native 1920×1080 layouts with locked motion" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>KIHON 16:9 frames</title><link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../shared/kit-motion.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+body{margin:0;background:var(--bg);font-family:var(--font-core);color:var(--ink)}
+.kit-btn{cursor:pointer;border:none;background:none;padding:0;font:inherit}
+.kit-btn:hover>span{background:var(--grad-control)}
+</style></head><body><div id="root"></div>
+<script type="text/babel" src="../shared/kit-motion.jsx"></script>
+<script type="text/babel" src="TitleFrame.jsx"></script>
+<script type="text/babel" src="DataFrame.jsx"></script>
+<script type="text/babel" src="CompareFrame.jsx"></script>
+<script type="text/babel" src="StepFrame.jsx"></script>
+<script type="text/babel">
+const {Chip,Knurl,Numeral}=window.KIHONDesignSystem_bc9292;
+const FRAMES=()=>[['标题 Title',window.TitleFrame],['数据 Data',window.DataFrame],['前后 Compare',window.CompareFrame],['步骤 Steps',window.StepFrame]];
+function App(){
+  const [i,setI]=React.useState(0);
+  const [theme,setTheme]=React.useState('gin');
+  const [k,setK]=React.useState(0);
+  const Frame=FRAMES()[i][1];
+  return (
+    <div style={{padding:'16px',display:'flex',flexDirection:'column',gap:'14px',maxWidth:'1400px',margin:'0 auto'}}>
+      <div data-screen-label={FRAMES()[i][0]} className="k-plate" style={{padding:'10px'}}>
+        <Frame key={i+'-'+theme+'-'+k} theme={theme}/>
+      </div>
+      <div className="k-plate" style={{display:'flex',alignItems:'center',gap:'12px',padding:'12px 16px','--u':.48}}>
+        {FRAMES().map((f,j)=>(
+          <button key={f[0]} className="kit-btn" onClick={()=>setI(j)}><Chip state={i===j?'selected':'neutral'}>{f[0]}</Chip></button>
+        ))}
+        <div style={{width:'1px',alignSelf:'stretch',background:'var(--line)',margin:'0 6px'}}></div>
+        <button className="kit-btn" onClick={()=>setTheme('gin')}><Chip state={theme==='gin'?'selected':'neutral'}>银</Chip></button>
+        <button className="kit-btn" onClick={()=>setTheme('kuro')}><Chip state={theme==='kuro'?'selected':'neutral'}>玄</Chip></button>
+        <div style={{width:'1px',alignSelf:'stretch',background:'var(--line)',margin:'0 6px'}}></div>
+        <button className="kit-btn" onClick={()=>setK(k+1)}><Chip state="active">⟳ 重播</Chip></button>
+        <div style={{flex:1}}></div>
+        <Numeral tick value="spring 150/14 · fade 8f · phase 18f"/>
+      </div>
+    </div>
+  );
+}
+
+let tries=0;
+function mount(){
+  const ready=window.TitleFrame&&window.DataFrame&&window.CompareFrame&&window.StepFrame;
+  if(!ready&&tries++<60){return setTimeout(mount,50);}
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+}
+mount();
+</script></body></html>

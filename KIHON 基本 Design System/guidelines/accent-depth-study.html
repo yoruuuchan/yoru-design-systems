@@ -1,0 +1,130 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>KIHON 配色与凹凸对比</title><link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;background:var(--bg);font-family:var(--font-core);color:var(--ink);padding:28px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:14px 18px}
+.opt{cursor:pointer;border:1px solid var(--line);background:var(--grad-control);border-radius:6px;padding:8px 14px;font:500 14px/1 var(--font-core);color:var(--ink-muted);display:flex;align-items:center;gap:8px;box-shadow:var(--edge-raised)}
+.opt:hover{background:var(--grad-card)}
+.opt[aria-pressed="true"]{background:var(--a);color:#fff;border-color:var(--a)}
+.dot{width:11px;height:11px;border-radius:2px;border:1px solid rgba(0,0,0,.18)}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;align-items:start}
+.frame{aspect-ratio:16/9;position:relative;overflow:hidden;border-radius:10px}
+.inner{position:absolute;left:6%;right:6%;top:9%;bottom:9%;display:flex;flex-direction:column;gap:18px}
+.lbl{display:flex;align-items:center;gap:11px}
+.lbl span:first-child{width:20px;height:1px;background:var(--ink)}
+.rule{flex:1;height:1px;background:var(--line)}
+h1{margin:0;font-size:40px;font-weight:700;letter-spacing:-.015em;line-height:1.12}
+.sub{margin:0;font-size:19px;font-weight:300;color:var(--ink-muted);line-height:1.3}
+.panels{display:flex;gap:16px;flex:1}
+.pan{flex:1;padding:16px;border-radius:10px;display:flex;flex-direction:column;gap:9px;font-size:14px}
+.mini{font:500 11px/1 var(--font-core);letter-spacing:.14em;text-transform:uppercase}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:6px;font:500 14px/1 var(--font-core);border:1px solid var(--line);color:var(--ink-muted)}
+.chip.on{background:var(--a);color:#fff;border-color:var(--a)}
+.chip.soft{background:var(--as);color:var(--a);border-color:var(--a)}
+.kn{height:6px;background:repeating-linear-gradient(90deg,currentColor 0 1px,transparent 1px 5px)}
+.side{display:flex;flex-direction:column;gap:14px}
+.note{padding:16px 18px;font-size:14px;line-height:1.55;color:var(--ink-muted)}
+.note b{color:var(--ink);font-weight:600}
+.sib{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font:400 12px/1 var(--font-mono);color:var(--ink-faint)}
+.sib i{width:14px;height:14px;border-radius:3px;display:inline-block;font-style:normal}
+/* ---- depth treatments ---- */
+[data-depth="now"] .lv{background:var(--grad-card);border:1px solid var(--line);box-shadow:var(--edge-raised),var(--shadow-card)}
+[data-depth="now"] .lvw{background:var(--grad-well);border:1px solid var(--line);box-shadow:var(--shadow-well)}
+[data-depth="cham"] .lv{background:var(--grad-card);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 2px 0 rgba(255,255,255,.4),inset 0 -1px 0 rgba(22,25,28,.22),inset 0 -2px 0 rgba(22,25,28,.07),0 1px 1px rgba(22,25,28,.10),0 3px 6px rgba(22,25,28,.09),0 14px 34px rgba(22,25,28,.10)}
+[data-depth="cham"] .lvw{background:var(--grad-well);border:1px solid var(--line);box-shadow:inset 0 3px 6px rgba(10,12,14,.22),inset 0 1px 2px rgba(10,12,14,.18),inset 0 -1px 0 rgba(255,255,255,.9),inset 0 -2px 0 rgba(255,255,255,.35)}
+[data-depth="neo"] .lv{background:var(--surface-card);border:none;box-shadow:-7px -7px 16px rgba(255,255,255,.9),8px 8px 18px rgba(22,25,28,.13)}
+[data-depth="neo"] .lvw{background:var(--surface-card);border:none;box-shadow:inset -6px -6px 12px rgba(255,255,255,.85),inset 7px 7px 14px rgba(22,25,28,.13)}
+[data-depth="neo"] .rule,[data-depth="neo"] .kn{opacity:.35}
+</style></head><body><div class="wrap" id="wrap">
+
+<div class="bar lv" style="border-radius:10px">
+<span class="mini" style="color:var(--ink-muted);margin-right:4px">Accent</span>
+<button class="opt" data-a="#2F6D54" data-as="#DBE7E0" data-k="#55A17D" data-n="机器绿 现状"><span class="dot" style="background:#2F6D54"></span>机器绿</button>
+<button class="opt" data-a="#2B4C6F" data-as="#DCE3EB" data-k="#7BA3CC" data-n="烤蓝 gun blue"><span class="dot" style="background:#2B4C6F"></span>烤蓝</button>
+<button class="opt" data-a="#1F6E7B" data-as="#D8E6E8" data-k="#5FA9B5" data-n="青蓝 teal-steel"><span class="dot" style="background:#1F6E7B"></span>青蓝</button>
+<button class="opt" data-a="#46617A" data-as="#DEE3E8" data-k="#8AA5BC" data-n="石墨蓝 graphite"><span class="dot" style="background:#46617A"></span>石墨蓝</button>
+<button class="opt" data-a="#1E6FC4" data-as="#D6E4F5" data-k="#5D9EE8" data-n="电光蓝 ⚠ 撞八套"><span class="dot" style="background:#1E6FC4"></span>电光蓝 ⚠</button>
+<span style="width:1px;align-self:stretch;background:var(--line);margin:0 6px"></span>
+<span class="mini" style="color:var(--ink-muted);margin-right:4px">凹凸</span>
+<button class="opt" data-d="now" data-n2="现状 1px 切削边">现状</button>
+<button class="opt" data-d="cham" data-n2="倒角加深 2 阶">倒角+</button>
+<button class="opt" data-d="neo" data-n2="柔影新拟态 ⚠ 撞 Console">新拟态 ⚠</button>
+<span style="flex:1"></span>
+<button class="opt" id="th">切到 玄</button>
+</div>
+
+<div class="grid">
+<div class="lv frame" style="padding:0;background:var(--bg)">
+<div class="inner">
+<div class="lbl"><span></span><span class="mini" style="color:var(--ink-muted)">Before / After</span><span class="rule"></span><span style="font:400 12px var(--font-mono);color:var(--ink-muted)">03/04</span></div>
+<h1>相位差是语义</h1>
+<div class="panels">
+<div class="pan lvw" style="opacity:.8">
+<span class="mini" style="color:var(--negative)">Before</span>
+<div style="color:var(--ink-muted)">✗ hold 固定 26 帧</div>
+<div style="color:var(--ink-muted)">✗ 时长手填</div>
+</div>
+<div class="pan lv" id="after">
+<span class="mini" style="color:var(--a)">After</span>
+<div>✓ hold 从字数长出来</div>
+<div>✓ 片子自己变长</div>
+<span style="flex:1"></span>
+<span class="chip soft" style="align-self:flex-start">● 已就绪</span>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:14px">
+<div style="flex:1;height:6px;position:relative"><div class="kn" style="position:absolute;inset:0;color:var(--line)"></div><div class="kn" style="position:absolute;left:0;top:0;bottom:0;width:62%;color:var(--a)"></div></div>
+<span style="font:400 12px var(--font-mono);color:var(--ink-muted)">62%</span>
+</div>
+</div>
+</div>
+
+<div class="side">
+<div class="lv" style="padding:16px;border-radius:10px;display:flex;flex-direction:column;gap:11px">
+<span class="mini" style="color:var(--ink-muted)">状态用色</span>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip on">已选中</span><span class="chip soft">进行中</span><span class="chip">中立</span></div>
+<span style="height:1px;background:var(--line)"></span>
+<span class="mini" style="color:var(--ink-muted)">数据明度梯（不受 accent 影响）</span>
+<div style="display:flex;align-items:flex-end;gap:8px;height:54px">
+<div style="flex:1;height:38%;background:var(--ramp-1);border-radius:3px 3px 0 0"></div><div style="flex:1;height:58%;background:var(--ramp-2);border-radius:3px 3px 0 0"></div><div style="flex:1;height:78%;background:var(--ramp-3);border-radius:3px 3px 0 0"></div><div style="flex:1;height:100%;background:var(--ramp-4);border-radius:3px 3px 0 0"></div>
+</div>
+</div>
+<div class="lv note" style="border-radius:10px">
+<div id="nowtxt" style="color:var(--ink);font-weight:600;margin-bottom:8px"></div>
+<div id="advice"></div>
+</div>
+<div class="lv note" style="border-radius:10px">
+<b>八套现有 accent</b><div class="sib" style="margin-top:9px">
+<i style="background:#0A84FF"></i>青空 0A84FF <i style="background:#00b8ff"></i>昆仑 00b8ff <i style="background:#5C7BFF"></i>RIFT 5C7BFF <i style="background:#3186FF"></i>YORU 3186FF <i style="background:#009de0"></i>core 009de0 <i style="background:#4F6CE8"></i>Console 4F6CE8 <i style="background:#ff2bd6"></i>真夜中 <i style="background:#B8543A"></i>PAPER
+</div></div>
+</div>
+</div>
+</div>
+<script>
+const wrap=document.getElementById('wrap');
+const ADV={
+'#2F6D54':'现状。和八套都不撞，概念是机床漆／就绪灯。你说不喜欢，那就换——但换的对象要满足同一个条件：<b>低彩度、深色</b>。',
+'#2B4C6F':'<b>我的推荐。</b>烤蓝是真实的金属表面处理（gun bluing），和「阳极氧化机身」是同一套材料语言，比机器绿更贴题。彩度只有青空的三分之一左右，六套亮蓝里没有这个位置。',
+'#1F6E7B':'青蓝保留了机器绿的一部分基因（还是偏冷的工业色），比烤蓝更有辨识度，但离「蓝」稍远，你可能会觉得还是绿。',
+'#46617A':'石墨蓝最像相机机身本身，最克制。风险：<b>1080p 上它和 ink-muted 太近</b>，选中态一眼看不出来——状态色需要能跳出来。',
+'#1E6FC4':'⚠ 明确不建议。彩度和亮度都落在青空／YORU／core 的区间里，第九套会被当成第七个蓝系统。'};
+const ADV2={now:'现在的做法：1px 顶边高光 + 1px 底边暗边 + 微渐变 + 定向投影。有方向感，但在缩略图尺寸上确实偏薄。',
+cham:'<b>倒角加深：</b>把边缘做成两阶（1px 亮 + 1px 半亮 / 1px 暗 + 1px 半暗），投影分三层。凹凸更明显，<b>边线和对比度全部保留</b>——这是我建议的方向。',
+neo:'⚠ 柔影新拟态：去掉边线，靠对称柔影造体积。两个问题——<b>Console 已经是这个路线</b>；而且它靠糊掉边界工作，1080p 上细线、刻度、数据条会一起变糊。'};
+let A='#2B4C6F',AS='#DCE3EB',AK='#7BA3CC',N='烤蓝 gun blue ✓ 已采纳',D='cham',N2='倒角加深 2 阶 ✓ 已采纳',dark=false;
+function paint(){
+  wrap.style.setProperty('--a',dark?AK:A);
+  wrap.style.setProperty('--as',dark?'rgba(255,255,255,.07)':AS);
+  wrap.dataset.depth=D;
+  document.getElementById('after').style.borderColor=dark?AK:A;
+  document.getElementById('after').style.boxShadow=D==='neo'?'':'inset 0 0 0 1px '+(dark?AK:A)+', var(--edge-raised), var(--shadow-card)';
+  document.getElementById('nowtxt').textContent=N+' · '+N2;
+  document.getElementById('advice').innerHTML=ADV[A]+'<div style="height:10px"></div>'+ADV2[D];
+  document.querySelectorAll('[data-a]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.a===A));
+  document.querySelectorAll('[data-d]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.d===D));
+}
+document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{A=b.dataset.a;AS=b.dataset.as;AK=b.dataset.k;N=b.dataset.n;paint()});
+document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{D=b.dataset.d;N2=b.dataset.n2;paint()});
+document.getElementById('th').onclick=e=>{dark=!dark;document.documentElement.setAttribute('data-k-theme',dark?'kuro':'gin');e.target.textContent=dark?'切到 银':'切到 玄';paint()};
+paint();
+</script></body></html>

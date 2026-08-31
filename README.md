@@ -1,12 +1,13 @@
 # yoru-design-systems
 
-Eight self-contained design systems. Each directory is an installable skill: it carries its own `SKILL.md` (entry point for agents), design guide, CSS tokens, specimen cards, and components. Pick by mood and medium below, then read that system's `SKILL.md` first.
+Nine self-contained design systems. Each directory is an installable skill: it carries its own `SKILL.md` (entry point for agents), design guide, CSS tokens, specimen cards, and components. Pick by mood and medium below, then read that system's `SKILL.md` first.
 
 ## Picking a system
 
 | System | Aesthetic | Theme | Reach for it when |
 |---|---|---|---|
 | [Aozora 青空](<Aozora 青空 Design System/SKILL.md>) | Summer-bright iOS 26 liquid glass, Japanese clear-poster advertising | Light only | Mobile app UI, fresh/airy product surfaces, anything that should feel like a Pocari Sweat ad |
+| [KIHON 基本](<KIHON 基本 Design System/SKILL.md>) | Machined anodized metal, camera-body restraint, knurl motif | 银 gin (light) / 玄 kuro (dark) | Remotion programmatic video — product explainers, data cards, walkthroughs; the general-purpose default when no style is wanted |
 | [KUNLUN 昆仑](<KUNLUN Design System/SKILL.md>) | Industrial sci-fi terminal, HUD ornaments | Dark only | Dashboards, ops/monitoring panels, AI chat consoles, dev tools |
 | [Mayonaka 真夜中](<Mayonaka Design System/SKILL.md>) | Vaporwave / citypop / pixel / glitch | Dark only | Portfolios, music/creative pages, anything retro-futurist |
 | [PAPER](<PAPER Design System/SKILL.md>) | Editorial × analog print, photography-first | Editorial / analog / dark modes | Art books, photo essays, interviews, personal creative sites, slide decks |

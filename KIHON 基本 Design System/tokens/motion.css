@@ -1,0 +1,53 @@
+/* KIHON 基本 — motion constants. LOCKED FROM FRAME-BY-FRAME MEASUREMENT — DO NOT MODIFY.
+   Source: kihon-design-system/docs/00-motion-personality.md + yoru-motion-system/src/core/timing.ts.
+   Frame counts are @30fps; ms values are the same numbers for CSS preview use.
+   Three curves only. No fourth curve, ever:
+     pop      spring{stiffness:150,damping:14,mass:1}  — solids: bars, cards, chips, badges
+     surface  spring{stiffness:190,damping:22,mass:1}  — large panels: modals, windows, screens
+     text     cubic-bezier(0.16,1,0.3,1)               — text & opacity; NEVER overshoots
+   Iron law: text never bounces; only solids bounce.
+   Relations, not delays (phase carries semantics):
+     parallel = 0f (reads as one table)  ·  sequence = 8f (a list)  ·  causal = 18f (A became B) */
+:root{
+  --k-ease-text:cubic-bezier(0.16,1,0.3,1); /* @kind other */
+  /* CSS approximations of the springs, PREVIEW ONLY (~11% / ~2% overshoot). Remotion uses spring(). */
+  --k-ease-pop-css:cubic-bezier(0.3,1.28,0.34,1); /* @kind other */
+  --k-ease-surface-css:cubic-bezier(0.26,1.04,0.34,1); /* @kind other */
+  --k-fade-f:8; /* @kind other */
+  --k-fade:267ms; /* @kind other */
+  --k-rise:24px; /* @kind spacing */
+  --k-stagger-f:8; /* @kind other */
+  --k-stagger:267ms; /* @kind other */
+  --k-phase-f:18; /* @kind other */
+  --k-phase:600ms; /* @kind other */
+  --k-counter-f:24; /* @kind other */
+  --k-counter:800ms; /* @kind other */
+  --k-draw-f:10; /* @kind other */
+  --k-draw:333ms; /* @kind other */
+  --k-hold-min-f:26; /* @kind other */ /* real hold = max(26, 汉字数×7.5) */
+  --k-rowstep-f:7; /* @kind other */
+  --k-rowstep:233ms; /* @kind other */
+  --k-secondbeat-f:4; /* @kind other */
+  --k-secondbeat:133ms; /* @kind other */
+  /* rhythm multipliers: slow ×1.5 / medium ×1 / fast ×0.7 */
+  --k-rhythm-slow:1.5; /* @kind other */
+  --k-rhythm-medium:1; /* @kind other */
+  --k-rhythm-fast:0.7; /* @kind other */
+}
+/* ---------------------------------------------------------------------------
+   ENTRANCE LADDER — the VISUAL layer on top of the locked constants.
+   No new timing is invented here: every role cites a constant above and one of
+   the three curves. What this adds is WHICH curve and WHICH geometry each class
+   of element gets, so a frame arrives in legible layers instead of one flat move.
+     text     fade 8f + rise 24px, text curve      · never overshoots
+     panel    fade 8f + rise 24px + scale, surface · large mass, ~2% overshoot
+     solid    pop spring from its own origin       · bars grow from the baseline
+     numeral  counter 24f digit ramp               · settles, does not fade in
+     rule     draw 10f, scaleX from the left       · a line is drawn, not faded
+   --------------------------------------------------------------------------- */
+:root{
+  --k-panel-scale:0.985; /* @kind other */
+  --k-solid-scale:0.92; /* @kind other */
+  --k-pop-ms:700ms; /* @kind other */
+  --k-surface-ms:600ms; /* @kind other */
+}

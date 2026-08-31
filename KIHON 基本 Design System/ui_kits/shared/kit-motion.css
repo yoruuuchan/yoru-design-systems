@@ -1,0 +1,14 @@
+/* KIHON kit motion — preview-only CSS for the entrance ladder.
+   Curves and durations come from tokens/motion.css; nothing is invented here. */
+@keyframes keText{from{opacity:0;transform:translateY(var(--k-rise))}to{opacity:1;transform:none}}
+@keyframes kePanel{from{opacity:0;transform:translateY(var(--k-rise)) scale(var(--k-panel-scale))}to{opacity:1;transform:none}}
+@keyframes keSolid{from{opacity:0;transform:scale(var(--k-solid-scale))}to{opacity:1;transform:none}}
+@keyframes keRule{from{transform:scaleX(0)}to{transform:none}}
+@keyframes keGrowY{from{transform:scaleY(0)}to{transform:none}}
+@keyframes keGrowX{from{transform:scaleX(0)}to{transform:none}}
+.ke-text{animation:keText var(--k-fade) var(--k-ease-text) both}
+.ke-panel{animation:kePanel var(--k-surface-ms) var(--k-ease-surface-css) both}
+.ke-solid{animation:keSolid var(--k-pop-ms) var(--k-ease-pop-css) both}
+.ke-rule{animation:keRule var(--k-draw) var(--k-ease-text) both;transform-origin:left}
+.ke-grow-y{animation:keGrowY var(--k-pop-ms) var(--k-ease-pop-css) both;transform-origin:bottom}
+.ke-grow-x{animation:keGrowX var(--k-pop-ms) var(--k-ease-pop-css) both;transform-origin:left}

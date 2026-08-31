@@ -1,0 +1,58 @@
+/* KIHON 基本 — typography.
+   Chinese is the first language. Core face: Source Han Sans SC (思源黑体), weights 300/400/500/700.
+   Latin partner: Instrument Sans (Latin runs, labels). Numerals & ticks: B612 Mono — the cockpit
+   face; instrument numerals, inherently tabular. NEVER monospace for Chinese body copy.
+   Sizes are design-px on a 1920-wide (16:9) / 1080-wide (9:16) frame — the format-relative unit
+   makes the same number ~4.6% of frame width landscape, ~8.1% portrait. Sizes/leading are locked
+   from the motion system; family, weight and tracking are the KIHON visual layer. */
+:root{
+  --font-core:'Instrument Sans','Source Han Sans SC','Noto Sans SC',sans-serif;
+  --font-mono:'B612 Mono','Source Han Sans SC',ui-monospace,monospace;
+  --type-display:128px;
+  --lead-display:1.02; /* @kind other */
+  --track-display:-0.02em; /* @kind other */
+  --weight-display:700; /* @kind font */
+  --type-title:88px;
+  --lead-title:1.12; /* @kind other */
+  --track-title:-0.015em; /* @kind other */
+  --weight-title:700; /* @kind font */
+  --type-subtitle:54px;
+  --lead-subtitle:1.3; /* @kind other */
+  --track-subtitle:0em; /* @kind other */
+  --weight-subtitle:300; /* @kind font */ /* Light — the contrast axis against Bold titles */
+  --type-body:44px;
+  --lead-body:1.45; /* @kind other */
+  --track-body:0em; /* @kind other */
+  --weight-body:400; /* @kind font */
+  --type-label:30px;
+  --lead-label:1.2; /* @kind other */
+  --track-label:0.14em; /* @kind other */
+  --weight-label:500; /* @kind font */
+  --type-caption:34px;
+  --lead-caption:1.35; /* @kind other */
+  --track-caption:0em; /* @kind other */
+  --weight-caption:400; /* @kind font */
+  --type-data-value:132px;
+  --lead-data-value:1.0; /* @kind other */
+  --track-data-value:-0.01em; /* @kind other */
+  --weight-data-value:400; /* @kind font */ /* B612 Mono regular — thin big numerals read precise */
+  --type-data-label:34px;
+  --lead-data-label:1.2; /* @kind other */
+  --track-data-label:0em; /* @kind other */
+  --weight-data-label:500; /* @kind font */
+  --type-data-tick:32px;
+  --lead-data-tick:1.2; /* @kind other */
+  --track-data-tick:0.02em; /* @kind other */
+  --weight-data-tick:400; /* @kind font */
+  --u:1; /* @kind other */ /* canvas unit: renderedFrameWidth / (1920 | 1080) */
+}
+/* Role classes. --u scales design-px to the rendering context (1 = full 1080p frame). */
+.k-display{font-family:var(--font-core);font-size:calc(var(--type-display)*var(--u));line-height:var(--lead-display);letter-spacing:var(--track-display);font-weight:var(--weight-display);margin:0;color:var(--ink);text-wrap:balance}
+.k-title{font-family:var(--font-core);font-size:calc(var(--type-title)*var(--u));line-height:var(--lead-title);letter-spacing:var(--track-title);font-weight:var(--weight-title);margin:0;color:var(--ink);text-wrap:balance}
+.k-subtitle{font-family:var(--font-core);font-size:calc(var(--type-subtitle)*var(--u));line-height:var(--lead-subtitle);letter-spacing:var(--track-subtitle);font-weight:var(--weight-subtitle);margin:0;color:var(--ink)}
+.k-body{font-family:var(--font-core);font-size:calc(var(--type-body)*var(--u));line-height:var(--lead-body);letter-spacing:var(--track-body);font-weight:var(--weight-body);margin:0;color:var(--ink)}
+.k-label{font-family:var(--font-core);font-size:calc(var(--type-label)*var(--u));line-height:var(--lead-label);letter-spacing:var(--track-label);font-weight:var(--weight-label);text-transform:uppercase;margin:0;color:var(--ink-muted);text-shadow:var(--engrave)}
+.k-caption{font-family:var(--font-core);font-size:calc(var(--type-caption)*var(--u));line-height:var(--lead-caption);letter-spacing:var(--track-caption);font-weight:var(--weight-caption);margin:0;color:var(--ink-muted)}
+.k-data-value{font-family:var(--font-mono);font-size:calc(var(--type-data-value)*var(--u));line-height:var(--lead-data-value);letter-spacing:var(--track-data-value);font-weight:var(--weight-data-value);margin:0;color:var(--ink);font-variant-numeric:tabular-nums}
+.k-data-label{font-family:var(--font-core);font-size:calc(var(--type-data-label)*var(--u));line-height:var(--lead-data-label);letter-spacing:var(--track-data-label);font-weight:var(--weight-data-label);margin:0;color:var(--ink)}
+.k-data-tick{font-family:var(--font-mono);font-size:calc(var(--type-data-tick)*var(--u));line-height:var(--lead-data-tick);letter-spacing:var(--track-data-tick);font-weight:var(--weight-data-tick);margin:0;color:var(--ink-muted);font-variant-numeric:tabular-nums;text-shadow:var(--engrave);white-space:nowrap}

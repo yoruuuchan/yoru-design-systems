@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Frame — Stage · Surface · Rule · Knurl · Placeholder" subtitle="The material layer: stages, machined surfaces, keylines" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--bg);font-family:var(--font-core)}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const {Stage,Surface,Rule,Knurl,Placeholder,Label,Text,Chip}=window.KIHONDesignSystem_bc9292;
+const App=()=>(
+  <div style={{padding:'18px 22px',display:'flex',gap:18}}>
+    <div style={{width:390,display:'flex',flexDirection:'column',gap:12}}>
+      <Stage format="landscape" theme="gin" safe>
+        <Label index="01/04">Walkthrough</Label>
+        <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',gap:'calc(18px * var(--u))'}}>
+          <Text role="title">项目走查</Text>
+          <Text role="subtitle" color="muted">银 · landscape · safe 6% / 9%</Text>
+        </div>
+        <Knurl progress={0.4}/>
+      </Stage>
+      <div style={{'--u':.42,display:'flex',gap:12,alignItems:'stretch'}}>
+        <Surface level="card" style={{flex:1}}><Text role="caption" color="muted">card</Text></Surface>
+        <Surface level="card" emphasized style={{flex:1}}><Text role="caption" color="accent">emphasized</Text></Surface>
+        <Surface level="well" style={{flex:1}}><Text role="caption" color="muted">well</Text></Surface>
+      </div>
+    </div>
+    <div style={{width:126}}>
+      <Stage format="portrait" theme="kuro">
+        <Label>Kuro</Label>
+        <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',gap:'calc(20px * var(--u))'}}>
+          <Text role="display">玄</Text>
+          <Text role="caption" color="muted">9:16 原生</Text>
+        </div>
+        <Knurl/>
+      </Stage>
+    </div>
+    <div style={{flex:1,display:'flex',flexDirection:'column',gap:14,'--u':.42}}>
+      <Placeholder label="素材位 16:9"/>
+      <div style={{display:'flex',alignItems:'center',gap:10}}><Rule ticks/><span className="k-data-tick">rule · ticks</span></div>
+      <Knurl/>
+      <Knurl progress={0.62}/>
+      <div style={{display:'flex',gap:8}}><Chip state="selected">选中</Chip><Chip>中立</Chip></div>
+    </div>
+  </div>
+);
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

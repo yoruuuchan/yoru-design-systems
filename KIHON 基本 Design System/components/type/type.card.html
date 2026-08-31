@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Type — Text · Label · Numeral · Chip" subtitle="Role text, section labels, cockpit numerals, state chips" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--bg);font-family:var(--font-core)}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const {Text,Label,Numeral,Chip,Rule}=window.KIHONDesignSystem_bc9292;
+const App=()=>(
+  <div style={{padding:'22px 26px','--u':.36,display:'flex',flexDirection:'column',gap:16}}>
+    <Label index="02/05" rule>Data</Label>
+    <div style={{display:'flex',gap:28,alignItems:'flex-end'}}>
+      <div style={{flex:1,display:'flex',flexDirection:'column',gap:'calc(12px * var(--u))'}}>
+        <Text role="title">相位差是语义</Text>
+        <Text role="subtitle" color="muted">不是装饰——错开 18 帧，它读起来是因果</Text>
+        <Text role="body">任何两个块之间必须声明关系，关系决定相位值。</Text>
+      </div>
+      <div style={{textAlign:'right'}}>
+        <Numeral value="11.1" unit="%"/>
+        <div><Numeral tick value="f24 → f42"/></div>
+      </div>
+    </div>
+    <div style={{display:'flex',alignItems:'center',gap:10}}><Rule/></div>
+    <div style={{display:'flex',gap:10,alignItems:'center',flexWrap:'wrap','--u':.5}}>
+      <Chip>中立</Chip><Chip state="selected">已选中</Chip><Chip state="active">进行中</Chip><Chip state="before">旧流程</Chip><Chip state="after">新流程</Chip>
+    </div>
+  </div>
+);
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

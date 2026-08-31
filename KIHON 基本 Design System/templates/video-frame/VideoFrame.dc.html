@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="KIHON video frame" description="A dual-native KIHON frame — 16:9 and 9:16 side by side, machined metal, locked motion timing." -->
+<helmet><script src="./ds-base.js"></script><style>@keyframes kIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}body{margin:0}</style></helmet>
+<div style="min-height:100vh;background:#E7E9EB;font-family:'Instrument Sans','Source Han Sans SC',sans-serif;color:#16191C;padding:48px;box-sizing:border-box;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;align-items:center;gap:14px"><span style="width:22px;height:1px;background:#16191C"></span><span style="font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#5A636B">Kihon 基本 · Frame</span><span style="flex:1;height:1px;background:#C8CDD1"></span><span style="font-family:'B612 Mono',monospace;font-size:13px;color:#5A636B">30fps</span></div>
+<div style="display:flex;gap:28px;align-items:flex-start">
+<div style="flex:1;position:relative;aspect-ratio:16 / 9;background:#E7E9EB;border:1px solid #C8CDD1;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 2px 0 rgba(255,255,255,.42),inset 0 -1px 0 rgba(22,25,28,.22),inset 0 -2px 0 rgba(22,25,28,.07),0 1px 1px rgba(22,25,28,.10),0 3px 6px rgba(22,25,28,.09),0 14px 34px rgba(22,25,28,.10);overflow:hidden">
+<div style="position:absolute;left:6%;right:6%;top:9%;bottom:9%;display:flex;flex-direction:column">
+<div style="flex:1;display:flex;align-items:center;gap:34px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<h1 style="margin:0;font-size:52px;font-weight:700;letter-spacing:-.015em;line-height:1.12;animation:kIn 267ms cubic-bezier(.16,1,.3,1) both;animation-delay:133ms">在这里写标题</h1>
+<p style="margin:0;font-size:24px;font-weight:300;line-height:1.3;color:#5A636B;animation:kIn 267ms cubic-bezier(.16,1,.3,1) both;animation-delay:400ms">副标题用 Light 300，和 Bold 标题形成字重对比。</p>
+</div>
+<div style="flex:0 0 190px;background:linear-gradient(180deg,#F0F2F3,#EDEFF1);border:1px solid #C8CDD1;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 2px 0 rgba(255,255,255,.42),inset 0 -1px 0 rgba(22,25,28,.22),0 1px 1px rgba(22,25,28,.08),0 2px 4px rgba(22,25,28,.06),0 8px 20px rgba(22,25,28,.06);padding:16px;display:flex;flex-direction:column;gap:9px;animation:kIn 267ms cubic-bezier(.16,1,.3,1) both;animation-delay:533ms">
+<span style="font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#5A636B">Spec</span><span style="height:1px;background:#C8CDD1"></span>
+<div style="display:flex;justify-content:space-between;font-family:'B612 Mono',monospace;font-size:12px;color:#5A636B"><span>fade</span><span style="color:#2B4C6F">8f</span></div>
+<div style="display:flex;justify-content:space-between;font-family:'B612 Mono',monospace;font-size:12px;color:#5A636B"><span>phase</span><span style="color:#2B4C6F">18f</span></div>
+<div style="display:flex;justify-content:space-between;font-family:'B612 Mono',monospace;font-size:12px;color:#5A636B"><span>hold</span><span style="color:#2B4C6F">26f +</span></div>
+</div>
+</div>
+</div>
+</div>
+<div style="flex:0 0 232px;position:relative;aspect-ratio:9 / 16;background:#111417;border:1px solid #2C3339;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.35);overflow:hidden">
+<div style="position:absolute;left:7.5%;right:7.5%;top:6%;bottom:6%;display:flex;flex-direction:column">
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px">
+<h2 style="margin:0;font-size:38px;font-weight:700;letter-spacing:-.015em;line-height:1.1;color:#E8EBED;animation:kIn 267ms cubic-bezier(.16,1,.3,1) both;animation-delay:133ms">竖屏是<br>另一套<br>原生版式</h2>
+<p style="margin:0;font-size:17px;font-weight:300;line-height:1.35;color:#9AA4AB;animation:kIn 267ms cubic-bezier(.16,1,.3,1) both;animation-delay:400ms">不是横屏内容重排，<br>是重新排的版。</p>
+</div>
+</div>
+</div>
+</div>
+<p style="margin:0;font-family:'B612 Mono',monospace;font-size:12px;color:#8D969D">三条曲线：pop 150/14 实体 · surface 190/22 面板 · text cubic-bezier(.16,1,.3,1) 文字永不回弹</p>
+</div>
+</x-dc>
+</body>
+</html>

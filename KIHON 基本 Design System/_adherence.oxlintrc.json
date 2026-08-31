@@ -1,0 +1,478 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/data/**",
+              "components/frame/**",
+              "components/type/**",
+              "ui_kits/landscape/**",
+              "ui_kits/portrait/**",
+              "ui_kits/shared/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Source Han Sans SC|Instrument Sans|B612 Mono))/i]",
+        "message": "Font not provided by the design system. Available: Source Han Sans SC, Instrument Sans, B612 Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Arc'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|step|size|thickness|label|style|key|ref|className|style|children)$/]",
+        "message": "<Arc> doesn't accept that prop. Declared props: value, step, size, thickness, label, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Bar'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|step|direction|thickness|cap|style|key|ref|className|style|children)$/]",
+        "message": "<Bar> doesn't accept that prop. Declared props: value, step, direction, thickness, cap, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Bar'] > JSXAttribute[name.name='direction'] > Literal[value!=/^(?:up|right)$/]",
+        "message": "<Bar> direction must be one of 'up' | 'right'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute > JSXIdentifier[name!=/^(?:state|children|style|key|ref|className|style|children)$/]",
+        "message": "<Chip> doesn't accept that prop. Declared props: state, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:neutral|selected|active|before|after)$/]",
+        "message": "<Chip> state must be one of 'neutral' | 'selected' | 'active' | 'before' | 'after'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Knurl'] > JSXAttribute > JSXIdentifier[name!=/^(?:progress|tone|style|key|ref|className|style|children)$/]",
+        "message": "<Knurl> doesn't accept that prop. Declared props: progress, tone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Knurl'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:line|strong)$/]",
+        "message": "<Knurl> tone must be one of 'line' | 'strong'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Label'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|index|rule|style|key|ref|className|style|children)$/]",
+        "message": "<Label> doesn't accept that prop. Declared props: children, index, rule, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Numeral'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|unit|tick|color|style|key|ref|className|style|children)$/]",
+        "message": "<Numeral> doesn't accept that prop. Declared props: value, unit, tick, color, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Placeholder'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|ratio|style|key|ref|className|style|children)$/]",
+        "message": "<Placeholder> doesn't accept that prop. Declared props: label, ratio, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Ramp'] > JSXAttribute > JSXIdentifier[name!=/^(?:labels|style|key|ref|className|style|children)$/]",
+        "message": "<Ramp> doesn't accept that prop. Declared props: labels, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Rule'] > JSXAttribute > JSXIdentifier[name!=/^(?:vertical|tone|ticks|style|key|ref|className|style|children)$/]",
+        "message": "<Rule> doesn't accept that prop. Declared props: vertical, tone, ticks, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Rule'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:line|strong|accent)$/]",
+        "message": "<Rule> tone must be one of 'line' | 'strong' | 'accent'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Stage'] > JSXAttribute > JSXIdentifier[name!=/^(?:format|theme|grain|safe|falloff|children|style|key|ref|className|style|children)$/]",
+        "message": "<Stage> doesn't accept that prop. Declared props: format, theme, grain, safe, falloff, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Stage'] > JSXAttribute[name.name='format'] > Literal[value!=/^(?:landscape|portrait)$/]",
+        "message": "<Stage> format must be one of 'landscape' | 'portrait'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Stage'] > JSXAttribute[name.name='theme'] > Literal[value!=/^(?:gin|kuro)$/]",
+        "message": "<Stage> theme must be one of 'gin' | 'kuro'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Surface'] > JSXAttribute > JSXIdentifier[name!=/^(?:level|emphasized|tone|pad|style|children|key|ref|className|style|children)$/]",
+        "message": "<Surface> doesn't accept that prop. Declared props: level, emphasized, tone, pad, style, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Surface'] > JSXAttribute[name.name='level'] > Literal[value!=/^(?:plate|card|control|well)$/]",
+        "message": "<Surface> level must be one of 'plate' | 'card' | 'control' | 'well'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Surface'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:neutral|accent)$/]",
+        "message": "<Surface> tone must be one of 'neutral' | 'accent'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Text'] > JSXAttribute > JSXIdentifier[name!=/^(?:role|color|children|style|key|ref|className|style|children)$/]",
+        "message": "<Text> doesn't accept that prop. Declared props: role, color, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Text'] > JSXAttribute[name.name='role'] > Literal[value!=/^(?:display|title|subtitle|body|caption)$/]",
+        "message": "<Text> role must be one of 'display' | 'title' | 'subtitle' | 'body' | 'caption'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Arc": {
+        "replaces": []
+      },
+      "Bar": {
+        "replaces": []
+      },
+      "Chip": {
+        "replaces": []
+      },
+      "Knurl": {
+        "replaces": []
+      },
+      "Label": {
+        "replaces": []
+      },
+      "Numeral": {
+        "replaces": []
+      },
+      "Placeholder": {
+        "replaces": []
+      },
+      "Ramp": {
+        "replaces": []
+      },
+      "Rule": {
+        "replaces": []
+      },
+      "Stage": {
+        "replaces": []
+      },
+      "Surface": {
+        "replaces": []
+      },
+      "Text": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-ink",
+      "--accent-soft",
+      "--bar-cap-right-1",
+      "--bar-cap-right-2",
+      "--bar-cap-right-3",
+      "--bar-cap-right-4",
+      "--bar-cap-up-1",
+      "--bar-cap-up-2",
+      "--bar-cap-up-3",
+      "--bar-cap-up-4",
+      "--bg",
+      "--content-max",
+      "--edge-dark",
+      "--edge-dark-2",
+      "--edge-light",
+      "--edge-light-2",
+      "--edge-pressed",
+      "--edge-raised",
+      "--engrave",
+      "--engrave-deep",
+      "--falloff",
+      "--font-core",
+      "--font-mono",
+      "--frame-h-landscape",
+      "--frame-h-portrait",
+      "--frame-w-landscape",
+      "--frame-w-portrait",
+      "--grad-card",
+      "--grad-control",
+      "--grad-plate",
+      "--grad-well",
+      "--grain-invert",
+      "--grain-opacity",
+      "--grain-url",
+      "--ink",
+      "--ink-faint",
+      "--ink-muted",
+      "--k-counter",
+      "--k-counter-f",
+      "--k-draw",
+      "--k-draw-f",
+      "--k-ease-pop-css",
+      "--k-ease-surface-css",
+      "--k-ease-text",
+      "--k-fade",
+      "--k-fade-f",
+      "--k-hold-min-f",
+      "--k-panel-scale",
+      "--k-phase",
+      "--k-phase-f",
+      "--k-pop-ms",
+      "--k-rhythm-fast",
+      "--k-rhythm-medium",
+      "--k-rhythm-slow",
+      "--k-rise",
+      "--k-rowstep",
+      "--k-rowstep-f",
+      "--k-secondbeat",
+      "--k-secondbeat-f",
+      "--k-solid-scale",
+      "--k-stagger",
+      "--k-stagger-f",
+      "--k-surface-ms",
+      "--knurl",
+      "--knurl-h",
+      "--lead-body",
+      "--lead-caption",
+      "--lead-data-label",
+      "--lead-data-tick",
+      "--lead-data-value",
+      "--lead-display",
+      "--lead-label",
+      "--lead-subtitle",
+      "--lead-title",
+      "--line",
+      "--line-strong",
+      "--negative",
+      "--panel-gap",
+      "--panel-pad",
+      "--positive",
+      "--radius-card",
+      "--radius-chip",
+      "--radius-control",
+      "--radius-pill",
+      "--ramp-1",
+      "--ramp-2",
+      "--ramp-3",
+      "--ramp-4",
+      "--row-gap",
+      "--safe-x-landscape",
+      "--safe-x-portrait",
+      "--safe-y-landscape",
+      "--safe-y-portrait",
+      "--shadow-card",
+      "--shadow-control",
+      "--shadow-plate",
+      "--shadow-well",
+      "--sp-1",
+      "--sp-10",
+      "--sp-2",
+      "--sp-3",
+      "--sp-4",
+      "--sp-5",
+      "--sp-6",
+      "--sp-7",
+      "--sp-8",
+      "--sp-9",
+      "--surface-card",
+      "--surface-control",
+      "--surface-page",
+      "--surface-plate",
+      "--surface-well",
+      "--text-body",
+      "--text-secondary",
+      "--text-tertiary",
+      "--track-body",
+      "--track-caption",
+      "--track-data-label",
+      "--track-data-tick",
+      "--track-data-value",
+      "--track-display",
+      "--track-label",
+      "--track-subtitle",
+      "--track-title",
+      "--type-body",
+      "--type-caption",
+      "--type-data-label",
+      "--type-data-tick",
+      "--type-data-value",
+      "--type-display",
+      "--type-label",
+      "--type-subtitle",
+      "--type-title",
+      "--u",
+      "--weight-body",
+      "--weight-caption",
+      "--weight-data-label",
+      "--weight-data-tick",
+      "--weight-data-value",
+      "--weight-display",
+      "--weight-label",
+      "--weight-subtitle",
+      "--weight-title"
+    ],
+    "tokenKinds": {
+      "--bg": "color",
+      "--surface-well": "color",
+      "--surface-plate": "color",
+      "--surface-card": "color",
+      "--surface-control": "color",
+      "--ink": "color",
+      "--ink-muted": "color",
+      "--ink-faint": "color",
+      "--line": "color",
+      "--line-strong": "color",
+      "--edge-light": "color",
+      "--edge-light-2": "color",
+      "--edge-dark": "color",
+      "--edge-dark-2": "color",
+      "--accent": "color",
+      "--accent-ink": "color",
+      "--accent-soft": "color",
+      "--positive": "color",
+      "--negative": "color",
+      "--ramp-1": "color",
+      "--ramp-2": "color",
+      "--ramp-3": "color",
+      "--ramp-4": "color",
+      "--grain-invert": "other",
+      "--grain-opacity": "other",
+      "--grad-plate": "color",
+      "--grad-card": "color",
+      "--grad-control": "color",
+      "--grad-well": "color",
+      "--text-body": "font",
+      "--text-secondary": "font",
+      "--text-tertiary": "font",
+      "--surface-page": "color",
+      "--font-core": "font",
+      "--font-mono": "font",
+      "--type-display": "font",
+      "--lead-display": "other",
+      "--track-display": "other",
+      "--weight-display": "font",
+      "--type-title": "font",
+      "--lead-title": "other",
+      "--track-title": "other",
+      "--weight-title": "font",
+      "--type-subtitle": "font",
+      "--lead-subtitle": "other",
+      "--track-subtitle": "other",
+      "--weight-subtitle": "font",
+      "--type-body": "font",
+      "--lead-body": "other",
+      "--track-body": "other",
+      "--weight-body": "font",
+      "--type-label": "font",
+      "--lead-label": "other",
+      "--track-label": "other",
+      "--weight-label": "font",
+      "--type-caption": "font",
+      "--lead-caption": "other",
+      "--track-caption": "other",
+      "--weight-caption": "font",
+      "--type-data-value": "font",
+      "--lead-data-value": "other",
+      "--track-data-value": "other",
+      "--weight-data-value": "font",
+      "--type-data-label": "font",
+      "--lead-data-label": "other",
+      "--track-data-label": "other",
+      "--weight-data-label": "font",
+      "--type-data-tick": "font",
+      "--lead-data-tick": "other",
+      "--track-data-tick": "other",
+      "--weight-data-tick": "font",
+      "--u": "other",
+      "--radius-card": "radius",
+      "--radius-chip": "radius",
+      "--radius-control": "radius",
+      "--radius-pill": "radius",
+      "--shadow-plate": "shadow",
+      "--shadow-card": "shadow",
+      "--shadow-control": "shadow",
+      "--edge-raised": "color",
+      "--edge-pressed": "color",
+      "--shadow-well": "shadow",
+      "--engrave": "shadow",
+      "--engrave-deep": "shadow",
+      "--falloff": "color",
+      "--bar-cap-up-1": "shadow",
+      "--bar-cap-up-2": "shadow",
+      "--bar-cap-up-3": "shadow",
+      "--bar-cap-up-4": "shadow",
+      "--bar-cap-right-1": "shadow",
+      "--bar-cap-right-2": "shadow",
+      "--bar-cap-right-3": "shadow",
+      "--bar-cap-right-4": "shadow",
+      "--knurl": "other",
+      "--knurl-h": "spacing",
+      "--grain-url": "other",
+      "--sp-1": "spacing",
+      "--sp-2": "spacing",
+      "--sp-3": "spacing",
+      "--sp-4": "spacing",
+      "--sp-5": "spacing",
+      "--sp-6": "spacing",
+      "--sp-7": "spacing",
+      "--sp-8": "spacing",
+      "--sp-9": "spacing",
+      "--sp-10": "spacing",
+      "--panel-pad": "spacing",
+      "--panel-gap": "spacing",
+      "--row-gap": "spacing",
+      "--content-max": "spacing",
+      "--frame-w-landscape": "other",
+      "--frame-h-landscape": "other",
+      "--frame-w-portrait": "other",
+      "--frame-h-portrait": "other",
+      "--safe-x-landscape": "spacing",
+      "--safe-y-landscape": "spacing",
+      "--safe-x-portrait": "spacing",
+      "--safe-y-portrait": "spacing",
+      "--k-ease-text": "other",
+      "--k-ease-pop-css": "other",
+      "--k-ease-surface-css": "other",
+      "--k-fade-f": "other",
+      "--k-fade": "other",
+      "--k-rise": "spacing",
+      "--k-stagger-f": "other",
+      "--k-stagger": "other",
+      "--k-phase-f": "other",
+      "--k-phase": "other",
+      "--k-counter-f": "other",
+      "--k-counter": "other",
+      "--k-draw-f": "other",
+      "--k-draw": "other",
+      "--k-hold-min-f": "other",
+      "--k-rowstep-f": "other",
+      "--k-rowstep": "other",
+      "--k-secondbeat-f": "other",
+      "--k-secondbeat": "other",
+      "--k-rhythm-slow": "other",
+      "--k-rhythm-medium": "other",
+      "--k-rhythm-fast": "other",
+      "--k-panel-scale": "other",
+      "--k-solid-scale": "other",
+      "--k-pop-ms": "other",
+      "--k-surface-ms": "other"
+    },
+    "fontFamilies": [
+      "B612 Mono",
+      "Instrument Sans",
+      "Source Han Sans SC"
+    ]
+  }
+}

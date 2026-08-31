@@ -1,0 +1,7 @@
+/* KIHON 基本 — fonts. Chinese first: Source Han Sans SC self-hosted (4 weights).
+   Latin partners load from Google Fonts (no binaries in source repos — flagged in readme). */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=B612+Mono:wght@400;700&display=swap');
+@font-face{font-family:'Source Han Sans SC';src:url('../assets/fonts/SourceHanSansSC-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Han Sans SC';src:url('../assets/fonts/SourceHanSansSC-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Han Sans SC';src:url('../assets/fonts/SourceHanSansSC-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Han Sans SC';src:url('../assets/fonts/SourceHanSansSC-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}

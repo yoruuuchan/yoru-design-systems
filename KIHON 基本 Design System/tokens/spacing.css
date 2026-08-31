@@ -1,0 +1,21 @@
+/* KIHON 基本 — spacing & format.
+   Spacing is design-px (multiply by the canvas unit u in Remotion).
+   Safe areas are video-first, measured from core/canvas.ts — key content never crosses them.
+   9:16 and 16:9 are two NATIVE layouts; never reflow one into the other. */
+:root{
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+  --panel-pad:34px;      /* measured: Surface padding in the source templates */
+  --panel-gap:40px;      /* measured: landscape panel gap */
+  --row-gap:14px;        /* measured: list row gap */
+  --content-max:1440px;  /* measured: Column maxWidth */
+  /* base frame sizes — the canvas unit u = frameWidth / base width */
+  --frame-w-landscape:1920; /* @kind other */
+  --frame-h-landscape:1080; /* @kind other */
+  --frame-w-portrait:1080; /* @kind other */
+  --frame-h-portrait:1920; /* @kind other */
+  /* safe areas (fraction of frame) */
+  --safe-x-landscape:6%; /* @kind spacing */
+  --safe-y-landscape:9%; /* @kind spacing */
+  --safe-x-portrait:7.5%; /* @kind spacing */
+  --safe-y-portrait:6%; /* @kind spacing */
+}

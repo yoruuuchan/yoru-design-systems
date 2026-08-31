@@ -1,0 +1,78 @@
+/* KIHON 基本 — color tokens.
+   Two native palettes, both metal: 银 gin (silver anodized, DEFAULT) and 玄 kuro (black anodized).
+   Rules: data marks use the lightness ramp, never hue. Accent (烤蓝 gun blue) marks STATE
+   only — selected, active, AFTER — never a data series. positive intentionally aliases accent.
+   Gun bluing is a real metal finish — same material language as the anodized body, and it sits
+   clear of the six bright blues already used by the sibling systems (0A84FF / 00b8ff / 5C7BFF /
+   3186FF / 009de0 / 4F6CE8): far lower chroma, far darker value. */
+:root{
+  /* 银 — silver anodized (light) */
+  --bg:#E7E9EB;
+  --surface-well:#DDE0E3;
+  --surface-plate:#EDEFF1;
+  --surface-card:#F4F5F6;
+  --surface-control:#FAFBFB; /* highest level — never #FFFFFF */
+  --ink:#16191C;
+  --ink-muted:#5A636B;
+  --ink-faint:#8D969D;
+  --line:#C8CDD1;
+  --line-strong:#16191C;
+  /* two-step chamfer, light from above: bright catch then half-tone, shade then half-shade */
+  --edge-light:rgba(255,255,255,.95);
+  --edge-light-2:rgba(255,255,255,.42);
+  --edge-dark:rgba(22,25,28,.22);
+  --edge-dark-2:rgba(22,25,28,.07);
+  --accent:#2B4C6F;      /* 烤蓝 gun blue */
+  --accent-ink:#EDF1F5;
+  --accent-soft:#DCE3EB;
+  --positive:#2B4C6F;    /* = accent, intentional: the lit instrument lamp is go/ready/AFTER */
+  --negative:#A6402F;    /* oxide red */
+  --ramp-1:#C3CACE;--ramp-2:#8E979E;--ramp-3:#4E585F;--ramp-4:#16191C;
+  --grain-invert:none; /* @kind other */
+  --grain-opacity:.05; /* @kind other */
+  /* micro-gradients — brushed metal, ~1.5% luminance travel, light source at top */
+  --grad-plate:linear-gradient(180deg,#F0F2F3 0%,#EDEFF1 100%); /* @kind color */
+  --grad-card:linear-gradient(180deg,#F6F7F8 0%,#F3F4F5 100%); /* @kind color */
+  --grad-control:linear-gradient(180deg,#FCFDFD 0%,#F8F9FA 100%); /* @kind color */
+  --grad-well:linear-gradient(180deg,#DADDE0 0%,#DFE2E5 100%); /* @kind color */
+  /* semantic aliases */
+  --text-body:var(--ink);
+  --text-secondary:var(--ink-muted);
+  --text-tertiary:var(--ink-faint);
+  --surface-page:var(--bg);
+}
+[data-k-theme="kuro"]{
+  /* 玄 — black anodized (dark) */
+  --bg:#111417;
+  --surface-well:#0B0E10;
+  --surface-plate:#171B1E;
+  --surface-card:#1D2226;
+  --surface-control:#262C30;
+  --ink:#E8EBED;
+  --ink-muted:#9AA4AB;
+  --ink-faint:#5F6970;
+  --line:#2C3339;
+  --line-strong:#E8EBED;
+  --edge-light:rgba(255,255,255,.14);
+  --edge-light-2:rgba(255,255,255,.05);
+  --edge-dark:rgba(0,0,0,.62);
+  --edge-dark-2:rgba(0,0,0,.28);
+  --accent:#7BA3CC;
+  --accent-ink:#0B1119;
+  --accent-soft:#1B2A3A;
+  --positive:#7BA3CC;
+  --negative:#C4674F;
+  --ramp-1:#394147;--ramp-2:#6A747B;--ramp-3:#B7C0C5;--ramp-4:#E8EBED;
+  /* re-declared in this scope so the var()s resolve against the kuro palette —
+     custom properties substitute where they are DECLARED, not where they are used */
+  --text-body:var(--ink);
+  --text-secondary:var(--ink-muted);
+  --text-tertiary:var(--ink-faint);
+  --surface-page:var(--bg);
+  --grain-invert:invert(1); /* @kind other */
+  --grain-opacity:.07; /* @kind other */
+  --grad-plate:linear-gradient(180deg,#191D21 0%,#16191D 100%); /* @kind color */
+  --grad-card:linear-gradient(180deg,#20252A 0%,#1C2125 100%); /* @kind color */
+  --grad-control:linear-gradient(180deg,#2A3035 0%,#252A2F 100%); /* @kind color */
+  --grad-well:linear-gradient(180deg,#090B0D 0%,#0D1013 100%); /* @kind color */
+}
