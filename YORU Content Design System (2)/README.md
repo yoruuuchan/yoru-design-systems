@@ -390,7 +390,7 @@ window.YORU_POST = {
 
 ## 索引
 
-**根目录**：`styles.css`（唯一入口，只有 `@import`）· `readme.md` · `SKILL.md` · `thumbnail.html`
+**根目录**：`styles.css`（唯一入口，只有 `@import`）· `README.md` · `SKILL.md` · `thumbnail.html`
 
 **tokens/**：`fonts.css` 自托管 Inter / JetBrains Mono / 思源两家 subset 的 `@font-face` + 五条字体栈（含仿宋） · `colors.css` 墨/纸/靖青/语义 · `typography.css` 卡片与文章两套字号（卡片作用域覆写 `--font-body` 为宋体） · `spacing.css` · `layout.css` · `borders.css`（含文武线粗细 `--wu`） · `variants.css` 四变体覆盖 · `diagram.css` · `base.css`
 

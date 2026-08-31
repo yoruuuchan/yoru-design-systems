@@ -10,7 +10,7 @@ If the user invokes this skill without any other guidance, ask them what they wa
 
 ## Fast orientation
 
-- `readme.md` — the design guide. Read it first.
+- `README.md` — the design guide. Read it first.
 - `styles.css` — link this one file; it imports every token file.
 - Modes: `data-mode="analog"` on any element switches paper, grain, photo tone and labels. `data-mode="dark"` is the film-base surface.
 - Components live in `components/<group>/`. Each has a `.prompt.md` with a one-line "what & when" and a usage example — read those rather than the `.jsx`.

@@ -4,14 +4,14 @@ description: Use this skill to generate well-branded interfaces and assets for �
 user-invocable: true
 ---
 
-Read the `readme.md` file within this skill first, then explore:
+Read the `README.md` file within this skill first, then explore:
 
 - `styles.css` + `tokens/` — colors, type, spacing, glows, scanlines
 - `guidelines/` — specimen cards
 - `components/core/` — `<Name>.jsx` + `<Name>.prompt.md` for each primitive
 - `ui_kits/web_app/` and `ui_kits/mobile_app/` — full-screen recreations
 
-If creating visual artifacts (slides, mocks, throwaway prototypes), copy assets out and create static HTML files that link to `styles.css`. If working on production code, copy what you need and read the rules in `readme.md` to design as an expert in this brand.
+If creating visual artifacts (slides, mocks, throwaway prototypes), copy assets out and create static HTML files that link to `styles.css`. If working on production code, copy what you need and read the rules in `README.md` to design as an expert in this brand.
 
 Core rules to honor:
 - **Dark only.** No light mode. `--bg-base` is `--midnight`.

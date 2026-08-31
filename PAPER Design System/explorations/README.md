@@ -10,7 +10,7 @@ The pick is settled and this exploration is closed.
 | `C-garamond.html` | EB Garamond | **selected** — governs `--font-display` / `--font-serif` in `tokens/typography.css` |
 | `D-caslon.html` | Caslon | historical reference only |
 
-See `readme.md` (Deliberate deviations from the moodboard, item 1) for the reasoning.
+See `README.md` (Deliberate deviations from the moodboard, item 1) for the reasoning.
 
 Agents should treat A / B / D as archive material — not open options — and should
 not propose swapping to them without the user opening the exploration again.

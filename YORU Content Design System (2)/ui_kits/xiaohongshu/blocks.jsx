@@ -1,5 +1,5 @@
 /* Maps the content stream onto YORU components. The only place block types are interpreted.
-   The written contract for blocks[] lives in readme.md 「内容契约」—— 改这里就要改那里。 */
+   The written contract for blocks[] lives in README.md 「内容契约」—— 改这里就要改那里。 */
 const YB = window.YORUContentDesignSystem_a0b73e;
 
 /* ---- 行内标记 ----------------------------------------------------------------

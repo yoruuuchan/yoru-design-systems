@@ -4,7 +4,7 @@ description: Use this skill to generate well-branded interfaces and assets for R
 user-invocable: true
 ---
 
-Read the `readme.md` file in this skill, and explore the other available files:
+Read the `README.md` file in this skill, and explore the other available files:
 
 - `styles.css` is the entry point — `@import`s everything in `tokens/*.css` plus `base.css`, `components.css`, `effects.css`. Consumers link this one file.
 - `tokens/` holds the design tokens (palette, type, spacing, motion, dark + light theme layers).
@@ -15,7 +15,7 @@ Read the `readme.md` file in this skill, and explore the other available files:
 - `templates/` holds starting-point templates — `console/`, `marketing/`, `auth/`.
 - `cards/` holds foundation specimen cards (colors, type, spacing, brand). Skim these to see tokens in context.
 
-When in doubt about brand voice, casing, motifs, or what to do with iconography, see the "Content fundamentals", "Visual foundations", and "Iconography" sections of `readme.md`.
+When in doubt about brand voice, casing, motifs, or what to do with iconography, see the "Content fundamentals", "Visual foundations", and "Iconography" sections of `README.md`.
 
 If creating visual artifacts (slides, mocks, throwaway prototypes), copy assets out (`styles.css`, `tokens/*.css`, anything under `assets/`) and write static HTML files for the user to view. If working on production code, copy assets in and read the rules to become an expert in designing with this brand.
 

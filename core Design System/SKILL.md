@@ -4,7 +4,7 @@ description: Use this skill to generate well-branded interfaces and assets for c
 user-invocable: true
 ---
 
-Read `readme.md` at the root of this skill first — it has the brand concept, content fundamentals, visual foundations, and iconography rules. Then explore the rest of the tree:
+Read `README.md` at the root of this skill first — it has the brand concept, content fundamentals, visual foundations, and iconography rules. Then explore the rest of the tree:
 
 - `styles.css` + `tokens/` — CSS custom properties for color, type, spacing, effects.
 - `assets/` — logo, mark, tile patterns, grain, halo, cursor.

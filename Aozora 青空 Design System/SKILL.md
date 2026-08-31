@@ -4,7 +4,7 @@ description: Use this skill to generate well-branded interfaces and assets for A
 user-invocable: true
 ---
 
-Read the `readme.md` file within this skill, and explore the other available files:
+Read the `README.md` file within this skill, and explore the other available files:
 
 - `styles.css` — the single CSS entry; `@import`s every token file under `tokens/`.
 - `tokens/` — colors, typography, spacing, radii, shadows, glass, gradients, motion, semantic aliases.
@@ -13,7 +13,7 @@ Read the `readme.md` file within this skill, and explore the other available fil
 - `components/` — reusable React UI primitives (`.jsx` + `.d.ts` + `.prompt.md` per directory).
 - `ui_kits/app/` — full-screen mobile App recreations.
 
-If creating visual artifacts (slides, mocks, throwaway prototypes), copy the relevant assets out and create static HTML files for the user to view. Use the gradient tokens as backgrounds, the glass-card patterns from `tokens/glass.css` for surfaces, and the type rules in `readme.md`'s "Content fundamentals" section for copy.
+If creating visual artifacts (slides, mocks, throwaway prototypes), copy the relevant assets out and create static HTML files for the user to view. Use the gradient tokens as backgrounds, the glass-card patterns from `tokens/glass.css` for surfaces, and the type rules in `README.md`'s "Content fundamentals" section for copy.
 
 If working on production code, copy `styles.css` + `tokens/` + `assets/` into your project and import the components directly from `components/`. Components are framework-light React; no npm deps beyond React itself.
 

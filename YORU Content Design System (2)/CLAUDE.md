@@ -1,6 +1,6 @@
 # YORU Content Design System — 工作约定
 
-这套系统已经建完并调过多轮。改动前先读 `readme.md`（设计指南与清单）和 `SKILL.md`。
+这套系统已经建完并调过多轮。改动前先读 `README.md`（设计指南与清单）和 `SKILL.md`。
 每次改完调 `check_design_system`，修到无告警为止。
 
 ## 两道关，不是一道

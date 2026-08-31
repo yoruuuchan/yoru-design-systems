@@ -157,4 +157,4 @@ If you later supply a real codebase, brand guide, or photographic library, this 
   - `blog/index.html` — long-form personal blog with sidebar + Y2K footer
 - `slides/` — TitleSlide, IndexSlide, SectionSlide, ImageSlide, QuoteSlide, EndSlide (1280×720 each)
 - `SKILL.md` — agent-skill manifest, ready to drop into Claude Code
-- `readme.md` — this file
+- `README.md` — this file
