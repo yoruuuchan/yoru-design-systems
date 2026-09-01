@@ -91,8 +91,10 @@ export const Act3Counter: React.FC<Act3CounterProps> = ({
               justifyContent: "center",
             }}
           >
-            <span className="k-data-value">{displayNum}</span>
-            <span className="k-data-tick" style={{ alignSelf: "flex-start", marginTop: 30 }}>%</span>
+            <span style={{ display: "inline-flex", alignItems: "baseline", gap: "0.18em" }}>
+              <span className="k-data-value">{displayNum}</span>
+              <span className="k-data-tick">%</span>
+            </span>
           </div>
         </div>
 
@@ -105,7 +107,11 @@ export const Act3Counter: React.FC<Act3CounterProps> = ({
             maxWidth: isPortrait ? undefined : 400,
           }}
         >
-          多数模板在总长 70% 前完成最后一次可见运动
+          {isPortrait ? (
+            "多数模板在总长 70% 前完成最后一次可见运动"
+          ) : (
+            <>多数模板在总长 70% 前<br />完成最后一次可见运动</>
+          )}
         </p>
       </div>
     </Stage>
