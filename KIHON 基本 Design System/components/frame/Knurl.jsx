@@ -7,11 +7,11 @@ export function Knurl({progress, tone='line', style}) {
   const ref=React.useRef(null);
   const [w,setW]=React.useState(0);
   React.useEffect(()=>{
-    const el=ref.current; if(!el||progress==null) return;
+    const el=ref.current; if(!el) return;
     const set=()=>setW(el.clientWidth);
     const ro=new ResizeObserver(set); ro.observe(el); set();
     return ()=>ro.disconnect();
-  },[progress]);
+  },[]);
   const p=progress==null?null:Math.max(0,Math.min(1,progress));
   const snapped=p!=null&&w?Math.round(w*p/PITCH)*PITCH:null;
   return (

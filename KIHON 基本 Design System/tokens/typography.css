@@ -12,6 +12,7 @@
   --lead-display:1.02; /* @kind other */
   --track-display:-0.02em; /* @kind other */
   --weight-display:700; /* @kind font */
+  --type-display-portrait:108px; /* [决定] portrait display — 128 design-px is too wide on a 1080-wide frame */
   --type-title:88px;
   --lead-title:1.12; /* @kind other */
   --track-title:-0.015em; /* @kind other */

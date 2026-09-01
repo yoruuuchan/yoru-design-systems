@@ -28,7 +28,7 @@ Six of the 8 siblings use a blue accent; the others magenta (Mayonaka) and rust 
 - **Tone: measured, declarative, engineering-honest.** The source docs mark every number `[测量]` (measured) or `[决定]` (decided) — claims carry provenance. Write like that: 「相位差本身就携带语义」, never marketing superlatives.
 - **Short clauses, full-width punctuation** (「」、——、·) in Chinese copy. Sentences state facts, then the consequence: 「加一行字，片子自己变长，不用手改。」
 - **Labels are bilingual or Latin**: UPPERCASE tracked Latin labels (BEFORE / AFTER / STEP 01) over Chinese body content is the house pattern, inherited from the measured templates.
-- **No emoji.** State marks are unicode instrument glyphs: ✓ ✗ → ↓ · —.
+- **No emoji.** State marks are unicode instrument glyphs: ✓ ✗ → ↓ · — ●.
 - **Numbers are content.** Values, frame counts, percentages get displayed big and precise (tabular numerals); vague quantities are avoided.
 
 ## VISUAL FOUNDATIONS
@@ -41,7 +41,7 @@ Six of the 8 siblings use a blue accent; the others magenta (Mayonaka) and rust 
 - **Borders**: every surface has a 1px `--line` border; emphasis (selected, AFTER) switches it to `--accent` or `--line-strong`. 
 - **Radii are tight**: card 10, control 8, chip 6, pill 999. Plates, not pillows.
 - **Color rules (hard)**: data marks use the 4-step lightness ramp `--ramp-1..4`, never hue. Accent marks state — selected, active, AFTER, a CTA — never a data series, never decoration. `--positive` intentionally aliases accent (the lit instrument lamp = go); `--negative` is oxide red `#A6402F`.
-- **Type hierarchy**: Bold 700 titles against Light 300 subtitles is the contrast axis; body 400, labels 500 tracked +0.14em uppercase. Big numerals are B612 Mono 400 — thin, tabular, instrument-precise. Never monospace for Chinese body copy. Role sizes (128/88/54/44/34/32/30, data value 132) are design-px on a 1920-wide frame and are locked from the motion system.
+- **Type hierarchy**: Bold 700 titles against Light 300 subtitles is the contrast axis; body 400, labels 500 tracked +0.14em uppercase. Big numerals are B612 Mono 400 — thin, tabular, instrument-precise. Never monospace for Chinese body copy. Role sizes (128/88/54/44/34/32/30, data value 132) are design-px on a 1920-wide frame and are locked from the motion system. Portrait display uses `--type-display-portrait: 108px`, a [决定] value — it is not part of the 1920 measurement table.
 - **One tick grid**: knurl teeth, rule end ticks and chart-axis ticks are all 1px marks on a single 5px module (`--tick-pitch` / `--tick-h`), and the knurl band itself is two modules tall (`--knurl-h: 10px`). Stack a Rule and a Knurl in the same frame and they read as one instrument scale rather than two unrelated details.
 - **Craft on the content itself**: the data marks carry the machining, since a mark that *is* the content can never compete with it. A bar's growing face gets a 2px cut face with a 1px shoulder under it and 1px lit/shaded side walls — `--bar-cap-up-1..4` / `--bar-cap-right-1..4`, tuned per ramp step. A white cut face barely reads on the light end of the ramp, so there the shoulder carries the definition and the highlight backs off; on the dark end it reverses. Perceived depth stays constant across the ramp instead of fading out. Chart axes hang a 1px tick under each column. Numerals are tabular so columns of digits align on the stem.
 - **Detail at small sizes**: tracked micro-labels and tick numerals — 1px is visible at 1080p and is where the craft lives. Rules, end ticks and knurl bands exist as primitives but are **opt-in**: frames carry no standing decoration at the top or bottom edge. A keyline appears only where a frame genuinely needs a division (a chart axis, a table rule). Frames open and close on **blank metal**: no label strip at the top, no progress or format row at the bottom — content sits in the safe area and the edges stay empty.
@@ -59,7 +59,7 @@ Six of the 8 siblings use a blue accent; the others magenta (Mayonaka) and rust 
 
 ## ICONOGRAPHY
 
-There is no icon font and no SVG icon set — and that is a rule, not a gap. The measured templates mark state with **unicode instrument glyphs**: ✓ (positive/AFTER), ✗ (negative/BEFORE), → / ↓ (causal connector, per orientation), · (list tick), — (range). Set them in the core font at the same size as adjacent text, colored by semantic token. Do not import icon libraries; do not draw pictograms. If a future template genuinely needs a pictogram, that is a design decision to raise, not a default.
+There is no icon font and no SVG icon set — and that is a rule, not a gap. The measured templates mark state with **unicode instrument glyphs**: ✓ (positive/AFTER), ✗ (negative/BEFORE), → / ↓ (causal connector, per orientation), · (list tick), — (range), ● (active indicator lamp). Set them in the core font at the same size as adjacent text, colored by semantic token. Do not import icon libraries; do not draw pictograms. If a future template genuinely needs a pictogram, that is a design decision to raise, not a default.
 
 **No logo exists.** The sources contain no KIHON mark. Wherever a mark would go, render the wordmark in type: 「KIHON」 Instrument Sans 600 tracked, or 「基本」 Source Han Sans Bold — see `guidelines/brand-wordmark.html`. Do not draw a logo.
 
@@ -67,6 +67,19 @@ There is no icon font and no SVG icon set — and that is a rule, not a gap. The
 
 - Source Han Sans SC Light/Regular/Medium/Bold are **self-hosted** (`assets/fonts/`, copied from the YORU Content system repo). ExtraLight/Heavy weights were not available — if you have the full family, add the binaries and extend `tokens/fonts.css`.
 - **Instrument Sans and B612 Mono load from Google Fonts CDN** — no binaries existed in the provided sources. For offline/deterministic Remotion renders, download the OFL binaries and self-host them the same way. Flagged for the user.
+- Instrument Sans on Google Fonts ships weights 400–700 only; there is no 300. `--weight-subtitle: 300` in mixed text means Source Han Sans SC renders at Light 300 while the Latin run falls back to Regular 400 — a visible weight mismatch. This is a known trade-off; to close it, either swap the Latin face for one that carries a 300 weight or accept 400 for Latin in subtitles.
+
+## Preview vs production (Remotion)
+
+`components/*.jsx` and `ui_kits/` are **browser-preview implementations** — they measure the container with ResizeObserver + useState and animate with rAF counters and CSS `@keyframes`. **Do not import them into Remotion compositions.** Remotion renders by screenshotting each frame; anything that resolves asynchronously (ResizeObserver, rAF, CSS animation timing) produces non-deterministic first frames.
+
+In a Remotion composition, re-implement against the tokens:
+
+- **`--u` synchronous**: `const { width } = useVideoConfig(); const u = width / (1920 | 1080);` — no ResizeObserver.
+- **Number counters**: frame-interpolated over 24f with an ease-out cubic, not rAF.
+- **Bar growth**: drive `height` (or `width`) and the value per frame. **Do not use `scaleY`** — it compresses `--bar-cap-*`'s 2px machined-edge shadow along with the bar, breaking the constant-depth illusion.
+- **All animation**: `useCurrentFrame()` + `spring()` / `interpolate()`. Text curves use `Easing.bezier(0.16, 1, 0.3, 1)` with clamp, mapping to the three locked curves.
+- **Fonts**: self-host binaries via `staticFile()` / `loadFont`. Do not rely on CDN `@import` — Remotion's renderer has no network during frame capture.
 
 ## Index
 

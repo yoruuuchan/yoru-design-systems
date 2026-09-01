@@ -24,7 +24,9 @@
   --engrave-deep:0 1px 0 rgba(255,255,255,.95),0 -1px 0 rgba(22,25,28,.10);
   /* lens falloff — the ground is lit by a lens, not a lightbox */
   --falloff:radial-gradient(125% 105% at 50% 30%,transparent 42%,rgba(10,12,14,.065) 100%); /* @kind color */
-  /* knurl — rows of fine ticks, 1px tooth / 4px pitch (crisp at 1080p) */
+  --tick-pitch:5px; /* one tick module — knurl teeth, rule end ticks, chart-axis ticks share it */
+  --tick-h:5px;     /* tick mark height = one module (rule end ticks, chart-axis ticks) */
+  /* knurl — rows of fine ticks, 1px tooth / 5px pitch (crisp at 1080p) */
   /* machined end cap — the growing face is a milled cut, the sides are extrusion.
      Tuned per ramp step: on light steps a white cut face barely reads, so the 1px shoulder
      under it carries the definition; on dark steps the highlight does. Perceived depth is

@@ -45,6 +45,7 @@
      numeral  counter 24f digit ramp               · settles, does not fade in
      rule     draw 10f, scaleX from the left       · a line is drawn, not faded
    --------------------------------------------------------------------------- */
+/* pop/surface durations are CSS approximations of the spring settle times, PREVIEW ONLY — not measured constants; Remotion uses spring() and needs no duration */
 :root{
   --k-panel-scale:0.985; /* @kind other */
   --k-solid-scale:0.92; /* @kind other */
