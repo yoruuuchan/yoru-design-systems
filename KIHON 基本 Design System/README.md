@@ -94,6 +94,7 @@ In a Remotion composition, re-implement against the tokens:
 - `ui_kits/portrait/` — the same frames laid out natively for 9:16.
 - `ui_kits/shared/` — `kit-motion.css` + `kit-motion.jsx`: the entrance ladder used by both kits.
 - `templates/video-frame/` — starting-point template: the dual-native frame (16:9 + 9:16 side by side).
+- `demo/` — runnable Remotion project (landscape 银 + portrait 玄, five acts) demonstrating all five motion roles and the locked constants in production code. See `demo/README.md`.
 - `SKILL.md` — agent entry point.
 
 ### Intentional additions
