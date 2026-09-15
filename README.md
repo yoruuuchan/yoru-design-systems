@@ -13,8 +13,8 @@ Nine self-contained design systems. Each directory is an installable skill: it c
 | [PAPER](<PAPER Design System/SKILL.md>) | Editorial × analog print, photography-first | Editorial / analog / dark modes | Art books, photo essays, interviews, personal creative sites, slide decks |
 | [RIFT 裂隙](<RIFT Design System/SKILL.md>) | Blue-spectrum cyber-glitch operating console | Dark + light | Technical product sites, control-room aesthetics, auth/console templates |
 | [core](<core Design System/SKILL.md>) | Weirdcore / poolcore / dreamcore / Y2K | Light only | Experimental pages, archives, blogs, slide decks with an uncanny mood |
-| [yoru-and-akari Console](<yoru-and-akari Console Design System2/SKILL.md>) | Soft neumorphism + liquid glass companion console | akari (light) / yoru (dark) | The yoru-and-akari companion console and anything in its product family |
-| [YORU Content](<YORU Content Design System (2)/SKILL.md>) | Publication pipeline, not a UI kit | — | Xiaohongshu card sets and WeChat articles. Has a mandatory headless render + selftest loop — read its `CLAUDE.md` before touching it |
+| [yoru-and-akari Console](<yoru-and-akari Console Design System/SKILL.md>) | Soft neumorphism + liquid glass companion console | akari (light) / yoru (dark) | The yoru-and-akari companion console and anything in its product family |
+| [YORU Content](<YORU Content Design System/SKILL.md>) | Publication pipeline, not a UI kit | — | Xiaohongshu card sets and WeChat articles. Has a mandatory headless render + selftest loop — read its `README.md` before touching it |
 
 ## Conventions shared across systems
 

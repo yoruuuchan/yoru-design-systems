@@ -13,7 +13,7 @@ date: 2026-08-31T12:39:38Z
 ## Screen map
 | Project file | Repo source |
 |---|---|
-| assets/fonts/*.woff2 | YORU Content Design System (2)/fonts/ |
+| assets/fonts/*.woff2 | YORU Content Design System/fonts/ |
 | tokens/motion.css | (local) yoru-motion-system/src/core/timing.ts + kihon-design-system/docs/00-motion-personality.md |
 | tokens/typography.css sizes | (local) yoru-motion-system/src/core/typography.ts |
 | tokens/spacing.css safe areas | (local) yoru-motion-system/src/core/canvas.ts |

@@ -494,3 +494,25 @@ render_check 在每次渲染里也做逐字检查：把页面上真正落在思�
 5. 页面家具的数字用汉字（`cnPage` / `cnIssue` / `cnDate`），内容数字用阿拉伯数字。
 6. 需要新样式先问「现有组件的 prop 能不能表达」，再问「是不是该加 block 类型」，最后才动 token。
 7. 要画关系或流程，输出 `{nodes, edges}` 交给 `Diagram`，不要手写 SVG。
+
+---
+
+## 内部工程约定（改这套系统之前必读）
+
+本节原先在目录根的 `CLAUDE.md`，2026-09-15 并入 README——本文件与 SKILL.md 是唯一事实源。
+
+**两道关，不是一道。** `check_design_system` 是静态 lint：读源码，查 raw hex、非法 import、字体白名单。它不知道页面空了 60%、图片挂了、内容压到页脚上、截图缩到手机上看不清、渲染环境把套印偏移搞成了 55px。那些要跑第二关：
+
+```bash
+node ui_kits/xiaohongshu/export_cards.mjs --selftest     # 只跑环境自证（golden geometry + 字体健康）
+node ui_kits/xiaohongshu/export_cards.mjs --check        # selftest + 渲染验收
+node ui_kits/xiaohongshu/export_cards.mjs --all-fixtures # 改了分页器/间距/组件高度就跑全量
+node tools/font_audit.mjs                                # 字体子集覆盖率 + 缺字清单
+node ui_kits/wechat/export_wechat.mjs                    # 公众号侧：出自包含冻结 HTML
+```
+
+**`check_design_system` 只存在于 Claude Design 里，没有命令行替身。** 别的环境（另一个 agent、CI、纯命令行）拿到这套系统调不到它，也**跑不了 `_adherence.oxlintrc.json`**——实测过：那份配置的设计规则（raw hex、raw px、字体白名单）全挂在 `no-restricted-syntax` 上，社区版 oxlint 没实现这条规则，配置里还带一个 Claude Design 私有的 `x-omelette` 字段。所以在 Claude Design 之外，静态那关**只能靠读规则自己守**（本 README）。能跑的那关是渲染验收，任何有 Node 的地方都跑得了：`node ui_kits/xiaohongshu/export_cards.mjs --check`。**不要假装跑过了 `check_design_system`。**
+
+**测量 DOM 必须是渲染 DOM 的克隆。** 分页器不允许自己维护一份版面参数。`usePagination()` 拿工具台即将用于每一页的那个 `pageProps`，离屏渲染一个一模一样的 `<Page>`，从它的内容列上读 `clientWidth` / `clientHeight` / padding / `rowGap`，再读 `<PageFooter>` 的实际起点。以前 `workbench.jsx` 手抄了一份（gap 32、版心 1050、可用高 1338），三个数字全部偏松、方向一致，分页器以为每页多出约 230px，真实内容必然溢出。**代码里出现第二份手抄的布局数字，就是下一个 bug。** `components/page/Page.jsx` 的 `data-yoru-flow`、`PageFooter.jsx` 的 `data-yoru-footer`、`CoverOverprint.jsx` 的 `data-yoru-plate` 是测量抓手，不要删。
+
+**杂项**：`out/` 积累每次全量渲染的产物（PNG、frozen HTML），跑多了能到几十 MB（当前约 16MB），手动清就行。
