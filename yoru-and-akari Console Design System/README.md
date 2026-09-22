@@ -134,6 +134,8 @@ Surfaces are mostly **flat solid colors** with very subtle **radial color washes
 
 `akari` shadows use white highlights (`rgba(255,255,255,0.95)`) and cool slate lows (`rgba(143,158,191,0.45)`). `yoru` shadows use near-white at 5% (`rgba(255,255,255,0.05)`) and deep blacks (`rgba(0,0,0,0.55)`).
 
+**Material preference — inset > raised.** When either treatment could carry the same content, Yoru prefers the surface to read as a recess in the host plane. Use inset / sunken depth for primary display beds, content wells, grouped rows, persistent information carriers, and selected states. Raised / lifted depth is secondary: use it for foreground objects, pick-up-able cards, focused media, buttons, knobs, and moving thumbs. Do not recess every pixel; flat page planes and functional lines provide rest, while a limited number of raised objects are necessary to make the dominant inset hierarchy readable.
+
 ### Liquid glass (used sparingly)
 The **tab bar, header sheet, and active-state pills** sit on a glass surface: `backdrop-filter: blur(18px) saturate(140%)` over a translucent base (`hsla(220, 30%, 98%, 0.62)` in akari, `hsla(225, 35%, 14%, 0.62)` in yoru) with a 1px tinted hairline. Glass appears *only* where there is content behind it worth showing through. Never over a flat surface for decoration.
 

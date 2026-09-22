@@ -16,6 +16,8 @@ Read the **README.md** file within this skill first — it covers brand concept,
 
 **When working on production code**, treat the CSS variables and the JSX components as a vocabulary, not a library — port the token names and the shadow/glass recipes into the host framework's design-token format.
 
+**Yoru's material preference: inset before raised.** When both treatments are semantically valid, prefer a sunken / inset presentation surface over an outward-raised card. Use inset for the main content well, display bed, grouped rows, selected states, and persistent information carriers; reserve raised / lifted surfaces for objects that should feel pick-up-able, foregrounded, focused, or physically operable. This is a preference hierarchy, not a command to recess everything: the page plane and functional lines may stay flat, and a composition still needs a smaller number of raised elements to make the inset depth legible.
+
 **If the user invokes this skill without other guidance**, ask what they want to build or design (a new screen? a slide? a marketing page? a feature inside the console?), confirm whether mobile or desktop, then act as an expert designer for this brand. Output an HTML artifact unless the user asks for production code. Stay inside the established vocabulary — calm royal blue, ember (orange) and frost (cyan) accents used sparingly, lowercase microcopy in second-person, no emoji as UI chrome, no decorative gradients, neumorphism + glass as the structural elements.
 
 **Non-negotiable rules** carried from README.md:
@@ -26,5 +28,6 @@ Read the **README.md** file within this skill first — it covers brand concept,
 - Logs are collapsed by default. Error dot only when an error exists.
 - Timeline is a real rail (vertical line + dotted events), not stacked cards.
 - Inputs use inset shadow; selected items use a 1.5px primary stroke (not a tinted bg).
+- When both are appropriate, prefer inset / sunken carriers over raised ones; raised / lifted is the secondary treatment for foreground or operable objects.
 - Cards are defined by shadow, never by a 1px stroke or a colored left-border stripe.
 - 24-hour time; canonical model ids; tokens with thin separators.
