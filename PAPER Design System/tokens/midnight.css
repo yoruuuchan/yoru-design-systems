@@ -1,4 +1,5 @@
-/* PAPER — MIDNIGHT 午夜蓝 (proposal)
+/* Integrated MIDNIGHT theme — proposal v2, approved 2026-10-08 (design archive: proposals/midnight/). */
+/* PAPER — MIDNIGHT 午夜蓝
    A full dark theme: midnight-blue photobook, cyanotype-adjacent stock,
    silver-gelatin ink, one rust counterpoint. For whole pages, longform,
    portfolios — not just the film-base surface of a contact sheet.
@@ -97,6 +98,25 @@
   /* Note: --film-base #1B1A16 keeps its warm tone — that is film, not
      page stock. Contact sheets stay warm-dark on a midnight page;
      the contrast is deliberate. */
+}
+
+/* Composition glue (integration note, 2026-10-08): when a mode scope sits on a
+   DESCENDANT of the midnight scope — e.g. <html data-theme="midnight"> with
+   <body data-mode="analog"> — the mode's own surface assignments win over
+   inheritance and would keep the page light. Re-point the three light surfaces
+   to the approved midnight stock so the theme owns paper. --text-body joins
+   them because the legacy tokens/color.css (still loaded by every template's
+   ds-base.js) pins --text-body:var(--ink-1) on [data-mode="analog"] itself —
+   warm charcoal, unreadable on noir. Mode voice (label font/tracking, figure
+   tilt, plate shadow, photo tone, grain level, warm muted/faint ink) is
+   deliberately kept. data-mode="dark" is excluded: its film-base semantics
+   stay unchanged. */
+[data-theme="midnight"] [data-mode="editorial"],
+[data-theme="midnight"] [data-mode="analog"] {
+  --surface-page:   var(--noir-200);
+  --surface-raised: var(--noir-100);
+  --surface-sunken: var(--noir-300);
+  --text-body:      var(--silver-200);
 }
 
 /* Grain overlay: flip multiply → screen when the dark theme is on the root. */

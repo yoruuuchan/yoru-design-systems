@@ -30,7 +30,20 @@ Switch with a single attribute. It scopes to a whole page or to one figure:
 
 **The rule that keeps Analog from becoming a scrapbook: structure first, texture second.** One or two material details per spread. If you can name the texture before you have read the page, turn it down.
 
-A third scope, `data-mode="dark"`, exists for film base — contact sheets, film strips, full-bleed image bands. It is a surface, not a theme.
+A third scope, `data-mode="dark"`, exists for film base — contact sheets, film strips, full-bleed image bands. It is a surface, not a theme, and the theme axis below leaves it unchanged.
+
+### The theme axis — `data-theme="midnight"`
+
+MIDNIGHT 午夜蓝 is the system's full dark theme. The stock moves to midnight blue (deep indigo, never pure black), the ink to cooled silver (never pure white), and rust stays on as the single warm counterpoint — sharper on blue than it ever was on cream, so the twice-a-page rule matters more, not less.
+
+It is a second axis, orthogonal to `data-mode`: the mode still chooses the voice — editorial or analog — and the theme re-dyes surfaces, ink, rules, grain and shadows underneath it. The two compose:
+
+```html
+<html data-theme="midnight">
+<body data-mode="analog"> … </body>
+```
+
+On the dark stock the grain flips from multiply to screen (silver-halide, not dirt), tape leaves kraft for washi, and the film base keeps its warm black — a contact sheet on a midnight page is a deliberate material contrast, not an oversight. The theme scopes the way a mode does, from `<html>` down to one figure. Tokens live in `tokens/midnight.css`, imported last in `styles.css`; the approved proposal is archived in `proposals/midnight/`.
 
 ---
 
@@ -195,6 +208,7 @@ tokens/
   space.css                 4px scale, 24-col grid, radii, motion
   material.css              grain, print shadows, film, scan edge, photo tone
   modes.css                 [data-mode] editorial / analog / dark
+  midnight.css              [data-theme="midnight"] — the full dark theme
   base.css                  element defaults, grain overlay, link styles
 components/                 masthead · editorial · image · analog · ui
 guidelines/                 22 specimen cards (Colors, Type, Spacing, Material, Brand)

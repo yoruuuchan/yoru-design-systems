@@ -12,4 +12,32 @@
 <p style="font-family:var(--font-display);font-size:76px;line-height:1.1;letter-spacing:-.01em;margin:0;text-wrap:balance">You cannot photograph the return of the light. You can only photograph the things it lands on.</p>
 <cite style="grid-column:2;display:flex;justify-content:space-between;align-items:baseline;font-style:normal;font-family:var(--font-sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-top:44px;padding-top:16px;border-top:1px solid var(--rule-hair)"><span>M. Sørensen</span><span>Interview, 2025</span></cite>
 </blockquote>
-<div class="ft"><span>Paper — Issue Nº 04</span><span></span><span class="pg">05</span></div></div></body></html>
+<div class="ft"><span>Paper — Issue Nº 04</span><span></span><span class="pg">05</span></div></div>
+<script>
+/* PAPER theme toggle — ?theme=midnight|default sets and persists the theme;
+   with no param the stored choice (localStorage["paper-theme"]) is restored.
+   The floating button flips the theme and persists it. */
+(function () {
+  var KEY = "paper-theme";
+  var root = document.documentElement;
+  function apply(theme) {
+    if (theme === "midnight") root.setAttribute("data-theme", "midnight");
+    else root.removeAttribute("data-theme");
+  }
+  function persist(theme) { try { localStorage.setItem(KEY, theme); } catch (e) {} }
+  var param = new URLSearchParams(location.search).get("theme");
+  if (param === "midnight" || param === "default") { apply(param); persist(param); }
+  else { try { apply(localStorage.getItem(KEY)); } catch (e) {} }
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.style.cssText = "position:fixed;right:16px;bottom:16px;z-index:9999;margin:0;padding:6px 10px;border:1px solid var(--rule-mid);border-radius:0;background:var(--surface-raised);color:var(--text-muted);font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer";
+  function relabel() { btn.textContent = root.hasAttribute("data-theme") ? "default" : "midnight"; }
+  btn.addEventListener("click", function () {
+    var next = root.hasAttribute("data-theme") ? "default" : "midnight";
+    apply(next); persist(next); relabel();
+  });
+  relabel();
+  document.body.appendChild(btn);
+})();
+</script>
+</body></html>

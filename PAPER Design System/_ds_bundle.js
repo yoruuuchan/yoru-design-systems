@@ -2369,7 +2369,7 @@ function Plate({
       fontSize: "var(--type-micro)",
       letterSpacing: ".1em",
       textTransform: "uppercase",
-      color: "rgba(38,36,30,.42)"
+      color: "var(--silver-500, rgba(38,36,30,.42))"
     }
   }, label));
 }
@@ -4268,7 +4268,7 @@ function App() {
       display: "flex",
       gap: "var(--space-5)",
       padding: "9px var(--page-margin)",
-      background: "rgba(244,241,234,.88)",
+      background: "color-mix(in srgb, var(--surface-page) 88%, transparent)",
       backdropFilter: "blur(8px)",
       borderBottom: "1px solid var(--rule-hair)"
     }
@@ -4922,7 +4922,7 @@ function PortfolioApp() {
       display: "flex",
       gap: "var(--space-5)",
       padding: "9px var(--page-margin)",
-      background: "rgba(237,230,215,.9)",
+      background: "color-mix(in srgb, var(--surface-page) 90%, transparent)",
       backdropFilter: "blur(8px)",
       borderBottom: "1px solid var(--rule-hair)"
     }

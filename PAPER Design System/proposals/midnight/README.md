@@ -7,9 +7,12 @@
 
 ## Files
 
-- `tokens.css` — noir（午夜蓝纸）/ silver（冷银墨）两条 raw ramp + 全量 semantic remap + 材质暗化
+- `tokens.css` — 已并入正式 `tokens/midnight.css`，本目录不再保留副本
 - `palette.html` — 完整色卡：raw palette + semantic roles + 材质 token
 - `demo.html` — photo essay 页面顶部（对应 `templates/photo-essay` 的结构）
+- `ROLLOUT-NOTES.md` — 整合执行记录（层叠关系、组件审计、偏差与待拍板）
+
+tokens 已并入正式 `tokens/midnight.css`（proposal 目录保留为设计档案）。
 
 ## 关键判断
 

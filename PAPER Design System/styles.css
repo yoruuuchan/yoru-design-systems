@@ -9,3 +9,6 @@
 @import url("./tokens/material.css");
 @import url("./tokens/modes.css");
 @import url("./tokens/base.css");
+/* Midnight must come last: its [data-theme] semantic remap wins over the
+   mode-level surface/text assignments in modes.css when both attributes are set. */
+@import url("./tokens/midnight.css");

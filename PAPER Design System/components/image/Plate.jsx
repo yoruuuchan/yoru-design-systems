@@ -15,7 +15,7 @@ export function Plate({ ratio = "3/2", src, alt = "", children, tone = "warm", f
         <span style={{
           position: "absolute", left: 10, bottom: 8, fontFamily: "var(--font-mono)",
           fontSize: "var(--type-micro)", letterSpacing: ".1em", textTransform: "uppercase",
-          color: "rgba(38,36,30,.42)"
+          color: "var(--silver-500, rgba(38,36,30,.42))"
         }}>{label}</span>
       )}
     </div>

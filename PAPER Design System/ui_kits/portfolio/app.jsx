@@ -14,7 +14,7 @@ function PortfolioApp() {
     <div data-mode="analog" style={{ minHeight: "100vh", background: "var(--surface-page)" }}>
       <nav style={{
         position: "sticky", top: 0, zIndex: 40, display: "flex", gap: "var(--space-5)",
-        padding: "9px var(--page-margin)", background: "rgba(237,230,215,.9)",
+        padding: "9px var(--page-margin)", background: "color-mix(in srgb, var(--surface-page) 90%, transparent)",
         backdropFilter: "blur(8px)", borderBottom: "1px solid var(--rule-hair)"
       }}>
         <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--type-micro)", letterSpacing: ".1em", textTransform: "uppercase", color: "var(--text-faint)", marginRight: "auto" }}>Paper — Portfolio UI kit · analog mode</span>

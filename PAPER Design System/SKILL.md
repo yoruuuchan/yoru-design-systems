@@ -13,6 +13,7 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - `README.md` — the design guide. Read it first.
 - `styles.css` — link this one file; it imports every token file.
 - Modes: `data-mode="analog"` on any element switches paper, grain, photo tone and labels. `data-mode="dark"` is the film-base surface.
+- `data-theme="midnight"` is the full-page dark theme (`tokens/midnight.css`) — orthogonal to `data-mode`, composes with editorial and analog.
 - Components live in `components/<group>/`. Each has a `.prompt.md` with a one-line "what & when" and a usage example — read those rather than the `.jsx`.
 - `ui_kits/*/index.html` are working click-through screens. `slides/` are 1280×720 layouts.
 - `guidelines/*.card.html` are token specimens written in plain HTML — the fastest reference for how to use a token correctly.

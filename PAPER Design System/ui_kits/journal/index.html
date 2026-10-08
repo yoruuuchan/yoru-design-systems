@@ -1,8 +1,8 @@
 <!-- @dsCard group="Journal" viewport="1280x900" name="Journal — the publication" subtitle="Contents, photo essay, interview and gallery in Editorial mode" -->
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Paper — Journal</title>
 <link rel="stylesheet" href="../../styles.css">
-<script src="../../assets/vendor/react.production.min.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="../../assets/vendor/react-dom.production.min.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="../../assets/vendor/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 <script src="../../assets/image-slot.js"></script>
@@ -13,4 +13,31 @@
 <script type="text/babel" src="./InterviewScreen.jsx"></script>
 <script type="text/babel" src="./GalleryScreen.jsx"></script>
 <script type="text/babel" src="./app.jsx"></script>
+<script>
+/* PAPER theme toggle — ?theme=midnight|default sets and persists the theme;
+   with no param the stored choice (localStorage["paper-theme"]) is restored.
+   The floating button flips the theme and persists it. */
+(function () {
+  var KEY = "paper-theme";
+  var root = document.documentElement;
+  function apply(theme) {
+    if (theme === "midnight") root.setAttribute("data-theme", "midnight");
+    else root.removeAttribute("data-theme");
+  }
+  function persist(theme) { try { localStorage.setItem(KEY, theme); } catch (e) {} }
+  var param = new URLSearchParams(location.search).get("theme");
+  if (param === "midnight" || param === "default") { apply(param); persist(param); }
+  else { try { apply(localStorage.getItem(KEY)); } catch (e) {} }
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.style.cssText = "position:fixed;right:16px;bottom:16px;z-index:9999;margin:0;padding:6px 10px;border:1px solid var(--rule-mid);border-radius:0;background:var(--surface-raised);color:var(--text-muted);font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer";
+  function relabel() { btn.textContent = root.hasAttribute("data-theme") ? "default" : "midnight"; }
+  btn.addEventListener("click", function () {
+    var next = root.hasAttribute("data-theme") ? "default" : "midnight";
+    apply(next); persist(next); relabel();
+  });
+  relabel();
+  document.body.appendChild(btn);
+})();
+</script>
 </body></html>
