@@ -28,10 +28,10 @@ export function Switch({
     width: s.w,
     height: s.h,
     borderRadius: 999,
-    background: on ? "var(--blue-500)" : "var(--neutral-300)",
+    background: on ? "var(--blue-500)" : "var(--aoz-switch-off-track, var(--neutral-300))",
     boxShadow: on
       ? "inset 0 1px 2px rgba(0,68,140,0.4), 0 0 0 1px rgba(10,132,255,0.2)"
-      : "inset 0 1px 2px rgba(10,68,140,0.15)",
+      : "var(--aoz-switch-off-inset, inset 0 1px 2px rgba(10,68,140,0.15))",
     position: "relative",
     cursor: disabled ? "not-allowed" : "pointer",
     opacity: disabled ? 0.5 : 1,
