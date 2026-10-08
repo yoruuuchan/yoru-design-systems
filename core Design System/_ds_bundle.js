@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"CoreDesignSystem_61d596","components":[{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"Checkbox","sourcePath":"components/core/Checkbox.jsx"},{"name":"Divider","sourcePath":"components/core/Divider.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Input","sourcePath":"components/core/Input.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"Glow","sourcePath":"components/dream/Glow.jsx"},{"name":"Marquee","sourcePath":"components/dream/Marquee.jsx"},{"name":"OverexposedText","sourcePath":"components/dream/OverexposedText.jsx"},{"name":"GrainOverlay","sourcePath":"components/texture/GrainOverlay.jsx"},{"name":"Halo","sourcePath":"components/texture/Halo.jsx"},{"name":"TilePattern","sourcePath":"components/texture/TilePattern.jsx"},{"name":"TabBar","sourcePath":"components/window/TabBar.jsx"},{"name":"Toast","sourcePath":"components/window/Toast.jsx"},{"name":"Window","sourcePath":"components/window/Window.jsx"}],"sourceHashes":{"components/core/Button.jsx":"66674bd0cd63","components/core/Card.jsx":"8d20adc6b3b6","components/core/Checkbox.jsx":"f77fa2a3c756","components/core/Divider.jsx":"4fedca8b039d","components/core/IconButton.jsx":"76a04e403d58","components/core/Input.jsx":"434fd3c46c01","components/core/Tag.jsx":"3488649a7a8e","components/dream/Glow.jsx":"b26cf89bf1bb","components/dream/Marquee.jsx":"6e15f6139596","components/dream/OverexposedText.jsx":"998f0b34ce98","components/texture/GrainOverlay.jsx":"445c06af7921","components/texture/Halo.jsx":"6233fd1a8c33","components/texture/TilePattern.jsx":"839986f95c79","components/window/TabBar.jsx":"0ac3967248c4","components/window/Toast.jsx":"031875d935dd","components/window/Window.jsx":"292d97b39209","ui_kits/archive/DetailView.jsx":"b74397d8e78e","ui_kits/archive/FileGrid.jsx":"067b422b452b","ui_kits/archive/Sidebar.jsx":"cdc36b7cf219","ui_kits/archive/catalog.js":"05bc8d4ea656","ui_kits/blog/BlogFooter.jsx":"ce04e08dfe8c","ui_kits/blog/BlogHeader.jsx":"793797f67166","ui_kits/blog/BlogSidebar.jsx":"d6810849d2fa","ui_kits/blog/PostBody.jsx":"0cbceb744813","ui_kits/blog/posts.js":"28c3a94a9fd0"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"CoreDesignSystem_61d596","components":[{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"Checkbox","sourcePath":"components/core/Checkbox.jsx"},{"name":"Divider","sourcePath":"components/core/Divider.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Input","sourcePath":"components/core/Input.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"Glow","sourcePath":"components/dream/Glow.jsx"},{"name":"Marquee","sourcePath":"components/dream/Marquee.jsx"},{"name":"OverexposedText","sourcePath":"components/dream/OverexposedText.jsx"},{"name":"GrainOverlay","sourcePath":"components/texture/GrainOverlay.jsx"},{"name":"Halo","sourcePath":"components/texture/Halo.jsx"},{"name":"TilePattern","sourcePath":"components/texture/TilePattern.jsx"},{"name":"TabBar","sourcePath":"components/window/TabBar.jsx"},{"name":"Toast","sourcePath":"components/window/Toast.jsx"},{"name":"Window","sourcePath":"components/window/Window.jsx"}],"sourceHashes":{"components/core/Button.jsx":"f060822db8a5","components/core/Card.jsx":"8d20adc6b3b6","components/core/Checkbox.jsx":"f77fa2a3c756","components/core/Divider.jsx":"4fedca8b039d","components/core/IconButton.jsx":"76a04e403d58","components/core/Input.jsx":"434fd3c46c01","components/core/Tag.jsx":"3488649a7a8e","components/dream/Glow.jsx":"b26cf89bf1bb","components/dream/Marquee.jsx":"6e15f6139596","components/dream/OverexposedText.jsx":"998f0b34ce98","components/texture/GrainOverlay.jsx":"445c06af7921","components/texture/Halo.jsx":"6233fd1a8c33","components/texture/TilePattern.jsx":"839986f95c79","components/window/TabBar.jsx":"0ac3967248c4","components/window/Toast.jsx":"031875d935dd","components/window/Window.jsx":"292d97b39209","ui_kits/archive/DetailView.jsx":"b74397d8e78e","ui_kits/archive/FileGrid.jsx":"067b422b452b","ui_kits/archive/Sidebar.jsx":"cdc36b7cf219","ui_kits/archive/catalog.js":"05bc8d4ea656","ui_kits/blog/BlogFooter.jsx":"ce04e08dfe8c","ui_kits/blog/BlogHeader.jsx":"793797f67166","ui_kits/blog/BlogSidebar.jsx":"d6810849d2fa","ui_kits/blog/PostBody.jsx":"0cbceb744813","ui_kits/blog/posts.js":"28c3a94a9fd0"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -33,6 +33,7 @@ const css = `
 .cds-btn:active { box-shadow: var(--bevel-in); transform: translate(1px, 1px); }
 .cds-btn[disabled] { opacity: 0.45; cursor: not-allowed; box-shadow: var(--bevel-out); transform: none; }
 .cds-btn.glow:hover { box-shadow: var(--bevel-out), var(--glow-bondi); }
+.cds-btn:focus-visible { outline: 2px solid var(--bondi-300); outline-offset: 2px; }
 `;
 function inject() {
   if (typeof document === 'undefined') return;
@@ -62,7 +63,7 @@ const sizes = {
 const variants = {
   primary: {
     background: 'var(--bondi-500)',
-    color: '#ffffff'
+    color: 'var(--frost-50)'
   },
   secondary: {
     background: 'var(--chrome-100)',
@@ -83,7 +84,7 @@ const variants = {
   },
   danger: {
     background: 'var(--bubblegum-500)',
-    color: '#ffffff'
+    color: 'var(--frost-50)'
   },
   sodium: {
     background: 'var(--sodium-300)',
@@ -585,6 +586,7 @@ Object.assign(__ds_scope, { OverexposedText });
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function GrainOverlay({
+  src = '/assets/grain.svg',
   opacity = 'var(--grain-opacity, 0.18)',
   blendMode = 'multiply',
   style,
@@ -596,7 +598,7 @@ function GrainOverlay({
       position: 'absolute',
       inset: 0,
       pointerEvents: 'none',
-      backgroundImage: 'url(/assets/grain.svg)',
+      backgroundImage: `url(${src})`,
       backgroundSize: '200px 200px',
       opacity,
       mixBlendMode: blendMode,
