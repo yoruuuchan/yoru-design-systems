@@ -1,6 +1,7 @@
-/* Google Fonts — substituted for "ideal" pixel + JP pixel + retro mono.
-   Flagged in README: swap with self-hosted webfonts if licensing matters. */
-/* Self-hosted (was Google Fonts CDN — files under ../assets/fonts/) */
+/* Webfonts — substitutes for the "ideal" pixel + JP pixel + retro mono; the
+   licensing flag is resolved — self-hosted woff2 now: Press Start 2P, VT323,
+   DotGothic16, Major Mono Display (was Google Fonts CDN — files under
+   ../assets/fonts/). */
 @import url("../assets/fonts/fonts-local.css");
 
 :root {

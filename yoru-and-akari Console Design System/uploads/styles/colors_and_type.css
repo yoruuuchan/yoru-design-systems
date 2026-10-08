@@ -10,7 +10,7 @@
    ============================================================ */
 
 /* ---------- Font faces -------------------------------------- */
-/* Geist + Geist Mono come from Google Fonts. Zen Kaku Gothic
+/* Geist + Geist Mono are self-hosted (fonts/fonts-local.css). Zen Kaku Gothic
    New is used for occasional Japanese moments and accent
    labels. All are licensed for embedding. */
 @import url("fonts/fonts-local.css");

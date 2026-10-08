@@ -10,10 +10,10 @@
    ============================================================ */
 
 /* ---------- Font faces -------------------------------------- */
-/* Geist + Geist Mono come from Google Fonts. Zen Kaku Gothic
-   New is used for occasional Japanese moments and accent
-   labels. All are licensed for embedding. */
-/* Self-hosted (was Google Fonts CDN — files under fonts/) */
+/* Geist + Geist Mono + Zen Kaku Gothic New: self-hosted (was
+   Google Fonts CDN — files under fonts/). Zen Kaku Gothic New is
+   used for occasional Japanese moments and accent labels. All
+   are licensed for embedding. */
 @import url("fonts/fonts-local.css");
 
 /* ---------- Family stacks ----------------------------------- */

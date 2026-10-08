@@ -115,7 +115,7 @@ Two themes, one vocabulary. Both rotate around a **single calm blue family** —
 - semantic colors come in 100/500/700 pairs and **always pair a tinted bg with a deeper text**
 
 ### Type
-**Geist** for UI (Google Fonts — substitute, see CAVEATS). **Geist Mono** for logs, model ids, numbers, console output. **Zen Kaku Gothic New** for JP accents. Base size **13px** — compact, console-grade. Display sizes (28–44px) for empty-state headlines and the title row of a settings sheet. Nothing smaller than 11px on screen. Tracking is tight on display (`-0.012em`); body is neutral; eyebrow uses `+0.08em` caps.
+**Geist** for UI (self-hosted substitute, see CAVEATS). **Geist Mono** for logs, model ids, numbers, console output. **Zen Kaku Gothic New** for JP accents. Base size **13px** — compact, console-grade. Display sizes (28–44px) for empty-state headlines and the title row of a settings sheet. Nothing smaller than 11px on screen. Tracking is tight on display (`-0.012em`); body is neutral; eyebrow uses `+0.08em` caps.
 
 ### Spacing
 4px base. Settings rows hit 44px+ height to stay tappable. Card padding is generous (12–16px) so neumorphic shadows have room to breathe.
@@ -238,7 +238,7 @@ This system is **in production use**: `uploads/` holds the running console insta
 `briefs/cc-multi-device-and-ios26.md` is the active plan for the responsive / iOS-26 pass
 (not yet implemented). Remaining real caveats:
 
-1. **Fonts load from Google Fonts** (Geist + Geist Mono + Zen Kaku Gothic New via the `@import` in `colors_and_type.css`) — offline or on a bad international route they fall back to system faces. Self-hosting is a planned batch.
-2. **Icons are Lucide from unpkg CDN** (pinned `0.452.0`) — same network caveat; vendoring locally is planned alongside the fonts.
+1. **Fonts are self-hosted** (Geist + Geist Mono + Zen Kaku Gothic New via `fonts/fonts-local.css`, imported by `colors_and_type.css`) — copy the `fonts/` folder along with the stylesheet into artifacts; there is no CDN fallback.
+2. **Icons are Lucide** (pinned `0.452.0`) — vendored at `assets/vendor/lucide.min.js` and loaded locally; no CDN dependency.
 3. **Brand mark is CSS-only** (radial gradients + box-shadow, see `preview/brand-mark.html`) — intentional; export an SVG only if a non-web surface needs it.
 4. **Root `colors_and_type.css` is the source of truth**; the copy inside `uploads/` is a frozen snapshot of the deployed instance (see the note in the directory map above).

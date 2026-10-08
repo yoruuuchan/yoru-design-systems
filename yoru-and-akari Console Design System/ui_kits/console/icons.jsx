@@ -1,6 +1,6 @@
 /* Tiny typed wrappers over Lucide so component JSX stays clean.
    Usage: <Icon name="message-square-text" />
-   Lucide is loaded via <script src="https://unpkg.com/lucide@0.452.0/..."> in index.html. */
+   Lucide is vendored at assets/vendor/lucide.min.js and loaded locally by index.html. */
 
 function Icon({ name, size = 18, stroke = 1.75, ...rest }) {
   const ref = React.useRef(null);

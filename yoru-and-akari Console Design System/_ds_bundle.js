@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"YoruAndAkariConsoleDesignSystem_d2501c","components":[],"sourceHashes":{"ui_kits/console/ChannelList.jsx":"a67ee1a55692","ui_kits/console/ChatView.jsx":"ae858f6d8296","ui_kits/console/ConsoleView.jsx":"4829d60f52e6","ui_kits/console/LogsDrawer.jsx":"7d3d5fa7de33","ui_kits/console/MemoryView.jsx":"afffceec1f56","ui_kits/console/ProviderSheet.jsx":"4445d1740152","ui_kits/console/Timeline.jsx":"a7be62ec3f6b","ui_kits/console/TopBar.jsx":"e85352e7a0d7","ui_kits/console/app.jsx":"aa9a1e78aea4","ui_kits/console/components.jsx":"a6ea2baaf880","ui_kits/console/icons.jsx":"58b61225775b","uploads/app.js":"48bdf827de0f"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"YoruAndAkariConsoleDesignSystem_d2501c","components":[],"sourceHashes":{"ui_kits/console/ChannelList.jsx":"a67ee1a55692","ui_kits/console/ChatView.jsx":"ae858f6d8296","ui_kits/console/ConsoleView.jsx":"4829d60f52e6","ui_kits/console/LogsDrawer.jsx":"7d3d5fa7de33","ui_kits/console/MemoryView.jsx":"afffceec1f56","ui_kits/console/ProviderSheet.jsx":"4445d1740152","ui_kits/console/Timeline.jsx":"a7be62ec3f6b","ui_kits/console/TopBar.jsx":"e85352e7a0d7","ui_kits/console/app.jsx":"aa9a1e78aea4","ui_kits/console/components.jsx":"a6ea2baaf880","ui_kits/console/icons.jsx":"751640a3aa4a","uploads/app.js":"48bdf827de0f"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -1227,7 +1227,7 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* Tiny typed wrappers over Lucide so component JSX stays clean.
    Usage: <Icon name="message-square-text" />
-   Lucide is loaded via <script src="https://unpkg.com/lucide@0.452.0/..."> in index.html. */
+   Lucide is vendored at assets/vendor/lucide.min.js and loaded locally by index.html. */
 
 function Icon({
   name,

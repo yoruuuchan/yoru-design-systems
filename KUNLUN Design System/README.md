@@ -148,7 +148,7 @@ SKILL.md                         — Claude Skill manifest (download for Claude 
 
 - **Aesthetic reference**: 550-series consoles from *The Wandering Earth* (流浪地球). The user could not provide direct frame references; the kit is an *original* visual that lives in the same genre — military-industrial Chinese sci-fi computing.
 - **No external codebase or Figma** was attached. The system was designed from scratch against a brief: cyber + terminal, cyan/blue forward, amber/red sparing, chamfered, fully monospace.
-- **Fonts**: Google Fonts CDN — Orbitron, JetBrains Mono, VT323, Noto Sans SC.
+- **Fonts**: self-hosted woff2 (was Google Fonts CDN) — Orbitron, JetBrains Mono, VT323, Noto Sans SC.
 
 ---
 

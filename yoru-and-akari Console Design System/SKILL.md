@@ -6,11 +6,11 @@ user-invocable: true
 
 Read the **README.md** file within this skill first — it covers brand concept, content fundamentals (voice, casing, tone), visual foundations (color, type, spacing, shadows, glass, motion, hover/press/focus, layout), and iconography. Then explore the other files in this directory:
 
-- **`colors_and_type.css`** — all design tokens. Both themes (`akari`, `yoru`) live as `[data-theme="…"]` blocks on `:root`. Import this file directly into any artifact; it loads its own fonts via Google Fonts.
+- **`colors_and_type.css`** — all design tokens. Both themes (`akari`, `yoru`) live as `[data-theme="…"]` blocks on `:root`. Import this file directly into any artifact; it loads its own fonts (self-hosted from `fonts/fonts-local.css`).
 - **`preview/`** — small, single-concept HTML cards that demonstrate each foundation. Open them to see palettes, type scale, shadows, glass, buttons, inputs, toggles, badges, channel cards, logs (collapsed/expanded), timeline rail, settings rows, message bubbles, composer, memory cards, provider picker, avatars, brand mark, tab bar.
 - **`ui_kits/console/`** — a working mobile-first hi-fi recreation of the console with chat, timeline, memory, settings, logs, provider sheet, and theme switch. Use its JSX components as a starting point for new artifacts. Mobile width is 390px; desktop layout activates at 980px.
 - **`assets/`** — brand mark notes (the mark itself is pure CSS) and icon-set reference (Lucide @ 18px, stroke 1.75).
-- **`fonts/`** — font notes. Geist + Geist Mono + Zen Kaku Gothic New, all from Google Fonts.
+- **`fonts/`** — font notes. Geist + Geist Mono + Zen Kaku Gothic New, all self-hosted.
 
 **When creating visual artifacts** (slides, mocks, throwaway prototypes), copy `colors_and_type.css` into the artifact's folder and link it; pull the JSX components from `ui_kits/console/` if you need real-feeling interactions; produce static HTML files for the user to view.
 

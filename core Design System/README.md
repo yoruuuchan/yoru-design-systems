@@ -131,7 +131,7 @@ If you later supply a real codebase, brand guide, or photographic library, this 
 
 ## Caveats
 
-- **Fonts are Google Fonts substitutes.** Pixelify Sans + VT323 + Tinos pulled via `@import` in `tokens/fonts.css`. If you want bespoke binaries, drop `.woff2` files in `assets/fonts/` and replace the `@import` with `@font-face` rules.
+- **Fonts are self-hosted substitutes.** Pixelify Sans + VT323 + Tinos ship as `woff2` under `assets/fonts/` (was Google Fonts CDN), imported via `@import` in `tokens/fonts.css`. To swap in bespoke binaries, replace the `woff2` files under `assets/fonts/files/`.
 - **No real photography.** UI Kits will use Unsplash URLs with intentional search terms (empty pools, suburban interiors, etc) — swap in your own when you have them.
 - **No icon set yet** — added in the components batch.
 
@@ -145,7 +145,7 @@ If you later supply a real codebase, brand guide, or photographic library, this 
   - `typography.css` — three families + size scale (xxs → mega)
   - `spacing.css` — 4px grid + 32px tile unit
   - `effects.css` — bevels, shadows, glows, filters, motion
-  - `fonts.css` — Google Fonts `@import` (Pixelify Sans, VT323, Tinos)
+  - `fonts.css` — self-hosted fonts `@import` (Pixelify Sans, VT323, Tinos)
   - `reset.css` — page baseline (resets + body type defaults)
   - `nightpool.css` — NIGHTPOOL dark theme (`[data-theme="nightpool"]` scoped; day default untouched)
 - `cards/` — 19 foundation specimen cards (Colors / Type / Spacing / Effects / Brand)

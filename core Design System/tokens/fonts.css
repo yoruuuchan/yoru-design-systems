@@ -1,5 +1,5 @@
 /* fonts.css — webfont sources.
-   Pixelify Sans + VT323 + Tinos pulled from Google Fonts.
+   Pixelify Sans + VT323 + Tinos are self-hosted woff2 (import below).
    MS Sans Serif is declared via @font-face with local()-only sources: machines that have
    it installed (older Windows) will use it; everywhere else the browser silently falls
    through to the next family in --font-ui-sans (Tahoma / Segoe UI / system-ui). If you

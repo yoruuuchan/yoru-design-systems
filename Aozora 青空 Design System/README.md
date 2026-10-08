@@ -121,6 +121,6 @@ Components compile into `_ds_bundle.js` automatically. Consume them via:
 
 ## Caveats / known substitutions
 
-- **Fonts** load from Google Fonts CDN (Inter, Noto Sans JP). Chinese uses the system stack (PingFang SC / 思源黑体). If you ship a paid Chinese face, drop `@font-face` into `tokens/fonts.css`.
+- **Fonts** are self-hosted woff2 (Bebas Neue, Fraunces, Inter, JetBrains Mono, Noto Sans JP, Noto Serif JP, Space Grotesk). Chinese uses the system stack (PingFang SC / 思源黑体). If you ship a paid Chinese face, drop `@font-face` into `tokens/fonts.css`.
 - **Icons** use Lucide as the reference set; not bundled.
 - **No real brand**: name, logo, and copy are placeholders. Replace `assets/logo*.svg` and search-replace `Aozora` to adopt.

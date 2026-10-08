@@ -1,8 +1,7 @@
-/* Webfonts loaded via Google Fonts CDN. We re-declare the @font-face rules
- * locally so the compiler can index them and so consumers don't need a
- * second <link>. Pull subsets generously — UI is heavy on numerals,
- * brackets, and CJK labels.
+/* Webfonts — self-hosted woff2: Orbitron, JetBrains Mono, VT323, Noto Sans SC
+ * (was Google Fonts CDN — files under ../assets/fonts/). We re-declare the
+ * @font-face rules locally so the compiler can index them and so consumers
+ * don't need a second <link>. Pull subsets generously — UI is heavy on
+ * numerals, brackets, and CJK labels.
  */
-
-/* Self-hosted (was Google Fonts CDN — files under ../assets/fonts/) */
 @import url("../assets/fonts/fonts-local.css");

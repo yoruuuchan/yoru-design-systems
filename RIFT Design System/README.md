@@ -16,7 +16,7 @@ The system's reason for existing is a single visual idea: **the chromatic edge**
 - `uploads/README.md` / `uploads/README-a5001143.md` — the v2 README. The "Use it / Tokens / Utility classes / Cursor & click FX" sections come from there.
 - `uploads/showcase.html` — a self-contained bundled DC of every component (1MB, embedded fonts). Not used directly here, but consulted for what the v2 demo intended to surface.
 
-Substitutions / things to flag: none. All fonts are loaded from Google Fonts (`Space Grotesk`, `Chakra Petch`, `DM Serif Display`, `Rajdhani`, `Share Tech Mono`, `Shippori Mincho`, `Zen Kaku Gothic New`) — if you want the system to ship `woff2` binaries locally instead, drop them in `assets/fonts/` and rewrite the `@import` at the top of `tokens/typography.css` as local `@font-face` rules.
+Substitutions / things to flag: none. All fonts (`Space Grotesk`, `Chakra Petch`, `DM Serif Display`, `Rajdhani`, `Share Tech Mono`, `Shippori Mincho`, `Zen Kaku Gothic New`) are self-hosted `woff2` under `assets/fonts/` (was Google Fonts CDN), imported at the top of `tokens/typography.css`.
 
 ---
 
@@ -106,7 +106,7 @@ effects.css                 ← .rift-glitch keyframes, .rift-glow, cursor & rip
 
 tokens/
   palette.css               ← raw palette + accent channel re-maps
-  typography.css            ← families + scale + weights (+ Google Fonts @import)
+  typography.css            ← families + scale + weights (+ self-hosted fonts @import)
   spacing.css               ← --sp-* + --r-*
   motion.css                ← easings, durations, glow primitives
   theme-dark.css            ← :root semantic layer (default)
