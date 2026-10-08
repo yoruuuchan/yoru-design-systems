@@ -50,7 +50,7 @@ function PhoneFrame({ children, label }) {
           borderRadius: 38,
           overflow: 'hidden',
           position: 'relative',
-          background: '#fff',
+          background: 'var(--aoz-kit-screen-base, #fff)',
         }}>
           {/* Dynamic Island */}
           <div style={{
@@ -70,7 +70,7 @@ function PhoneFrame({ children, label }) {
 
 // Status bar — used inside every screen.
 function StatusBar({ tint='dark' }) {
-  const color = tint === 'light' ? '#fff' : 'var(--neutral-900)';
+  const color = tint === 'light' ? '#fff' : 'var(--aoz-kit-ink, var(--neutral-900))';
   return (
     <div style={{
       position:'absolute', top: 0, left: 0, right: 0, height: 50, zIndex: 15,
@@ -102,12 +102,12 @@ function TabBar({ active, onChange }) {
   return (
     <div style={{
       position:'absolute', left: 12, right: 12, bottom: 14,
-      background: 'rgba(255,255,255,0.62)',
+      background: 'var(--aoz-kit-bar-bg, rgba(255,255,255,0.62))',
       backdropFilter: 'blur(24px) saturate(180%)',
       WebkitBackdropFilter: 'blur(24px) saturate(180%)',
       border: '1px solid var(--glass-stroke)',
       borderRadius: 28,
-      boxShadow: 'var(--glass-edge), 0 12px 30px rgba(10,68,140,0.18)',
+      boxShadow: 'var(--glass-edge), var(--aoz-kit-bar-drop, 0 12px 30px rgba(10,68,140,0.18))',
       padding: '10px 8px',
       display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap: 4,
       zIndex: 30,
@@ -117,9 +117,9 @@ function TabBar({ active, onChange }) {
         return (
           <button key={t.id} onClick={() => onChange(t.id)} style={{
             display:'flex', flexDirection:'column', alignItems:'center',
-            gap: 3, padding:'8px 4px', border:'none', background: on ? 'rgba(10,132,255,0.10)' : 'transparent',
+            gap: 3, padding:'8px 4px', border:'none', background: on ? 'var(--aoz-kit-tab-on-bg, rgba(10,132,255,0.10))' : 'transparent',
             borderRadius: 18, cursor:'pointer',
-            color: on ? 'var(--blue-600)' : 'var(--text-muted)',
+            color: on ? 'var(--aoz-kit-tab-on, var(--blue-600))' : 'var(--text-muted)',
             transition: 'all var(--dur-fast) var(--ease-out-quart)',
           }}>
             <t.Icon size={20}/>
@@ -152,7 +152,7 @@ function HomeScreen({ onOpenDetail, onOpenSettings }) {
   return (
     <div style={{
       position:'absolute', inset: 0,
-      background: 'linear-gradient(180deg,#0A84FF 0%, #66B7FF 35%, #CFE8FF 70%, #FFE980 100%)',
+      background: 'var(--aoz-kit-home-bg, linear-gradient(180deg,#0A84FF 0%, #66B7FF 35%, #CFE8FF 70%, #FFE980 100%))',
       overflowY: 'auto',
     }}>
       <StatusBar tint="light"/>
@@ -176,10 +176,10 @@ function HomeScreen({ onOpenDetail, onOpenSettings }) {
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
             <div>
               <Badge tone="accent" variant="solid">LIMITED</Badge>
-              <div style={{ fontFamily:'var(--font-display)', fontSize: 44, fontWeight: 900, letterSpacing:'-0.035em', lineHeight: 1, marginTop: 10, color:'var(--neutral-900)' }}>SODA</div>
+              <div style={{ fontFamily:'var(--font-display)', fontSize: 44, fontWeight: 900, letterSpacing:'-0.035em', lineHeight: 1, marginTop: 10, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>SODA</div>
               <div style={{ fontFamily:'var(--font-sans)', fontSize: 12, fontWeight: 500, color:'var(--text-muted)', marginTop: 2, letterSpacing:'0.12em' }}>蒼い空、冷たい一杯</div>
               <div style={{ display:'flex', alignItems:'baseline', gap: 8, marginTop: 14 }}>
-                <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, fontSize: 22, color:'var(--neutral-900)' }}>¥280</span>
+                <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, fontSize: 22, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>¥280</span>
                 <span style={{ fontFamily:'var(--font-mono)', fontSize: 11, color:'var(--text-muted)', textDecoration:'line-through' }}>¥320</span>
               </div>
             </div>
@@ -211,10 +211,10 @@ function HomeScreen({ onOpenDetail, onOpenSettings }) {
               )}
             </div>
             <div style={{ padding: '12px 14px 14px' }}>
-              <div style={{ fontFamily:'var(--font-display)', fontSize: 18, fontWeight: 800, letterSpacing:'-0.02em', color:'var(--neutral-900)' }}>{f.name}</div>
+              <div style={{ fontFamily:'var(--font-display)', fontSize: 18, fontWeight: 800, letterSpacing:'-0.02em', color:'var(--aoz-kit-ink, var(--neutral-900))' }}>{f.name}</div>
               <div style={{ fontFamily:'var(--font-sans)', fontSize: 11, color:'var(--text-muted)', letterSpacing:'0.08em' }}>{f.jp}</div>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginTop: 8 }}>
-                <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, fontSize: 14, color:'var(--neutral-900)' }}>¥{f.price}</span>
+                <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, fontSize: 14, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>¥{f.price}</span>
                 <IcPlus size={16} color="var(--blue-500)"/>
               </div>
             </div>
@@ -239,7 +239,7 @@ function DetailScreen({ onBack }) {
   const [qty, setQty]   = React.useState(1);
 
   return (
-    <div style={{ position:'absolute', inset: 0, background:'#fff', overflowY:'auto' }}>
+    <div style={{ position:'absolute', inset: 0, background:'var(--aoz-kit-screen-base, #fff)', overflowY:'auto' }}>
       {/* Hero */}
       <div style={{
         height: 380, position:'relative',
@@ -268,7 +268,7 @@ function DetailScreen({ onBack }) {
 
       {/* Sheet */}
       <div style={{
-        position:'relative', marginTop: -30, background:'#fff',
+        position:'relative', marginTop: -30, background:'var(--aoz-kit-sheet-bg, #fff)',
         borderRadius: '28px 28px 0 0', padding: '24px 22px 140px',
         boxShadow: '0 -10px 40px rgba(10,68,140,0.10)',
       }}>
@@ -276,14 +276,14 @@ function DetailScreen({ onBack }) {
 
         <h1 style={{ margin:'10px 0 4px', fontFamily:'var(--font-display)',
                      fontSize: 48, fontWeight: 900, letterSpacing:'-0.035em',
-                     lineHeight: 1, color:'var(--neutral-900)' }}>SODA</h1>
+                     lineHeight: 1, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>SODA</h1>
         <div style={{ fontFamily:'var(--font-sans)', fontSize: 13, color:'var(--text-muted)', letterSpacing:'0.12em' }}>
           蒼い空、冷たい一杯。
         </div>
 
         <div style={{ display:'flex', alignItems:'center', gap: 8, marginTop: 14 }}>
           <IcStar size={14} color="var(--sun-500)"/>
-          <span style={{ fontFamily:'var(--font-mono)', fontSize: 12, fontWeight: 600, color:'var(--neutral-800)' }}>4.8</span>
+          <span style={{ fontFamily:'var(--font-mono)', fontSize: 12, fontWeight: 600, color:'var(--aoz-kit-ink, var(--neutral-800))' }}>4.8</span>
           <span style={{ fontFamily:'var(--font-sans)', fontSize: 12, color:'var(--text-muted)' }}>· 1,284 reviews</span>
         </div>
 
@@ -299,12 +299,12 @@ function DetailScreen({ onBack }) {
               <button key={o.k} onClick={() => setSize(o.k)} style={{
                 flex: 1, padding: '12px 8px', border:'1.4px solid',
                 borderColor: size===o.k ? 'var(--blue-500)' : 'var(--stroke-subtle)',
-                background: size===o.k ? 'var(--blue-50)' : '#fff',
+                background: size===o.k ? 'var(--aoz-kit-pick-on, var(--blue-50))' : 'var(--aoz-kit-pick, #fff)',
                 borderRadius: 14, cursor:'pointer',
                 display:'flex', flexDirection:'column', gap: 2,
               }}>
-                <div style={{ fontFamily:'var(--font-sans)', fontSize: 12, fontWeight: 700, color:'var(--neutral-900)' }}>{o.l}</div>
-                <div style={{ fontFamily:'var(--font-mono)', fontSize: 11, color: size===o.k ? 'var(--blue-600)' : 'var(--text-muted)' }}>¥{o.p}</div>
+                <div style={{ fontFamily:'var(--font-sans)', fontSize: 12, fontWeight: 700, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>{o.l}</div>
+                <div style={{ fontFamily:'var(--font-mono)', fontSize: 11, color: size===o.k ? 'var(--aoz-kit-accent-ink, var(--blue-600))' : 'var(--text-muted)' }}>¥{o.p}</div>
               </button>
             ))}
           </div>
@@ -321,18 +321,18 @@ function DetailScreen({ onBack }) {
         {/* Sticky CTA */}
         <div style={{
           position:'absolute', left: 12, right: 12, bottom: 90,
-          background: 'rgba(255,255,255,0.78)',
+          background: 'var(--aoz-kit-cta-bg, rgba(255,255,255,0.78))',
           backdropFilter: 'blur(24px) saturate(180%)',
           WebkitBackdropFilter: 'blur(24px) saturate(180%)',
           border: '1px solid var(--glass-stroke)',
           borderRadius: 24, padding: 12,
-          boxShadow: 'var(--glass-edge), 0 8px 24px rgba(10,68,140,0.16)',
+          boxShadow: 'var(--glass-edge), var(--aoz-kit-cta-drop, 0 8px 24px rgba(10,68,140,0.16))',
           display:'flex', alignItems:'center', gap: 10,
         }}>
-          <div style={{ display:'flex', alignItems:'center', background:'var(--neutral-100)', borderRadius: 999 }}>
-            <button onClick={() => setQty(Math.max(1, qty-1))} style={{ border:'none', background:'none', width: 32, height: 36, cursor:'pointer', color:'var(--neutral-700)', fontSize: 18 }}>−</button>
-            <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, width: 20, textAlign:'center', color:'var(--neutral-900)' }}>{qty}</span>
-            <button onClick={() => setQty(qty+1)} style={{ border:'none', background:'none', width: 32, height: 36, cursor:'pointer', color:'var(--neutral-700)', fontSize: 18 }}>+</button>
+          <div style={{ display:'flex', alignItems:'center', background:'var(--aoz-kit-stepper-bg, var(--neutral-100))', borderRadius: 999 }}>
+            <button onClick={() => setQty(Math.max(1, qty-1))} style={{ border:'none', background:'none', width: 32, height: 36, cursor:'pointer', color:'var(--aoz-kit-stepper-ink, var(--neutral-700))', fontSize: 18 }}>−</button>
+            <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, width: 20, textAlign:'center', color:'var(--aoz-kit-ink, var(--neutral-900))' }}>{qty}</span>
+            <button onClick={() => setQty(qty+1)} style={{ border:'none', background:'none', width: 32, height: 36, cursor:'pointer', color:'var(--aoz-kit-stepper-ink, var(--neutral-700))', fontSize: 18 }}>+</button>
           </div>
           <Button block tone="brand" size="lg" leadingIcon={<IcCart size={16}/>}>Add · ¥380</Button>
         </div>
@@ -361,7 +361,7 @@ function SettingsScreen({ onBack }) {
                       color:'var(--text-muted)', textTransform:'uppercase', padding:'0 4px 8px' }}>{kicker}</div>
       )}
       <div style={{
-        background:'#fff', border:'1px solid var(--stroke-hairline)',
+        background:'var(--aoz-kit-section-bg, #fff)', border:'1px solid var(--stroke-hairline)',
         borderRadius: 18, overflow:'hidden',
         boxShadow:'var(--shadow-xs)',
       }}>{children}</div>
@@ -385,14 +385,14 @@ function SettingsScreen({ onBack }) {
 
   return (
     <div style={{ position:'absolute', inset: 0,
-                  background: 'linear-gradient(180deg,#EAF5FF 0%, #fff 200px, #fff 100%)',
+                  background: 'var(--aoz-kit-settings-bg, linear-gradient(180deg,#EAF5FF 0%, #fff 200px, #fff 100%))',
                   overflowY:'auto', paddingBottom: 140 }}>
       <StatusBar tint="dark"/>
 
       {/* Header */}
       <div style={{ padding: '60px 20px 8px', display:'flex', alignItems:'center', gap: 12 }}>
         <IconButton variant="ghost" shape="circle" aria-label="Back" onClick={onBack}><IcBack size={20}/></IconButton>
-        <div style={{ fontFamily:'var(--font-display)', fontSize: 22, fontWeight: 800, letterSpacing:'-0.02em', color:'var(--neutral-900)' }}>Settings</div>
+        <div style={{ fontFamily:'var(--font-display)', fontSize: 22, fontWeight: 800, letterSpacing:'-0.02em', color:'var(--aoz-kit-ink, var(--neutral-900))' }}>Settings</div>
       </div>
 
       <div style={{ padding: '4px 16px' }}>

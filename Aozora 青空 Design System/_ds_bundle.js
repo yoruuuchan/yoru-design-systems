@@ -94,10 +94,11 @@ function Button({
     const gloss = "linear-gradient(160deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.15) 22%, rgba(255,255,255,0) 45%)";
     const bottom = "linear-gradient(0deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 30%)";
     const tint = hover ? "linear-gradient(180deg, rgba(180,220,255,0.35), rgba(255,255,255,0.45))" : "linear-gradient(180deg, rgba(180,220,255,0.22), rgba(255,255,255,0.28))";
-    bg = `${gloss}, ${bottom}, ${tint}`;
+    const recipe = `${gloss}, ${bottom}, ${tint}`;
+    bg = hover ? `var(--aoz-glassbtn-bg-hover, ${recipe})` : `var(--aoz-glassbtn-bg, ${recipe})`;
     color = "var(--text-strong)";
-    border = "1px solid rgba(255,255,255,0.85)";
-    shadow = ["inset 0 1.5px 0 rgba(255,255,255,0.95)",
+    border = "var(--aoz-glassbtn-border, 1px solid rgba(255,255,255,0.85))";
+    shadow = `var(--aoz-glassbtn-shadow, ${["inset 0 1.5px 0 rgba(255,255,255,0.95)",
     // top rim highlight
     "inset 0 -1px 0 rgba(10,68,140,0.10)",
     // bottom rim shadow
@@ -108,7 +109,7 @@ function Button({
     "inset 0 -10px 18px -10px rgba(10,132,255,0.18)",
     // bottom blue refraction
     "0 1px 2px rgba(10,68,140,0.10)", "0 8px 24px rgba(10,68,140,0.18)" // outer drop
-    ].join(", ");
+    ].join(", ")})`;
     backdrop = "blur(28px) saturate(220%) brightness(1.08)";
   } else {
     bg = press ? "var(--state-press-tint)" : hover ? "var(--state-hover-tint)" : "transparent";
@@ -238,10 +239,11 @@ function IconButton({
     const gloss = "linear-gradient(160deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.15) 22%, rgba(255,255,255,0) 45%)";
     const bottom = "linear-gradient(0deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 30%)";
     const tint = hover ? "linear-gradient(180deg, rgba(180,220,255,0.35), rgba(255,255,255,0.45))" : "linear-gradient(180deg, rgba(180,220,255,0.22), rgba(255,255,255,0.28))";
-    bg = `${gloss}, ${bottom}, ${tint}`;
+    const recipe = `${gloss}, ${bottom}, ${tint}`;
+    bg = hover ? `var(--aoz-glassbtn-bg-hover, ${recipe})` : `var(--aoz-glassbtn-bg, ${recipe})`;
     color = "var(--text-strong)";
-    border = "1px solid rgba(255,255,255,0.85)";
-    shadow = ["inset 0 1.5px 0 rgba(255,255,255,0.95)", "inset 0 -1px 0 rgba(10,68,140,0.10)", "inset 0 0 0 1px rgba(255,255,255,0.25)", "inset 0 6px 12px -6px rgba(255,255,255,0.65)", "inset 0 -8px 14px -8px rgba(10,132,255,0.20)", "0 1px 2px rgba(10,68,140,0.10)", "0 6px 18px rgba(10,68,140,0.18)"].join(", ");
+    border = "var(--aoz-glassbtn-border, 1px solid rgba(255,255,255,0.85))";
+    shadow = `var(--aoz-glassbtn-shadow, ${["inset 0 1.5px 0 rgba(255,255,255,0.95)", "inset 0 -1px 0 rgba(10,68,140,0.10)", "inset 0 0 0 1px rgba(255,255,255,0.25)", "inset 0 6px 12px -6px rgba(255,255,255,0.65)", "inset 0 -8px 14px -8px rgba(10,132,255,0.20)", "0 1px 2px rgba(10,68,140,0.10)", "0 6px 18px rgba(10,68,140,0.18)"].join(", ")})`;
     backdrop = "blur(28px) saturate(220%) brightness(1.08)";
   } else {
     bg = press ? "var(--state-press-tint)" : hover ? "var(--state-hover-tint)" : "transparent";
@@ -329,12 +331,12 @@ function Dialog({
   const sheet = {
     width: "100%",
     maxWidth,
-    background: "rgba(255,255,255,0.78)",
+    background: "var(--aoz-dialog-bg, rgba(255,255,255,0.78))",
     backdropFilter: "blur(40px) saturate(180%)",
     WebkitBackdropFilter: "blur(40px) saturate(180%)",
     border: "1px solid var(--glass-stroke-strong)",
     borderRadius: 28,
-    boxShadow: "var(--glass-edge-strong), 0 24px 80px rgba(10,68,140,0.28)",
+    boxShadow: "var(--glass-edge-strong), var(--aoz-dialog-drop, 0 24px 80px rgba(10,68,140,0.28))",
     padding: 28,
     color: "var(--text-strong)",
     animation: "aoz-pop-in var(--dur-slow) var(--ease-spring)"
@@ -616,10 +618,10 @@ function Tabs({
     const wrap = {
       display: "inline-flex",
       padding: 4,
-      background: "linear-gradient(180deg, rgba(255,255,255,0.45), rgba(180,220,255,0.28))",
+      background: "var(--aoz-tabs-wrap-bg, linear-gradient(180deg, rgba(255,255,255,0.45), rgba(180,220,255,0.28)))",
       borderRadius: 999,
-      border: "1px solid rgba(255,255,255,0.75)",
-      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(10,68,140,0.10), 0 1px 2px rgba(10,68,140,0.06), 0 8px 24px rgba(10,68,140,0.10)",
+      border: "var(--aoz-tabs-wrap-border, 1px solid rgba(255,255,255,0.75))",
+      boxShadow: "var(--aoz-tabs-wrap-shadow, inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(10,68,140,0.10), 0 1px 2px rgba(10,68,140,0.06), 0 8px 24px rgba(10,68,140,0.10))",
       backdropFilter: "blur(24px) saturate(200%) brightness(1.05)",
       WebkitBackdropFilter: "blur(24px) saturate(200%) brightness(1.05)",
       gap: 2
@@ -639,11 +641,11 @@ function Tabs({
         fontSize: fs,
         fontWeight: 600,
         letterSpacing: "-0.005em",
-        color: active ? "var(--blue-700)" : "var(--neutral-700)",
-        background: active ? "linear-gradient(160deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.70) 50%, rgba(220,235,255,0.75) 100%)" : "transparent",
-        border: active ? "1px solid rgba(255,255,255,0.9)" : "1px solid transparent",
+        color: active ? "var(--aoz-tabs-active-fg, var(--blue-700))" : "var(--aoz-tabs-fg, var(--neutral-700))",
+        background: active ? "var(--aoz-tabs-active-bg, linear-gradient(160deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.70) 50%, rgba(220,235,255,0.75) 100%))" : "transparent",
+        border: active ? "var(--aoz-tabs-active-border, 1px solid rgba(255,255,255,0.9))" : "1px solid transparent",
         borderRadius: 999,
-        boxShadow: active ? "inset 0 1.5px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(10,68,140,0.10), 0 1px 2px rgba(10,68,140,0.10), 0 6px 16px rgba(10,68,140,0.14)" : "none",
+        boxShadow: active ? "var(--aoz-tabs-active-shadow, inset 0 1.5px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(10,68,140,0.10), 0 1px 2px rgba(10,68,140,0.10), 0 6px 16px rgba(10,68,140,0.14))" : "none",
         cursor: "pointer",
         transition: "background var(--dur-fast) var(--ease-out-quart), color var(--dur-fast) var(--ease-out-quart), box-shadow var(--dur-fast) var(--ease-out-quart)"
       };
@@ -657,7 +659,7 @@ function Tabs({
         style: {
           fontFamily: "var(--font-mono)",
           fontSize: 10,
-          color: active ? "var(--blue-600)" : "var(--text-muted)",
+          color: active ? "var(--aoz-tabs-count-on, var(--blue-600))" : "var(--text-muted)",
           fontWeight: 600
         }
       }, it.count) : null);
@@ -727,32 +729,32 @@ const PAL = {
   brand: {
     solid: "#0A84FF",
     soft: "rgba(10,132,255,0.14)",
-    text: "#005BB8"
+    text: "var(--aoz-badge-brand-text, #005BB8)"
   },
   accent: {
     solid: "#FFE34D",
     soft: "rgba(255,227,77,0.28)",
-    text: "#7A5A00"
+    text: "var(--aoz-badge-accent-text, #7A5A00)"
   },
   neutral: {
     solid: "#3D4956",
     soft: "rgba(61,73,86,0.10)",
-    text: "#3D4956"
+    text: "var(--aoz-badge-neutral-text, #3D4956)"
   },
   success: {
     solid: "#34C759",
     soft: "rgba(52,199,89,0.16)",
-    text: "#0F7A2D"
+    text: "var(--aoz-badge-success-text, #0F7A2D)"
   },
   warn: {
     solid: "#FF9F0A",
     soft: "rgba(255,159,10,0.18)",
-    text: "#8A4A00"
+    text: "var(--aoz-badge-warn-text, #8A4A00)"
   },
   danger: {
     solid: "#FF453A",
     soft: "rgba(255,69,58,0.14)",
-    text: "#B11A12"
+    text: "var(--aoz-badge-danger-text, #B11A12)"
   }
 };
 function Badge({
@@ -816,9 +818,9 @@ const BLURS = {
 };
 const FILLS = {
   clear: {
-    thin: "rgba(255,255,255,0.18)",
-    regular: "rgba(255,255,255,0.45)",
-    thick: "rgba(255,255,255,0.78)"
+    thin: "var(--aoz-card-bg-clear-thin, rgba(255,255,255,0.18))",
+    regular: "var(--aoz-card-bg-clear-regular, rgba(255,255,255,0.45))",
+    thick: "var(--aoz-card-bg-clear-thick, rgba(255,255,255,0.78))"
   },
   blue: {
     thin: "rgba(10,132,255,0.18)",
@@ -865,7 +867,7 @@ function Card({
     background: tint === "dark" ? FILLS[tint][tier] : `${FROST}, ${FILLS[tint][tier]}`,
     backdropFilter: BLURS[tier],
     WebkitBackdropFilter: BLURS[tier],
-    border: `1px solid ${tint === "dark" ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.7)"}`,
+    border: tint === "dark" ? "1px solid rgba(255,255,255,0.22)" : "var(--aoz-card-border-clear, 1px solid rgba(255,255,255,0.7))",
     borderRadius: RADII[radius],
     padding: PADDINGS[padding],
     boxShadow: "var(--glass-edge), var(--shadow-md)",
@@ -896,17 +898,17 @@ const PAL = {
   brand: {
     solid: "#0A84FF",
     soft: "rgba(10,132,255,0.10)",
-    text: "#005BB8"
+    text: "var(--aoz-tag-brand-text, #005BB8)"
   },
   accent: {
     solid: "#FFD000",
     soft: "rgba(255,227,77,0.24)",
-    text: "#7A5A00"
+    text: "var(--aoz-tag-accent-text, #7A5A00)"
   },
   neutral: {
     solid: "#3D4956",
     soft: "rgba(61,73,86,0.08)",
-    text: "#3D4956"
+    text: "var(--aoz-tag-neutral-text, #3D4956)"
   }
 };
 function Tag({
@@ -919,9 +921,9 @@ function Tag({
 }) {
   const [hover, setHover] = React.useState(false);
   const p = PAL[tone] || PAL.neutral;
-  const bg = selected ? p.solid : hover && onClick ? "rgba(10,68,140,0.06)" : p.soft;
+  const bg = selected ? p.solid : hover && onClick ? "var(--aoz-tag-hover, rgba(10,68,140,0.06))" : p.soft;
   const color = selected ? tone === "accent" ? "var(--neutral-900)" : "#fff" : p.text;
-  const border = selected ? "transparent" : "rgba(10,68,140,0.10)";
+  const border = selected ? "transparent" : "var(--aoz-tag-border, rgba(10,68,140,0.10))";
   const style = {
     display: "inline-flex",
     alignItems: "center",
@@ -946,7 +948,7 @@ function Tag({
     width: 16,
     height: 16,
     borderRadius: "50%",
-    background: selected ? "rgba(255,255,255,0.25)" : "rgba(10,68,140,0.10)",
+    background: selected ? "rgba(255,255,255,0.25)" : "var(--aoz-tag-x-bg, rgba(10,68,140,0.10))",
     color: selected ? "#fff" : "currentColor",
     cursor: "pointer",
     marginLeft: 2,

@@ -1,12 +1,12 @@
 import React from "react";
 
 const PAL = {
-  brand:   { solid: "#0A84FF", soft: "rgba(10,132,255,0.14)",  text: "#005BB8" },
-  accent:  { solid: "#FFE34D", soft: "rgba(255,227,77,0.28)",  text: "#7A5A00" },
-  neutral: { solid: "#3D4956", soft: "rgba(61,73,86,0.10)",    text: "#3D4956" },
-  success: { solid: "#34C759", soft: "rgba(52,199,89,0.16)",   text: "#0F7A2D" },
-  warn:    { solid: "#FF9F0A", soft: "rgba(255,159,10,0.18)",  text: "#8A4A00" },
-  danger:  { solid: "#FF453A", soft: "rgba(255,69,58,0.14)",   text: "#B11A12" },
+  brand:   { solid: "#0A84FF", soft: "rgba(10,132,255,0.14)",  text: "var(--aoz-badge-brand-text, #005BB8)" },
+  accent:  { solid: "#FFE34D", soft: "rgba(255,227,77,0.28)",  text: "var(--aoz-badge-accent-text, #7A5A00)" },
+  neutral: { solid: "#3D4956", soft: "rgba(61,73,86,0.10)",    text: "var(--aoz-badge-neutral-text, #3D4956)" },
+  success: { solid: "#34C759", soft: "rgba(52,199,89,0.16)",   text: "var(--aoz-badge-success-text, #0F7A2D)" },
+  warn:    { solid: "#FF9F0A", soft: "rgba(255,159,10,0.18)",  text: "var(--aoz-badge-warn-text, #8A4A00)" },
+  danger:  { solid: "#FF453A", soft: "rgba(255,69,58,0.14)",   text: "var(--aoz-badge-danger-text, #B11A12)" },
 };
 
 export function Badge({ tone = "brand", variant = "soft", dot = false, children }) {

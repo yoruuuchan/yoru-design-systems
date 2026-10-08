@@ -2,7 +2,7 @@
 
 A summer-bright, **iOS 26 liquid-glass** design language for products that want to feel cool, clear, and Japanese. Inspired by Pocari Sweat advertising, hi-key Japanese poster typography, and Apple's translucent surfaces.
 
-> **Light-only system.** Aozora is a single, sky-lit theme — no dark mode. The whole voice (glass over color, blue-tinted shadows, white as sky-lit paper) collapses under a dark canvas. Embedding it inside a dark shell will read as wrong. Keep it on a light page.
+> **Two themes.** Aozora ships daylight and **YOZORA 夜空**. Daylight is the default and the brand reference — everything on this page describes it first. YOZORA is the same grammar after dark: glass on gradients, moon instead of sun, signal blue unchanged. Set `data-theme="yozora"` on any wrapper (tokens live in `tokens/yozora.css`); outside it, nothing changes.
 
 > **Placeholder brand.** "Aozora" (青空 — "blue sky") is the working name, used so logos, copy, and example screens hang together. Rename to your real brand when you adopt it.
 

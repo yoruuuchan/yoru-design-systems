@@ -16,7 +16,7 @@ function PhoneFrame({ children, label }) {
           borderRadius: 38,
           overflow: 'hidden',
           position: 'relative',
-          background: '#fff',
+          background: 'var(--aoz-kit-screen-base, #fff)',
         }}>
           {/* Dynamic Island */}
           <div style={{
@@ -36,7 +36,7 @@ function PhoneFrame({ children, label }) {
 
 // Status bar — used inside every screen.
 function StatusBar({ tint='dark' }) {
-  const color = tint === 'light' ? '#fff' : 'var(--neutral-900)';
+  const color = tint === 'light' ? '#fff' : 'var(--aoz-kit-ink, var(--neutral-900))';
   return (
     <div style={{
       position:'absolute', top: 0, left: 0, right: 0, height: 50, zIndex: 15,
@@ -68,12 +68,12 @@ function TabBar({ active, onChange }) {
   return (
     <div style={{
       position:'absolute', left: 12, right: 12, bottom: 14,
-      background: 'rgba(255,255,255,0.62)',
+      background: 'var(--aoz-kit-bar-bg, rgba(255,255,255,0.62))',
       backdropFilter: 'blur(24px) saturate(180%)',
       WebkitBackdropFilter: 'blur(24px) saturate(180%)',
       border: '1px solid var(--glass-stroke)',
       borderRadius: 28,
-      boxShadow: 'var(--glass-edge), 0 12px 30px rgba(10,68,140,0.18)',
+      boxShadow: 'var(--glass-edge), var(--aoz-kit-bar-drop, 0 12px 30px rgba(10,68,140,0.18))',
       padding: '10px 8px',
       display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap: 4,
       zIndex: 30,
@@ -83,9 +83,9 @@ function TabBar({ active, onChange }) {
         return (
           <button key={t.id} onClick={() => onChange(t.id)} style={{
             display:'flex', flexDirection:'column', alignItems:'center',
-            gap: 3, padding:'8px 4px', border:'none', background: on ? 'rgba(10,132,255,0.10)' : 'transparent',
+            gap: 3, padding:'8px 4px', border:'none', background: on ? 'var(--aoz-kit-tab-on-bg, rgba(10,132,255,0.10))' : 'transparent',
             borderRadius: 18, cursor:'pointer',
-            color: on ? 'var(--blue-600)' : 'var(--text-muted)',
+            color: on ? 'var(--aoz-kit-tab-on, var(--blue-600))' : 'var(--text-muted)',
             transition: 'all var(--dur-fast) var(--ease-out-quart)',
           }}>
             <t.Icon size={20}/>

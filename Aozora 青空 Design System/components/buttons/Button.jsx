@@ -52,16 +52,19 @@ export function Button({
     const tint   = hover
       ? "linear-gradient(180deg, rgba(180,220,255,0.35), rgba(255,255,255,0.45))"
       : "linear-gradient(180deg, rgba(180,220,255,0.22), rgba(255,255,255,0.28))";
-    bg = `${gloss}, ${bottom}, ${tint}`;
+    const recipe = `${gloss}, ${bottom}, ${tint}`;
+    bg = hover
+      ? `var(--aoz-glassbtn-bg-hover, ${recipe})`
+      : `var(--aoz-glassbtn-bg, ${recipe})`;
     color = "var(--text-strong)";
-    border = "1px solid rgba(255,255,255,0.85)";
-    shadow = [
+    border = "var(--aoz-glassbtn-border, 1px solid rgba(255,255,255,0.85))";
+    shadow = `var(--aoz-glassbtn-shadow, ${[
       "var(--glass-edge)",                              // top rim highlight + inner stroke + bottom rim shadow
       "inset 0 8px 16px -8px rgba(255,255,255,0.65)",   // soft gloss bloom (button-specific — no token match)
       "inset 0 -10px 18px -10px rgba(10,132,255,0.18)", // bottom blue refraction (button-specific — no token match)
       "0 1px 2px rgba(10,68,140,0.10)",                 // fine drop (alpha differs from --shadow-xs — no exact token match)
       "0 8px 24px rgba(10,68,140,0.18)",                // outer drop (between --shadow-md and --shadow-lg — no exact token match)
-    ].join(", ");
+    ].join(", ")})`;
     backdrop = "blur(28px) saturate(220%) brightness(1.08)";
   } else {
     bg = press ? "var(--state-press-tint)" : hover ? "var(--state-hover-tint)" : "transparent";

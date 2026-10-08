@@ -1,0 +1,50 @@
+/* YOZORA 夜空 — scoped component overrides.
+   Components keep their bespoke daylight recipes as inline-style literals,
+   wrapped in fallback vars: var(--aoz-*, <original literal>). The light theme
+   never defines these hooks, so daylight rendering is unchanged. Under
+   [data-theme="yozora"] the hooks below re-route those recipes to the
+   approved night tokens in tokens/yozora.css — no new color values here. */
+
+[data-theme="yozora"] {
+  /* ── Glass buttons (Button / IconButton, variant="glass") ─────────── */
+  --aoz-glassbtn-bg:        var(--glass-bg-regular);
+  --aoz-glassbtn-bg-hover:  var(--glass-bg-thick);
+  --aoz-glassbtn-border:    1px solid var(--glass-stroke);
+  --aoz-glassbtn-shadow:    var(--glass-edge), var(--shadow-md);
+
+  /* ── Card, tint="clear" — night glass tiers replace the white fills ── */
+  --aoz-card-bg-clear-thin:    var(--glass-bg-thin);
+  --aoz-card-bg-clear-regular: var(--glass-bg-regular);
+  --aoz-card-bg-clear-thick:   var(--glass-bg-thick);
+  --aoz-card-border-clear:     1px solid var(--glass-stroke);
+
+  /* ── Dialog sheet ─────────────────────────────────────────────────── */
+  --aoz-dialog-bg:   var(--glass-bg-thick);
+  --aoz-dialog-drop: var(--shadow-xl);
+
+  /* ── Tabs, variant="segmented" ────────────────────────────────────── */
+  --aoz-tabs-wrap-bg:       var(--glass-bg-regular);
+  --aoz-tabs-wrap-border:   1px solid var(--glass-stroke);
+  --aoz-tabs-wrap-shadow:   var(--glass-edge), var(--shadow-sm);
+  --aoz-tabs-active-bg:     var(--glass-bg-thick);
+  --aoz-tabs-active-border: 1px solid var(--glass-stroke-strong);
+  --aoz-tabs-active-shadow: var(--glass-edge), var(--shadow-xs);
+  --aoz-tabs-fg:            var(--text-body);
+  --aoz-tabs-active-fg:     var(--text-accent);
+  --aoz-tabs-count-on:      var(--text-accent);
+
+  /* ── Badge / Tag — soft + outline text must flip to night-legible ─── */
+  --aoz-badge-brand-text:   var(--blue-300);
+  --aoz-badge-accent-text:  var(--moon-300);
+  --aoz-badge-neutral-text: var(--text-body);
+  --aoz-badge-success-text: var(--success-500);
+  --aoz-badge-warn-text:    var(--warn-500);
+  --aoz-badge-danger-text:  var(--danger-500);
+
+  --aoz-tag-brand-text:   var(--blue-300);
+  --aoz-tag-accent-text:  var(--moon-300);
+  --aoz-tag-neutral-text: var(--text-body);
+  --aoz-tag-border:       var(--stroke-subtle);
+  --aoz-tag-hover:        var(--state-hover-tint);
+  --aoz-tag-x-bg:         var(--state-hover-tint);
+}

@@ -5,9 +5,11 @@
 
 ## Files
 
-- `tokens.css` — raw ramps (night / glow / moon) + full semantic remap + glass/shadow/gradient dark siblings
 - `palette.html` — 完整色卡：raw palette + semantic roles + glass/shadow/glow/gradient
 - `demo.html` — App 首页的夜间版（对应 `ui_kits/app` HomeScreen）
+- `ROLLOUT-NOTES.md` — 整合记录：组件审计、决策、偏差
+
+tokens 已并入正式 `tokens/yozora.css`（proposal 目录保留为设计档案）。
 
 ## 关键判断
 

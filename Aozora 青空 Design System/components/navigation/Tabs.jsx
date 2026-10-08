@@ -8,10 +8,10 @@ export function Tabs({ items, value, onChange, variant = "segmented", size = "md
     const wrap = {
       display: "inline-flex",
       padding: 4,
-      background: "linear-gradient(180deg, rgba(255,255,255,0.45), rgba(180,220,255,0.28))",
+      background: "var(--aoz-tabs-wrap-bg, linear-gradient(180deg, rgba(255,255,255,0.45), rgba(180,220,255,0.28)))",
       borderRadius: 999,
-      border: "1px solid rgba(255,255,255,0.75)",
-      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(10,68,140,0.10), 0 1px 2px rgba(10,68,140,0.06), 0 8px 24px rgba(10,68,140,0.10)",
+      border: "var(--aoz-tabs-wrap-border, 1px solid rgba(255,255,255,0.75))",
+      boxShadow: "var(--aoz-tabs-wrap-shadow, inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(10,68,140,0.10), 0 1px 2px rgba(10,68,140,0.06), 0 8px 24px rgba(10,68,140,0.10))",
       backdropFilter: "blur(24px) saturate(200%) brightness(1.05)",
       WebkitBackdropFilter: "blur(24px) saturate(200%) brightness(1.05)",
       gap: 2,
@@ -31,14 +31,14 @@ export function Tabs({ items, value, onChange, variant = "segmented", size = "md
           fontSize: fs,
           fontWeight: 600,
           letterSpacing: "-0.005em",
-          color: active ? "var(--blue-700)" : "var(--neutral-700)",
+          color: active ? "var(--aoz-tabs-active-fg, var(--blue-700))" : "var(--aoz-tabs-fg, var(--neutral-700))",
           background: active
-            ? "linear-gradient(160deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.70) 50%, rgba(220,235,255,0.75) 100%)"
+            ? "var(--aoz-tabs-active-bg, linear-gradient(160deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.70) 50%, rgba(220,235,255,0.75) 100%))"
             : "transparent",
-          border: active ? "1px solid rgba(255,255,255,0.9)" : "1px solid transparent",
+          border: active ? "var(--aoz-tabs-active-border, 1px solid rgba(255,255,255,0.9))" : "1px solid transparent",
           borderRadius: 999,
           boxShadow: active
-            ? "inset 0 1.5px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(10,68,140,0.10), 0 1px 2px rgba(10,68,140,0.10), 0 6px 16px rgba(10,68,140,0.14)"
+            ? "var(--aoz-tabs-active-shadow, inset 0 1.5px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(10,68,140,0.10), 0 1px 2px rgba(10,68,140,0.10), 0 6px 16px rgba(10,68,140,0.14))"
             : "none",
           cursor: "pointer",
           transition: "background var(--dur-fast) var(--ease-out-quart), color var(--dur-fast) var(--ease-out-quart), box-shadow var(--dur-fast) var(--ease-out-quart)",
@@ -50,7 +50,7 @@ export function Tabs({ items, value, onChange, variant = "segmented", size = "md
           it.count !== undefined
             ? React.createElement(
                 "span",
-                { style: { fontFamily: "var(--font-mono)", fontSize: 10, color: active ? "var(--blue-600)" : "var(--text-muted)", fontWeight: 600 } },
+                { style: { fontFamily: "var(--font-mono)", fontSize: 10, color: active ? "var(--aoz-tabs-count-on, var(--blue-600))" : "var(--text-muted)", fontWeight: 600 } },
                 it.count,
               )
             : null,

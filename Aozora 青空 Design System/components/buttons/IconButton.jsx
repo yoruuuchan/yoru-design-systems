@@ -41,10 +41,13 @@ export function IconButton({
     const tint   = hover
       ? "linear-gradient(180deg, rgba(180,220,255,0.35), rgba(255,255,255,0.45))"
       : "linear-gradient(180deg, rgba(180,220,255,0.22), rgba(255,255,255,0.28))";
-    bg = `${gloss}, ${bottom}, ${tint}`;
+    const recipe = `${gloss}, ${bottom}, ${tint}`;
+    bg = hover
+      ? `var(--aoz-glassbtn-bg-hover, ${recipe})`
+      : `var(--aoz-glassbtn-bg, ${recipe})`;
     color = "var(--text-strong)";
-    border = "1px solid rgba(255,255,255,0.85)";
-    shadow = [
+    border = "var(--aoz-glassbtn-border, 1px solid rgba(255,255,255,0.85))";
+    shadow = `var(--aoz-glassbtn-shadow, ${[
       "inset 0 1.5px 0 rgba(255,255,255,0.95)",
       "inset 0 -1px 0 rgba(10,68,140,0.10)",
       "inset 0 0 0 1px rgba(255,255,255,0.25)",
@@ -52,7 +55,7 @@ export function IconButton({
       "inset 0 -8px 14px -8px rgba(10,132,255,0.20)",
       "0 1px 2px rgba(10,68,140,0.10)",
       "0 6px 18px rgba(10,68,140,0.18)",
-    ].join(", ");
+    ].join(", ")})`;
     backdrop = "blur(28px) saturate(220%) brightness(1.08)";
   } else {
     bg = press ? "var(--state-press-tint)" : hover ? "var(--state-hover-tint)" : "transparent";

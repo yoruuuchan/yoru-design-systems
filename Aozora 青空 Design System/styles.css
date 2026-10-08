@@ -12,3 +12,5 @@
 @import "./tokens/motion.css";
 @import "./tokens/semantic.css";
 @import "./tokens/reset.css";
+@import "./tokens/yozora-overrides.css";
+@import "./tokens/yozora.css";

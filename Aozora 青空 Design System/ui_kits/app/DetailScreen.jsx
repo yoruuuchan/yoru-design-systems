@@ -6,7 +6,7 @@ function DetailScreen({ onBack }) {
   const [qty, setQty]   = React.useState(1);
 
   return (
-    <div style={{ position:'absolute', inset: 0, background:'#fff', overflowY:'auto' }}>
+    <div style={{ position:'absolute', inset: 0, background:'var(--aoz-kit-screen-base, #fff)', overflowY:'auto' }}>
       {/* Hero */}
       <div style={{
         height: 380, position:'relative',
@@ -35,7 +35,7 @@ function DetailScreen({ onBack }) {
 
       {/* Sheet */}
       <div style={{
-        position:'relative', marginTop: -30, background:'#fff',
+        position:'relative', marginTop: -30, background:'var(--aoz-kit-sheet-bg, #fff)',
         borderRadius: '28px 28px 0 0', padding: '24px 22px 140px',
         boxShadow: '0 -10px 40px rgba(10,68,140,0.10)',
       }}>
@@ -43,14 +43,14 @@ function DetailScreen({ onBack }) {
 
         <h1 style={{ margin:'10px 0 4px', fontFamily:'var(--font-display)',
                      fontSize: 48, fontWeight: 900, letterSpacing:'-0.035em',
-                     lineHeight: 1, color:'var(--neutral-900)' }}>SODA</h1>
+                     lineHeight: 1, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>SODA</h1>
         <div style={{ fontFamily:'var(--font-sans)', fontSize: 13, color:'var(--text-muted)', letterSpacing:'0.12em' }}>
           蒼い空、冷たい一杯。
         </div>
 
         <div style={{ display:'flex', alignItems:'center', gap: 8, marginTop: 14 }}>
           <IcStar size={14} color="var(--sun-500)"/>
-          <span style={{ fontFamily:'var(--font-mono)', fontSize: 12, fontWeight: 600, color:'var(--neutral-800)' }}>4.8</span>
+          <span style={{ fontFamily:'var(--font-mono)', fontSize: 12, fontWeight: 600, color:'var(--aoz-kit-ink, var(--neutral-800))' }}>4.8</span>
           <span style={{ fontFamily:'var(--font-sans)', fontSize: 12, color:'var(--text-muted)' }}>· 1,284 reviews</span>
         </div>
 
@@ -66,12 +66,12 @@ function DetailScreen({ onBack }) {
               <button key={o.k} onClick={() => setSize(o.k)} style={{
                 flex: 1, padding: '12px 8px', border:'1.4px solid',
                 borderColor: size===o.k ? 'var(--blue-500)' : 'var(--stroke-subtle)',
-                background: size===o.k ? 'var(--blue-50)' : '#fff',
+                background: size===o.k ? 'var(--aoz-kit-pick-on, var(--blue-50))' : 'var(--aoz-kit-pick, #fff)',
                 borderRadius: 14, cursor:'pointer',
                 display:'flex', flexDirection:'column', gap: 2,
               }}>
-                <div style={{ fontFamily:'var(--font-sans)', fontSize: 12, fontWeight: 700, color:'var(--neutral-900)' }}>{o.l}</div>
-                <div style={{ fontFamily:'var(--font-mono)', fontSize: 11, color: size===o.k ? 'var(--blue-600)' : 'var(--text-muted)' }}>¥{o.p}</div>
+                <div style={{ fontFamily:'var(--font-sans)', fontSize: 12, fontWeight: 700, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>{o.l}</div>
+                <div style={{ fontFamily:'var(--font-mono)', fontSize: 11, color: size===o.k ? 'var(--aoz-kit-accent-ink, var(--blue-600))' : 'var(--text-muted)' }}>¥{o.p}</div>
               </button>
             ))}
           </div>
@@ -88,18 +88,18 @@ function DetailScreen({ onBack }) {
         {/* Sticky CTA */}
         <div style={{
           position:'absolute', left: 12, right: 12, bottom: 90,
-          background: 'rgba(255,255,255,0.78)',
+          background: 'var(--aoz-kit-cta-bg, rgba(255,255,255,0.78))',
           backdropFilter: 'blur(24px) saturate(180%)',
           WebkitBackdropFilter: 'blur(24px) saturate(180%)',
           border: '1px solid var(--glass-stroke)',
           borderRadius: 24, padding: 12,
-          boxShadow: 'var(--glass-edge), 0 8px 24px rgba(10,68,140,0.16)',
+          boxShadow: 'var(--glass-edge), var(--aoz-kit-cta-drop, 0 8px 24px rgba(10,68,140,0.16))',
           display:'flex', alignItems:'center', gap: 10,
         }}>
-          <div style={{ display:'flex', alignItems:'center', background:'var(--neutral-100)', borderRadius: 999 }}>
-            <button onClick={() => setQty(Math.max(1, qty-1))} style={{ border:'none', background:'none', width: 32, height: 36, cursor:'pointer', color:'var(--neutral-700)', fontSize: 18 }}>−</button>
-            <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, width: 20, textAlign:'center', color:'var(--neutral-900)' }}>{qty}</span>
-            <button onClick={() => setQty(qty+1)} style={{ border:'none', background:'none', width: 32, height: 36, cursor:'pointer', color:'var(--neutral-700)', fontSize: 18 }}>+</button>
+          <div style={{ display:'flex', alignItems:'center', background:'var(--aoz-kit-stepper-bg, var(--neutral-100))', borderRadius: 999 }}>
+            <button onClick={() => setQty(Math.max(1, qty-1))} style={{ border:'none', background:'none', width: 32, height: 36, cursor:'pointer', color:'var(--aoz-kit-stepper-ink, var(--neutral-700))', fontSize: 18 }}>−</button>
+            <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, width: 20, textAlign:'center', color:'var(--aoz-kit-ink, var(--neutral-900))' }}>{qty}</span>
+            <button onClick={() => setQty(qty+1)} style={{ border:'none', background:'none', width: 32, height: 36, cursor:'pointer', color:'var(--aoz-kit-stepper-ink, var(--neutral-700))', fontSize: 18 }}>+</button>
           </div>
           <Button block tone="brand" size="lg" leadingIcon={<IcCart size={16}/>}>Add · ¥380</Button>
         </div>

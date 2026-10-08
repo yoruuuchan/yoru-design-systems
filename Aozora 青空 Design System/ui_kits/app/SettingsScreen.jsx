@@ -14,7 +14,7 @@ function SettingsScreen({ onBack }) {
                       color:'var(--text-muted)', textTransform:'uppercase', padding:'0 4px 8px' }}>{kicker}</div>
       )}
       <div style={{
-        background:'#fff', border:'1px solid var(--stroke-hairline)',
+        background:'var(--aoz-kit-section-bg, #fff)', border:'1px solid var(--stroke-hairline)',
         borderRadius: 18, overflow:'hidden',
         boxShadow:'var(--shadow-xs)',
       }}>{children}</div>
@@ -38,14 +38,14 @@ function SettingsScreen({ onBack }) {
 
   return (
     <div style={{ position:'absolute', inset: 0,
-                  background: 'linear-gradient(180deg,#EAF5FF 0%, #fff 200px, #fff 100%)',
+                  background: 'var(--aoz-kit-settings-bg, linear-gradient(180deg,#EAF5FF 0%, #fff 200px, #fff 100%))',
                   overflowY:'auto', paddingBottom: 140 }}>
       <StatusBar tint="dark"/>
 
       {/* Header */}
       <div style={{ padding: '60px 20px 8px', display:'flex', alignItems:'center', gap: 12 }}>
         <IconButton variant="ghost" shape="circle" aria-label="Back" onClick={onBack}><IcBack size={20}/></IconButton>
-        <div style={{ fontFamily:'var(--font-display)', fontSize: 22, fontWeight: 800, letterSpacing:'-0.02em', color:'var(--neutral-900)' }}>Settings</div>
+        <div style={{ fontFamily:'var(--font-display)', fontSize: 22, fontWeight: 800, letterSpacing:'-0.02em', color:'var(--aoz-kit-ink, var(--neutral-900))' }}>Settings</div>
       </div>
 
       <div style={{ padding: '4px 16px' }}>

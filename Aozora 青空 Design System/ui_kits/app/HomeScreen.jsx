@@ -15,7 +15,7 @@ function HomeScreen({ onOpenDetail, onOpenSettings }) {
   return (
     <div style={{
       position:'absolute', inset: 0,
-      background: 'linear-gradient(180deg,#0A84FF 0%, #66B7FF 35%, #CFE8FF 70%, #FFE980 100%)',
+      background: 'var(--aoz-kit-home-bg, linear-gradient(180deg,#0A84FF 0%, #66B7FF 35%, #CFE8FF 70%, #FFE980 100%))',
       overflowY: 'auto',
     }}>
       <StatusBar tint="light"/>
@@ -39,10 +39,10 @@ function HomeScreen({ onOpenDetail, onOpenSettings }) {
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
             <div>
               <Badge tone="accent" variant="solid">LIMITED</Badge>
-              <div style={{ fontFamily:'var(--font-display)', fontSize: 44, fontWeight: 900, letterSpacing:'-0.035em', lineHeight: 1, marginTop: 10, color:'var(--neutral-900)' }}>SODA</div>
+              <div style={{ fontFamily:'var(--font-display)', fontSize: 44, fontWeight: 900, letterSpacing:'-0.035em', lineHeight: 1, marginTop: 10, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>SODA</div>
               <div style={{ fontFamily:'var(--font-sans)', fontSize: 12, fontWeight: 500, color:'var(--text-muted)', marginTop: 2, letterSpacing:'0.12em' }}>蒼い空、冷たい一杯</div>
               <div style={{ display:'flex', alignItems:'baseline', gap: 8, marginTop: 14 }}>
-                <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, fontSize: 22, color:'var(--neutral-900)' }}>¥280</span>
+                <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, fontSize: 22, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>¥280</span>
                 <span style={{ fontFamily:'var(--font-mono)', fontSize: 11, color:'var(--text-muted)', textDecoration:'line-through' }}>¥320</span>
               </div>
             </div>
@@ -74,10 +74,10 @@ function HomeScreen({ onOpenDetail, onOpenSettings }) {
               )}
             </div>
             <div style={{ padding: '12px 14px 14px' }}>
-              <div style={{ fontFamily:'var(--font-display)', fontSize: 18, fontWeight: 800, letterSpacing:'-0.02em', color:'var(--neutral-900)' }}>{f.name}</div>
+              <div style={{ fontFamily:'var(--font-display)', fontSize: 18, fontWeight: 800, letterSpacing:'-0.02em', color:'var(--aoz-kit-ink, var(--neutral-900))' }}>{f.name}</div>
               <div style={{ fontFamily:'var(--font-sans)', fontSize: 11, color:'var(--text-muted)', letterSpacing:'0.08em' }}>{f.jp}</div>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginTop: 8 }}>
-                <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, fontSize: 14, color:'var(--neutral-900)' }}>¥{f.price}</span>
+                <span style={{ fontFamily:'var(--font-mono)', fontWeight: 700, fontSize: 14, color:'var(--aoz-kit-ink, var(--neutral-900))' }}>¥{f.price}</span>
                 <IcPlus size={16} color="var(--blue-500)"/>
               </div>
             </div>

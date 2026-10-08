@@ -8,9 +8,9 @@ const BLURS = {
 
 const FILLS = {
   clear: {
-    thin:    "rgba(255,255,255,0.18)",
-    regular: "rgba(255,255,255,0.45)",
-    thick:   "rgba(255,255,255,0.78)",
+    thin:    "var(--aoz-card-bg-clear-thin, rgba(255,255,255,0.18))",
+    regular: "var(--aoz-card-bg-clear-regular, rgba(255,255,255,0.45))",
+    thick:   "var(--aoz-card-bg-clear-thick, rgba(255,255,255,0.78))",
   },
   blue: {
     thin:    "rgba(10,132,255,0.18)",
@@ -51,7 +51,7 @@ export function Card({
     background: tint === "dark" ? FILLS[tint][tier] : `${FROST}, ${FILLS[tint][tier]}`,
     backdropFilter: BLURS[tier],
     WebkitBackdropFilter: BLURS[tier],
-    border: `1px solid ${tint === "dark" ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.7)"}`,
+    border: tint === "dark" ? "1px solid rgba(255,255,255,0.22)" : "var(--aoz-card-border-clear, 1px solid rgba(255,255,255,0.7))",
     borderRadius: RADII[radius],
     padding: PADDINGS[padding],
     boxShadow: "var(--glass-edge), var(--shadow-md)",
