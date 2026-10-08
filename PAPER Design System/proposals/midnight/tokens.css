@@ -1,0 +1,110 @@
+/* PAPER — MIDNIGHT 午夜蓝 (proposal)
+   A full dark theme: midnight-blue photobook, cyanotype-adjacent stock,
+   silver-gelatin ink, one rust counterpoint. For whole pages, longform,
+   portfolios — not just the film-base surface of a contact sheet.
+
+   Scope: everything lives under [data-theme="midnight"]. The existing
+   modes (editorial / analog / dark-as-film-base) are untouched.
+
+   Not an inversion, and not the warm stock re-dyed. The hue family moves
+   to indigo on purpose:
+   - paper stock  → midnight ramp (deep blue-black, never pure black)
+   - ink          → silver ramp, cooled to match (never pure white)
+   - rust         → stays. On midnight blue it is the single warm
+                    counterpoint — stronger here than it ever was on cream.
+   - grain        → silver-halide grain: screen blend, not multiply.
+   - shadows      → printing shadows on dark stock: wider, deeper casts.
+
+   Load: styles.css, then this file, then data-theme="midnight" on <html>
+   (or on any wrapper — it scopes the same way data-mode does).
+*/
+
+[data-theme="midnight"] {
+  color-scheme: dark;
+
+  /* ── MIDNIGHT STOCK — deep blue-black ramp, lightest (a raised sheet)
+        to deepest (the cover). Indigo-ink, ~222°. Never pure black. ── */
+  --noir-100: #232A3A;   /* raised sheet */
+  --noir-200: #1A2130;   /* the page */
+  --noir-300: #141A26;   /* sunken */
+  --noir-400: #0E131D;   /* mount */
+  --noir-500: #080C14;   /* cover, deepest */
+
+  /* ── SILVER — gelatin-print white, cooled for blue stock. 100 is a
+        display highlight; 500 is a pencil note in the margin. ────────── */
+  --silver-100: #EDF1F7;
+  --silver-200: #D9DFEA;
+  --silver-300: #B3BBCB;
+  --silver-400: #8891A5;
+  --silver-500: #5C6478;
+
+  /* ── SEMANTIC — surfaces ─────────────────────────────────────────── */
+  --surface-page:   var(--noir-200);
+  --surface-raised: var(--noir-100);   /* a sheet lying on the page */
+  --surface-sunken: var(--noir-300);
+  --surface-mount:  var(--noir-400);
+  --surface-invert: var(--paper-100);  /* a light sheet, when one is needed */
+
+  /* ── SEMANTIC — text ─────────────────────────────────────────────── */
+  --text-display:   var(--silver-100);
+  --text-body:      var(--silver-200);
+  --text-secondary: var(--silver-300);
+  --text-muted:     var(--silver-400);
+  --text-faint:     var(--silver-500);
+  --text-accent:    var(--rust-300);   /* the warm counterpoint */
+  --text-on-dark:   var(--silver-200); /* compat with existing dark-surface use */
+  --text-on-dark-muted: var(--silver-400);
+  --text-on-dark-faint: var(--silver-500);
+
+  /* ── SEMANTIC — rules. White-ink hairlines, as in an art book. ────── */
+  --rule-hair:   rgba(237, 241, 247, 0.10);
+  --rule-mid:    rgba(237, 241, 247, 0.18);
+  --rule-strong: rgba(237, 241, 247, 0.55);
+  --frame-edge:  rgba(237, 241, 247, 0.16);  /* the 1px inset around every photo */
+
+  /* ── SEMANTIC — links ────────────────────────────────────────────── */
+  --link:            var(--silver-200);
+  --link-hover:      var(--rust-300);
+  --link-underline:  rgba(237, 241, 247, 0.25);
+
+  /* ── SEMANTIC — marks ────────────────────────────────────────────── */
+  --stamp-ink: var(--rust-300);        /* the one warm mark on blue */
+  --hand-ink:  #A8B8D4;                /* blue gel pen (was ballpoint) */
+  --tape:      rgba(179, 187, 203, 0.45);  /* washi, not kraft */
+
+  /* ── MATERIAL — silver-halide grain: on dark stock the grain is the
+        light, not the dirt. Screen blend. ────────────────────────────── */
+  --grain: 0.06; /* @kind other */
+
+  /* ── PHOTO TONE — prints in a midnight book read cooler and richer ── */
+  --photo-filter: saturate(.82) contrast(1.05) brightness(.96); /* @kind other */
+
+  /* ── SHADOW — printing shadows survive on dark stock only as longer,
+        softer casts. Contact shadow stays tight. ────────────────────── */
+  --shadow-sheet:    0 1px 1px rgba(0,0,0,.40), 0 8px 20px -12px rgba(0,0,0,.72);
+  --shadow-print:    0 1px 2px rgba(0,0,0,.45), 0 14px 30px -16px rgba(0,0,0,.78);
+  --shadow-polaroid: 0 1px 2px rgba(0,0,0,.50), 0 20px 38px -20px rgba(0,0,0,.82);
+  --shadow-page:     0 0 0 1px rgba(0,0,0,.30), 0 34px 78px -46px rgba(0,0,0,.88);
+
+  /* ── PLACEHOLDERS — an unexposed plate: deep indigo gradient, plus a
+        cooler cyanotype variant. ────────────────────────────────────── */
+  --placeholder-tone:      linear-gradient(155deg, #2C3346, #1E2434 55%, #121826); /* @kind other */
+  --placeholder-tone-cool: linear-gradient(155deg, #2A3742, #1C2630 55%, #101820); /* @kind other */
+
+  /* ── SCAN EDGE — on dark stock the lip is deeper, not lighter. ────── */
+  --scan-edge: linear-gradient(90deg, rgba(0,0,0,.38), rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, rgba(0,0,0,.34)); /* @kind other */
+
+  /* Note: --film-base #1B1A16 keeps its warm tone — that is film, not
+     page stock. Contact sheets stay warm-dark on a midnight page;
+     the contrast is deliberate. */
+}
+
+/* Grain overlay: flip multiply → screen when the dark theme is on the root. */
+[data-theme="midnight"] body::before,
+body[data-theme="midnight"]::before {
+  mix-blend-mode: screen;
+  opacity: var(--grain, .06);
+}
+
+/* Selection: rust wash, silver text. */
+[data-theme="midnight"] ::selection { background: var(--rust-700); color: var(--silver-100); }

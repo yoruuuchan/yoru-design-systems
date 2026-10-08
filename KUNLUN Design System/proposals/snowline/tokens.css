@@ -131,4 +131,23 @@
 
   /* Sticky chrome: light frosted strip (was rgba(13,19,32,.6)) */
   --chrome-strip: rgba(247, 250, 253, 0.72);
+
+  /* ── LCD screen — the terminal, snowline edition. A recessed liquid
+        crystal well set into the light panel: pale blue-grey glass,
+        VT323 readouts, visible scanlines. This is how the console keeps
+        its terminal DNA without carving out a dark island. ──────────── */
+  --lcd-bg:        #C9D6D8;           /* liquid crystal glass */
+  --lcd-bg-deep:   #BCCBCE;           /* screen edge / off-zone */
+  --lcd-ink:       #1C3038;           /* segment ink */
+  --lcd-ink-dim:   #47606A;           /* dim segments */
+  --lcd-scanline:  rgba(18, 52, 64, 0.07);
+  --lcd-inset:     inset 0 0 0 1px var(--border-strong),
+                   inset 0 3px 10px rgba(12, 21, 38, 0.18);
+  --bg-lcd-scanlines: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      var(--lcd-scanline) 2px,
+      var(--lcd-scanline) 3px
+  );
 }

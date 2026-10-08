@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../../styles.css">
 <link rel="stylesheet" href="tokens.css">
 <style>
-  body { margin: 0; background: var(--bg-base); color: var(--text-primary); font-family: var(--font-body); min-height: 100vh; }
+  body { margin: 0; background: var(--bg-base); background-image: var(--bg-grid); color: var(--text-primary); font-family: var(--font-body); min-height: 100vh; }
 
   /* ── Topbar ─────────────────────────────────────────────── */
   .topbar {
@@ -90,13 +90,20 @@
   .p-warn { color: var(--text-warn); border-color: var(--border-warn); background: var(--warn-tint-soft); }
   .p-crit { color: var(--text-danger); border-color: var(--border-danger); background: var(--danger-tint-soft); animation: kl-blink 1.2s steps(2) infinite; }
 
-  /* log */
-  .log { font-family: var(--font-code); font-size: 11px; line-height: 1.9; color: var(--text-secondary); }
-  .log .t { color: var(--text-disabled); }
-  .log .ok { color: var(--text-success); }
-  .log .wn { color: var(--text-warn); }
-  .log .sg { color: var(--text-signal); }
-  .caret { display: inline-block; width: 8px; height: 14px; background: var(--cyan-500); vertical-align: -2px; animation: kl-blink 1s steps(2) infinite; box-shadow: var(--glow-cyan-sm); }
+  /* log — the LCD terminal well */
+  .lcd {
+    position: relative; padding: 12px 14px;
+    background: var(--lcd-bg); box-shadow: var(--lcd-inset); overflow: hidden;
+  }
+  .lcd::before { content: ""; position: absolute; inset: 0; background-image: var(--bg-lcd-scanlines); pointer-events: none; }
+  .lcd::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 120% 90% at 50% 0%, rgba(255,255,255,.28), transparent 55%); }
+  .log { position: relative; font-family: var(--font-crt); font-size: 17px; line-height: 1.65; color: var(--lcd-ink); letter-spacing: 0.03em; }
+  .log .t { color: var(--lcd-ink-dim); }
+  .log .ok { color: #0B6B4A; }
+  .log .wn { color: #8A5A00; }
+  .log .sg { color: #00547A; font-weight: 700; }
+  .caret { display: inline-block; width: 9px; height: 15px; background: #00547A; vertical-align: -2px; animation: kl-blink 1s steps(2) infinite; }
 
   .actions { display: flex; gap: 12px; margin-top: 16px; }
   .btn { height: 36px; padding: 0 18px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; clip-path: var(--clip-chamfer-sm); border: 1px solid transparent; cursor: pointer; }
@@ -168,13 +175,15 @@
 
     <div class="panel">
       <h3><span>▣ System log</span><span class="tag">TAIL -F</span></h3>
-      <div class="log">
-        <div><span class="t">14:08:31</span> <span class="ok">[ OK ]</span> uplink established · 08.4 ms</div>
-        <div><span class="t">14:08:12</span> <span class="sg">[SCAN]</span> sector-a sweep complete · 0 anomalies</div>
-        <div><span class="t">14:07:58</span> <span class="wn">[WARN]</span> coolant flow at 87% · loop-b</div>
-        <div><span class="t">14:07:44</span> <span class="ok">[ OK ]</span> node-07 sync · Δ 0.002</div>
-        <div><span class="t">14:07:30</span> <span class="t">[INFO]</span> operator 赵 signed in · clearance L3</div>
-        <div><span class="t">14:07:02</span> <span class="sg">▸</span> awaiting input <span class="caret"></span></div>
+      <div class="lcd">
+        <div class="log">
+          <div><span class="t">14:08:31</span> <span class="ok">[ OK ]</span> uplink established · 08.4 ms</div>
+          <div><span class="t">14:08:12</span> <span class="sg">[SCAN]</span> sector-a sweep · 0 anomalies</div>
+          <div><span class="t">14:07:58</span> <span class="wn">[WARN]</span> coolant flow 87% · loop-b</div>
+          <div><span class="t">14:07:44</span> <span class="ok">[ OK ]</span> node-07 sync · Δ 0.002</div>
+          <div><span class="t">14:07:30</span> <span class="t">[INFO]</span> operator 赵 signed in · L3</div>
+          <div><span class="t">14:07:02</span> <span class="sg">▸</span> awaiting input <span class="caret"></span></div>
+        </div>
       </div>
     </div>
   </div>

@@ -76,12 +76,16 @@
   .btn-ghost:hover { background: var(--accent-tint); box-shadow: var(--glow-cyan-sm); }
   .btn-warn { background: var(--warn-tint); border-color: var(--border-warn); color: var(--text-warn); box-shadow: var(--glow-amber-md); }
   .btn-danger { background: var(--danger-tint); border-color: var(--border-danger); color: var(--text-danger); }
-  .tex-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tex-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   .tex { height: 90px; border: 1px solid var(--border); clip-path: var(--clip-chamfer-sm); position: relative; background: var(--bg-panel); }
   .tex span { position: absolute; left: 10px; bottom: 8px; font-family: var(--font-mono); font-size: 9px; color: var(--text-tertiary); letter-spacing: .08em; }
   .tex.grid { background-image: var(--bg-grid); }
   .tex.scan { background-image: var(--bg-scanlines); }
   .tex.fine { background-image: var(--bg-grid-fine); }
+  .tex.lcd { background: var(--lcd-bg); box-shadow: var(--lcd-inset); }
+  .tex.lcd::before { content: ""; position: absolute; inset: 0; background-image: var(--bg-lcd-scanlines); }
+  .tex.lcd .crt { position: absolute; left: 10px; top: 8px; font-family: var(--font-crt); font-size: 16px; color: var(--lcd-ink); }
+  .tex.lcd span { color: var(--lcd-ink-dim); }
   .foot { margin-top: 56px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.12em; text-transform: uppercase; }
 </style>
 </head>
@@ -190,6 +194,7 @@
       <div class="tex grid"><span>--bg-grid · 40px · rgba(20,90,180,.08)</span></div>
       <div class="tex scan"><span>--bg-scanlines · faint</span></div>
       <div class="tex fine"><span>--bg-grid-fine · 12px</span></div>
+      <div class="tex lcd"><div class="crt">READY▮</div><span>--lcd-* · terminal, snowline edition</span></div>
     </div>
   </section>
 

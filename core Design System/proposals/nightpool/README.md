@@ -1,7 +1,11 @@
-# NIGHTPOOL — core dark theme (proposal v1)
+# NIGHTPOOL — core dark theme (proposal v2)
 
 凌晨两点的旧电脑、黑暗泳池、CRT 荧光、空无一人的 Windows 时代档案馆。
 `[data-theme="nightpool"]` 作用域；frost paper 默认主题一字未动。
+
+（v2：回应"减少棕黄色"——sodium 收缩到只剩两处有意的"错误的暖"：lamp_only.jpg 里的
+路灯（压暗到 .20）和 toast 里的 closed。照片时间戳回到 phosphor-400，marquee 的橙色
+换成 neon-violet，demo 里不再有成片的黄。）
 
 ## Files
 
