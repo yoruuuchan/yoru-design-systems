@@ -66,8 +66,8 @@ There is no icon font and no SVG icon set — and that is a rule, not a gap. The
 ## Type substitution flags
 
 - Source Han Sans SC Light/Regular/Medium/Bold are **self-hosted** (`assets/fonts/`, copied from the YORU Content system repo). ExtraLight/Heavy weights were not available — if you have the full family, add the binaries and extend `tokens/fonts.css`.
-- **Instrument Sans and B612 Mono load from Google Fonts CDN** — no binaries existed in the provided sources. For offline/deterministic Remotion renders, download the OFL binaries and self-host them the same way. Flagged for the user.
-- Instrument Sans on Google Fonts ships weights 400–700 only; there is no 300. `--weight-subtitle: 300` in mixed text means Source Han Sans SC renders at Light 300 while the Latin run falls back to Regular 400 — a visible weight mismatch. This is a known trade-off; to close it, either swap the Latin face for one that carries a 300 weight or accept 400 for Latin in subtitles.
+- Instrument Sans (400–700) and B612 Mono (400/700) are **self-hosted** too — `assets/fonts/`, OFL, fetched from Google Fonts as woff2 with the `latin` / `latin-ext` unicode-range slices preserved. Nothing in this system loads a font from a network. Instrument Sans is a variable font, so one file per slice carries the whole 400–700 axis; B612 Mono has no `latin-ext` subset upstream.
+- Instrument Sans ships weights 400–700 only; there is no 300. `--weight-subtitle: 300` in mixed text means Source Han Sans SC renders at Light 300 while the Latin run falls back to Regular 400 — a visible weight mismatch. This is a known trade-off; to close it, either swap the Latin face for one that carries a 300 weight or accept 400 for Latin in subtitles.
 
 ## Preview vs production (Remotion)
 
@@ -85,7 +85,7 @@ In a Remotion composition, re-implement against the tokens:
 
 - `styles.css` — entry point; imports everything under `tokens/`.
 - `tokens/` — `colors.css` (银/玄 palettes, ramps, semantics), `typography.css` (roles + `.k-*` classes), `surfaces.css` (levels, edges, knurl, grain), `spacing.css` (scale + safe areas), `motion.css` (locked constants), `fonts.css` (@font-face).
-- `assets/` — `grain.svg`, `fonts/` (Source Han Sans SC ×4 weights).
+- `assets/` — `grain.svg`, `fonts/` (Source Han Sans SC ×4 weights + Instrument Sans ×2 slices + B612 Mono ×2 weights).
 - `guidelines/` — specimen cards for the Design System tab (type, colors, surfaces, format, motion), plus `accent-depth-study.html`, the live comparison behind the 烤蓝 + chamfer decision.
 - `components/frame/` — Stage, Surface, Rule, Knurl, Placeholder.
 - `components/type/` — Text, Label, Numeral, Chip.
