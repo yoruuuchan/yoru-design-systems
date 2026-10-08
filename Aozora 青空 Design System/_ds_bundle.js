@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"AozoraDesignSystem_e61996","components":[{"name":"Button","sourcePath":"components/buttons/Button.jsx"},{"name":"IconButton","sourcePath":"components/buttons/IconButton.jsx"},{"name":"Dialog","sourcePath":"components/feedback/Dialog.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"Badge","sourcePath":"components/surface/Badge.jsx"},{"name":"Card","sourcePath":"components/surface/Card.jsx"},{"name":"Tag","sourcePath":"components/surface/Tag.jsx"}],"sourceHashes":{"components/buttons/Button.jsx":"3365e9de4cbf","components/buttons/IconButton.jsx":"e7f5e1017feb","components/feedback/Dialog.jsx":"af5d22f2d5c7","components/forms/Input.jsx":"64bbcf26b613","components/forms/Switch.jsx":"cfcd0fb9d326","components/navigation/Tabs.jsx":"a988e19e1ec2","components/surface/Badge.jsx":"1c7315e48e23","components/surface/Card.jsx":"2239d76af219","components/surface/Tag.jsx":"2dff74051d84","ui_kits/app/DetailScreen.jsx":"4a4ef05308b7","ui_kits/app/HomeScreen.jsx":"5526c0900e9e","ui_kits/app/SettingsScreen.jsx":"1c9907aec16e","ui_kits/app/app-bundle.jsx":"668f6781d970","ui_kits/app/icons.jsx":"4a7db344c130","ui_kits/app/phone.jsx":"4fd1e38b619b"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"AozoraDesignSystem_e61996","components":[{"name":"Button","sourcePath":"components/buttons/Button.jsx"},{"name":"IconButton","sourcePath":"components/buttons/IconButton.jsx"},{"name":"Dialog","sourcePath":"components/feedback/Dialog.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"Badge","sourcePath":"components/surface/Badge.jsx"},{"name":"Card","sourcePath":"components/surface/Card.jsx"},{"name":"Tag","sourcePath":"components/surface/Tag.jsx"}],"sourceHashes":{"components/buttons/Button.jsx":"416b97869a3d","components/buttons/IconButton.jsx":"e7f5e1017feb","components/feedback/Dialog.jsx":"af5d22f2d5c7","components/forms/Input.jsx":"b61b289ecfac","components/forms/Switch.jsx":"cfcd0fb9d326","components/navigation/Tabs.jsx":"a988e19e1ec2","components/surface/Badge.jsx":"1c7315e48e23","components/surface/Card.jsx":"2239d76af219","components/surface/Tag.jsx":"2dff74051d84","ui_kits/app/DetailScreen.jsx":"28cfb38843a1","ui_kits/app/HomeScreen.jsx":"79b2e8984586","ui_kits/app/SettingsScreen.jsx":"ca3d6bba0ed7","ui_kits/app/app-bundle.jsx":"0ce3f81dfad8","ui_kits/app/icons.jsx":"4a7db344c130","ui_kits/app/phone.jsx":"5297e6edc4d0"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -40,7 +40,7 @@ const TONES = {
     fill: "var(--blue-500)",
     hover: "var(--blue-600)",
     press: "var(--blue-700)",
-    text: "#fff"
+    text: "var(--neutral-0)"
   },
   accent: {
     fill: "var(--sun-400)",
@@ -51,14 +51,15 @@ const TONES = {
   neutral: {
     fill: "var(--neutral-800)",
     hover: "var(--neutral-900)",
-    press: "#000",
-    text: "#fff"
+    press: "var(--neutral-900)",
+    text: "var(--neutral-0)"
   },
+  // hover/press for danger have no matching token — leaving darker-red literals until a --danger-600/700 scale exists
   danger: {
     fill: "var(--danger-500)",
     hover: "#E03A30",
     press: "#C8322A",
-    text: "#fff"
+    text: "var(--neutral-0)"
   }
 };
 function Button({
@@ -98,17 +99,12 @@ function Button({
     bg = hover ? `var(--aoz-glassbtn-bg-hover, ${recipe})` : `var(--aoz-glassbtn-bg, ${recipe})`;
     color = "var(--text-strong)";
     border = "var(--aoz-glassbtn-border, 1px solid rgba(255,255,255,0.85))";
-    shadow = `var(--aoz-glassbtn-shadow, ${["inset 0 1.5px 0 rgba(255,255,255,0.95)",
-    // top rim highlight
-    "inset 0 -1px 0 rgba(10,68,140,0.10)",
-    // bottom rim shadow
-    "inset 0 0 0 1px rgba(255,255,255,0.25)",
-    // inner stroke
-    "inset 0 8px 16px -8px rgba(255,255,255,0.65)",
-    // soft gloss bloom
-    "inset 0 -10px 18px -10px rgba(10,132,255,0.18)",
-    // bottom blue refraction
-    "0 1px 2px rgba(10,68,140,0.10)", "0 8px 24px rgba(10,68,140,0.18)" // outer drop
+    shadow = `var(--aoz-glassbtn-shadow, ${[
+      "var(--glass-edge)",                              // top rim highlight + inner stroke + bottom rim shadow
+      "inset 0 8px 16px -8px rgba(255,255,255,0.65)",   // soft gloss bloom (button-specific — no token match)
+      "inset 0 -10px 18px -10px rgba(10,132,255,0.18)", // bottom blue refraction (button-specific — no token match)
+      "0 1px 2px rgba(10,68,140,0.10)",                 // fine drop (alpha differs from --shadow-xs — no exact token match)
+      "0 8px 24px rgba(10,68,140,0.18)",                // outer drop (between --shadow-md and --shadow-lg — no exact token match)
     ].join(", ")})`;
     backdrop = "blur(28px) saturate(220%) brightness(1.08)";
   } else {
@@ -424,9 +420,10 @@ function Input({
   const hasError = !!error;
   let bg, border, shadow, backdrop;
   if (variant === "glass") {
-    bg = "rgba(255,255,255,0.42)";
-    border = `1px solid ${hasError ? "var(--danger-500)" : focus ? "var(--blue-500)" : "rgba(255,255,255,0.7)"}`;
-    shadow = focus ? "var(--ring-focus), var(--glass-edge)" : "var(--glass-edge), 0 2px 8px rgba(10,68,140,0.08)";
+    // 0.42 fill is a touch lower than --glass-bg-regular (0.48) — closest existing token
+    bg = "var(--glass-bg-regular)";
+    border = `1px solid ${hasError ? "var(--danger-500)" : focus ? "var(--blue-500)" : "var(--glass-stroke)"}`;
+    shadow = focus ? "var(--ring-focus), var(--glass-edge)" : "var(--glass-edge), var(--shadow-sm)";
     backdrop = "blur(28px) saturate(200%) brightness(1.08)";
   } else {
     bg = "var(--neutral-0)";
@@ -999,7 +996,7 @@ function DetailScreen({
     style: {
       position: 'absolute',
       inset: 0,
-      background: '#fff',
+      background: 'var(--aoz-kit-screen-base, #fff)',
       overflowY: 'auto'
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -1074,7 +1071,7 @@ function DetailScreen({
     style: {
       position: 'relative',
       marginTop: -30,
-      background: '#fff',
+      background: 'var(--aoz-kit-sheet-bg, #fff)',
       borderRadius: '28px 28px 0 0',
       padding: '24px 22px 140px',
       boxShadow: '0 -10px 40px rgba(10,68,140,0.10)'
@@ -1090,7 +1087,7 @@ function DetailScreen({
       fontWeight: 900,
       letterSpacing: '-0.035em',
       lineHeight: 1,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "SODA"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1114,7 +1111,7 @@ function DetailScreen({
       fontFamily: 'var(--font-mono)',
       fontSize: 12,
       fontWeight: 600,
-      color: 'var(--neutral-800)'
+      color: 'var(--aoz-kit-ink, var(--neutral-800))'
     }
   }, "4.8"), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -1168,7 +1165,7 @@ function DetailScreen({
       padding: '12px 8px',
       border: '1.4px solid',
       borderColor: size === o.k ? 'var(--blue-500)' : 'var(--stroke-subtle)',
-      background: size === o.k ? 'var(--blue-50)' : '#fff',
+      background: size === o.k ? 'var(--aoz-kit-pick-on, var(--blue-50))' : 'var(--aoz-kit-pick, #fff)',
       borderRadius: 14,
       cursor: 'pointer',
       display: 'flex',
@@ -1180,13 +1177,13 @@ function DetailScreen({
       fontFamily: 'var(--font-sans)',
       fontSize: 12,
       fontWeight: 700,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, o.l), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: 'var(--font-mono)',
       fontSize: 11,
-      color: size === o.k ? 'var(--blue-600)' : 'var(--text-muted)'
+      color: size === o.k ? 'var(--aoz-kit-accent-ink, var(--blue-600))' : 'var(--text-muted)'
     }
   }, "\xA5", o.p))))), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1201,13 +1198,13 @@ function DetailScreen({
       left: 12,
       right: 12,
       bottom: 90,
-      background: 'rgba(255,255,255,0.78)',
+      background: 'var(--aoz-kit-cta-bg, rgba(255,255,255,0.78))',
       backdropFilter: 'blur(24px) saturate(180%)',
       WebkitBackdropFilter: 'blur(24px) saturate(180%)',
       border: '1px solid var(--glass-stroke)',
       borderRadius: 24,
       padding: 12,
-      boxShadow: 'var(--glass-edge), 0 8px 24px rgba(10,68,140,0.16)',
+      boxShadow: 'var(--glass-edge), var(--aoz-kit-cta-drop, 0 8px 24px rgba(10,68,140,0.16))',
       display: 'flex',
       alignItems: 'center',
       gap: 10
@@ -1216,7 +1213,7 @@ function DetailScreen({
     style: {
       display: 'flex',
       alignItems: 'center',
-      background: 'var(--neutral-100)',
+      background: 'var(--aoz-kit-stepper-bg, var(--neutral-100))',
       borderRadius: 999
     }
   }, /*#__PURE__*/React.createElement("button", {
@@ -1227,7 +1224,7 @@ function DetailScreen({
       width: 32,
       height: 36,
       cursor: 'pointer',
-      color: 'var(--neutral-700)',
+      color: 'var(--aoz-kit-stepper-ink, var(--neutral-700))',
       fontSize: 18
     }
   }, "\u2212"), /*#__PURE__*/React.createElement("span", {
@@ -1236,7 +1233,7 @@ function DetailScreen({
       fontWeight: 700,
       width: 20,
       textAlign: 'center',
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, qty), /*#__PURE__*/React.createElement("button", {
     onClick: () => setQty(qty + 1),
@@ -1246,7 +1243,7 @@ function DetailScreen({
       width: 32,
       height: 36,
       cursor: 'pointer',
-      color: 'var(--neutral-700)',
+      color: 'var(--aoz-kit-stepper-ink, var(--neutral-700))',
       fontSize: 18
     }
   }, "+")), /*#__PURE__*/React.createElement(Button, {
@@ -1309,7 +1306,7 @@ function HomeScreen({
     style: {
       position: 'absolute',
       inset: 0,
-      background: 'linear-gradient(180deg,#0A84FF 0%, #66B7FF 35%, #CFE8FF 70%, #FFE980 100%)',
+      background: 'var(--aoz-kit-home-bg, linear-gradient(180deg,#0A84FF 0%, #66B7FF 35%, #CFE8FF 70%, #FFE980 100%))',
       overflowY: 'auto'
     }
   }, /*#__PURE__*/React.createElement(StatusBar, {
@@ -1397,7 +1394,7 @@ function HomeScreen({
       letterSpacing: '-0.035em',
       lineHeight: 1,
       marginTop: 10,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "SODA"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1420,7 +1417,7 @@ function HomeScreen({
       fontFamily: 'var(--font-mono)',
       fontWeight: 700,
       fontSize: 22,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "\xA5280"), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -1505,7 +1502,7 @@ function HomeScreen({
       fontSize: 18,
       fontWeight: 800,
       letterSpacing: '-0.02em',
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, f.name), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1526,7 +1523,7 @@ function HomeScreen({
       fontFamily: 'var(--font-mono)',
       fontWeight: 700,
       fontSize: 14,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "\xA5", f.price), /*#__PURE__*/React.createElement(IcPlus, {
     size: 16,
@@ -1576,7 +1573,7 @@ function SettingsScreen({
     }
   }, kicker), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: '#fff',
+      background: 'var(--aoz-kit-section-bg, #fff)',
       border: '1px solid var(--stroke-hairline)',
       borderRadius: 18,
       overflow: 'hidden',
@@ -1623,7 +1620,7 @@ function SettingsScreen({
     style: {
       position: 'absolute',
       inset: 0,
-      background: 'linear-gradient(180deg,#EAF5FF 0%, #fff 200px, #fff 100%)',
+      background: 'var(--aoz-kit-settings-bg, linear-gradient(180deg,#EAF5FF 0%, #fff 200px, #fff 100%))',
       overflowY: 'auto',
       paddingBottom: 140
     }
@@ -1649,7 +1646,7 @@ function SettingsScreen({
       fontSize: 22,
       fontWeight: 800,
       letterSpacing: '-0.02em',
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "Settings")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1934,7 +1931,7 @@ function PhoneFrame({
       borderRadius: 38,
       overflow: 'hidden',
       position: 'relative',
-      background: '#fff'
+      background: 'var(--aoz-kit-screen-base, #fff)'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1963,7 +1960,7 @@ function PhoneFrame({
 function StatusBar({
   tint = 'dark'
 }) {
-  const color = tint === 'light' ? '#fff' : 'var(--neutral-900)';
+  const color = tint === 'light' ? '#fff' : 'var(--aoz-kit-ink, var(--neutral-900))';
   return /*#__PURE__*/React.createElement("div", {
     style: {
       position: 'absolute',
@@ -2036,12 +2033,12 @@ function TabBar({
       left: 12,
       right: 12,
       bottom: 14,
-      background: 'rgba(255,255,255,0.62)',
+      background: 'var(--aoz-kit-bar-bg, rgba(255,255,255,0.62))',
       backdropFilter: 'blur(24px) saturate(180%)',
       WebkitBackdropFilter: 'blur(24px) saturate(180%)',
       border: '1px solid var(--glass-stroke)',
       borderRadius: 28,
-      boxShadow: 'var(--glass-edge), 0 12px 30px rgba(10,68,140,0.18)',
+      boxShadow: 'var(--glass-edge), var(--aoz-kit-bar-drop, 0 12px 30px rgba(10,68,140,0.18))',
       padding: '10px 8px',
       display: 'grid',
       gridTemplateColumns: 'repeat(4,1fr)',
@@ -2060,10 +2057,10 @@ function TabBar({
         gap: 3,
         padding: '8px 4px',
         border: 'none',
-        background: on ? 'rgba(10,132,255,0.10)' : 'transparent',
+        background: on ? 'var(--aoz-kit-tab-on-bg, rgba(10,132,255,0.10))' : 'transparent',
         borderRadius: 18,
         cursor: 'pointer',
-        color: on ? 'var(--blue-600)' : 'var(--text-muted)',
+        color: on ? 'var(--aoz-kit-tab-on, var(--blue-600))' : 'var(--text-muted)',
         transition: 'all var(--dur-fast) var(--ease-out-quart)'
       }
     }, /*#__PURE__*/React.createElement(t.Icon, {
@@ -2131,7 +2128,7 @@ function HomeScreen({
     style: {
       position: 'absolute',
       inset: 0,
-      background: 'linear-gradient(180deg,#0A84FF 0%, #66B7FF 35%, #CFE8FF 70%, #FFE980 100%)',
+      background: 'var(--aoz-kit-home-bg, linear-gradient(180deg,#0A84FF 0%, #66B7FF 35%, #CFE8FF 70%, #FFE980 100%))',
       overflowY: 'auto'
     }
   }, /*#__PURE__*/React.createElement(StatusBar, {
@@ -2219,7 +2216,7 @@ function HomeScreen({
       letterSpacing: '-0.035em',
       lineHeight: 1,
       marginTop: 10,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "SODA"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -2242,7 +2239,7 @@ function HomeScreen({
       fontFamily: 'var(--font-mono)',
       fontWeight: 700,
       fontSize: 22,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "\xA5280"), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -2327,7 +2324,7 @@ function HomeScreen({
       fontSize: 18,
       fontWeight: 800,
       letterSpacing: '-0.02em',
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, f.name), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -2348,7 +2345,7 @@ function HomeScreen({
       fontFamily: 'var(--font-mono)',
       fontWeight: 700,
       fontSize: 14,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "\xA5", f.price), /*#__PURE__*/React.createElement(IcPlus, {
     size: 16,
@@ -2380,7 +2377,7 @@ function DetailScreen({
     style: {
       position: 'absolute',
       inset: 0,
-      background: '#fff',
+      background: 'var(--aoz-kit-screen-base, #fff)',
       overflowY: 'auto'
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -2455,7 +2452,7 @@ function DetailScreen({
     style: {
       position: 'relative',
       marginTop: -30,
-      background: '#fff',
+      background: 'var(--aoz-kit-sheet-bg, #fff)',
       borderRadius: '28px 28px 0 0',
       padding: '24px 22px 140px',
       boxShadow: '0 -10px 40px rgba(10,68,140,0.10)'
@@ -2471,7 +2468,7 @@ function DetailScreen({
       fontWeight: 900,
       letterSpacing: '-0.035em',
       lineHeight: 1,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "SODA"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -2495,7 +2492,7 @@ function DetailScreen({
       fontFamily: 'var(--font-mono)',
       fontSize: 12,
       fontWeight: 600,
-      color: 'var(--neutral-800)'
+      color: 'var(--aoz-kit-ink, var(--neutral-800))'
     }
   }, "4.8"), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -2549,7 +2546,7 @@ function DetailScreen({
       padding: '12px 8px',
       border: '1.4px solid',
       borderColor: size === o.k ? 'var(--blue-500)' : 'var(--stroke-subtle)',
-      background: size === o.k ? 'var(--blue-50)' : '#fff',
+      background: size === o.k ? 'var(--aoz-kit-pick-on, var(--blue-50))' : 'var(--aoz-kit-pick, #fff)',
       borderRadius: 14,
       cursor: 'pointer',
       display: 'flex',
@@ -2561,13 +2558,13 @@ function DetailScreen({
       fontFamily: 'var(--font-sans)',
       fontSize: 12,
       fontWeight: 700,
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, o.l), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: 'var(--font-mono)',
       fontSize: 11,
-      color: size === o.k ? 'var(--blue-600)' : 'var(--text-muted)'
+      color: size === o.k ? 'var(--aoz-kit-accent-ink, var(--blue-600))' : 'var(--text-muted)'
     }
   }, "\xA5", o.p))))), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -2582,13 +2579,13 @@ function DetailScreen({
       left: 12,
       right: 12,
       bottom: 90,
-      background: 'rgba(255,255,255,0.78)',
+      background: 'var(--aoz-kit-cta-bg, rgba(255,255,255,0.78))',
       backdropFilter: 'blur(24px) saturate(180%)',
       WebkitBackdropFilter: 'blur(24px) saturate(180%)',
       border: '1px solid var(--glass-stroke)',
       borderRadius: 24,
       padding: 12,
-      boxShadow: 'var(--glass-edge), 0 8px 24px rgba(10,68,140,0.16)',
+      boxShadow: 'var(--glass-edge), var(--aoz-kit-cta-drop, 0 8px 24px rgba(10,68,140,0.16))',
       display: 'flex',
       alignItems: 'center',
       gap: 10
@@ -2597,7 +2594,7 @@ function DetailScreen({
     style: {
       display: 'flex',
       alignItems: 'center',
-      background: 'var(--neutral-100)',
+      background: 'var(--aoz-kit-stepper-bg, var(--neutral-100))',
       borderRadius: 999
     }
   }, /*#__PURE__*/React.createElement("button", {
@@ -2608,7 +2605,7 @@ function DetailScreen({
       width: 32,
       height: 36,
       cursor: 'pointer',
-      color: 'var(--neutral-700)',
+      color: 'var(--aoz-kit-stepper-ink, var(--neutral-700))',
       fontSize: 18
     }
   }, "\u2212"), /*#__PURE__*/React.createElement("span", {
@@ -2617,7 +2614,7 @@ function DetailScreen({
       fontWeight: 700,
       width: 20,
       textAlign: 'center',
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, qty), /*#__PURE__*/React.createElement("button", {
     onClick: () => setQty(qty + 1),
@@ -2627,7 +2624,7 @@ function DetailScreen({
       width: 32,
       height: 36,
       cursor: 'pointer',
-      color: 'var(--neutral-700)',
+      color: 'var(--aoz-kit-stepper-ink, var(--neutral-700))',
       fontSize: 18
     }
   }, "+")), /*#__PURE__*/React.createElement(Button, {
@@ -2676,7 +2673,7 @@ function SettingsScreen({
     }
   }, kicker), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: '#fff',
+      background: 'var(--aoz-kit-section-bg, #fff)',
       border: '1px solid var(--stroke-hairline)',
       borderRadius: 18,
       overflow: 'hidden',
@@ -2723,7 +2720,7 @@ function SettingsScreen({
     style: {
       position: 'absolute',
       inset: 0,
-      background: 'linear-gradient(180deg,#EAF5FF 0%, #fff 200px, #fff 100%)',
+      background: 'var(--aoz-kit-settings-bg, linear-gradient(180deg,#EAF5FF 0%, #fff 200px, #fff 100%))',
       overflowY: 'auto',
       paddingBottom: 140
     }
@@ -2749,7 +2746,7 @@ function SettingsScreen({
       fontSize: 22,
       fontWeight: 800,
       letterSpacing: '-0.02em',
-      color: 'var(--neutral-900)'
+      color: 'var(--aoz-kit-ink, var(--neutral-900))'
     }
   }, "Settings")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -3035,7 +3032,7 @@ function PhoneFrame({
       borderRadius: 38,
       overflow: 'hidden',
       position: 'relative',
-      background: '#fff'
+      background: 'var(--aoz-kit-screen-base, #fff)'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -3064,7 +3061,7 @@ function PhoneFrame({
 function StatusBar({
   tint = 'dark'
 }) {
-  const color = tint === 'light' ? '#fff' : 'var(--neutral-900)';
+  const color = tint === 'light' ? '#fff' : 'var(--aoz-kit-ink, var(--neutral-900))';
   return /*#__PURE__*/React.createElement("div", {
     style: {
       position: 'absolute',
@@ -3137,12 +3134,12 @@ function TabBar({
       left: 12,
       right: 12,
       bottom: 14,
-      background: 'rgba(255,255,255,0.62)',
+      background: 'var(--aoz-kit-bar-bg, rgba(255,255,255,0.62))',
       backdropFilter: 'blur(24px) saturate(180%)',
       WebkitBackdropFilter: 'blur(24px) saturate(180%)',
       border: '1px solid var(--glass-stroke)',
       borderRadius: 28,
-      boxShadow: 'var(--glass-edge), 0 12px 30px rgba(10,68,140,0.18)',
+      boxShadow: 'var(--glass-edge), var(--aoz-kit-bar-drop, 0 12px 30px rgba(10,68,140,0.18))',
       padding: '10px 8px',
       display: 'grid',
       gridTemplateColumns: 'repeat(4,1fr)',
@@ -3161,10 +3158,10 @@ function TabBar({
         gap: 3,
         padding: '8px 4px',
         border: 'none',
-        background: on ? 'rgba(10,132,255,0.10)' : 'transparent',
+        background: on ? 'var(--aoz-kit-tab-on-bg, rgba(10,132,255,0.10))' : 'transparent',
         borderRadius: 18,
         cursor: 'pointer',
-        color: on ? 'var(--blue-600)' : 'var(--text-muted)',
+        color: on ? 'var(--aoz-kit-tab-on, var(--blue-600))' : 'var(--text-muted)',
         transition: 'all var(--dur-fast) var(--ease-out-quart)'
       }
     }, /*#__PURE__*/React.createElement(t.Icon, {
