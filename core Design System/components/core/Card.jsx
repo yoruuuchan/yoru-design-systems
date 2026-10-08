@@ -1,10 +1,10 @@
 import React from 'react';
 
 const variants = {
-  paper:  { background: 'var(--surface-card)',   border: '1px solid var(--ink)',         boxShadow: 'var(--shadow-card)' },
-  sunk:   { background: 'var(--surface-sunk)',   border: '1px solid var(--ink)',         boxShadow: 'var(--bevel-in)' },
-  pool:   { background: 'var(--tile-100)',       border: '1px solid var(--ink)',         boxShadow: 'var(--shadow-card)' },
-  dream:  { background: 'var(--peach-100)',      border: '1px solid var(--ink)',         boxShadow: 'var(--shadow-card), var(--glow-peach)' },
+  paper:  { background: 'var(--surface-card)',   border: '1px solid var(--line)',        boxShadow: 'var(--shadow-card)' },
+  sunk:   { background: 'var(--surface-sunk)',   border: '1px solid var(--line)',        boxShadow: 'var(--bevel-in)' },
+  pool:   { background: 'var(--tile-100)',       border: '1px solid var(--line)',        boxShadow: 'var(--shadow-card)', color: 'var(--abyss-950, var(--ink))' },
+  dream:  { background: 'var(--peach-100)',      border: '1px solid var(--line)',        boxShadow: 'var(--shadow-card), var(--glow-peach)', color: 'var(--abyss-950, var(--ink))' },
   ghost:  { background: 'transparent',           border: '1px dashed var(--ink-muted)',  boxShadow: 'none' },
 };
 

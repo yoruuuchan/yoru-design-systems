@@ -14,8 +14,8 @@ const BlogSidebar = ({ activePostId, onPick }) => {
                     width:'100%', textAlign:'left', cursor:'pointer',
                     fontFamily:'var(--font-body-serif)', fontSize:14, lineHeight:1.35,
                     background: active ? 'var(--peach-100)' : 'transparent',
-                    color: 'var(--ink)',
-                    border:'1px solid', borderColor: active ? 'var(--ink)' : 'transparent',
+                    color: active ? 'var(--abyss-950, var(--ink))' : 'var(--ink)',
+                    border:'1px solid', borderColor: active ? 'var(--line)' : 'transparent',
                     padding:'5px 6px',
                   }}
                 >
@@ -54,7 +54,7 @@ const BlogSidebar = ({ activePostId, onPick }) => {
           <div style={{ color:'var(--text-muted)' }}>03:14 / ∞</div>
           <div style={{
             marginTop: 4, height: 6, background:'var(--paper-stained)',
-            border:'1px solid var(--ink)', boxShadow:'var(--bevel-in)', position:'relative',
+            border:'1px solid var(--line)', boxShadow:'var(--bevel-in)', position:'relative',
           }}>
             <div style={{ position:'absolute', inset:0, width:'34%', background:'var(--tile-500)' }}/>
           </div>

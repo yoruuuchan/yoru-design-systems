@@ -9,9 +9,11 @@
 
 ## Files
 
-- `tokens.css` — abyss（基底）/ phosphor（文字）两条新 ramp + semantic remap + 阴影/bevel/glow/滤镜
 - `palette.html` — 完整色卡：raw palette + semantic roles + bevel/shadow/glow/pattern/filter
 - `demo.html` — archive 桌面夜间版（对应 `ui_kits/archive` 的结构）
+- `ROLLOUT-NOTES.md` — 并入过程的决策与组件审计记录
+
+tokens 已并入正式 `tokens/nightpool.css`（proposal 目录保留为设计档案）。
 
 ## 关键判断
 

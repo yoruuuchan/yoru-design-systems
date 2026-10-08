@@ -4,12 +4,13 @@
 <style>
   body { padding: 16px; background: var(--paper); color: var(--ink); margin: 0; }
   .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: stretch; }
-  .frame { position: relative; height: 180px; border: 1px solid var(--ink); overflow: hidden; }
+  .frame { position: relative; height: 180px; border: 1px solid var(--line); overflow: hidden; }
   .lab { position: absolute; left: 8px; bottom: 8px; font-family: var(--font-pixel-mono); font-size: 10px; color: var(--ink); background: rgba(246,239,217,0.9); padding: 2px 6px; z-index: 2; letter-spacing: 0.05em; }
+  [data-theme="nightpool"] .lab { background: var(--surface-card); }
 </style>
-<script src="../../assets/vendor/react.production.min.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="../../assets/vendor/react-dom.production.min.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="../../assets/vendor/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/react.production.min.js" integrity="sha384-t63xaoqI4/tnZOZs58Xd/POzyY+r0ZlL3MZJsg5uEpKiDX6mJDAaS/KuesDjH55i" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/react-dom.production.min.js" integrity="sha384-8Y1L+f1y2tWRffeBSFDSl0M0VN4EevwrTLXRQyhfXCTukfuKEvApVoVps3phj/Vp" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/babel.min.js" integrity="sha384-nFyaaMobkrf0QCg1ByYephPUGWg8tPOUoVufojNocOA3oAhP+VvrN6x+m0JINhFn" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 </head><body>
 <div id="root"></div>

@@ -5,7 +5,7 @@ export interface TilePatternProps extends React.HTMLAttributes<HTMLDivElement> {
   pattern?: 'cool' | 'warm' | 'caustic' | 'grain';
   /** Tile size in px. */
   size?: number;
-  /** 0..1 — useful for layering. */
+  /** 0..1 — useful for layering. Defaults to 1 (follows --tile-opacity / --caustic-opacity / --grain-opacity under nightpool). */
   opacity?: number;
   /** CSS mix-blend-mode — e.g. 'multiply' for grain on color. */
   blendMode?: React.CSSProperties['mixBlendMode'];

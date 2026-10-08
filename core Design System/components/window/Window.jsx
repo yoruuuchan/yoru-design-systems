@@ -5,7 +5,7 @@ const css = `
 .cds-win {
   display: inline-flex; flex-direction: column;
   background: var(--surface-window);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--shadow-window);
   font-family: var(--font-ui-sans);
   color: var(--ink);
@@ -20,7 +20,7 @@ const css = `
   color: var(--titlebar-fg);
   font-size: 12px;
   font-weight: 700;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
   user-select: none;
 }
 .cds-win.inactive .cds-win-tb { background: var(--titlebar-bg-inactive); color: var(--ink-soft); }
@@ -36,7 +36,7 @@ const css = `
   width: 16px; height: 14px;
   background: var(--paper-stained);
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-out);
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 11px; line-height: 1; font-weight: 700;
@@ -49,10 +49,11 @@ const css = `
 .cds-win-body.dense { padding: 8px; }
 .cds-win-body.pool  { background: var(--surface-pool); }
 .cds-win-body.dream { background: var(--peach-100); }
+[data-theme="nightpool"] .cds-win-body.dream { background: var(--bubblegum-700); }
 .cds-win-status {
   padding: 2px 8px;
   font-size: 11px;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--line);
   background: var(--paper-stained);
   box-shadow: var(--bevel-in);
   color: var(--text-muted);

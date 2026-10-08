@@ -7,14 +7,14 @@ const css = `
   font-family: var(--font-ui-sans);
   font-size: 12px;
   gap: 0;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
   align-items: flex-end;
 }
 .cds-tab {
   padding: 4px 12px 5px;
   background: var(--paper-stained);
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   border-bottom: none;
   margin-right: -1px;
   margin-bottom: -1px;
@@ -31,6 +31,7 @@ const css = `
   box-shadow: inset 0 1px 0 var(--bevel-hi);
 }
 .cds-tab:not([aria-selected="true"]):hover { background: var(--sodium-100); }
+[data-theme="nightpool"] .cds-tab:not([aria-selected="true"]):hover { background: var(--surface-pool); }
 `;
 function inject() {
   if (typeof document === 'undefined' || document.getElementById(STYLE_ID)) return;

@@ -2,7 +2,7 @@ const BlogHeader = ({ activePostId, onPick }) => {
   const { Marquee, Tag, OverexposedText } = window.CoreDesignSystem_61d596;
   return (
     <header style={{
-      borderBottom: '1px solid var(--ink)',
+      borderBottom: '1px solid var(--line)',
       background: 'var(--paper)',
       position: 'relative',
     }}>

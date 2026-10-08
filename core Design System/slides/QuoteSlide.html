@@ -14,8 +14,9 @@
   .slide::before{
     content:""; position:absolute; inset:0;
     background-image: url("../assets/grain.svg");
-    background-size: 300px 300px; opacity: .15; mix-blend-mode: multiply; pointer-events: none;
+    background-size: 300px 300px; opacity: var(--grain-opacity, .15); mix-blend-mode: multiply; pointer-events: none;
   }
+  [data-theme="nightpool"] .slide::before{ mix-blend-mode: normal; }
   .halo {
     position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
     width: 1000px; height: 1000px;
@@ -49,4 +50,42 @@
     <cite>field notes, fluorescent hallway</cite>
   </div>
 </div>
+<script>
+/* core — nightpool theme toggle. ?theme=nightpool|default wins and persists
+   to localStorage["core-theme"]; no param restores the saved choice. */
+(function () {
+  var KEY = 'core-theme';
+  var root = document.documentElement;
+  function apply(t) {
+    if (t === 'nightpool') root.setAttribute('data-theme', 'nightpool');
+    else root.removeAttribute('data-theme');
+  }
+  var q = new URLSearchParams(location.search).get('theme');
+  if (q === 'nightpool' || q === 'default') {
+    apply(q);
+    try { localStorage.setItem(KEY, q); } catch (e) {}
+  } else {
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    if (saved === 'nightpool') apply('nightpool');
+  }
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  function relabel() {
+    btn.textContent = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+  }
+  btn.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:9999;margin:0;padding:4px 10px;'
+    + 'font:11px system-ui,sans-serif;text-transform:lowercase;cursor:pointer;border-radius:0;'
+    + 'border:1px solid var(--line);background:var(--surface-card);color:var(--text-body);'
+    + 'box-shadow:var(--bevel-out);';
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+    apply(next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    relabel();
+  });
+  relabel();
+  document.body.appendChild(btn);
+})();
+</script>
 </body></html>

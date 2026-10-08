@@ -5,7 +5,7 @@ const css = `
 .cds-btn {
   font-family: var(--font-ui-sans);
   font-weight: 700;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-out);
   cursor: pointer;
   text-align: center;
@@ -38,12 +38,12 @@ const sizes = {
 };
 const variants = {
   primary:   { background: 'var(--bondi-500)', color: 'var(--frost-50)' },
-  secondary: { background: 'var(--chrome-100)' },
+  secondary: { background: 'var(--chrome-100)', color: 'var(--abyss-950, var(--ink))' },
   ghost:     { background: 'transparent', boxShadow: 'none', border: '1px dashed var(--ink-muted)' },
-  pool:      { background: 'var(--bondi-200)' },
-  dream:     { background: 'var(--bubblegum-300)' },
+  pool:      { background: 'var(--bondi-200)', color: 'var(--abyss-950, var(--ink))' },
+  dream:     { background: 'var(--bubblegum-300)', color: 'var(--abyss-950, var(--ink))' },
   danger:    { background: 'var(--bubblegum-500)', color: 'var(--frost-50)' },
-  sodium:    { background: 'var(--sodium-300)' },
+  sodium:    { background: 'var(--sodium-300)', color: 'var(--abyss-950, var(--ink))' },
 };
 
 export function Button({

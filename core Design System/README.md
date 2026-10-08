@@ -25,9 +25,11 @@ This is an **art / portfolio / experimental** system. It is **not** trying to be
 > v2 flipped to cool Bondi-blue substrate while keeping the warm scales available as accents.
 > Tweak: every component re-reads tokens, so you can flip back by editing `tokens/colors.css` aliases.
 
-> **Light-only system.** There is no dark mode and none is planned — the whole premise is an
-> overexposed paper archive. Individual surfaces may sit on ink (SectionSlide does), but the
-> page substrate is always frost paper.
+> **Two substrates.** core ships two substrates — default frost paper (day), and NIGHTPOOL
+> (`data-theme="nightpool"`, tokens in `tokens/nightpool.css`): the archive at 2 am — abyss
+> substrate, phosphor text, dark Y2K chrome. the ink splits in two (text = phosphor,
+> lines/shadows = abyss-950). bondi, chrome, bubblegum and the dream unchanged.
+> (design archive: `proposals/nightpool/`.)
 
 ---
 
@@ -145,6 +147,7 @@ If you later supply a real codebase, brand guide, or photographic library, this 
   - `effects.css` — bevels, shadows, glows, filters, motion
   - `fonts.css` — Google Fonts `@import` (Pixelify Sans, VT323, Tinos)
   - `reset.css` — page baseline (resets + body type defaults)
+  - `nightpool.css` — NIGHTPOOL dark theme (`[data-theme="nightpool"]` scoped; day default untouched)
 - `cards/` — 19 foundation specimen cards (Colors / Type / Spacing / Effects / Brand)
 - `assets/` — `logo.svg`, `logo-mark.svg`, `tile.svg`, `tile-warm.svg`, `caustic.svg`, `grain.svg`, `halo.svg`, `cursor-crosshair.svg`
 - `components/`

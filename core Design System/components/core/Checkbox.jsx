@@ -16,7 +16,7 @@ const css = `
 .cds-check-box {
   width: 14px; height: 14px;
   background: var(--paper);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-in);
   display: inline-flex; align-items: center; justify-content: center;
   flex: none;

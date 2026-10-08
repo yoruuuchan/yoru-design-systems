@@ -13,22 +13,23 @@
     display:flex; flex-direction:column;
   }
   .grain{position:absolute;inset:0;background-image:url("../assets/grain.svg");
-         background-size:300px 300px;opacity:.18;mix-blend-mode:multiply;pointer-events:none}
+         background-size:300px 300px;opacity:var(--grain-opacity,.18);mix-blend-mode:multiply;pointer-events:none}
+  [data-theme="nightpool"] .grain{mix-blend-mode:normal}
   .marq{
-    background:var(--ink); color:var(--paper);
+    background:var(--abyss-950, var(--ink)); color:var(--phosphor-200, var(--paper));
     padding:6px 0; white-space:nowrap; overflow:hidden;
     font-family: var(--font-pixel-display); font-size: 28px;
     letter-spacing: .08em;
-    border-bottom: 1px solid var(--ink);
+    border-bottom: 1px solid var(--line);
   }
   .core { padding: 84px 96px 0; display:flex; align-items:flex-start; gap: 40px; }
   .logo { width: 96px; height: 96px; flex:none; box-shadow: var(--glow-bondi); }
   .titles { flex:1; min-width:0; }
   .kicker {
     display:inline-block;
-    font-family: var(--font-pixel-mono); font-size: 18px; color: var(--ink);
+    font-family: var(--font-pixel-mono); font-size: 18px; color: var(--abyss-950, var(--ink));
     background: var(--bubblegum-300); padding: 4px 14px;
-    border: 1px solid var(--ink); letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--line); letter-spacing: 0.1em; text-transform: uppercase;
     box-shadow: var(--shadow-card);
   }
   h1 {
@@ -39,7 +40,7 @@
     text-shadow:
       0 0 12px var(--frost-50), 0 0 24px var(--bondi-200),
       0 0 56px var(--bondi-300), 0 0 96px var(--bubblegum-300),
-      4px 4px 0 var(--ink);
+      4px 4px 0 var(--abyss-950, var(--ink));
   }
   .sub {
     margin-top: 12px;
@@ -53,9 +54,20 @@
     letter-spacing: 0.06em;
   }
   .meta .stamp {
-    border: 1px solid var(--ink); padding: 4px 10px; background: var(--paper);
+    border: 1px solid var(--line); padding: 4px 10px; background: var(--paper);
     box-shadow: var(--bevel-out);
   }
+  /* nightpool: the wallpaper stays, lights off (approved --tile-opacity) */
+  [data-theme="nightpool"] .slide { background-image: none; }
+  [data-theme="nightpool"] .slide::before {
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image: url("../assets/tile.svg"); background-size: 64px 64px;
+    image-rendering: pixelated; opacity: var(--tile-opacity);
+  }
+  /* only the static children need lifting above the wallpaper layer —
+     .meta / .grain are already positioned and stack on their own */
+  [data-theme="nightpool"] .slide > .marq,
+  [data-theme="nightpool"] .slide > .core { position: relative; z-index: 1; }
 </style></head>
 <body>
 <div class="slide">
@@ -76,4 +88,42 @@
   </div>
   <div class="grain"></div>
 </div>
+<script>
+/* core — nightpool theme toggle. ?theme=nightpool|default wins and persists
+   to localStorage["core-theme"]; no param restores the saved choice. */
+(function () {
+  var KEY = 'core-theme';
+  var root = document.documentElement;
+  function apply(t) {
+    if (t === 'nightpool') root.setAttribute('data-theme', 'nightpool');
+    else root.removeAttribute('data-theme');
+  }
+  var q = new URLSearchParams(location.search).get('theme');
+  if (q === 'nightpool' || q === 'default') {
+    apply(q);
+    try { localStorage.setItem(KEY, q); } catch (e) {}
+  } else {
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    if (saved === 'nightpool') apply('nightpool');
+  }
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  function relabel() {
+    btn.textContent = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+  }
+  btn.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:9999;margin:0;padding:4px 10px;'
+    + 'font:11px system-ui,sans-serif;text-transform:lowercase;cursor:pointer;border-radius:0;'
+    + 'border:1px solid var(--line);background:var(--surface-card);color:var(--text-body);'
+    + 'box-shadow:var(--bevel-out);';
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+    apply(next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    relabel();
+  });
+  relabel();
+  document.body.appendChild(btn);
+})();
+</script>
 </body></html>

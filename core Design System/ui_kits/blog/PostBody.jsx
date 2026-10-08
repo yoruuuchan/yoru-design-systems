@@ -8,7 +8,7 @@ const BlogPostBody = ({ post }) => {
       lineHeight: 1.65,
       color: 'var(--ink)',
     }}>
-      <div style={{ position:'relative', border:'1px solid var(--ink)', background:'var(--ink)' }}>
+      <div style={{ position:'relative', border:'1px solid var(--line)', background:'var(--abyss-950, var(--ink))' }}>
         <img
           src={`https://picsum.photos/seed/${post.bannerSeed}/780/280`}
           alt=""
@@ -57,7 +57,7 @@ const BlogPostBody = ({ post }) => {
         );
         if (b.kind === 'img') return (
           <figure key={i} style={{ margin:'18px 0' }}>
-            <div style={{ position:'relative', border:'1px solid var(--ink)', background:'var(--ink)' }}>
+            <div style={{ position:'relative', border:'1px solid var(--line)', background:'var(--abyss-950, var(--ink))' }}>
               <img
                 src={`https://picsum.photos/seed/${b.seed}/720/360`}
                 alt={b.alt || ''}

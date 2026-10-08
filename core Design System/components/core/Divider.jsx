@@ -34,7 +34,7 @@ export function Divider({ variant = 'dashed', label, style, ...rest }) {
     <hr
       style={{
         border: 0,
-        borderTop: variant === 'dashed' ? '1px dashed var(--ink-muted)' : '1px solid var(--ink)',
+        borderTop: variant === 'dashed' ? '1px dashed var(--ink-muted)' : '1px solid var(--line)',
         margin: '12px 0',
         ...style,
       }}

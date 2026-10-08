@@ -6,7 +6,7 @@ user-invocable: true
 
 Read `README.md` at the root of this skill first — it has the brand concept, content fundamentals, visual foundations, and iconography rules. Then explore the rest of the tree:
 
-- `styles.css` + `tokens/` — CSS custom properties for color, type, spacing, effects.
+- `styles.css` + `tokens/` — CSS custom properties for color, type, spacing, effects. Two substrates ship: default frost paper (day), and NIGHTPOOL (`[data-theme="nightpool"]`, `tokens/nightpool.css`) — the archive at 2 am; design archive in `proposals/nightpool/`.
 - `assets/` — logo, mark, tile patterns, grain, halo, cursor.
 - `cards/` — specimen `.html` cards for the Design System tab.
 - `components/<group>/<Name>.{jsx,d.ts,prompt.md}` — React primitives. Read each `.prompt.md` for usage.

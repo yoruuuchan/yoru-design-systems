@@ -6,7 +6,7 @@
   html,body{margin:0;height:100%}
   .slide{
     width:1280px; height:720px; position:relative; overflow:hidden;
-    background: var(--ink);
+    background: var(--abyss-950, var(--ink));
   }
   .img-wrap { position:absolute; inset:0; }
   .img-wrap img {
@@ -14,11 +14,11 @@
     filter: var(--filter-overexposed) saturate(0.92) brightness(1.05);
   }
   .grain{position:absolute;inset:0;background-image:url("../assets/grain.svg");
-         background-size:300px 300px;opacity:.28;mix-blend-mode:multiply;pointer-events:none}
+         background-size:300px 300px;opacity:var(--grain-opacity,.28);mix-blend-mode:multiply;pointer-events:none}
   .ledger {
     position:absolute; left: 56px; bottom: 56px;
     background: var(--paper); color: var(--ink);
-    border: 1px solid var(--ink);
+    border: 1px solid var(--line);
     box-shadow: var(--shadow-window-lg);
     padding: 18px 22px;
     max-width: 540px;
@@ -39,16 +39,18 @@
   .tags span {
     font-family: var(--font-pixel-mono); font-size: 14px;
     background: var(--paper); color: var(--ink);
-    border: 1px solid var(--ink); padding: 4px 10px;
+    border: 1px solid var(--line); padding: 4px 10px;
     letter-spacing: 0.06em;
   }
   .tags span.dream { background: var(--bubblegum-300); }
   .tags span.pool  { background: var(--tile-200); }
+  [data-theme="nightpool"] .tags span.dream,
+  [data-theme="nightpool"] .tags span.pool { color: var(--abyss-950); }
   .corner-stamp {
     position: absolute; left: 40px; top: 40px;
-    font-family: var(--font-pixel-mono); font-size: 14px; color: var(--paper);
+    font-family: var(--font-pixel-mono); font-size: 14px; color: var(--phosphor-200, var(--paper));
     background: rgba(26,20,12,.55); padding: 4px 10px;
-    border: 1px solid var(--paper); letter-spacing: 0.08em;
+    border: 1px solid var(--phosphor-200, var(--paper)); letter-spacing: 0.08em;
   }
 </style></head>
 <body>
@@ -68,4 +70,42 @@
     <p>"the tile grout turned the color of old butter, and the deep end still smelled like chlorine for months after."</p>
   </div>
 </div>
+<script>
+/* core — nightpool theme toggle. ?theme=nightpool|default wins and persists
+   to localStorage["core-theme"]; no param restores the saved choice. */
+(function () {
+  var KEY = 'core-theme';
+  var root = document.documentElement;
+  function apply(t) {
+    if (t === 'nightpool') root.setAttribute('data-theme', 'nightpool');
+    else root.removeAttribute('data-theme');
+  }
+  var q = new URLSearchParams(location.search).get('theme');
+  if (q === 'nightpool' || q === 'default') {
+    apply(q);
+    try { localStorage.setItem(KEY, q); } catch (e) {}
+  } else {
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    if (saved === 'nightpool') apply('nightpool');
+  }
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  function relabel() {
+    btn.textContent = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+  }
+  btn.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:9999;margin:0;padding:4px 10px;'
+    + 'font:11px system-ui,sans-serif;text-transform:lowercase;cursor:pointer;border-radius:0;'
+    + 'border:1px solid var(--line);background:var(--surface-card);color:var(--text-body);'
+    + 'box-shadow:var(--bevel-out);';
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+    apply(next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    relabel();
+  });
+  relabel();
+  document.body.appendChild(btn);
+})();
+</script>
 </body></html>

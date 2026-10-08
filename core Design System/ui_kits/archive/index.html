@@ -50,19 +50,27 @@
       color: var(--ink-soft);
       background: var(--paper);
       padding: 4px 8px;
-      border: 1px solid var(--ink);
+      border: 1px solid var(--line);
       box-shadow: var(--bevel-in);
     }
     .floating-toast {
       position: fixed; right: 18px; bottom: 18px; z-index: 50;
     }
+    /* nightpool: the wallpaper stays, lights off (approved --tile-opacity) */
+    [data-theme="nightpool"] body { background-image: none; }
+    [data-theme="nightpool"] body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("../../assets/tile.svg"); background-size: 32px 32px;
+      image-rendering: pixelated; opacity: var(--tile-opacity);
+    }
+    [data-theme="nightpool"] #root { position: relative; z-index: 1; }
   </style>
 </head>
 <body>
 
-<script src="../../assets/vendor/react.production.min.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="../../assets/vendor/react-dom.production.min.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="../../assets/vendor/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/react.production.min.js" integrity="sha384-t63xaoqI4/tnZOZs58Xd/POzyY+r0ZlL3MZJsg5uEpKiDX6mJDAaS/KuesDjH55i" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/react-dom.production.min.js" integrity="sha384-8Y1L+f1y2tWRffeBSFDSl0M0VN4EevwrTLXRQyhfXCTukfuKEvApVoVps3phj/Vp" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/babel.min.js" integrity="sha384-nFyaaMobkrf0QCg1ByYephPUGWg8tPOUoVufojNocOA3oAhP+VvrN6x+m0JINhFn" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 <script src="./catalog.js"></script>
 <script type="text/babel" src="./Sidebar.jsx"></script>
@@ -150,6 +158,45 @@
   }
 
   ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+<script>
+/* core — nightpool theme toggle. ?theme=nightpool|default wins and persists
+   to localStorage["core-theme"]; no param restores the saved choice. */
+(function () {
+  var KEY = 'core-theme';
+  var root = document.documentElement;
+  function apply(t) {
+    if (t === 'nightpool') root.setAttribute('data-theme', 'nightpool');
+    else root.removeAttribute('data-theme');
+  }
+  var q = new URLSearchParams(location.search).get('theme');
+  if (q === 'nightpool' || q === 'default') {
+    apply(q);
+    try { localStorage.setItem(KEY, q); } catch (e) {}
+  } else {
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    if (saved === 'nightpool') apply('nightpool');
+  }
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  function relabel() {
+    btn.textContent = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+  }
+  btn.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:9999;margin:0;padding:4px 10px;'
+    + 'font:11px system-ui,sans-serif;text-transform:lowercase;cursor:pointer;border-radius:0;'
+    + 'border:1px solid var(--line);background:var(--surface-card);color:var(--text-body);'
+    + 'box-shadow:var(--bevel-out);';
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+    apply(next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    relabel();
+  });
+  relabel();
+  document.body.appendChild(btn);
+})();
 </script>
 </body>
 </html>

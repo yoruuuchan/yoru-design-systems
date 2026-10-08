@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface GrainOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** 0..1. Default 0.18. */
+  /** 0..1. Default 0.18 (follows --grain-opacity under nightpool). */
   opacity?: number;
   /** Default 'multiply' — overlays grain as if the paper were already grainy. */
   blendMode?: React.CSSProperties['mixBlendMode'];

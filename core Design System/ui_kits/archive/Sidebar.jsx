@@ -15,10 +15,10 @@ const ArchiveSidebar = ({ activeCat, onPick }) => {
                   width:'100%', textAlign:'left',
                   fontFamily:'var(--font-ui-sans)', fontSize:12,
                   background: active ? 'var(--tile-200)' : 'transparent',
-                  border:'1px solid', borderColor: active ? 'var(--ink)' : 'transparent',
+                  border:'1px solid', borderColor: active ? 'var(--line)' : 'transparent',
                   padding:'3px 6px', cursor:'pointer',
                   display:'flex', justifyContent:'space-between', gap:8,
-                  color:'var(--ink)',
+                  color: active ? 'var(--abyss-950, var(--ink))' : 'var(--ink)',
                 }}
               >
                 <span>{active ? '▸ ' : ''}{c.label}</span>

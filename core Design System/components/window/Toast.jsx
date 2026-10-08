@@ -3,8 +3,8 @@ import React from 'react';
 const tones = {
   info:  { bar: 'var(--bondi-500)',     barFg: 'var(--frost-50)' },
   warn:  { bar: 'var(--bubblegum-500)', barFg: 'var(--frost-50)' },
-  dream: { bar: 'var(--bubblegum-300)', barFg: 'var(--ink)' },
-  sodium:{ bar: 'var(--sodium-500)',    barFg: 'var(--ink)' },
+  dream: { bar: 'var(--bubblegum-300)', barFg: 'var(--abyss-950, var(--ink))' },
+  sodium:{ bar: 'var(--sodium-500)',    barFg: 'var(--abyss-950, var(--ink))' },
 };
 
 export function Toast({ title = 'note', tone = 'info', onClose, children, style }) {
@@ -18,7 +18,7 @@ export function Toast({ title = 'note', tone = 'info', onClose, children, style 
         minWidth: 240,
         maxWidth: 360,
         background: 'var(--surface-window)',
-        border: '1px solid var(--ink)',
+        border: '1px solid var(--line)',
         boxShadow: 'var(--shadow-window)',
         fontFamily: 'var(--font-ui-sans)',
         color: 'var(--ink)',
@@ -35,7 +35,7 @@ export function Toast({ title = 'note', tone = 'info', onClose, children, style 
           color: t.barFg,
           fontSize: 12,
           fontWeight: 700,
-          borderBottom: '1px solid var(--ink)',
+          borderBottom: '1px solid var(--line)',
           letterSpacing: '0.02em',
         }}
       >
@@ -47,7 +47,7 @@ export function Toast({ title = 'note', tone = 'info', onClose, children, style 
             style={{
               width: 16, height: 14, padding: 0,
               background: 'var(--paper-stained)', color: 'var(--ink)',
-              border: '1px solid var(--ink)', boxShadow: 'var(--bevel-out)',
+              border: '1px solid var(--line)', boxShadow: 'var(--bevel-out)',
               fontSize: 11, fontFamily: 'var(--font-pixel-mono)', cursor: 'pointer',
               fontWeight: 700, lineHeight: 1, flex: 'none',
             }}

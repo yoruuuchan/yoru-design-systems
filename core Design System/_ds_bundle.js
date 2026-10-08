@@ -16,7 +16,7 @@ const css = `
 .cds-btn {
   font-family: var(--font-ui-sans);
   font-weight: 700;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-out);
   cursor: pointer;
   text-align: center;
@@ -65,7 +65,8 @@ const variants = {
     color: '#ffffff'
   },
   secondary: {
-    background: 'var(--chrome-100)'
+    background: 'var(--chrome-100)',
+    color: 'var(--abyss-950, var(--ink))'
   },
   ghost: {
     background: 'transparent',
@@ -73,17 +74,20 @@ const variants = {
     border: '1px dashed var(--ink-muted)'
   },
   pool: {
-    background: 'var(--bondi-200)'
+    background: 'var(--bondi-200)',
+    color: 'var(--abyss-950, var(--ink))'
   },
   dream: {
-    background: 'var(--bubblegum-300)'
+    background: 'var(--bubblegum-300)',
+    color: 'var(--abyss-950, var(--ink))'
   },
   danger: {
     background: 'var(--bubblegum-500)',
     color: '#ffffff'
   },
   sodium: {
-    background: 'var(--sodium-300)'
+    background: 'var(--sodium-300)',
+    color: 'var(--abyss-950, var(--ink))'
   }
 };
 function Button({
@@ -111,23 +115,25 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
 const variants = {
   paper: {
     background: 'var(--surface-card)',
-    border: '1px solid var(--ink)',
+    border: '1px solid var(--line)',
     boxShadow: 'var(--shadow-card)'
   },
   sunk: {
     background: 'var(--surface-sunk)',
-    border: '1px solid var(--ink)',
+    border: '1px solid var(--line)',
     boxShadow: 'var(--bevel-in)'
   },
   pool: {
     background: 'var(--tile-100)',
-    border: '1px solid var(--ink)',
-    boxShadow: 'var(--shadow-card)'
+    border: '1px solid var(--line)',
+    boxShadow: 'var(--shadow-card)',
+    color: 'var(--abyss-950, var(--ink))'
   },
   dream: {
     background: 'var(--peach-100)',
-    border: '1px solid var(--ink)',
-    boxShadow: 'var(--shadow-card), var(--glow-peach)'
+    border: '1px solid var(--line)',
+    boxShadow: 'var(--shadow-card), var(--glow-peach)',
+    color: 'var(--abyss-950, var(--ink))'
   },
   ghost: {
     background: 'transparent',
@@ -177,7 +183,7 @@ const css = `
 .cds-check-box {
   width: 14px; height: 14px;
   background: var(--paper);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-in);
   display: inline-flex; align-items: center; justify-content: center;
   flex: none;
@@ -253,7 +259,7 @@ function Divider({
   return /*#__PURE__*/React.createElement("hr", _extends({
     style: {
       border: 0,
-      borderTop: variant === 'dashed' ? '1px dashed var(--ink-muted)' : '1px solid var(--ink)',
+      borderTop: variant === 'dashed' ? '1px dashed var(--ink-muted)' : '1px solid var(--line)',
       margin: '12px 0',
       ...style
     }
@@ -269,7 +275,7 @@ const STYLE_ID = 'cds-iconbutton-style';
 const css = `
 .cds-ibtn {
   font-family: var(--font-ui-sans);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-out);
   background: var(--paper-stained);
   color: var(--ink);
@@ -336,7 +342,7 @@ const css = `
   font-size: 15px;
   background: var(--paper);
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-in);
   padding: 4px 8px;
   outline: none;
@@ -345,6 +351,7 @@ const css = `
   box-sizing: border-box;
 }
 .cds-input:focus { background: var(--bondi-50); box-shadow: var(--bevel-in), 0 0 0 2px var(--bondi-300); }
+[data-theme="nightpool"] .cds-input:focus { background: var(--surface-sunk); }
 .cds-input::placeholder { color: var(--ink-faint); font-style: italic; }
 .cds-input.mono { font-family: var(--font-pixel-mono); font-size: 14px; }
 `;
@@ -390,11 +397,11 @@ const variants = {
   },
   dream: {
     background: 'var(--peach-200)',
-    color: 'var(--ink)'
+    color: 'var(--abyss-950, var(--ink))'
   },
   sodium: {
     background: 'var(--sodium-200)',
-    color: 'var(--ink)'
+    color: 'var(--abyss-950, var(--ink))'
   },
   ink: {
     background: 'var(--ink)',
@@ -415,7 +422,7 @@ function Tag({
       fontSize: 12,
       letterSpacing: '0.05em',
       textTransform: 'lowercase',
-      border: '1px solid var(--ink)',
+      border: '1px solid var(--line)',
       padding: '1px 6px',
       display: 'inline-block',
       lineHeight: 1.2,
@@ -464,8 +471,8 @@ const css = `
 .cds-marq {
   overflow: hidden;
   white-space: nowrap;
-  border: 1px solid var(--ink);
-  background: var(--ink);
+  border: 1px solid var(--line);
+  background: var(--abyss-950, var(--ink));
   font-family: var(--font-pixel-display);
   font-size: 28px;
   padding: 4px 0;
@@ -540,7 +547,7 @@ function OverexposedText({
   ...rest
 }) {
   const palette = {
-    paper: 'var(--paper)',
+    paper: 'var(--phosphor-100, var(--paper))',
     frost: 'var(--frost-50)',
     bondi: 'var(--bondi-200)',
     chrome: 'var(--chrome-100)',
@@ -555,7 +562,7 @@ function OverexposedText({
     chrome: '0 0 8px var(--frost-50), 0 0 18px var(--chrome-100), 0 0 32px rgba(196,208,221,0.55)',
     bubblegum: '0 0 8px var(--bubblegum-200), 0 0 20px var(--bubblegum-300), 0 0 36px rgba(255,126,182,0.45)',
     pool: '0 0 8px var(--tile-100), 0 0 20px var(--tile-300), 0 0 36px rgba(74,143,168,0.4)',
-    peach: '0 0 8px var(--paper), 0 0 16px var(--peach-200), 0 0 28px rgba(244,184,160,0.5)',
+    peach: '0 0 8px var(--phosphor-100, var(--paper)), 0 0 16px var(--peach-200), 0 0 28px rgba(244,184,160,0.5)',
     rose: '0 0 8px var(--rose-200), 0 0 18px var(--rose-300), 0 0 32px rgba(240,164,184,0.45)'
   };
   return /*#__PURE__*/React.createElement(Tag, _extends({
@@ -578,7 +585,7 @@ Object.assign(__ds_scope, { OverexposedText });
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function GrainOverlay({
-  opacity = 0.18,
+  opacity = 'var(--grain-opacity, 0.18)',
   blendMode = 'multiply',
   style,
   ...rest
@@ -672,10 +679,18 @@ const patterns = {
   caustic: 'url(/assets/caustic.svg)',
   grain: 'url(/assets/grain.svg)'
 };
+/* wallpapers dim themselves at night — the nightpool tokens are only
+   defined under [data-theme="nightpool"], so daylight falls back to 1. */
+const defaultOpacity = {
+  cool: 'var(--tile-opacity, 1)',
+  warm: 'var(--tile-opacity, 1)',
+  caustic: 'var(--caustic-opacity, 1)',
+  grain: 'var(--grain-opacity, 1)'
+};
 function TilePattern({
   pattern = 'cool',
   size = 64,
-  opacity = 1,
+  opacity,
   blendMode,
   fixed = false,
   children,
@@ -690,7 +705,7 @@ function TilePattern({
       backgroundRepeat: 'repeat',
       backgroundAttachment: fixed ? 'fixed' : 'scroll',
       imageRendering: 'pixelated',
-      opacity,
+      opacity: opacity ?? (defaultOpacity[pattern] ?? defaultOpacity.cool),
       mixBlendMode: blendMode,
       ...style
     }
@@ -708,14 +723,14 @@ const css = `
   font-family: var(--font-ui-sans);
   font-size: 12px;
   gap: 0;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
   align-items: flex-end;
 }
 .cds-tab {
   padding: 4px 12px 5px;
   background: var(--paper-stained);
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   border-bottom: none;
   margin-right: -1px;
   margin-bottom: -1px;
@@ -732,6 +747,7 @@ const css = `
   box-shadow: inset 0 1px 0 var(--bevel-hi);
 }
 .cds-tab:not([aria-selected="true"]):hover { background: var(--sodium-100); }
+[data-theme="nightpool"] .cds-tab:not([aria-selected="true"]):hover { background: var(--surface-pool); }
 `;
 function inject() {
   if (typeof document === 'undefined' || document.getElementById(STYLE_ID)) return;
@@ -779,11 +795,11 @@ const tones = {
   },
   dream: {
     bar: 'var(--bubblegum-300)',
-    barFg: 'var(--ink)'
+    barFg: 'var(--abyss-950, var(--ink))'
   },
   sodium: {
     bar: 'var(--sodium-500)',
-    barFg: 'var(--ink)'
+    barFg: 'var(--abyss-950, var(--ink))'
   }
 };
 function Toast({
@@ -802,7 +818,7 @@ function Toast({
       minWidth: 240,
       maxWidth: 360,
       background: 'var(--surface-window)',
-      border: '1px solid var(--ink)',
+      border: '1px solid var(--line)',
       boxShadow: 'var(--shadow-window)',
       fontFamily: 'var(--font-ui-sans)',
       color: 'var(--ink)',
@@ -818,7 +834,7 @@ function Toast({
       color: t.barFg,
       fontSize: 12,
       fontWeight: 700,
-      borderBottom: '1px solid var(--ink)',
+      borderBottom: '1px solid var(--line)',
       letterSpacing: '0.02em'
     }
   }, /*#__PURE__*/React.createElement("span", {
@@ -834,7 +850,7 @@ function Toast({
       padding: 0,
       background: 'var(--paper-stained)',
       color: 'var(--ink)',
-      border: '1px solid var(--ink)',
+      border: '1px solid var(--line)',
       boxShadow: 'var(--bevel-out)',
       fontSize: 11,
       fontFamily: 'var(--font-pixel-mono)',
@@ -862,7 +878,7 @@ const css = `
 .cds-win {
   display: inline-flex; flex-direction: column;
   background: var(--surface-window);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--shadow-window);
   font-family: var(--font-ui-sans);
   color: var(--ink);
@@ -877,7 +893,7 @@ const css = `
   color: var(--titlebar-fg);
   font-size: 12px;
   font-weight: 700;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
   user-select: none;
 }
 .cds-win.inactive .cds-win-tb { background: var(--titlebar-bg-inactive); color: var(--ink-soft); }
@@ -893,7 +909,7 @@ const css = `
   width: 16px; height: 14px;
   background: var(--paper-stained);
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-out);
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 11px; line-height: 1; font-weight: 700;
@@ -906,10 +922,11 @@ const css = `
 .cds-win-body.dense { padding: 8px; }
 .cds-win-body.pool  { background: var(--surface-pool); }
 .cds-win-body.dream { background: var(--peach-100); }
+[data-theme="nightpool"] .cds-win-body.dream { background: var(--bubblegum-700); }
 .cds-win-status {
   padding: 2px 8px;
   font-size: 11px;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--line);
   background: var(--paper-stained);
   box-shadow: var(--bevel-in);
   color: var(--text-muted);
@@ -993,8 +1010,8 @@ const ArchiveDetail = ({
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       position: 'relative',
-      border: '1px solid var(--ink)',
-      background: 'var(--ink)'
+      border: '1px solid var(--line)',
+      background: 'var(--abyss-950, var(--ink))'
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: window.previewUrlFor(item, 380, 250),
@@ -1079,7 +1096,7 @@ const ArchiveFileGrid = ({
         display: 'block',
         textAlign: 'left',
         background: 'var(--paper-stained)',
-        border: '1px solid var(--ink)',
+        border: '1px solid var(--line)',
         boxShadow: isSel ? 'var(--bevel-in), var(--glow-peach)' : 'var(--bevel-out)',
         fontFamily: 'inherit',
         color: 'var(--ink)'
@@ -1165,13 +1182,13 @@ const ArchiveSidebar = ({
         fontSize: 12,
         background: active ? 'var(--tile-200)' : 'transparent',
         border: '1px solid',
-        borderColor: active ? 'var(--ink)' : 'transparent',
+        borderColor: active ? 'var(--line)' : 'transparent',
         padding: '3px 6px',
         cursor: 'pointer',
         display: 'flex',
         justifyContent: 'space-between',
         gap: 8,
-        color: 'var(--ink)'
+        color: active ? 'var(--abyss-950, var(--ink))' : 'var(--ink)'
       }
     }, /*#__PURE__*/React.createElement("span", null, active ? '▸ ' : '', c.label), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -1334,9 +1351,9 @@ const BlogFooter = () => {
   return /*#__PURE__*/React.createElement("footer", {
     style: {
       marginTop: 48,
-      borderTop: '1px solid var(--ink)',
+      borderTop: '1px solid var(--line)',
       background: 'var(--bondi-900)',
-      color: 'var(--paper)',
+      color: 'var(--phosphor-200, var(--paper))',
       fontFamily: 'var(--font-ui-sans)'
     }
   }, /*#__PURE__*/React.createElement(Marquee, {
@@ -1374,7 +1391,7 @@ const BlogFooter = () => {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      color: 'var(--paper)'
+      color: 'var(--phosphor-200, var(--paper))'
     }
   }, "web ring"), /*#__PURE__*/React.createElement("a", {
     href: "#",
@@ -1418,7 +1435,7 @@ const BlogHeader = ({
   } = window.CoreDesignSystem_61d596;
   return /*#__PURE__*/React.createElement("header", {
     style: {
-      borderBottom: '1px solid var(--ink)',
+      borderBottom: '1px solid var(--line)',
       background: 'var(--paper)',
       position: 'relative'
     }
@@ -1520,9 +1537,9 @@ const BlogSidebar = ({
         fontSize: 14,
         lineHeight: 1.35,
         background: active ? 'var(--peach-100)' : 'transparent',
-        color: 'var(--ink)',
+        color: active ? 'var(--abyss-950, var(--ink))' : 'var(--ink)',
         border: '1px solid',
-        borderColor: active ? 'var(--ink)' : 'transparent',
+        borderColor: active ? 'var(--line)' : 'transparent',
         padding: '5px 6px'
       }
     }, /*#__PURE__*/React.createElement("div", {
@@ -1587,7 +1604,7 @@ const BlogSidebar = ({
       marginTop: 4,
       height: 6,
       background: 'var(--paper-stained)',
-      border: '1px solid var(--ink)',
+      border: '1px solid var(--line)',
       boxShadow: 'var(--bevel-in)',
       position: 'relative'
     }
@@ -1624,8 +1641,8 @@ const BlogPostBody = ({
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       position: 'relative',
-      border: '1px solid var(--ink)',
-      background: 'var(--ink)'
+      border: '1px solid var(--line)',
+      background: 'var(--abyss-950, var(--ink))'
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: `https://picsum.photos/seed/${post.bannerSeed}/780/280`,
@@ -1706,8 +1723,8 @@ const BlogPostBody = ({
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         position: 'relative',
-        border: '1px solid var(--ink)',
-        background: 'var(--ink)'
+        border: '1px solid var(--line)',
+        background: 'var(--abyss-950, var(--ink))'
       }
     }, /*#__PURE__*/React.createElement("img", {
       src: `https://picsum.photos/seed/${b.seed}/720/360`,

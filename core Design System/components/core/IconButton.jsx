@@ -4,7 +4,7 @@ const STYLE_ID = 'cds-iconbutton-style';
 const css = `
 .cds-ibtn {
   font-family: var(--font-ui-sans);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-out);
   background: var(--paper-stained);
   color: var(--ink);

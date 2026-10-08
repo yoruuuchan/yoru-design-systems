@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function GrainOverlay({ src = '/assets/grain.svg', opacity = 0.18, blendMode = 'multiply', style, ...rest }) {
+export function GrainOverlay({ src = '/assets/grain.svg', opacity = 'var(--grain-opacity, 0.18)', blendMode = 'multiply', style, ...rest }) {
   return (
     <div
       aria-hidden

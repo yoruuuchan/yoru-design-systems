@@ -18,7 +18,7 @@ const css = `
   font-size: 15px;
   background: var(--paper);
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   box-shadow: var(--bevel-in);
   padding: 4px 8px;
   outline: none;
@@ -27,6 +27,7 @@ const css = `
   box-sizing: border-box;
 }
 .cds-input:focus { background: var(--bondi-50); box-shadow: var(--bevel-in), 0 0 0 2px var(--bondi-300); }
+[data-theme="nightpool"] .cds-input:focus { background: var(--surface-sunk); }
 .cds-input::placeholder { color: var(--ink-faint); font-style: italic; }
 .cds-input.mono { font-family: var(--font-pixel-mono); font-size: 14px; }
 `;

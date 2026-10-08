@@ -6,8 +6,8 @@
   html,body{margin:0;height:100%}
   .slide{
     width:1280px; height:720px; position:relative; overflow:hidden;
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--abyss-950, var(--ink));
+    color: var(--phosphor-200, var(--paper));
     display:flex; align-items:center; justify-content:center;
     flex-direction:column;
   }
@@ -16,7 +16,7 @@
     background-image: url("../assets/tile.svg");
     background-size: 64px 64px;
     image-rendering: pixelated;
-    opacity: .25;
+    opacity: var(--tile-opacity, .25);
     mix-blend-mode: screen;
   }
   .num {
@@ -32,17 +32,18 @@
     margin-top: 12px;
     font-family: var(--font-pixel-mono); font-size: 22px;
     letter-spacing: 0.4em; text-transform: uppercase;
-    color: var(--paper);
+    color: var(--phosphor-200, var(--paper));
     position: relative;
   }
   .title {
     margin-top: 28px;
     font-family: var(--font-body-serif); font-size: 48px; font-style: italic;
-    color: var(--paper); text-align:center; max-width: 900px;
+    color: var(--phosphor-200, var(--paper)); text-align:center; max-width: 900px;
     position: relative; line-height: 1.15;
   }
   .grain{position:absolute;inset:0;background-image:url("../assets/grain.svg");
-         background-size:300px 300px;opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+         background-size:300px 300px;opacity:var(--grain-opacity,.22);mix-blend-mode:overlay;pointer-events:none}
+  [data-theme="nightpool"] .grain{mix-blend-mode:normal}
 </style></head>
 <body>
 <div class="slide">
@@ -51,4 +52,42 @@
   <div class="title">"the particular kind of quiet you only get at a pool that no one has been in for months."</div>
   <div class="grain"></div>
 </div>
+<script>
+/* core — nightpool theme toggle. ?theme=nightpool|default wins and persists
+   to localStorage["core-theme"]; no param restores the saved choice. */
+(function () {
+  var KEY = 'core-theme';
+  var root = document.documentElement;
+  function apply(t) {
+    if (t === 'nightpool') root.setAttribute('data-theme', 'nightpool');
+    else root.removeAttribute('data-theme');
+  }
+  var q = new URLSearchParams(location.search).get('theme');
+  if (q === 'nightpool' || q === 'default') {
+    apply(q);
+    try { localStorage.setItem(KEY, q); } catch (e) {}
+  } else {
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    if (saved === 'nightpool') apply('nightpool');
+  }
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  function relabel() {
+    btn.textContent = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+  }
+  btn.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:9999;margin:0;padding:4px 10px;'
+    + 'font:11px system-ui,sans-serif;text-transform:lowercase;cursor:pointer;border-radius:0;'
+    + 'border:1px solid var(--line);background:var(--surface-card);color:var(--text-body);'
+    + 'box-shadow:var(--bevel-out);';
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'nightpool' ? 'default' : 'nightpool';
+    apply(next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    relabel();
+  });
+  relabel();
+  document.body.appendChild(btn);
+})();
+</script>
 </body></html>

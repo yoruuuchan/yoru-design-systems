@@ -11,7 +11,7 @@ const ArchiveDetail = ({ item, onClose }) => {
       status={`${item.meta.size} · ${item.meta.dims} · ${item.meta.date}`}
       style={{ width: 380 }}
     >
-      <div style={{ position:'relative', border:'1px solid var(--ink)', background:'var(--ink)' }}>
+      <div style={{ position:'relative', border:'1px solid var(--line)', background:'var(--abyss-950, var(--ink))' }}>
         <img
           src={window.previewUrlFor(item, 380, 250)}
           alt={item.title}

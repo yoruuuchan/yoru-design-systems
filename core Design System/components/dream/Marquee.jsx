@@ -6,8 +6,8 @@ const css = `
 .cds-marq {
   overflow: hidden;
   white-space: nowrap;
-  border: 1px solid var(--ink);
-  background: var(--ink);
+  border: 1px solid var(--line);
+  background: var(--abyss-950, var(--ink));
   font-family: var(--font-pixel-display);
   font-size: 28px;
   padding: 4px 0;

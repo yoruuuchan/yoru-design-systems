@@ -3,9 +3,9 @@ const BlogFooter = () => {
   return (
     <footer style={{
       marginTop: 48,
-      borderTop: '1px solid var(--ink)',
+      borderTop: '1px solid var(--line)',
       background: 'var(--bondi-900)',
-      color: 'var(--paper)',
+      color: 'var(--phosphor-200, var(--paper))',
       fontFamily:'var(--font-ui-sans)',
     }}>
       <Marquee speed={22} tone="paper">
@@ -27,7 +27,7 @@ const BlogFooter = () => {
           fontFamily:'var(--font-pixel-mono)', fontSize: 12, color:'var(--bondi-200)',
           display: 'flex', flexDirection:'column', gap: 3,
         }}>
-          <div style={{ color:'var(--paper)' }}>web ring</div>
+          <div style={{ color:'var(--phosphor-200, var(--paper))' }}>web ring</div>
           <a href="#" style={{ color:'var(--neon-cyan)' }}>« prev (drain_records)</a>
           <a href="#" style={{ color:'var(--neon-lime)' }}>random</a>
           <a href="#" style={{ color:'var(--neon-magenta)' }}>next (hum_archive) »</a>

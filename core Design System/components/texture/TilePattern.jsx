@@ -7,10 +7,19 @@ const patterns = {
   grain:   'url(/assets/grain.svg)',
 };
 
+/* wallpapers dim themselves at night — the nightpool tokens are only
+   defined under [data-theme="nightpool"], so daylight falls back to 1. */
+const defaultOpacity = {
+  cool:    'var(--tile-opacity, 1)',
+  warm:    'var(--tile-opacity, 1)',
+  caustic: 'var(--caustic-opacity, 1)',
+  grain:   'var(--grain-opacity, 1)',
+};
+
 export function TilePattern({
   pattern = 'cool',
   size = 64,
-  opacity = 1,
+  opacity,
   blendMode,
   fixed = false,
   children,
@@ -26,7 +35,7 @@ export function TilePattern({
         backgroundRepeat: 'repeat',
         backgroundAttachment: fixed ? 'fixed' : 'scroll',
         imageRendering: 'pixelated',
-        opacity,
+        opacity: opacity ?? (defaultOpacity[pattern] ?? defaultOpacity.cool),
         mixBlendMode: blendMode,
         ...style,
       }}

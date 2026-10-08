@@ -19,7 +19,7 @@ const ArchiveFileGrid = ({ activeCat, selectedId, onSelect }) => {
             style={{
               padding: 0, cursor:'pointer', display:'block', textAlign:'left',
               background:'var(--paper-stained)',
-              border:'1px solid var(--ink)',
+              border:'1px solid var(--line)',
               boxShadow: isSel
                 ? 'var(--bevel-in), var(--glow-peach)'
                 : 'var(--bevel-out)',
