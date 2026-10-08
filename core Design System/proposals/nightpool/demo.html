@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" data-theme="nightpool">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>core — nightpool · archive desktop demo (proposal)</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  html, body { height: 100%; }
+  body { margin: 0; overflow: hidden; position: relative; }
+
+  /* ── the desktop: pool at night ─────────────────────────── */
+  .desktop {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 68% 30%, rgba(20, 56, 77, .55), transparent 65%),
+      var(--surface-page);
+  }
+  .desktop::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: var(--bg-tile-pattern); opacity: var(--tile-opacity);
+  }
+  .desktop::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: var(--bg-grain-pattern); opacity: var(--grain-opacity);
+  }
+  .caustic {
+    position: absolute; right: -60px; top: -40px; width: 520px; height: 420px;
+    background-image: var(--bg-caustic-pattern); background-size: 480px;
+    opacity: var(--caustic-opacity);
+    -webkit-mask-image: radial-gradient(ellipse at 70% 30%, #000 30%, transparent 70%);
+            mask-image: radial-gradient(ellipse at 70% 30%, #000 30%, transparent 70%);
+  }
+
+  /* ── window chrome ──────────────────────────────────────── */
+  .win {
+    position: absolute; background: var(--surface-window);
+    border: 1px solid var(--line); box-shadow: var(--shadow-window-lg);
+    display: flex; flex-direction: column; min-width: 280px;
+  }
+  .win .tb {
+    height: 26px; flex: none; display: flex; align-items: center; gap: 8px;
+    padding: 0 6px 0 10px; background: var(--titlebar-bg); color: var(--titlebar-fg);
+    font-family: var(--font-ui-sans); font-size: 12px; font-weight: 700;
+    box-shadow: var(--bevel-out);
+    text-shadow: 0 0 8px rgba(141,218,240,.6);
+  }
+  .win.inactive .tb { background: var(--titlebar-bg-inactive); color: var(--phosphor-300); text-shadow: none; }
+  .tb .btns { margin-left: auto; display: flex; gap: 4px; }
+  .tb .btns i {
+    width: 16px; height: 14px; background: var(--chrome-800); border: 1px solid var(--line);
+    box-shadow: var(--bevel-out); display: grid; place-items: center;
+    font-style: normal; font-size: 9px; color: var(--phosphor-200); line-height: 1;
+  }
+  .win .menu {
+    flex: none; display: flex; gap: 14px; padding: 4px 10px;
+    font-family: var(--font-ui-sans); font-size: 11px; color: var(--text-muted);
+    border-bottom: 1px solid var(--line-soft); background: var(--chrome-900);
+  }
+  .win .body { flex: 1; overflow: hidden; position: relative; }
+  .win .status {
+    flex: none; height: 20px; display: flex; align-items: center; gap: 10px;
+    padding: 0 10px; font-family: var(--font-ui-sans); font-size: 10px; color: var(--text-faint);
+    border-top: 1px solid var(--line-soft); background: var(--chrome-900);
+    box-shadow: var(--bevel-in);
+  }
+
+  /* ── explorer ───────────────────────────────────────────── */
+  .explorer { left: 96px; top: 84px; width: 520px; height: 460px; z-index: 3; }
+  .marq {
+    flex: none; border-bottom: 1px solid var(--line-soft); background: var(--surface-sunk);
+    overflow: hidden; white-space: nowrap; padding: 5px 0;
+    font-family: var(--font-pixel-mono); font-size: 13px;
+  }
+  .marq span { display: inline-block; padding-right: 40px; animation: np-marq 14s linear infinite; }
+  @keyframes np-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 14px;
+    padding: 18px; height: 100%; box-sizing: border-box; align-content: start;
+  }
+  .file { text-align: center; cursor: default; }
+  .file .thumb {
+    aspect-ratio: 1/1; border: 1px solid var(--line); position: relative;
+    box-shadow: var(--shadow-card);
+  }
+  .file.sel .thumb { outline: 1px dotted var(--bondi-300); outline-offset: 2px; }
+  .file .lbl {
+    margin-top: 6px; font-family: var(--font-ui-sans); font-size: 10px; color: var(--text-muted);
+  }
+  .file.sel .lbl { background: var(--bondi-700); color: #EAF7FF; display: inline-block; padding: 0 4px; }
+  .ph1 { background: radial-gradient(circle at 34% 30%, #35607a 0%, transparent 50%), linear-gradient(160deg, #14384D, #071820); filter: var(--filter-flash); }
+  .ph2 { background: radial-gradient(circle at 60% 60%, rgba(244,184,160,.35) 0%, transparent 55%), linear-gradient(200deg, #0E2C3D, #041018); filter: var(--filter-flash); }
+  .ph3 { background: radial-gradient(circle at 50% 110%, rgba(220,177,63,.30) 0%, transparent 55%), linear-gradient(180deg, #0A2230, #02090E); filter: var(--filter-flash); }
+  .ph4 { background: radial-gradient(circle at 70% 25%, rgba(141,218,240,.4) 0%, transparent 45%), linear-gradient(150deg, #16354a, #02090E); filter: var(--filter-flash); }
+  .ph5 { background: radial-gradient(circle at 25% 75%, rgba(255,146,191,.28) 0%, transparent 50%), linear-gradient(170deg, #0E2C3D, #071820); filter: var(--filter-flash); }
+  .ph6 { background: radial-gradient(circle at 50% 40%, rgba(74,143,168,.5) 0%, transparent 55%), linear-gradient(180deg, #0A2230 0%, #02090E 100%); filter: var(--filter-flash); }
+  .thumb .tag {
+    position: absolute; right: 4px; top: 4px; font-family: var(--font-pixel-mono);
+    font-size: 9px; color: var(--sodium-400); text-shadow: 0 0 6px rgba(220,177,63,.6);
+  }
+
+  /* ── notepad ────────────────────────────────────────────── */
+  .notepad { left: 648px; top: 210px; width: 380px; height: 340px; z-index: 2; }
+  .notepad .body { padding: 16px 18px; font-family: var(--font-body-serif); font-size: 13.5px; line-height: 1.75; color: var(--text-body); }
+  .notepad .body p { margin: 0 0 10px; }
+  .notepad .body .f { color: var(--text-faint); font-size: 11.5px; }
+  .notepad .body i { color: var(--bubblegum-400); }
+
+  /* ── toast ──────────────────────────────────────────────── */
+  .toast {
+    position: absolute; right: 26px; bottom: 64px; z-index: 5;
+    background: var(--surface-card); border: 1px solid var(--line);
+    box-shadow: var(--shadow-window); width: 260px;
+  }
+  .toast .tb { height: 24px; font-size: 11px; }
+  .toast .msg { padding: 10px 12px; font-family: var(--font-ui-sans); font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+  .toast .msg b { color: var(--sodium-400); font-weight: 400; }
+
+  /* ── taskbar ────────────────────────────────────────────── */
+  .taskbar {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 40px; z-index: 10;
+    background: var(--chrome-900); border-top: 1px solid var(--line);
+    box-shadow: var(--bevel-in);
+    display: flex; align-items: center; gap: 8px; padding: 0 10px;
+  }
+  .start {
+    height: 28px; padding: 0 14px; display: inline-flex; align-items: center; gap: 8px;
+    background: var(--bondi-600); color: #EAF7FF; border: 1px solid var(--line);
+    box-shadow: var(--bevel-out), 0 0 14px rgba(46,178,224,.35);
+    font-family: var(--font-ui-sans); font-size: 12px; font-weight: 700;
+  }
+  .task {
+    height: 28px; padding: 0 12px; display: inline-flex; align-items: center; gap: 8px;
+    background: var(--chrome-800); border: 1px solid var(--line); box-shadow: var(--bevel-out);
+    font-family: var(--font-ui-sans); font-size: 11px; color: var(--text-muted);
+  }
+  .task.on { box-shadow: var(--bevel-in); color: var(--text-body); background: var(--abyss-600); }
+  .tray {
+    margin-left: auto; display: flex; align-items: center; gap: 12px;
+    font-family: var(--font-pixel-mono); font-size: 16px; color: var(--phosphor-300);
+    text-shadow: 0 0 8px rgba(141,218,240,.5);
+  }
+  .tray small { font-family: var(--font-ui-sans); font-size: 10px; color: var(--text-faint); text-shadow: none; }
+
+  .desknote {
+    position: absolute; left: 30px; top: 26px; z-index: 1;
+    font-family: var(--font-pixel-mono); font-size: 13px; color: var(--text-faint); line-height: 1.9;
+  }
+  .desknote b { color: var(--phosphor-100); font-weight: 400; text-shadow: var(--glow-text-overexposed); letter-spacing: 0.2em; }
+</style>
+</head>
+<body>
+
+<div class="desktop">
+  <div class="caustic"></div>
+
+  <div class="desknote">
+    <b>mostly_empty.com</b><br>
+    ░▒▓ local disk (c:) · 2 objects selected · nightpool build
+  </div>
+
+  <!-- notepad, behind -->
+  <div class="win inactive notepad">
+    <div class="tb">readme.txt — notepad<span class="btns"><i>▁</i><i>▢</i><i>⨯</i></span></div>
+    <div class="menu"><span>file</span><span>edit</span><span>format</span><span>help</span></div>
+    <div class="body">
+      <p>the pool was drained two summers ago. I keep the photos anyway — the tile reads better with the lights off.</p>
+      <p>everything in this folder was taken after midnight. the flash makes the water look <i>almost pink</i>. it was not pink.</p>
+      <p class="f">[last touched 02:07 · do not index]</p>
+    </div>
+    <div class="status"><span>ln 4, col 32</span><span>100%</span><span>windows (crlf)</span></div>
+  </div>
+
+  <!-- explorer, front -->
+  <div class="win explorer">
+    <div class="tb">◆ mostly_empty/ — file explorer<span class="btns"><i>▁</i><i>▢</i><i>⨯</i></span></div>
+    <div class="menu"><span>file</span><span>edit</span><span>view</span><span>favorites</span><span>help</span></div>
+    <div class="marq"><span><span style="color:var(--neon-cyan);text-shadow:0 0 10px rgba(0,232,255,.6)">you are here ▓▒░</span> · <span style="color:var(--neon-magenta);text-shadow:0 0 10px rgba(255,43,187,.55)">nobody else is</span> · <span style="color:var(--neon-lime);text-shadow:0 0 10px rgba(200,255,43,.5)">6 objects</span> · <span style="color:var(--neon-cyan);text-shadow:0 0 10px rgba(0,232,255,.6)">you are here ▓▒░</span> · <span style="color:var(--neon-magenta);text-shadow:0 0 10px rgba(255,43,187,.55)">nobody else is</span> · <span style="color:var(--neon-lime);text-shadow:0 0 10px rgba(200,255,43,.5)">6 objects</span> ·&nbsp;</span></div>
+    <div class="body">
+      <div class="grid">
+        <div class="file sel"><div class="thumb ph1"><span class="tag">02:04</span></div><div class="lbl">pool_03.jpg</div></div>
+        <div class="file"><div class="thumb ph2"><span class="tag">02:11</span></div><div class="lbl">hallway_1.jpg</div></div>
+        <div class="file"><div class="thumb ph3"><span class="tag">02:19</span></div><div class="lbl">lamp_only.jpg</div></div>
+        <div class="file"><div class="thumb ph4"><span class="tag">02:27</span></div><div class="lbl">deep_end.jpg</div></div>
+        <div class="file"><div class="thumb ph5"><span class="tag">02:33</span></div><div class="lbl">float_toy.jpg</div></div>
+        <div class="file"><div class="thumb ph6"><span class="tag">02:41</span></div><div class="lbl">the_water.jpg</div></div>
+      </div>
+    </div>
+    <div class="status"><span>6 object(s)</span><span>1 selected</span><span style="margin-left:auto">▼ tiles</span></div>
+  </div>
+
+  <!-- toast -->
+  <div class="toast">
+    <div class="tb">◈ system<span class="btns"><i>⨯</i></span></div>
+    <div class="msg">the pool is <b>closed</b>.<br>the archive is not. — see you at 3 am.</div>
+  </div>
+
+  <!-- taskbar -->
+  <div class="taskbar">
+    <span class="start">◆ start</span>
+    <span class="task on">mostly_empty/</span>
+    <span class="task">readme.txt</span>
+    <div class="tray"><small>CRT-OK · vol 12%</small>02:07</div>
+  </div>
+</div>
+
+</body>
+</html>

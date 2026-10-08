@@ -1,0 +1,168 @@
+/* Aozora — YOZORA 夜空 (proposal)
+   Dark theme proposal. "Midsummer noon pushed into midsummer night":
+   deep blue night sky, water, moonlight, cold clear glass, the same
+   vivid cyan-blue signal.
+
+   Scope: everything lives under [data-theme="yozora"] so the default
+   light theme is untouched. Existing semantic aliases are re-mapped so
+   current components mostly re-skin without edits.
+
+   Load order: styles.css first, then this file, then set the attribute:
+     <html data-theme="yozora">  (or any wrapper element)
+
+   Rules carried over from the light theme:
+   - Shadows are tinted, never pure black (deep navy here).
+   - Glass is ALWAYS on color/gradient — never over a flat dark page.
+   - The top rim highlight is what makes glass read as glass. At night
+     that rim is moonlight: cooler and dimmer than the daylight rim.
+*/
+
+[data-theme="yozora"] {
+  color-scheme: dark;
+
+  /* ── Night sky — the substrate ramp. Deep blue, water-dark, never gray,
+        never purple. 950 is the abyss; 400 is the brightest moonlit horizon. */
+  --night-950: #01040C;
+  --night-900: #040B18;
+  --night-800: #071426;   /* page base */
+  --night-700: #0B1E36;   /* surface */
+  --night-600: #123054;   /* elevated */
+  --night-500: #1B4472;
+  --night-400: #2C5A8F;
+
+  /* ── Moonlit text — cool white stepping down into steel blue. */
+  --glow-100: #F4F9FF;    /* moon white — display */
+  --glow-200: #D8E8F8;
+  --glow-300: #B4CDE6;    /* body */
+  --glow-400: #86A6C6;    /* muted */
+  --glow-500: #5D7C9E;    /* faint */
+
+  /* ── Moon — the night shift of --sun. Paler than sun-yellow; a warm
+        lantern note on cold water. Still a chip, never a background. */
+  --moon-100: #FFFCF0;
+  --moon-200: #FFF4D6;
+  --moon-300: #FFEBAD;
+  --moon-400: #FFDF85;    /* accent */
+  --moon-500: #F0C65C;
+  --moon-600: #D4A83A;
+
+  /* ── Brand & accent ─────────────────────────────────────────────── */
+  --brand:           var(--blue-500);
+  --brand-hover:     var(--blue-400);   /* night hover lights up, not down */
+  --brand-press:     var(--blue-600);
+  --brand-tint:      rgba(10, 132, 255, 0.16);
+  --brand-soft:      rgba(10, 132, 255, 0.26);
+  --accent:          var(--moon-400);
+  --accent-hover:    var(--moon-300);
+
+  /* ── Text ───────────────────────────────────────────────────────── */
+  --text-strong:     var(--glow-100);
+  --text-body:       var(--glow-300);
+  --text-muted:      var(--glow-400);
+  --text-faint:      var(--glow-500);
+  --text-on-brand:   var(--neutral-0);
+  --text-on-accent:  var(--night-900);
+  --text-accent:     var(--blue-300);
+  --text-danger:     var(--danger-500);
+
+  /* ── Surfaces (solid) ───────────────────────────────────────────── */
+  --surface-page:        var(--night-800);
+  --surface-page-tint:   var(--night-700);
+  --surface-elevated:    var(--night-600);
+  --surface-sunken:      var(--night-900);
+  --surface-inverse:     var(--glow-100);
+
+  /* ── Glass — the centerpiece. Low-alpha moonlit fills over deep blue,
+        same blur ladder, cooler + dimmer rim than daylight glass. ──── */
+  --glass-bg-thin:    rgba(190, 220, 255, 0.07);
+  --glass-bg-regular: rgba(190, 220, 255, 0.11);
+  --glass-bg-thick:   rgba(195, 225, 255, 0.17);
+
+  --glass-bg-blue:    rgba(10, 132, 255, 0.26);
+  --glass-bg-sun:     rgba(255, 223, 133, 0.14);  /* kept name; reads as moon */
+  --glass-bg-moon:    rgba(255, 223, 133, 0.14);
+  --glass-bg-dark:    rgba(1, 4, 12, 0.55);
+
+  /* blur ladder unchanged — thin 12 / regular 24 / thick 40, saturate 140–180% */
+
+  --glass-stroke:        rgba(200, 228, 255, 0.26);
+  --glass-stroke-strong: rgba(215, 236, 255, 0.42);
+  --glass-stroke-dark:   rgba(120, 170, 230, 0.20);
+
+  --glass-edge:
+    inset 0 1px 0 rgba(225, 240, 255, 0.50),
+    inset 0 0 0 1px rgba(190, 220, 255, 0.14),
+    inset 0 -1px 0 rgba(2, 10, 24, 0.30); /* @kind shadow */
+
+  --glass-edge-strong:
+    inset 0 2px 0 rgba(235, 246, 255, 0.60),
+    inset 0 0 0 1px rgba(200, 228, 255, 0.24),
+    inset 0 -2px 0 rgba(2, 10, 24, 0.36); /* @kind shadow */
+
+  /* ── Strokes ────────────────────────────────────────────────────── */
+  --stroke-hairline: rgba(150, 195, 245, 0.12);
+  --stroke-subtle:   rgba(150, 195, 245, 0.18);
+  --stroke-strong:   rgba(150, 195, 245, 0.30);
+
+  /* ── State ──────────────────────────────────────────────────────── */
+  --state-hover-tint:  rgba(102, 183, 255, 0.10);
+  --state-press-tint:  rgba(102, 183, 255, 0.16);
+  --state-selected:    rgba(102, 183, 255, 0.18);
+  --state-disabled-fg: var(--glow-500);
+  --state-disabled-bg: rgba(190, 220, 255, 0.08);
+
+  /* ── Shadows — deep navy, never pure black. Night drops are longer
+        and softer; glows carry more of the emphasis than in daylight. */
+  --shadow-xs:   0 1px 2px  rgba(1, 6, 16, 0.40);
+  --shadow-sm:   0 2px 8px  rgba(1, 6, 16, 0.45);
+  --shadow-md:   0 6px 18px rgba(1, 6, 16, 0.50);
+  --shadow-lg:   0 12px 36px rgba(1, 6, 16, 0.55);
+  --shadow-xl:   0 24px 60px rgba(1, 6, 16, 0.60);
+
+  --shadow-glow-blue: 0 0 0 6px rgba(51, 155, 255, 0.16),
+                      0 0 36px rgba(10, 132, 255, 0.55); /* @kind shadow */
+  --shadow-glow-sun:  0 0 0 6px rgba(255, 223, 133, 0.14),
+                      0 0 30px rgba(255, 223, 133, 0.40); /* @kind shadow */
+  --shadow-glow-moon: 0 0 0 6px rgba(255, 223, 133, 0.14),
+                      0 0 30px rgba(255, 223, 133, 0.40); /* @kind shadow */
+
+  --inset-rim:
+    inset 0 1px 0 rgba(225, 240, 255, 0.35),
+    inset 0 -1px 0 rgba(2, 10, 24, 0.40); /* @kind shadow */
+  --inset-rim-strong:
+    inset 0 2px 0 rgba(235, 246, 255, 0.45),
+    inset 0 -2px 0 rgba(2, 10, 24, 0.48); /* @kind shadow */
+
+  --ring-focus: 0 0 0 3px rgba(102, 183, 255, 0.50); /* @kind shadow */
+
+  /* ── Times of night — the dark siblings of morning/noon/sunset.
+        A page is still almost never flat. ─────────────────────────── */
+  --gradient-dusk:
+    linear-gradient(180deg, #123054 0%, #071426 55%, #040B18 100%); /* @kind color */
+  --gradient-night:
+    linear-gradient(180deg, #071426 0%, #040B18 60%, #01040C 100%); /* @kind color */
+  --gradient-ember:   /* the last peach of sunset, below the horizon */
+    radial-gradient(ellipse 120% 60% at 50% 112%, rgba(255, 177, 153, 0.20), rgba(255, 177, 153, 0) 60%),
+    linear-gradient(180deg, #071426 0%, #040B18 100%); /* @kind color */
+  --gradient-moonrise:
+    radial-gradient(circle at 72% 16%, rgba(244, 249, 255, 0.85) 0%, rgba(216, 232, 248, 0.22) 9%, rgba(216, 232, 248, 0) 26%),
+    linear-gradient(180deg, #0B1E36 0%, #040B18 100%); /* @kind color */
+  --gradient-water:
+    linear-gradient(180deg, #0B1E36 0%, #040B18 45%, #01040C 100%); /* @kind color */
+
+  /* ── Product / abstract, night mix ──────────────────────────────── */
+  --gradient-soda-night:
+    linear-gradient(135deg, #0A84FF 0%, #005BB8 55%, #003068 100%); /* @kind color */
+  --gradient-ion-night:
+    linear-gradient(135deg, #005BB8 0%, #0E8A7A 100%); /* @kind color */
+  --gradient-droplet-night:
+    radial-gradient(circle at 30% 30%, rgba(225, 240, 255, 0.55) 0%, rgba(225, 240, 255, 0) 40%),
+    linear-gradient(135deg, #005BB8 0%, #0A84FF 100%); /* @kind color */
+
+  /* ── Mesh — the hero field: moon high right, water light low left ── */
+  --gradient-mesh-night:
+    radial-gradient(at 78% 12%, rgba(255, 223, 133, 0.10) 0%, transparent 42%),
+    radial-gradient(at 18% 78%, rgba(95, 227, 204, 0.10) 0%, transparent 44%),
+    radial-gradient(at 55% 92%, rgba(10, 132, 255, 0.16) 0%, transparent 52%),
+    #040B18; /* @kind color */
+}

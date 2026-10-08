@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh" data-theme="snowline">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KUNLUN — SNOWLINE 雪线 · token palette (proposal)</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body {
+    margin: 0; padding: 48px 36px 96px;
+    background: var(--bg-base); color: var(--text-primary);
+    font-family: var(--font-body);
+    background-image: var(--bg-grid);
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  .eyebrow { font: var(--type-label); text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--text-tertiary); }
+  h1 {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: 44px; letter-spacing: var(--tracking-wider);
+    margin: 10px 0 6px; color: var(--text-primary); text-transform: uppercase;
+  }
+  h1 .zh { font-family: var(--font-body); font-weight: 600; font-size: 20px; color: var(--text-signal); letter-spacing: 0.3em; margin-left: 14px; }
+  .lede { font-size: 13px; color: var(--text-secondary); max-width: 68ch; margin: 0 0 8px; line-height: 1.7; }
+  .ascii { font-family: var(--font-mono); font-size: 11px; color: var(--hud-ink); margin: 18px 0 0; white-space: pre; }
+  section { margin-top: 44px; }
+  .sec { display: flex; align-items: baseline; gap: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; }
+  .sec b { font: var(--type-label); text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--text-primary); }
+  .sec span { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.08em; }
+  .ramp { display: grid; gap: 8px; }
+  .c6 { grid-template-columns: repeat(6, 1fr); }
+  .c4 { grid-template-columns: repeat(4, 1fr); }
+  .sw {
+    position: relative; height: 88px; padding: 8px 10px;
+    border: 1px solid var(--border); clip-path: var(--clip-chamfer-sm);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .sw .n { font: var(--type-label); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-secondary); }
+  .sw .x { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); }
+  .sw.inv .n { color: #F5F9FF; }
+  .sw.inv .x { color: rgba(245,249,255,.65); }
+  .note { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); margin-top: 10px; letter-spacing: 0.06em; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .panel {
+    background: var(--bg-panel); border: 1px solid var(--border);
+    clip-path: var(--clip-chamfer-md); padding: 18px 20px;
+    box-shadow: var(--shadow-sm); position: relative;
+  }
+  .panel h4 { margin: 0 0 14px; font: var(--type-label); text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--text-tertiary); }
+  .bgstack { display: flex; gap: 8px; }
+  .bg { flex: 1; height: 58px; border: 1px solid var(--border); display: flex; align-items: flex-end; padding: 6px 8px; font-family: var(--font-mono); font-size: 9px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em; }
+  .lines > div { height: 24px; display: flex; align-items: center; font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); letter-spacing: .06em; }
+  .ts { line-height: 1.9; }
+  .ts .p { color: var(--text-primary); font-size: 14px; font-weight: 600; }
+  .ts .s { color: var(--text-secondary); font-size: 13px; }
+  .ts .t { color: var(--text-tertiary); font-size: 12px; }
+  .ts .sig { color: var(--text-signal); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; }
+  .status-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+  .pill {
+    height: 26px; padding: 0 12px; display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+    border: 1px solid; clip-path: var(--clip-chamfer-sm); background: var(--bg-panel);
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .hud-stage { position: relative; background: var(--bg-panel); border: 1px solid var(--border); clip-path: var(--clip-chamfer-md); padding: 26px 28px; box-shadow: var(--shadow-sm); }
+  .hud-stage .coord { position: absolute; right: 14px; top: 10px; font-family: var(--font-mono); font-size: 9px; color: var(--hud-ink); letter-spacing: 0.14em; }
+  .btn-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn {
+    height: 38px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+    clip-path: var(--clip-chamfer-sm); border: 1px solid transparent; cursor: default;
+  }
+  .btn-lit { background: var(--cyan-500); color: #04303F; box-shadow: var(--glow-cyan-md); }
+  .btn-primary { background: var(--accent); color: #F5F9FF; }
+  .btn-ghost { background: transparent; border-color: var(--border-signal); color: var(--text-link); }
+  .btn-ghost:hover { background: var(--accent-tint); box-shadow: var(--glow-cyan-sm); }
+  .btn-warn { background: var(--warn-tint); border-color: var(--border-warn); color: var(--text-warn); box-shadow: var(--glow-amber-md); }
+  .btn-danger { background: var(--danger-tint); border-color: var(--border-danger); color: var(--text-danger); }
+  .tex-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tex { height: 90px; border: 1px solid var(--border); clip-path: var(--clip-chamfer-sm); position: relative; background: var(--bg-panel); }
+  .tex span { position: absolute; left: 10px; bottom: 8px; font-family: var(--font-mono); font-size: 9px; color: var(--text-tertiary); letter-spacing: .08em; }
+  .tex.grid { background-image: var(--bg-grid); }
+  .tex.scan { background-image: var(--bg-scanlines); }
+  .tex.fine { background-image: var(--bg-grid-fine); }
+  .foot { margin-top: 56px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.12em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">KUNLUN · 昆仑 — THEME PROPOSAL · PROPOSAL / 未批准</div>
+  <h1>SNOWLINE<span class="zh">雪 线</span></h1>
+  <p class="lede">// The operations console, above the snowline. Spacecraft white instrument panels; blueprint light. Cyan stays the signal. Amber and red stay exactly what they were.</p>
+  <div class="ascii">┌── COORD ── N 29°36′ · E 101°53′ · ALT 6,178 M ── STATION: SNOWLINE ┐</div>
+
+  <section>
+    <div class="sec"><b>// 01 — SNOW / STEEL</b><span>substrate ramp · the bench is grey so panels float</span></div>
+    <div class="ramp c6">
+      <div class="sw" style="background:var(--snow-50)"><span class="n">snow-50</span><span class="x">#FFFFFF · elevated</span></div>
+      <div class="sw" style="background:var(--snow-100)"><span class="n">snow-100</span><span class="x">#F7FAFD · panel</span></div>
+      <div class="sw" style="background:var(--snow-200)"><span class="n">snow-200</span><span class="x">#EDF2F8 · surface</span></div>
+      <div class="sw" style="background:var(--snow-300)"><span class="n">snow-300</span><span class="x">#E2E9F2 · page</span></div>
+      <div class="sw" style="background:var(--snow-400)"><span class="n">snow-400</span><span class="x">#D2DCE8 · seam</span></div>
+      <div class="sw" style="background:var(--snow-500)"><span class="n">snow-500</span><span class="x">#BCC9DA · well</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b>// 02 — INK</b><span>instrument-black navy text · never #000</span></div>
+    <div class="ramp c4">
+      <div class="sw inv" style="background:var(--ink-900)"><span class="n">ink-900</span><span class="x">#0C1526 · primary</span></div>
+      <div class="sw inv" style="background:var(--ink-700)"><span class="n">ink-700</span><span class="x">#24334D · secondary</span></div>
+      <div class="sw inv" style="background:var(--ink-500)"><span class="n">ink-500</span><span class="x">#4A5C7A · tertiary</span></div>
+      <div class="sw" style="background:var(--ink-300)"><span class="n">ink-300</span><span class="x">#8595AF · disabled</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b>// 03 — SIGNAL &amp; STATUS</b><span>cyan unchanged as raw ramp · text roles step darker for contrast</span></div>
+    <div class="ramp c6">
+      <div class="sw" style="background:var(--cyan-100)"><span class="n">cyan-100</span><span class="x">#D5F6FF</span></div>
+      <div class="sw" style="background:var(--cyan-300)"><span class="n">cyan-300</span><span class="x">#5FD9FF</span></div>
+      <div class="sw inv" style="background:var(--cyan-500)"><span class="n">cyan-500</span><span class="x">#00B8FF · lit fill</span></div>
+      <div class="sw inv" style="background:var(--cyan-600)"><span class="n">cyan-600</span><span class="x">#0098D4 · accent</span></div>
+      <div class="sw inv" style="background:var(--cyan-700)"><span class="n">cyan-700</span><span class="x">#0075A8 · link</span></div>
+      <div class="sw inv" style="background:var(--blue-500)"><span class="n">blue-500</span><span class="x">#2A5FD6 · steel</span></div>
+    </div>
+    <div class="status-row" style="margin-top:14px">
+      <span class="pill" style="border-color:var(--border-signal);color:var(--text-signal)"><span class="dot" style="background:var(--cyan-500)"></span>NOMINAL</span>
+      <span class="pill" style="border-color:var(--border-warn);color:var(--text-warn)"><span class="dot" style="background:var(--amber-500)"></span>WARN · 87%</span>
+      <span class="pill" style="border-color:var(--border-danger);color:var(--text-danger)"><span class="dot" style="background:var(--red-500)"></span>CRITICAL</span>
+      <span class="pill" style="border-color:#4A9B70;color:var(--text-success)"><span class="dot" style="background:var(--green-500)"></span>OK · 8.4 MS</span>
+    </div>
+    <p class="note">// amber-500 / red-500 stay fill-only; text steps to -700. no purple anywhere, as ever.</p>
+  </section>
+
+  <section>
+    <div class="sec"><b>// 04 — SEMANTIC ROLES</b><span>backgrounds · text · borders</span></div>
+    <div class="two">
+      <div class="panel">
+        <h4>▣ Background stack</h4>
+        <div class="bgstack">
+          <div class="bg" style="background:var(--bg-void)">void</div>
+          <div class="bg" style="background:var(--bg-base)">base</div>
+          <div class="bg" style="background:var(--bg-surface)">surface</div>
+          <div class="bg" style="background:var(--bg-panel)">panel</div>
+          <div class="bg" style="background:var(--bg-elevated)">elev</div>
+          <div class="bg" style="background:var(--bg-inset)">inset</div>
+        </div>
+        <h4 style="margin-top:16px">▣ Borders</h4>
+        <div class="lines">
+          <div style="border-top:1px solid var(--border)">--border · #C7D3E3</div>
+          <div style="border-top:1px solid var(--border-strong)">--border-strong · #9DAEC7</div>
+          <div style="border-top:1px solid var(--border-signal)">--border-signal · cyan-600</div>
+          <div style="border-top:1px dashed var(--border-strong)">dashed — hints &amp; soft separators</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h4>▣ Text hierarchy</h4>
+        <div class="ts">
+          <div class="p">STATUS: NOMINAL · 运 维 计 算</div>
+          <div class="s">// NODE-07 · SECTOR-A — coolant loop holding at 87%.</div>
+          <div class="t">[ OK ] uplink established · 08.4 ms · retry 0</div>
+          <div class="sig">▸ INITIATE PURGE SEQUENCE</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b>// 05 — GLOW → BACKLIGHT</b><span>the one discipline that changes meaning · chamfers + hairlines carry identity</span></div>
+    <div class="hud-stage">
+      <span class="coord">PANEL-04 · BACKLIGHT TEST</span>
+      <span class="kl-corner kl-corner-tl"></span><span class="kl-corner kl-corner-tr"></span>
+      <span class="kl-corner kl-corner-bl"></span><span class="kl-corner kl-corner-br"></span>
+      <div class="btn-row">
+        <span class="btn btn-lit">▸ LIT · CYAN-500</span>
+        <span class="btn btn-primary">PRIMARY · 600</span>
+        <span class="btn btn-ghost">GHOST</span>
+        <span class="btn btn-warn">⚠ WARN</span>
+        <span class="btn btn-danger">⨯ DANGER</span>
+      </div>
+      <p class="note" style="margin-top:16px">// dark theme glow = neon in a black room. snowline glow = an LED behind a machined button: ≤24px, low alpha. Press still translates 1px. Motion still steps, never springs.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b>// 06 — TEXTURES</b><span>blueprint, not CRT</span></div>
+    <div class="tex-row">
+      <div class="tex grid"><span>--bg-grid · 40px · rgba(20,90,180,.08)</span></div>
+      <div class="tex scan"><span>--bg-scanlines · faint</span></div>
+      <div class="tex fine"><span>--bg-grid-fine · 12px</span></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>KUNLUN · SNOWLINE 雪线 — PROPOSAL V1 · 2026-10-08</span>
+    <span>SCOPE [data-theme="snowline"] · DARK DEFAULT UNTOUCHED</span>
+  </div>
+
+</div>
+</body>
+</html>

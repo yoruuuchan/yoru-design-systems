@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" data-theme="nightpool">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>core — nightpool · token palette (proposal)</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body {
+    margin: 0; padding: 48px 36px 96px;
+    background: var(--surface-page);
+    color: var(--text-body);
+    position: relative;
+  }
+  /* the wallpaper, lights off */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: var(--bg-tile-pattern); opacity: var(--tile-opacity);
+  }
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: var(--bg-grain-pattern); opacity: var(--grain-opacity);
+  }
+  .wrap { max-width: 920px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .eyebrow { font-family: var(--font-pixel-mono); font-size: 12px; color: var(--text-faint); letter-spacing: 0.08em; }
+  h1 {
+    font-family: var(--font-pixel-display); font-weight: 400;
+    font-size: 52px; letter-spacing: var(--tracking-mega); margin: 10px 0 6px;
+    color: var(--phosphor-100);
+    text-shadow: var(--glow-text-overexposed);
+  }
+  .lede { font-family: var(--font-body-serif); font-size: 16px; color: var(--text-muted); max-width: 60ch; line-height: 1.7; margin: 0 0 40px; }
+  .lede i { color: var(--bubblegum-400); font-style: italic; }
+
+  section { margin-top: 44px; }
+  .sec { display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--line-soft); padding-bottom: 8px; margin-bottom: 16px; }
+  .sec b { font-family: var(--font-pixel-display); font-weight: 400; font-size: 15px; letter-spacing: 0.12em; color: var(--phosphor-100); }
+  .sec span { font-family: var(--font-ui-sans); font-size: 11px; color: var(--text-faint); }
+
+  .ramp { display: grid; gap: 2px; }
+  .c6 { grid-template-columns: repeat(6, 1fr); }
+  .c5 { grid-template-columns: repeat(5, 1fr); }
+  .sw {
+    height: 84px; padding: 6px 8px; border: 1px solid var(--line);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    font-family: var(--font-ui-sans); font-size: 9px; color: var(--phosphor-100);
+  }
+  .sw small { display: block; font-family: var(--font-pixel-mono); font-size: 10px; opacity: .75; }
+  .sw.darktext { color: var(--abyss-950); }
+  .note { font-family: var(--font-ui-sans); font-size: 11px; color: var(--text-faint); margin-top: 8px; }
+  .note em { color: var(--sodium-400); font-style: normal; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card {
+    background: var(--surface-card); border: 1px solid var(--line);
+    box-shadow: var(--shadow-card); padding: 18px 20px;
+  }
+  .card h4 { margin: 0 0 12px; font-family: var(--font-ui-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  .surf-row { display: flex; gap: 8px; }
+  .surf { flex: 1; height: 56px; border: 1px solid var(--line); display: flex; align-items: flex-end; padding: 5px 7px; font-family: var(--font-ui-sans); font-size: 9px; color: var(--text-muted); }
+  .ts { font-family: var(--font-body-serif); line-height: 1.75; }
+  .ts .b { color: var(--text-body); font-size: 15px; }
+  .ts .m { color: var(--text-muted); font-size: 13px; }
+  .ts .f { color: var(--text-faint); font-size: 12px; }
+  .ts a { color: var(--text-link); text-decoration: underline; }
+  .ts a:visited { color: var(--accent-link-visited); }
+
+  .bevel-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .y2k {
+    font-family: var(--font-ui-sans); font-size: 12px; padding: 8px 18px;
+    border: 1px solid var(--line); color: var(--text-body);
+    background: var(--chrome-800);
+  }
+  .y2k.out { box-shadow: var(--bevel-out); }
+  .y2k.in { box-shadow: var(--bevel-in); color: var(--text-muted); }
+  .y2k.bondi { background: var(--titlebar-bg); color: var(--titlebar-fg); box-shadow: var(--bevel-out), var(--glow-bondi); }
+  .sh-card { width: 130px; height: 74px; background: var(--surface-card); border: 1px solid var(--line); box-shadow: var(--shadow-card); display: flex; align-items: flex-end; padding: 6px 8px; font-family: var(--font-ui-sans); font-size: 9px; color: var(--text-faint); }
+  .sh-win { width: 150px; height: 74px; background: var(--surface-window); border: 1px solid var(--line); box-shadow: var(--shadow-window); display: flex; align-items: flex-end; padding: 6px 8px; font-family: var(--font-ui-sans); font-size: 9px; color: var(--text-faint); }
+
+  .glow-row { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+  .gl { width: 96px; height: 44px; border: 1px solid var(--line); display: grid; place-items: center; font-family: var(--font-ui-sans); font-size: 9px; letter-spacing: 0.1em; }
+  .overex {
+    font-family: var(--font-pixel-display); font-size: 30px; letter-spacing: 0.2em;
+    color: var(--phosphor-100); text-shadow: var(--glow-text-overexposed);
+  }
+
+  .tex-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .tex { height: 100px; border: 1px solid var(--line); position: relative; background: var(--surface-sunk); overflow: hidden; }
+  .tex span { position: absolute; left: 8px; bottom: 6px; font-family: var(--font-ui-sans); font-size: 9px; color: var(--text-muted); z-index: 1; }
+  .tex .layer { position: absolute; inset: 0; }
+  .filter-cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .fphoto { height: 120px; border: 1px solid var(--line); position: relative; display: flex; align-items: flex-end; padding: 8px 10px; font-family: var(--font-ui-sans); font-size: 9px; color: rgba(255,255,255,.8); }
+  .fbase { background:
+      radial-gradient(circle at 30% 25%, #8fc0d2 0%, transparent 45%),
+      radial-gradient(circle at 75% 70%, #f4b8a0 0%, transparent 40%),
+      linear-gradient(160deg, #4a8fa8, #163546); }
+
+  .marq {
+    margin-top: 44px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    overflow: hidden; white-space: nowrap; padding: 8px 0;
+    font-family: var(--font-pixel-mono); font-size: 14px;
+  }
+  .marq span { display: inline-block; padding-right: 48px; animation: np-marq var(--dur-marquee) linear infinite; }
+  .n-magenta { color: var(--neon-magenta); text-shadow: 0 0 12px rgba(255,43,187,.6); }
+  .n-cyan { color: var(--neon-cyan); text-shadow: 0 0 12px rgba(0,232,255,.5); }
+  .n-lime { color: var(--neon-lime); text-shadow: 0 0 12px rgba(200,255,43,.5); }
+  .n-orange { color: var(--neon-orange); text-shadow: 0 0 12px rgba(255,111,31,.5); }
+  @keyframes np-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .foot { margin-top: 40px; display: flex; justify-content: space-between; font-family: var(--font-ui-sans); font-size: 10px; color: var(--text-faint); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">░▒▓ core · theme proposal · found in a folder labeled <i>do_not_open/</i></div>
+  <h1>nightpool</h1>
+  <p class="lede">the archive at 2 am. an old computer in a dark room, a pool with the lights off,
+    crt phosphor for ink. — <i>bondi, chrome, bubblegum and the dream all stayed;
+    only the room got dark.</i> (nothing was inverted. the ink just split in two.)</p>
+
+  <section>
+    <div class="sec"><b>◇ abyss</b><span>substrate ramp — deep teal-navy, water at night</span></div>
+    <div class="ramp c6">
+      <div class="sw" style="background:var(--abyss-950)">950<small>#02090E · line/shadow</small></div>
+      <div class="sw" style="background:var(--abyss-900)">900<small>#041018 · sunk</small></div>
+      <div class="sw" style="background:var(--abyss-800)">800<small>#071820 · page</small></div>
+      <div class="sw" style="background:var(--abyss-700)">700<small>#0A2230 · card</small></div>
+      <div class="sw" style="background:var(--abyss-600)">600<small>#0E2C3D · window</small></div>
+      <div class="sw" style="background:var(--abyss-500)">500<small>#14384D · raised</small></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b>◇ phosphor</b><span>text ramp — crt-lit, never pure white</span></div>
+    <div class="ramp c5">
+      <div class="sw darktext" style="background:var(--phosphor-100)">100<small>#DCF2FA · display</small></div>
+      <div class="sw darktext" style="background:var(--phosphor-200)">200<small>#C4E2EE · body</small></div>
+      <div class="sw darktext" style="background:var(--phosphor-300)">300<small>#9ABECC · muted</small></div>
+      <div class="sw" style="background:var(--phosphor-400)">400<small>#6E93A4 · faint</small></div>
+      <div class="sw" style="background:var(--phosphor-500)">500<small>#4A6B7C · ghost</small></div>
+    </div>
+    <p class="note">the split: --ink (text) → phosphor-200, but --line / shadow ink → abyss-950.
+      in daylight they were one color. <em>at night the text glows and the borders stay dark.</em></p>
+  </section>
+
+  <section>
+    <div class="sec"><b>◇ the cast</b><span>bondi · chrome-dim · bubblegum · sodium · neon</span></div>
+    <div class="ramp c6">
+      <div class="sw" style="background:var(--bondi-600)">titlebar<small>bondi-600 · lit</small></div>
+      <div class="sw" style="background:var(--chrome-800)">panel<small>chrome-800</small></div>
+      <div class="sw" style="background:var(--chrome-700)">bevel hi<small>chrome-700</small></div>
+      <div class="sw" style="background:var(--bubblegum-400)">bubblegum<small>#FF92BF · neon now</small></div>
+      <div class="sw darktext" style="background:var(--sodium-400)">sodium<small>#DCB13F · street lamp</small></div>
+      <div class="sw" style="background:var(--neon-violet)">neon<small>rainbow only</small></div>
+    </div>
+    <p class="note">sodium is the street lamp through the blinds — still the smallest role,
+      but at night it is <em>the</em> wrong warm. bubblegum goes neon after dark.</p>
+  </section>
+
+  <section>
+    <div class="sec"><b>◇ semantic roles</b><span>surfaces · text</span></div>
+    <div class="two">
+      <div class="card">
+        <h4>surfaces</h4>
+        <div class="surf-row">
+          <div class="surf" style="background:var(--surface-page)">page</div>
+          <div class="surf" style="background:var(--surface-card)">card</div>
+          <div class="surf" style="background:var(--surface-window)">window</div>
+          <div class="surf" style="background:var(--surface-sunk)">sunk</div>
+          <div class="surf" style="background:var(--surface-pool-deep)">pool-deep</div>
+        </div>
+        <h4 style="margin-top:14px">titlebar</h4>
+        <div class="surf-row">
+          <div class="surf" style="background:var(--titlebar-bg);color:var(--titlebar-fg)">active</div>
+          <div class="surf" style="background:var(--titlebar-bg-inactive)">inactive</div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>text</h4>
+        <div class="ts">
+          <div class="b">the pool was drained two summers ago. I think about it sometimes —</div>
+          <div class="m">the way the deep end still smelled like chlorine for months after.</div>
+          <div class="f">[03 photos · 1 footnote · last touched 06.23.2026]</div>
+          <div class="b"><a href="#">mostly_empty/</a> · <a href="#" style="color:var(--accent-link-visited)">visited: pool_at_night/</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b>◇ bevels &amp; shadows</b><span>offset, no blur — the clipping-mask grammar stays</span></div>
+    <div class="bevel-row">
+      <span class="y2k out">bevel-out</span>
+      <span class="y2k in">bevel-in (pressed)</span>
+      <span class="y2k bondi">start</span>
+      <div class="sh-card">--shadow-card · 2px</div>
+      <div class="sh-win">--shadow-window · 3px+6px</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b>◇ glows</b><span>the room is dark, so the crt carries more light</span></div>
+    <div class="glow-row">
+      <div class="gl" style="background:var(--bondi-700);color:#EAF7FF;box-shadow:var(--glow-bondi)">bondi</div>
+      <div class="gl" style="background:var(--tile-700);color:#DCF2FA;box-shadow:var(--glow-pool)">pool</div>
+      <div class="gl" style="background:var(--bubblegum-700);color:#FFD6E8;box-shadow:var(--glow-bubblegum)">bubblegum</div>
+      <div class="gl" style="background:var(--sodium-800);color:#F5E4A8;box-shadow:var(--glow-sodium)">sodium</div>
+      <div class="overex">overexposed</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b>◇ patterns, lights off</b><span>same wallpapers — dimmed, not redrawn</span></div>
+    <div class="tex-row">
+      <div class="tex"><div class="layer" style="background-image:var(--bg-tile-pattern);opacity:var(--tile-opacity)"></div><span>tile.svg · opacity .30</span></div>
+      <div class="tex"><div class="layer" style="background-image:var(--bg-caustic-pattern);opacity:var(--caustic-opacity)"></div><span>caustic.svg · opacity .22</span></div>
+      <div class="tex"><div class="layer" style="background-image:var(--bg-grain-pattern);opacity:var(--grain-opacity)"></div><span>grain.svg · .16 — crt static</span></div>
+    </div>
+    <div class="filter-cmp">
+      <div class="fphoto fbase" style="filter:var(--filter-overexposed)">--filter-overexposed (day house filter)</div>
+      <div class="fphoto fbase" style="filter:var(--filter-flash)">--filter-flash (new — a photo taken at 2 am)</div>
+    </div>
+  </section>
+
+  <div class="marq">
+    <span><span class="n-cyan">you are here ▓▒░</span> · <span class="n-magenta">nobody else is</span> · <span class="n-lime">the pool is closed</span> · <span class="n-orange">the pool is closed</span> · <span class="n-cyan">you are here ▓▒░</span> · <span class="n-magenta">nobody else is</span> · <span class="n-lime">the pool is closed</span> · <span class="n-orange">the pool is closed</span> ·&nbsp;</span>
+  </div>
+
+  <div class="foot">
+    <span>core · nightpool — proposal v1 · 2026-10-08</span>
+    <span>scope [data-theme="nightpool"] · frost paper default untouched</span>
+  </div>
+
+</div>
+</body>
+</html>

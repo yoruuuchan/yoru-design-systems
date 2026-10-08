@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-theme="darkroom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAPER — DARKROOM 暗房 · photo essay demo (proposal)</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body { margin: 0; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 64px 96px; }
+
+  /* ── Masthead ─────────────────────────────────────────── */
+  .masthead {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 22px 0 18px; border-bottom: 3px solid var(--rule-strong);
+    position: relative;
+  }
+  .masthead::after { content: ""; position: absolute; left: 0; right: 0; bottom: -5px; border-bottom: 1px solid var(--rule-strong); }
+  .wordmark { font-family: var(--font-display); font-size: 30px; letter-spacing: var(--tracking-wordmark); color: var(--text-display); }
+  .mast nav { display: flex; gap: 26px; font-family: var(--font-sans); font-size: 12px; letter-spacing: var(--tracking-label); text-transform: uppercase; }
+  .mast nav a { color: var(--text-secondary); }
+  .mast nav a:hover { color: var(--link-hover); }
+  .folio { font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: .1em; color: var(--text-faint); text-transform: uppercase; }
+
+  /* ── Article header ───────────────────────────────────── */
+  .ahead { padding: 64px 0 40px; max-width: 78ch; }
+  .kicker { display: flex; gap: 18px; font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted); margin-bottom: 26px; }
+  .kicker .rust { color: var(--text-accent); }
+  h1 { font-size: var(--type-display-2); margin: 0 0 22px; }
+  .standfirst { font-size: var(--type-body-lg); font-style: italic; color: var(--text-secondary); line-height: var(--leading-normal); max-width: 56ch; margin: 0 0 30px; }
+  .meta { display: flex; gap: 40px; border-top: 1px solid var(--rule-hair); padding-top: 14px; }
+  .meta div { font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: .1em; text-transform: uppercase; }
+  .meta span { display: block; color: var(--text-faint); margin-bottom: 4px; }
+  .meta b { color: var(--text-secondary); font-weight: var(--weight-regular); }
+
+  /* ── Hero plate ───────────────────────────────────────── */
+  figure.hero { margin: 0 0 10px; }
+  .plate { aspect-ratio: 16 / 7; background: var(--placeholder-tone); box-shadow: var(--shadow-inset-frame); filter: var(--photo-filter); position: relative; overflow: hidden; }
+  .plate::after { content: ""; position: absolute; inset: 0; background: var(--scan-edge); }
+  figcaption { display: flex; justify-content: space-between; gap: 24px; padding-top: 10px; font-family: var(--font-mono); font-size: var(--type-caption); color: var(--text-muted); }
+  figcaption .fig { color: var(--text-accent); white-space: nowrap; }
+
+  /* ── Text ─────────────────────────────────────────────── */
+  .body-grid { display: grid; grid-template-columns: minmax(0, 66ch) 1fr; gap: 64px; margin-top: 56px; }
+  .body-grid .text p { color: var(--text-body); }
+  .pull { margin: 34px 0; padding: 6px 0 6px 26px; border-left: 1px solid var(--rule-strong); font-family: var(--font-display); font-size: var(--type-h2); line-height: var(--leading-snug); color: var(--text-display); }
+  .cjk { font-size: var(--type-body-sm); color: var(--text-secondary); line-height: var(--leading-cjk); margin-top: 28px; }
+  aside { font-size: var(--type-body-sm); color: var(--text-muted); }
+  aside .box { border-top: 1px solid var(--rule-hair); padding-top: 12px; margin-bottom: 26px; }
+  aside h5 { margin: 0 0 8px; font-family: var(--font-mono); font-size: var(--type-micro); font-weight: var(--weight-regular); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-faint); }
+  aside p { margin: 0 0 6px; font-size: var(--type-caption); line-height: var(--leading-caption); }
+  .stamp { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; color: var(--stamp-ink); border: 1px solid var(--stamp-ink); padding: 4px 8px; transform: rotate(-2deg); margin-top: 8px; }
+
+  .running { display: flex; justify-content: space-between; margin-top: 72px; padding-top: 12px; border-top: 1px solid var(--rule-hair); font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: .12em; text-transform: uppercase; color: var(--text-faint); }
+
+  @media (max-width: 900px) {
+    .page { padding: 0 24px 64px; }
+    .body-grid { grid-template-columns: 1fr; gap: 36px; }
+    h1 { font-size: var(--type-display-3); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead mast">
+    <span class="wordmark">PAPER</span>
+    <nav>
+      <a href="#">Contents</a><a href="#">Essays</a><a href="#">Interviews</a><a href="#">Prints</a>
+    </nav>
+    <span class="folio">No. 04 · Winter</span>
+  </header>
+
+  <div class="ahead">
+    <div class="kicker"><span>Photo essay</span><span class="rust">No. 04</span><span>The Baltic coast</span></div>
+    <h1>The Coast Later</h1>
+    <p class="standfirst">Four months on the Baltic coast, photographed on expired film and printed the following spring.</p>
+    <div class="meta">
+      <div><span>Words</span><b>A. Lindqvist</b></div>
+      <div><span>Photographs</span><b>A. Lindqvist</b></div>
+      <div><span>Published</span><b>Apr 2026</b></div>
+      <div><span>Stock</span><b>Kodak 400TX</b></div>
+    </div>
+  </div>
+
+  <figure class="hero">
+    <div class="plate"></div>
+    <figcaption>
+      <span>Låtefossen at first light, 06:12. The exposure ran long by a full stop; the fog did the rest.</span>
+      <span class="fig">Fig. 01</span>
+    </figcaption>
+  </figure>
+
+  <div class="body-grid">
+    <div class="text">
+      <p>The bus stopped running in October. After that the road belonged to the weather, and to whoever had reason to be out in it. Most mornings there was no reason, and the road did what the fields did: nothing, patiently, in grey.</p>
+      <p>What changed was the light. Not more of it — there was never more of it — but the angle. By November it arrived already leaving, raking across the water at an hour when the shops were still open, and the whole town stood in its own shadow looking west.</p>
+      <div class="pull">"The light arrived already leaving, and the town stood in its own shadow looking west."</div>
+      <p>We printed in March, when the snow on the darkroom roof melted and dripped through the vent. The prints came out darker than the days had been. We kept them that way.</p>
+      <p class="cjk">光线回来的那几周，我们几乎不说话，只记录时间和温度。印出来的照片比那些日子本身更暗，我们就让它们保持那样。</p>
+    </div>
+    <aside>
+      <div class="box">
+        <h5>Notes</h5>
+        <p>¹ Expired 2019. Shot at box speed regardless; the fog metered for us.</p>
+        <p>² Developed in HC-110 (B), 6 min, 20°C. Two rolls were pushed a stop by mistake and are better for it.</p>
+      </div>
+      <div class="box">
+        <h5>Print</h5>
+        <p>Edition of 10 · 50 × 70 cm · silver gelatin on fibre, selenium toned.</p>
+        <span class="stamp">APR 12 2026</span>
+      </div>
+    </aside>
+  </div>
+
+  <div class="running">
+    <span>The Coast Later</span>
+    <span>PAPER · No. 04</span>
+    <span>17</span>
+  </div>
+
+</div>
+</body>
+</html>

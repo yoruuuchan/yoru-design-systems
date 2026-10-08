@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh" data-theme="snowline">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KUNLUN — SNOWLINE 雪线 · ops dashboard demo (proposal)</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body { margin: 0; background: var(--bg-base); color: var(--text-primary); font-family: var(--font-body); min-height: 100vh; }
+
+  /* ── Topbar ─────────────────────────────────────────────── */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: 28px;
+    padding: 0 28px; height: 54px;
+    background: var(--chrome-strip);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .mark { display: flex; align-items: center; gap: 10px; }
+  .mark .k {
+    width: 26px; height: 26px; background: var(--cyan-600); color: #F5F9FF;
+    display: grid; place-items: center; font-family: var(--font-display); font-weight: 900; font-size: 14px;
+    clip-path: var(--clip-chamfer-all-md);
+  }
+  .mark b { font-family: var(--font-display); font-weight: 900; font-size: 15px; letter-spacing: var(--tracking-wider); color: var(--text-primary); }
+  .mark span { font-size: 11px; letter-spacing: 0.3em; color: var(--text-signal); }
+  .topnav { display: flex; gap: 22px; font-size: 11px; letter-spacing: 0.16em; color: var(--text-tertiary); }
+  .topnav a { color: inherit; text-decoration: none; }
+  .topnav a.on { color: var(--text-link); border-bottom: 1px dashed var(--border-signal); padding-bottom: 2px; }
+  .clock { margin-left: auto; font-family: var(--font-crt); font-size: 20px; color: var(--text-secondary); letter-spacing: 0.08em; }
+  .live { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; letter-spacing: 0.18em; color: var(--text-success); }
+  .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--green-500); box-shadow: var(--glow-green-md); animation: kl-pulse 1.6s steps(2) infinite; }
+
+  .page { max-width: 1200px; margin: 0 auto; padding: 26px 28px 72px; }
+
+  /* ── HUD strip ──────────────────────────────────────────── */
+  .hud {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; letter-spacing: 0.18em; color: var(--hud-ink);
+    padding: 8px 2px 14px; text-transform: uppercase;
+  }
+  .ascii { font-family: var(--font-mono); color: var(--text-disabled); letter-spacing: 0; }
+
+  /* ── KPI row ────────────────────────────────────────────── */
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .kpi {
+    position: relative; background: var(--bg-panel); border: 1px solid var(--border);
+    clip-path: var(--clip-chamfer-md); padding: 18px 20px 16px; box-shadow: var(--shadow-sm);
+  }
+  .kpi .lab { font-size: 10px; letter-spacing: 0.22em; color: var(--text-tertiary); text-transform: uppercase; display: flex; justify-content: space-between; }
+  .kpi .val { font-family: var(--font-display); font-weight: 900; font-size: 34px; letter-spacing: 0.02em; margin-top: 10px; color: var(--text-primary); }
+  .kpi .val small { font-size: 14px; font-weight: 700; color: var(--text-tertiary); margin-left: 6px; }
+  .kpi .sub { font-size: 11px; margin-top: 8px; color: var(--text-secondary); }
+  .kpi.ok    .sub b { color: var(--text-success); }
+  .kpi.warn  { border-color: var(--border-warn); box-shadow: var(--shadow-sm), var(--glow-amber-md); }
+  .kpi.warn .val { color: var(--text-warn); }
+  .kpi.warn .sub b { color: var(--text-warn); }
+  .kpi.sig { border-color: var(--border-signal); }
+  .kpi.sig .val { color: var(--text-signal); text-shadow: var(--text-glow-cyan); }
+
+  /* ── Main grid ──────────────────────────────────────────── */
+  .grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; margin-top: 16px; }
+  .panel {
+    background: var(--bg-panel); border: 1px solid var(--border);
+    clip-path: var(--clip-chamfer-md); box-shadow: var(--shadow-sm);
+    padding: 18px 20px; position: relative;
+  }
+  .panel > h3 { margin: 0 0 14px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-tertiary); display: flex; justify-content: space-between; font-weight: 600; }
+  .panel > h3 .tag { color: var(--hud-ink); }
+
+  /* chart */
+  .chart { height: 210px; position: relative; background-image: var(--bg-grid-fine); border: 1px solid var(--border); overflow: hidden; }
+  .chart .bars { position: absolute; inset: 14px 14px 24px; display: flex; align-items: flex-end; gap: 7%; }
+  .chart .b { flex: 1; background: linear-gradient(180deg, var(--cyan-400), var(--cyan-600)); clip-path: polygon(3px 0, 100% 0, 100% 100%, 0 100%, 0 3px); box-shadow: var(--glow-cyan-sm); }
+  .chart .b.dim { background: var(--snow-500); box-shadow: none; }
+  .chart .b.warnb { background: linear-gradient(180deg, var(--amber-300), var(--amber-500)); box-shadow: var(--glow-amber-md); }
+  .chart .x { position: absolute; left: 14px; right: 14px; bottom: 6px; display: flex; justify-content: space-between; font-size: 9px; color: var(--text-disabled); letter-spacing: 0.12em; }
+
+  /* nodes */
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { text-align: left; font-size: 9px; letter-spacing: 0.2em; color: var(--text-tertiary); font-weight: 600; text-transform: uppercase; padding: 6px 8px; border-bottom: 1px solid var(--border-strong); }
+  td { padding: 8px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+  td.id { color: var(--text-primary); font-weight: 600; }
+  tr:hover td { background: var(--bg-hover); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; height: 20px; padding: 0 9px; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; border: 1px solid; clip-path: var(--clip-chamfer-sm); }
+  .pill i { width: 5px; height: 5px; border-radius: 50%; }
+  .p-ok { color: var(--text-success); border-color: #4A9B70; background: rgba(0,232,145,.06); }
+  .p-warn { color: var(--text-warn); border-color: var(--border-warn); background: var(--warn-tint-soft); }
+  .p-crit { color: var(--text-danger); border-color: var(--border-danger); background: var(--danger-tint-soft); animation: kl-blink 1.2s steps(2) infinite; }
+
+  /* log */
+  .log { font-family: var(--font-code); font-size: 11px; line-height: 1.9; color: var(--text-secondary); }
+  .log .t { color: var(--text-disabled); }
+  .log .ok { color: var(--text-success); }
+  .log .wn { color: var(--text-warn); }
+  .log .sg { color: var(--text-signal); }
+  .caret { display: inline-block; width: 8px; height: 14px; background: var(--cyan-500); vertical-align: -2px; animation: kl-blink 1s steps(2) infinite; box-shadow: var(--glow-cyan-sm); }
+
+  .actions { display: flex; gap: 12px; margin-top: 16px; }
+  .btn { height: 36px; padding: 0 18px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; clip-path: var(--clip-chamfer-sm); border: 1px solid transparent; cursor: pointer; }
+  .btn-lit { background: var(--cyan-500); color: #04303F; box-shadow: var(--glow-cyan-md); }
+  .btn-lit:active { transform: translateY(1px); }
+  .btn-ghost { background: transparent; border-color: var(--border-signal); color: var(--text-link); }
+  .btn-ghost:hover { background: var(--accent-tint); }
+
+  .divider { margin: 22px 0 0; font-family: var(--font-mono); font-size: 11px; color: var(--text-disabled); white-space: pre; overflow: hidden; }
+
+  @media (max-width: 900px) { .kpis, .grid { grid-template-columns: 1fr; } .topnav { display: none; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="mark"><span class="k">K</span><b>KUNLUN</b><span>昆 仑</span></div>
+  <nav class="topnav">
+    <a href="#" class="on">OPS</a><a href="#">NODES</a><a href="#">LOGS</a><a href="#">CONFIG</a>
+  </nav>
+  <span class="live"><i></i>LIVE</span>
+  <span class="clock">14:08:36</span>
+</header>
+
+<div class="page">
+
+  <div class="hud">
+    <span>// OPS CONSOLE · SECTOR-A · 运 维 计 算</span>
+    <span class="ascii">├────────── ▣ ──────────┤</span>
+    <span>N 29°36′ · E 101°53′ · ALT 6,178 M</span>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi sig">
+      <div class="lab"><span>▣ Reactor output</span><span>UNIT-01</span></div>
+      <div class="val">142.3<small>MW</small></div>
+      <div class="sub">Δ +02.1% vs T-24H · signal nominal</div>
+    </div>
+    <div class="kpi ok">
+      <div class="lab"><span>▣ Uplink latency</span><span>RELAY-03</span></div>
+      <div class="val">08.4<small>MS</small></div>
+      <div class="sub"><b>[ OK ]</b> handshake stable · retry 0</div>
+    </div>
+    <div class="kpi warn">
+      <div class="lab"><span>▣ Coolant flow</span><span>LOOP-B</span></div>
+      <div class="val">87<small>%</small></div>
+      <div class="sub"><b>[ WARN ]</b> below threshold 90% · inspect pump 2</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h3><span>▣ Grid load · 24H</span><span class="tag">CH-04</span></h3>
+      <div class="chart">
+        <div class="bars">
+          <div class="b dim" style="height:34%"></div><div class="b dim" style="height:42%"></div>
+          <div class="b" style="height:55%"></div><div class="b" style="height:48%"></div>
+          <div class="b" style="height:66%"></div><div class="b warnb" style="height:78%"></div>
+          <div class="b" style="height:71%"></div><div class="b" style="height:84%"></div>
+          <div class="b" style="height:62%"></div><div class="b" style="height:58%"></div>
+        </div>
+        <div class="x"><span>00</span><span>04</span><span>08</span><span>12</span><span>16</span><span>20</span><span>24</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-lit">▸ DISPATCH RUNBOOK</button>
+        <button class="btn btn-ghost">EXPORT LOG</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3><span>▣ System log</span><span class="tag">TAIL -F</span></h3>
+      <div class="log">
+        <div><span class="t">14:08:31</span> <span class="ok">[ OK ]</span> uplink established · 08.4 ms</div>
+        <div><span class="t">14:08:12</span> <span class="sg">[SCAN]</span> sector-a sweep complete · 0 anomalies</div>
+        <div><span class="t">14:07:58</span> <span class="wn">[WARN]</span> coolant flow at 87% · loop-b</div>
+        <div><span class="t">14:07:44</span> <span class="ok">[ OK ]</span> node-07 sync · Δ 0.002</div>
+        <div><span class="t">14:07:30</span> <span class="t">[INFO]</span> operator 赵 signed in · clearance L3</div>
+        <div><span class="t">14:07:02</span> <span class="sg">▸</span> awaiting input <span class="caret"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <h3><span>▣ Node status</span><span class="tag">07 NODES</span></h3>
+    <table>
+      <thead><tr><th>Node</th><th>Sector</th><th>Load</th><th>Latency</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="id">NODE-01</td><td>A</td><td>042.1%</td><td>08.4 ms</td><td><span class="pill p-ok"><i style="background:var(--green-500)"></i>NOMINAL</span></td></tr>
+        <tr><td class="id">NODE-02</td><td>A</td><td>038.7%</td><td>09.1 ms</td><td><span class="pill p-ok"><i style="background:var(--green-500)"></i>NOMINAL</span></td></tr>
+        <tr><td class="id">NODE-04</td><td>B</td><td>087.0%</td><td>12.8 ms</td><td><span class="pill p-warn"><i style="background:var(--amber-500)"></i>WARN</span></td></tr>
+        <tr><td class="id">NODE-06</td><td>C</td><td>—</td><td>—</td><td><span class="pill p-crit"><i style="background:var(--red-500)"></i>OFFLINE</span></td></tr>
+        <tr><td class="id">NODE-07</td><td>A</td><td>051.3%</td><td>08.9 ms</td><td><span class="pill p-ok"><i style="background:var(--green-500)"></i>NOMINAL</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider">├───────────────── ▣ END OF FEED · SNOWLINE 雪线 · PROPOSAL V1 ▣ ─────────────────┤</div>
+
+</div>
+</body>
+</html>

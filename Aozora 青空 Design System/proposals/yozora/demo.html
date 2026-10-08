@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh" data-theme="yozora">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AOZORA — YOZORA 夜空 · app demo (proposal)</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body {
+    margin: 0; min-height: 100vh;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 115%, rgba(10,132,255,.14), transparent 60%),
+      var(--gradient-night);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-sans); color: var(--text-body);
+    padding: 40px 24px; position: relative;
+  }
+  .caption {
+    position: fixed; left: 28px; bottom: 22px;
+    font-size: var(--text-2xs); letter-spacing: var(--tracking-wider);
+    text-transform: uppercase; color: var(--text-faint);
+  }
+  .caption b { color: var(--text-muted); font-weight: var(--weight-semibold); }
+  .mark { position: fixed; right: 28px; top: 22px; font-size: var(--text-2xs); letter-spacing: var(--tracking-wider); color: var(--text-faint); text-transform: uppercase; }
+
+  /* ── Phone ─────────────────────────────────────────────── */
+  .phone {
+    width: 390px; height: 844px; max-height: calc(100vh - 64px);
+    border-radius: 52px; overflow: hidden; position: relative;
+    background: var(--gradient-moonrise);
+    border: 1px solid var(--stroke-subtle);
+    box-shadow: var(--shadow-xl), 0 0 90px rgba(10,132,255,.18);
+    display: flex; flex-direction: column;
+  }
+  .status {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 30px 6px; font-size: var(--text-2xs);
+    font-weight: var(--weight-semibold); color: var(--text-strong);
+  }
+  .nav {
+    margin: 8px 14px 0; padding: 12px 18px;
+    border-radius: 22px;
+    background: var(--glass-bg-thin);
+    border: 1px solid var(--glass-stroke);
+    box-shadow: var(--glass-edge);
+    backdrop-filter: var(--glass-blur-thin);
+    -webkit-backdrop-filter: var(--glass-blur-thin);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .wordmark { font-family: var(--font-wordmark); font-weight: var(--weight-black); font-size: 17px; letter-spacing: 0.02em; color: var(--text-strong); }
+  .wordmark span { color: var(--text-accent); }
+  .icon-btn {
+    width: 34px; height: 34px; border-radius: 12px; border: 1px solid var(--glass-stroke);
+    background: var(--glass-bg-thin); display: grid; place-items: center; color: var(--text-strong);
+    box-shadow: var(--glass-edge);
+  }
+  .scroll { flex: 1; overflow: hidden; padding: 16px 14px 12px; display: flex; flex-direction: column; gap: 12px; }
+
+  /* ── Hero ──────────────────────────────────────────────── */
+  .hero {
+    border-radius: 32px; padding: 24px 22px 20px; position: relative; overflow: hidden;
+    background: var(--glass-bg-regular);
+    border: 1px solid var(--glass-stroke);
+    box-shadow: var(--glass-edge), var(--shadow-lg);
+    backdrop-filter: var(--glass-blur-regular);
+    -webkit-backdrop-filter: var(--glass-blur-regular);
+  }
+  .hero .eyebrow {
+    font-size: 10px; letter-spacing: var(--tracking-wider); text-transform: uppercase;
+    color: var(--text-faint); display: flex; justify-content: space-between;
+  }
+  .hero h1 {
+    margin: 10px 0 0; font-family: var(--font-display); font-weight: var(--weight-black);
+    font-size: 52px; letter-spacing: -0.03em; line-height: 1.02; color: var(--text-strong);
+  }
+  .hero .sub { margin-top: 8px; font-size: 13px; color: var(--text-muted); }
+  .hero .sub b { color: var(--text-accent); font-weight: var(--weight-semibold); }
+  .moon-chip {
+    position: absolute; top: 20px; right: 20px;
+    padding: 7px 13px; border-radius: 999px;
+    background: var(--glass-bg-moon); border: 1px solid rgba(255,223,133,.4);
+    box-shadow: var(--glass-edge);
+    backdrop-filter: var(--glass-blur-thin); -webkit-backdrop-filter: var(--glass-blur-thin);
+    font-size: 10px; font-weight: var(--weight-bold); letter-spacing: 0.12em; color: var(--moon-300);
+  }
+  .drop {
+    position: absolute; right: 14px; bottom: -12px; width: 108px; opacity: .9;
+    filter: drop-shadow(0 8px 20px rgba(10,132,255,.45));
+  }
+  .hero .cta {
+    margin-top: 16px; display: inline-flex; align-items: center; gap: 8px;
+    height: 40px; padding: 0 20px; border-radius: 999px;
+    background: var(--brand); color: var(--text-on-brand);
+    font-size: 13px; font-weight: var(--weight-bold);
+    box-shadow: var(--shadow-glow-blue);
+  }
+
+  /* ── Bento ─────────────────────────────────────────────── */
+  .bento { display: grid; grid-template-columns: 1.25fr 1fr; gap: 12px; }
+  .tile { border-radius: 24px; padding: 16px; min-height: 108px; position: relative; overflow: hidden; }
+  .tile-ion {
+    background: var(--gradient-ion-night);
+    border: 1px solid rgba(95,227,204,.35);
+    box-shadow: var(--glass-edge), var(--shadow-md);
+  }
+  .tile-ion .big { font-family: var(--font-display); font-weight: var(--weight-black); font-size: 30px; letter-spacing: -0.02em; color: #EAFBFF; }
+  .tile-ion small { font-size: 10px; letter-spacing: 0.14em; color: rgba(234,251,255,.75); text-transform: uppercase; }
+  .tile-ion .pct { position: absolute; right: 14px; bottom: 10px; font-family: var(--font-display); font-weight: var(--weight-black); font-size: 34px; color: var(--mint-400); text-shadow: 0 0 18px rgba(95,227,204,.55); }
+  .tile-moon {
+    background: var(--glass-bg-regular); border: 1px solid var(--glass-stroke);
+    box-shadow: var(--glass-edge), var(--shadow-md);
+    backdrop-filter: var(--glass-blur-regular); -webkit-backdrop-filter: var(--glass-blur-regular);
+  }
+  .tile-moon small { font-size: 10px; letter-spacing: 0.14em; color: var(--text-faint); text-transform: uppercase; }
+  .tile-moon .m { margin-top: 10px; width: 40px; height: 40px; border-radius: 50%;
+    background: radial-gradient(circle at 34% 32%, #FFFCF0 0%, var(--moon-300) 58%, var(--moon-500) 100%);
+    box-shadow: 0 0 22px rgba(255,223,133,.5); }
+  .tile-moon .lbl { margin-top: 10px; font-size: 12px; font-weight: var(--weight-semibold); color: var(--text-strong); }
+
+  /* ── List ──────────────────────────────────────────────── */
+  .list {
+    border-radius: 24px; overflow: hidden;
+    background: var(--glass-bg-regular); border: 1px solid var(--glass-stroke);
+    box-shadow: var(--glass-edge), var(--shadow-md);
+    backdrop-filter: var(--glass-blur-regular); -webkit-backdrop-filter: var(--glass-blur-regular);
+  }
+  .list .hd { padding: 13px 18px 4px; font-size: 10px; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--text-faint); }
+  .row { display: flex; align-items: center; gap: 12px; padding: 12px 18px; }
+  .row + .row { border-top: 1px solid var(--stroke-hairline); }
+  .dot { width: 34px; height: 34px; border-radius: 12px; flex: none; box-shadow: var(--inset-rim); }
+  .row b { font-size: 14px; font-weight: var(--weight-semibold); color: var(--text-strong); display: block; }
+  .row small { font-size: 11px; color: var(--text-muted); }
+  .row .price { margin-left: auto; font-size: 13px; font-weight: var(--weight-bold); color: var(--text-body); }
+  .row .chev { color: var(--text-faint); }
+
+  /* ── Tab bar ───────────────────────────────────────────── */
+  .tabbar {
+    margin: 0 14px 14px; padding: 10px 22px;
+    border-radius: 26px;
+    background: var(--glass-bg-thin); border: 1px solid var(--glass-stroke);
+    box-shadow: var(--glass-edge), var(--shadow-md);
+    backdrop-filter: var(--glass-blur-thin); -webkit-backdrop-filter: var(--glass-blur-thin);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .tab { color: var(--text-faint); display: grid; place-items: center; }
+  .tab.on { color: var(--text-accent); filter: drop-shadow(0 0 8px rgba(102,183,255,.6)); }
+</style>
+</head>
+<body>
+
+<div class="mark">Proposal · [data-theme="yozora"]</div>
+
+<div class="phone">
+  <div class="status"><span>23:41</span><span>5G&nbsp;&nbsp;▮▮▮▮</span></div>
+
+  <div class="nav">
+    <div class="wordmark">AOZORA<span> °</span></div>
+    <div class="icon-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    </div>
+  </div>
+
+  <div class="scroll">
+    <div class="hero">
+      <div class="eyebrow"><span>Summer Night · 2026</span><span>VOL.05</span></div>
+      <div class="moon-chip">MOON °</div>
+      <h1>蒼い夜。</h1>
+      <p class="sub">The night is still blue. <b>夜も、青のまま。</b></p>
+      <img class="drop" src="../../assets/droplets.svg" alt="">
+      <div class="cta">Stay clear
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+    </div>
+
+    <div class="bento">
+      <div class="tile tile-ion">
+        <small>Ion Water / イオン水</small>
+        <div class="big">Cool.<br>Clear. Blue.</div>
+        <div class="pct">98%</div>
+      </div>
+      <div class="tile tile-moon">
+        <small>Moon / 月光</small>
+        <div class="m"></div>
+        <div class="lbl">今夜も満ちる</div>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class="hd">Tonight / 今夜の味</div>
+      <div class="row">
+        <div class="dot" style="background:var(--gradient-soda-night)"></div>
+        <div><b>Soda / 蒼い夜</b><small>slightly salt, after dark</small></div>
+        <span class="price">¥120</span><span class="chev">→</span>
+      </div>
+      <div class="row">
+        <div class="dot" style="background:linear-gradient(135deg,#F0C65C,#FFDF85)"></div>
+        <div><b>Citrus Spark / 蜜柑の夜</b><small>new flavor, moonlit</small></div>
+        <span class="price">¥140</span><span class="chev">→</span>
+      </div>
+      <div class="row">
+        <div class="dot" style="background:linear-gradient(135deg,#0E8A7A,#5FE3CC)"></div>
+        <div><b>Mint / 薄荷</b><small>cold as the water surface</small></div>
+        <span class="price">¥120</span><span class="chev">→</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <span class="tab on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg></span>
+    <span class="tab"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.5 4.2 6 7.4 6 10.5a6 6 0 11-12 0C6 10.4 8.5 7.2 12 3z"/></svg></span>
+    <span class="tab"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.2-8.6A5.2 5.2 0 0112 6.4a5.2 5.2 0 019.2 5C19 15.7 12 20 12 20z"/></svg></span>
+    <span class="tab"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.6 4.5-5.5 8-5.5s6.5 1.9 8 5.5"/></svg></span>
+  </div>
+</div>
+
+<div class="caption"><b>AOZORA · YOZORA 夜空</b> — the same app, after dark · proposal v1</div>
+
+</body>
+</html>

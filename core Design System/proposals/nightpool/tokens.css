@@ -1,0 +1,120 @@
+/* core — NIGHTPOOL (proposal)
+   Dark theme proposal. The archive at 2 AM: an old computer in a dark
+   room, a pool at night, CRT phosphor, an empty Windows-era archive.
+   Bondi, chrome, bubblegum, pixel/Y2K grammar and the dream stay.
+
+   Scope: everything lives under [data-theme="nightpool"]. The
+   light-only default is untouched.
+
+   Own substrate / surface / ink logic — NOT an inversion:
+   - substrate → abyss ramp: deep teal-navy, a pool at night
+   - ink       → SPLITS IN TWO. In the light theme --ink is both text
+                 and line/shadow. At night those diverge:
+                 text   = phosphor (CRT-lit, never pure white)
+                 line   = abyss-950 (Y2K borders stay dark)
+   - chrome    → stays chrome, just deeper in the ramp (700/800/900)
+   - sodium    → the street lamp through the blinds. Still the smallest
+                 role, but at night it is THE "wrong" warm.
+
+   Load: styles.css, then this file, then data-theme="nightpool".
+*/
+
+[data-theme="nightpool"] {
+  color-scheme: dark;
+
+  /* ── Abyss — the substrate. Deep teal-navy; water at night. ────────── */
+  --abyss-950: #02090E;   /* line / shadow ink, deepest */
+  --abyss-900: #041018;   /* sunk */
+  --abyss-800: #071820;   /* page substrate */
+  --abyss-700: #0A2230;   /* card */
+  --abyss-600: #0E2C3D;   /* window surface */
+  --abyss-500: #14384D;   /* raised */
+
+  /* ── Phosphor — the text ramp. CRT-lit cool white; never pure white. ── */
+  --phosphor-100: #DCF2FA;   /* bright — display, overexposed */
+  --phosphor-200: #C4E2EE;   /* body */
+  --phosphor-300: #9ABECC;   /* muted */
+  --phosphor-400: #6E93A4;   /* faint */
+  --phosphor-500: #4A6B7C;   /* ghost */
+
+  /* ── Paper / ink, re-cast. --ink keeps meaning "the text ink", but the
+        LINE ink is now abyss-950 — the split is the point. ─────────── */
+  --paper:         var(--abyss-800);
+  --paper-stained: var(--abyss-700);
+  --paper-grout:   var(--abyss-600);
+  --paper-fold:    var(--abyss-500);
+  --ink:           var(--phosphor-200);
+  --ink-soft:      var(--phosphor-300);
+  --ink-muted:     var(--phosphor-400);
+  --ink-faint:     var(--phosphor-500);
+
+  /* ── Semantic aliases ──────────────────────────────────────────────── */
+  --text-body:       var(--phosphor-200);
+  --text-muted:      var(--phosphor-300);
+  --text-faint:      var(--phosphor-400);
+  --text-link:       var(--bondi-300);
+  --text-link-hover: var(--bondi-200);
+  --text-invert:     var(--abyss-950);
+  --text-warn:       var(--bubblegum-400);
+
+  --surface-page:      var(--abyss-800);
+  --surface-card:      var(--abyss-700);
+  --surface-window:    var(--abyss-600);
+  --surface-sunk:      var(--abyss-900);
+  --surface-pool:      var(--abyss-500);
+  --surface-pool-deep: var(--bondi-700);
+
+  /* A lit window at 2 AM: the title bar still glows Bondi, one step
+     deeper than daylight. Inactive = dark chrome. */
+  --titlebar-bg:          var(--bondi-600);
+  --titlebar-fg:          #EAF7FF;
+  --titlebar-bg-inactive: var(--chrome-800);
+
+  /* Y2K lines and bevels stay DARK — a window on a night desktop keeps
+     its 1px near-black frame; separation comes from the bevel. */
+  --line:      var(--abyss-950);
+  --line-soft: #16303F;
+  --bevel-hi:  #41607A;   /* light edge caught on dark chrome */
+  --bevel-lo:  var(--abyss-950);
+
+  --accent-glow:          var(--bondi-400);
+  --accent-link-visited:  var(--bubblegum-400);
+
+  --select-bg: var(--bondi-600);
+  --select-fg: #EAF7FF;
+
+  /* ── Shadows — offset, no blur, same clipping-mask grammar. The ink
+        of a shadow at night is abyss, not phosphor. ─────────────────── */
+  --shadow-card:      2px 2px 0 var(--abyss-950);
+  --shadow-window:    3px 3px 0 var(--abyss-950), 6px 6px 0 rgba(2, 9, 14, 0.50);
+  --shadow-window-lg: 4px 4px 0 var(--abyss-950), 10px 10px 0 rgba(2, 9, 14, 0.55);
+  --shadow-press:     1px 1px 0 var(--abyss-950);
+
+  /* ── Glows — the room is dark, so the CRT carries more light. ─────── */
+  --glow-bondi:  0 0 24px rgba(46, 178, 224, 0.50), 0 0 48px rgba(46, 178, 224, 0.28);
+  --glow-chrome: 0 0 16px rgba(106, 120, 134, 0.5), 0 0 36px rgba(74, 86, 99, 0.4);
+  --glow-pool:   0 0 32px rgba(74, 143, 168, 0.50);
+  --glow-peach:  0 0 24px rgba(244, 184, 160, 0.35), 0 0 48px rgba(244, 184, 160, 0.20);
+  --glow-rose:   0 0 24px rgba(240, 164, 184, 0.35), 0 0 60px rgba(240, 164, 184, 0.22);
+  --glow-bubblegum: 0 0 24px rgba(255, 146, 191, 0.45), 0 0 60px rgba(255, 126, 182, 0.25);
+  --glow-sodium: 0 0 24px rgba(220, 177, 63, 0.40), 0 0 48px rgba(220, 177, 63, 0.22);
+  --glow-text-overexposed:
+    0 0 8px rgba(220, 242, 250, 0.85),
+    0 0 16px rgba(141, 218, 240, 0.60),
+    0 0 28px rgba(46, 178, 224, 0.45);
+
+  /* ── Pool inner shadow — the deep end is deeper at night. ─────────── */
+  --shadow-pool-inner:
+    inset 0 12px 32px rgba(2, 9, 14, 0.70),
+    inset 0 2px 0 rgba(2, 9, 14, 0.50);
+
+  /* ── Patterns — the wallpapers stay, lights off. Apply these as
+        opacity on the existing assets (tile / caustic / grain). ─────── */
+  --tile-opacity:    0.30;   /* @kind other */
+  --caustic-opacity: 0.22;   /* @kind other */
+  --grain-opacity:   0.16;   /* @kind other — reads as CRT static */
+
+  /* ── Filters — house filters stay; add the night one. A flash photo
+        taken at 2 AM: hard contrast, dim room, drained color. ────────── */
+  --filter-flash: contrast(1.08) brightness(.96) saturate(.80); /* @kind other */
+}

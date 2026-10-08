@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" data-theme="darkroom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAPER — DARKROOM 暗房 · token palette (proposal)</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body { margin: 0; padding: 56px 40px 96px; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  .eyebrow { font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-faint); }
+  h1 { font-size: var(--type-display-2); margin: 10px 0 6px; }
+  h1 em { color: var(--text-accent); font-style: normal; }
+  .lede { font-size: var(--type-body-sm); color: var(--text-muted); max-width: 58ch; margin: 0 0 8px; }
+  .cjk-note { font-size: var(--type-caption); color: var(--text-faint); margin-bottom: 48px; }
+  section { margin-top: 48px; }
+  .sec { display: flex; align-items: baseline; gap: 14px; border-bottom: 1px solid var(--rule-hair); padding-bottom: 8px; margin-bottom: 18px; }
+  .sec b { font-family: var(--font-sans); font-weight: var(--weight-semibold); font-size: 13px; letter-spacing: .02em; color: var(--text-display); }
+  .sec span { font-family: var(--font-mono); font-size: var(--type-micro); color: var(--text-faint); letter-spacing: .06em; }
+  .num { color: var(--text-accent); }
+  .ramp { display: flex; }
+  .ramp > div { flex: 1; }
+  .chip { height: 64px; box-shadow: inset 0 0 0 1px var(--frame-edge); }
+  .lab { font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint); margin-top: 7px; }
+  .lab + .lab { margin-top: 2px; color: var(--text-muted); }
+  .note { font-family: var(--font-mono); font-size: var(--type-micro); color: var(--text-faint); margin-top: 10px; letter-spacing: .04em; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .panel { border: 1px solid var(--rule-hair); padding: 22px 24px; background: var(--surface-raised); box-shadow: var(--shadow-sheet); }
+  .panel h4 { margin: 0 0 14px; font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-faint); font-weight: var(--weight-regular); }
+  .surf-row { display: flex; gap: 10px; }
+  .surf { flex: 1; height: 56px; box-shadow: inset 0 0 0 1px var(--frame-edge); display: flex; align-items: flex-end; padding: 6px 8px; font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
+  .t1 { font-family: var(--font-display); font-size: var(--type-h2); color: var(--text-display); margin: 0 0 6px; }
+  .t2 { font-size: var(--type-body-sm); color: var(--text-body); margin: 0 0 4px; }
+  .t3 { font-size: var(--type-caption); color: var(--text-muted); margin: 0 0 4px; }
+  .t4 { font-family: var(--font-mono); font-size: var(--type-micro); color: var(--text-faint); letter-spacing: .06em; margin: 0; }
+  .t5 { font-family: var(--font-mono); font-size: var(--type-micro); color: var(--text-accent); letter-spacing: .06em; margin: 6px 0 0; }
+  .rules > div { height: 26px; display: flex; align-items: center; font-family: var(--font-mono); font-size: 9px; color: var(--text-faint); letter-spacing: .08em; }
+  .mat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ph { height: 120px; box-shadow: var(--shadow-inset-frame); display: flex; align-items: flex-end; padding: 8px 10px; font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); letter-spacing: .06em; }
+  .marks { display: flex; gap: 28px; align-items: center; margin-top: 22px; }
+  .stamp { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; color: var(--stamp-ink); border: 1px solid var(--stamp-ink); padding: 5px 9px; transform: rotate(-2deg); }
+  .hand { font-family: var(--font-hand); font-size: 22px; color: var(--hand-ink); }
+  .tape-sw { width: 84px; height: 26px; background: var(--tape); box-shadow: 0 1px 2px rgba(0,0,0,.3); }
+  .foot { margin-top: 64px; padding-top: 14px; border-top: 1px solid var(--rule-hair); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: var(--type-micro); color: var(--text-faint); letter-spacing: .08em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">PAPER · Theme proposal · PROPOSAL / 未批准</div>
+  <h1>Darkroom <em>暗房</em></h1>
+  <p class="lede">A black-paper photobook. Silver-gelatin ink, one safelight. The grid does not move; only the stock changes.</p>
+  <p class="cjk-note">黑纸摄影集。版式纪律不变，纸张换成黑卡，墨换成银盐白，rust 变成暗房安全灯。</p>
+
+  <section>
+    <div class="sec"><b><span class="num">01 ·</span> Black paper</b><span>warm charcoal stock — never pure black</span></div>
+    <div class="ramp">
+      <div><div class="chip" style="background:var(--noir-100)"></div><div class="lab">noir-100</div><div class="lab">#2C2820 · raised</div></div>
+      <div><div class="chip" style="background:var(--noir-200)"></div><div class="lab">noir-200</div><div class="lab">#211E17 · page</div></div>
+      <div><div class="chip" style="background:var(--noir-300)"></div><div class="lab">noir-300</div><div class="lab">#1A1712 · sunken</div></div>
+      <div><div class="chip" style="background:var(--noir-400)"></div><div class="lab">noir-400</div><div class="lab">#13110C · mount</div></div>
+      <div><div class="chip" style="background:var(--noir-500)"></div><div class="lab">noir-500</div><div class="lab">#0C0A07 · cover</div></div>
+    </div>
+    <p class="note">Continuity: --film-base #1B1A16 sits between noir-300 and noir-400 — the contact sheet was the seed of this theme.</p>
+  </section>
+
+  <section>
+    <div class="sec"><b><span class="num">02 ·</span> Silver ink</b><span>gelatin-print white — never pure white</span></div>
+    <div class="ramp">
+      <div><div class="chip" style="background:var(--silver-100)"></div><div class="lab">silver-100</div><div class="lab">#F2ECDD · display</div></div>
+      <div><div class="chip" style="background:var(--silver-200)"></div><div class="lab">silver-200</div><div class="lab">#E3DCC8 · body</div></div>
+      <div><div class="chip" style="background:var(--silver-300)"></div><div class="lab">silver-300</div><div class="lab">#C0B89F · secondary</div></div>
+      <div><div class="chip" style="background:var(--silver-400)"></div><div class="lab">silver-400</div><div class="lab">#948C73 · muted</div></div>
+      <div><div class="chip" style="background:var(--silver-500)"></div><div class="lab">silver-500</div><div class="lab">#665F4B · faint</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b><span class="num">03 ·</span> Safelight &amp; slate</b><span>rust brightens for dark reading · photographic greys unchanged</span></div>
+    <div class="ramp">
+      <div><div class="chip" style="background:var(--rust-700)"></div><div class="lab">rust-700</div><div class="lab">#8E3A24 · press</div></div>
+      <div><div class="chip" style="background:var(--rust-500)"></div><div class="lab">rust-500</div><div class="lab">#B8543A · stamp fill</div></div>
+      <div><div class="chip" style="background:var(--rust-300)"></div><div class="lab">rust-300</div><div class="lab">#D9917A · text accent</div></div>
+      <div><div class="chip" style="background:var(--rust-100)"></div><div class="lab">rust-100</div><div class="lab">#F1DCD2 · pale chip</div></div>
+      <div><div class="chip" style="background:var(--slate-600)"></div><div class="lab">slate-600</div><div class="lab">#7C8382</div></div>
+      <div><div class="chip" style="background:var(--slate-400)"></div><div class="lab">slate-400</div><div class="lab">#9BA1A0</div></div>
+      <div><div class="chip" style="background:var(--slate-200)"></div><div class="lab">slate-200</div><div class="lab">#C4C7C4</div></div>
+    </div>
+    <p class="note">The rule stands: rust at most twice a page — a figure number, a date stamp, a link hover.</p>
+  </section>
+
+  <section>
+    <div class="sec"><b><span class="num">04 ·</span> Semantic roles</b><span>surfaces · text · rules</span></div>
+    <div class="two">
+      <div class="panel">
+        <h4>Surfaces</h4>
+        <div class="surf-row">
+          <div class="surf" style="background:var(--surface-page)">page</div>
+          <div class="surf" style="background:var(--surface-raised);box-shadow:var(--shadow-sheet)">raised</div>
+          <div class="surf" style="background:var(--surface-sunken)">sunken</div>
+          <div class="surf" style="background:var(--surface-mount)">mount</div>
+        </div>
+        <h4 style="margin-top:18px">Rules — white-ink hairlines</h4>
+        <div class="rules">
+          <div style="border-top:1px solid var(--rule-hair)">--rule-hair · 10% silver</div>
+          <div style="border-top:1px solid var(--rule-mid)">--rule-mid · 18%</div>
+          <div style="border-top:1px solid var(--rule-strong)">--rule-strong · 55%</div>
+          <div style="border-top:3px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);height:18px">double — covers &amp; chapters</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h4>Text hierarchy</h4>
+        <p class="t1">The Coast Later</p>
+        <p class="t2">Four months on the Baltic coast, photographed on expired film and printed the following spring.</p>
+        <p class="t3">Låtefossen at first light, 06:12. The exposure ran long by a full stop.</p>
+        <p class="t4">WORDS 1460 · PHOTOGRAPHS 23 · KODAK 400TX</p>
+        <p class="t5">Fig. 01 →</p>
+        <h4 style="margin-top:18px">The written line</h4>
+        <div class="marks" style="margin-top:4px">
+          <span class="hand">Sunday light in the kitchen</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec"><b><span class="num">05 ·</span> Material</b><span>grain flips to screen · prints get richer · placeholders go unprinted</span></div>
+    <div class="mat">
+      <div>
+        <div class="ph" style="background:var(--placeholder-tone);filter:var(--photo-filter)">--placeholder-tone</div>
+        <div class="lab" style="margin-top:7px">unprinted plate · warm</div>
+      </div>
+      <div>
+        <div class="ph" style="background:var(--placeholder-tone-cool)">--placeholder-tone-cool</div>
+        <div class="lab" style="margin-top:7px">unprinted plate · cool</div>
+      </div>
+      <div>
+        <div class="ph" style="background:var(--placeholder-tone);box-shadow:var(--shadow-inset-frame),var(--scan-edge)">+ --scan-edge</div>
+        <div class="lab" style="margin-top:7px">scan lip, deepened</div>
+      </div>
+    </div>
+    <div class="marks">
+      <span class="stamp">APR 12 2026</span>
+      <span class="stamp">Fig. 03</span>
+      <div class="tape-sw"></div>
+      <span class="hand">in progress 4/12</span>
+      <span class="t4">grain: screen · .06 (silver halide, not dirt)</span>
+    </div>
+    <p class="note">--photo-filter on darkroom: saturate(.85) contrast(1.04) brightness(.97) — prints in a dark book read richer.</p>
+  </section>
+
+  <div class="foot">
+    <span>PAPER · Darkroom 暗房 — proposal v1 · 2026-10-08</span>
+    <span>scope [data-theme="darkroom"] · data-mode semantics untouched</span>
+  </div>
+
+</div>
+</body>
+</html>

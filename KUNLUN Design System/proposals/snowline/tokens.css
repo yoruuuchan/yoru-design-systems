@@ -1,0 +1,134 @@
+/* KUNLUN — SNOWLINE 雪线 (proposal)
+   Light theme proposal. The operations console, above the snowline:
+   spacecraft white instrument panels, an industrial lab, engineering
+   consoles, blueprint light. Cyan stays the signal; amber/red stay
+   warning/danger. Chamfers, mono, HUD ornaments, ASCII, stepped motion
+   are all untouched.
+
+   Scope: everything lives under [data-theme="snowline"]. The dark
+   default is untouched. Semantic aliases are re-mapped so existing
+   components mostly re-skin without edits.
+
+   The one discipline that changes meaning: GLOW.
+   In the dark theme, glow is neon in a black room. On a white panel it
+   must become BACKLIGHT — tight, low-alpha, like an LED behind a
+   machined button. Identity on light is carried by chamfers, hairlines
+   and HUD ticks, not by bloom.
+
+   Load: styles.css, then this file, then data-theme="snowline" on <html>.
+*/
+
+[data-theme="snowline"] {
+  color-scheme: light;
+
+  /* ── Snow / steel — the substrate ramp. Cool blue-white; the "bench"
+        is slightly grey so white panels float on it. 400 is the seam
+        between panels (the light-theme answer to --bg-void). ────────── */
+  --snow-50:  #FFFFFF;   /* elevated — modal, popover */
+  --snow-100: #F7FAFD;   /* panel */
+  --snow-200: #EDF2F8;   /* surface */
+  --snow-300: #E2E9F2;   /* page base — the lab bench */
+  --snow-400: #D2DCE8;   /* sidebar / seams / deep strip */
+  --snow-500: #BCC9DA;   /* inset wells */
+
+  /* ── Ink — cool navy text ramp. 900 is instrument-black, never #000. ─ */
+  --ink-900: #0C1526;
+  --ink-700: #24334D;
+  --ink-500: #4A5C7A;
+  --ink-300: #8595AF;
+
+  /* ── Background scale (parallel to dark's void → elevated) ────────── */
+  --bg-void:     var(--snow-400);   /* sidebar, deepest strip */
+  --bg-base:     var(--snow-300);   /* page */
+  --bg-surface:  var(--snow-200);
+  --bg-panel:    var(--snow-100);   /* panel / card */
+  --bg-elevated: var(--snow-50);    /* modal */
+  --bg-inset:    #D9E2EE;           /* recessed wells */
+
+  --bg:        var(--bg-base);
+  --bg-card:   var(--bg-panel);
+  --bg-input:  var(--bg-inset);
+  --bg-hover:  #E4ECF6;
+  --bg-active: #D6E2F2;
+
+  /* ── Text ─────────────────────────────────────────────────────────── */
+  --text-primary:   var(--ink-900);
+  --text-secondary: var(--ink-700);
+  --text-tertiary:  var(--ink-500);
+  --text-disabled:  var(--ink-300);
+  --text-inverse:   #F5F9FF;
+  --text-link:      var(--cyan-700);   /* 4.7:1 on panel */
+  --text-signal:    var(--cyan-600);
+  --text-warn:      var(--amber-700);
+  --text-danger:    var(--red-700);
+  --text-success:   var(--green-700);
+
+  /* ── Borders ──────────────────────────────────────────────────────── */
+  --border:        #C7D3E3;
+  --border-strong: #9DAEC7;
+  --border-signal: var(--cyan-600);
+  --border-warn:   var(--amber-700);
+  --border-danger: var(--red-700);
+
+  /* ── Accent — cyan stays the signal. Fills keep cyan-500 (a lit
+        button); text/link roles step down to 600/700 for contrast. ───── */
+  --accent:            var(--cyan-600);
+  --accent-hover:      var(--cyan-500);
+  --accent-press:      var(--cyan-700);
+  --accent-dim:        var(--cyan-800);
+  --accent-glow:       rgba(0, 152, 212, 0.30);
+  --accent-glow-soft:  rgba(0, 152, 212, 0.12);
+  --accent-tint:       rgba(0, 152, 212, 0.12);
+  --accent-tint-soft:  rgba(0, 152, 212, 0.06);
+
+  --warn:            var(--amber-500);
+  --warn-glow:       rgba(255, 176, 0, 0.25);
+  --warn-tint:       rgba(255, 176, 0, 0.14);
+  --warn-tint-soft:  rgba(255, 176, 0, 0.07);
+
+  --danger:          var(--red-500);
+  --danger-glow:     rgba(255, 58, 58, 0.22);
+  --danger-tint:     rgba(255, 58, 58, 0.10);
+  --danger-tint-soft: rgba(255, 58, 58, 0.05);
+
+  --success:       var(--green-500);
+  --success-glow:  rgba(0, 232, 145, 0.25);
+
+  /* ── HUD ornament ink — corner marks, coordinates, ASCII frames ───── */
+  --hud-ink:        var(--cyan-700);
+  --hud-ink-bright: var(--cyan-500);
+
+  /* ── Textures — blueprint, not CRT. ────────────────────────────────── */
+  --scanline:  rgba(20, 70, 140, 0.035);
+  --grid-line: rgba(20, 90, 180, 0.08);
+  --grain:     rgba(10, 40, 90, 0.03);
+
+  /* ── Shadows — panel casting, instrument-grey. Light UI earns its
+        elevation with real shadows instead of neon. ─────────────────── */
+  --shadow-sm: 0 1px 0 rgba(12, 21, 38, 0.06), 0 0 0 1px rgba(12, 21, 38, 0.04);
+  --shadow-md: 0 4px 14px rgba(12, 21, 38, 0.10), 0 1px 0 rgba(12, 21, 38, 0.06);
+  --shadow-lg: 0 18px 44px rgba(12, 21, 38, 0.16), 0 1px 0 rgba(12, 21, 38, 0.08);
+
+  --shadow-inset: inset 0 0 0 1px var(--border), inset 0 2px 5px rgba(12, 21, 38, 0.10);
+
+  /* ── Glow as backlight — tight and low-alpha. The lit states still
+        exist (a warning must still pulse), but nothing blooms 32px. ─── */
+  --glow-cyan-sm:  0 0 6px var(--accent-glow-soft);
+  --glow-cyan-md:  0 0 12px rgba(0, 152, 212, 0.28), 0 0 2px rgba(0, 184, 255, 0.50);
+  --glow-cyan-lg:  0 0 24px rgba(0, 152, 212, 0.32), 0 0 6px rgba(95, 217, 255, 0.60);
+
+  --glow-amber-md: 0 0 12px var(--warn-glow), 0 0 2px rgba(255, 209, 102, 0.60);
+  --glow-red-md:   0 0 12px var(--danger-glow), 0 0 2px rgba(255, 120, 120, 0.55);
+  --glow-green-md: 0 0 12px var(--success-glow), 0 0 2px rgba(92, 255, 184, 0.55);
+
+  --text-glow-cyan:  0 0 5px rgba(0, 152, 212, 0.45);
+  --text-glow-amber: 0 0 5px rgba(176, 115, 0, 0.40);
+  --text-glow-red:   0 0 5px rgba(178, 32, 32, 0.40);
+
+  /* ── Backdrops ─────────────────────────────────────────────────────── */
+  --bg-vignette: radial-gradient(ellipse at center, transparent 60%, rgba(12, 21, 38, 0.08) 100%);
+  --bg-halo-cyan: radial-gradient(circle at 50% 0%, rgba(0, 152, 212, 0.14), transparent 60%);
+
+  /* Sticky chrome: light frosted strip (was rgba(13,19,32,.6)) */
+  --chrome-strip: rgba(247, 250, 253, 0.72);
+}
