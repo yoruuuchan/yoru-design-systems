@@ -1,0 +1,3 @@
+# Vendored JS carries SRI digests computed over LF bytes.
+# CRLF checkout breaks the hash match and kits render blank.
+**/assets/vendor/*.js text eol=lf
