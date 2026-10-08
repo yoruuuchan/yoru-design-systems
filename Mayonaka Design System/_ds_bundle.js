@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"MayonakaDesignSystem_645233","components":[{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"GlitchText","sourcePath":"components/core/GlitchText.jsx"},{"name":"Input","sourcePath":"components/core/Input.jsx"},{"name":"Progress","sourcePath":"components/core/Progress.jsx"},{"name":"ScanlineOverlay","sourcePath":"components/core/ScanlineOverlay.jsx"},{"name":"Tabs","sourcePath":"components/core/Tabs.jsx"}],"sourceHashes":{"components/core/Badge.jsx":"190ccf5b2ecd","components/core/Button.jsx":"2a2f3c5b348e","components/core/Card.jsx":"978de696e809","components/core/GlitchText.jsx":"711b64bc1c72","components/core/Input.jsx":"028f868c64c5","components/core/Progress.jsx":"f2d47f520de4","components/core/ScanlineOverlay.jsx":"7dca1ba0aab3","components/core/Tabs.jsx":"903abd5ffb16","ui_kits/mobile_app/Screens.jsx":"5afd98e8acd0","ui_kits/web_app/NowPlaying.jsx":"54c043d0618f","ui_kits/web_app/Sidebar.jsx":"147f8dd8818b"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"MayonakaDesignSystem_645233","components":[{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"GlitchText","sourcePath":"components/core/GlitchText.jsx"},{"name":"Input","sourcePath":"components/core/Input.jsx"},{"name":"Progress","sourcePath":"components/core/Progress.jsx"},{"name":"ScanlineOverlay","sourcePath":"components/core/ScanlineOverlay.jsx"},{"name":"Tabs","sourcePath":"components/core/Tabs.jsx"}],"sourceHashes":{"components/core/Badge.jsx":"190ccf5b2ecd","components/core/Button.jsx":"32680d072b93","components/core/Card.jsx":"978de696e809","components/core/GlitchText.jsx":"711b64bc1c72","components/core/Input.jsx":"028f868c64c5","components/core/Progress.jsx":"f2d47f520de4","components/core/ScanlineOverlay.jsx":"7dca1ba0aab3","components/core/Tabs.jsx":"903abd5ffb16","ui_kits/mobile_app/Screens.jsx":"5afd98e8acd0","ui_kits/web_app/NowPlaying.jsx":"54c043d0618f","ui_kits/web_app/Sidebar.jsx":"147f8dd8818b"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -72,7 +72,7 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const sizeMap = {
   sm: {
-    padding: "6px 12px",
+    padding: "6px var(--s-3)",
     fontSize: "10px"
   },
   md: {
@@ -80,7 +80,7 @@ const sizeMap = {
     fontSize: "12px"
   },
   lg: {
-    padding: "14px 24px",
+    padding: "14px var(--s-5)",
     fontSize: "14px"
   }
 };
@@ -103,7 +103,7 @@ const variantStyle = variant => {
     case "blue":
       return {
         background: "var(--electric)",
-        color: "#fff",
+        color: "var(--chrome)",
         border: "2px solid var(--electric)",
         boxShadow: "var(--shadow-pixel)"
       };
@@ -161,7 +161,7 @@ function Button({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "8px",
+    gap: "var(--s-2)",
     width: fullWidth ? "100%" : undefined,
     opacity: disabled ? 0.4 : 1,
     imageRendering: "pixelated",
