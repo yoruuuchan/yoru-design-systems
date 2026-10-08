@@ -46,7 +46,7 @@
 }
 .kl-panel__title::before {
   content: "▣";
-  color: var(--cyan-400);
+  color: var(--text-link);
 }
 .kl-panel__meta {
   font-size: var(--text-3xs);
@@ -106,7 +106,7 @@
   font-size: var(--text-3xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
-  color: var(--cyan-400);
+  color: var(--text-link);
   margin-bottom: 8px;
   text-shadow: var(--text-glow-cyan);
 }
@@ -122,6 +122,6 @@
 .kl-panel--ticked > .kl-corner-bl,
 .kl-panel--ticked > .kl-corner-br {
   position: absolute; width: 8px; height: 8px;
-  border: 1px solid var(--cyan-400);
+  border: 1px solid var(--hud-ink-bright);
   pointer-events: none;
 }

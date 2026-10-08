@@ -7,7 +7,7 @@ const termStyles = {
     height: "100vh", display: "grid",
     gridTemplateColumns: "240px 1fr",
     gridTemplateRows: "auto 1fr auto",
-    background: "var(--bg-void)", color: "var(--text-primary)",
+    background: "var(--kl-term-page, var(--bg-void))", color: "var(--text-primary)",
     fontFamily: "var(--font-mono)", overflow: "hidden",
   },
   side: {
@@ -20,7 +20,7 @@ const termStyles = {
     display: "flex", alignItems: "center", gap: 10,
   },
   mark: {
-    width: 26, height: 26, background: "var(--cyan-500)", color: "var(--bg-void)",
+    width: 26, height: 26, background: "var(--accent)", color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)", display: "grid", placeItems: "center",
     fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 12,
     boxShadow: "var(--glow-cyan-sm)",
@@ -44,7 +44,7 @@ const termStyles = {
   topbar: {
     padding: "10px 18px", borderBottom: "1px solid var(--border)",
     display: "flex", justifyContent: "space-between", alignItems: "center",
-    background: "rgba(13, 19, 32, 0.6)",
+    background: "var(--chrome-strip, rgba(13, 19, 32, 0.6))",
   },
   pathRow: { display: "flex", alignItems: "baseline", gap: 16, fontSize: 11,
              letterSpacing: "var(--tracking-wider)", color: "var(--text-tertiary)",
@@ -228,7 +228,7 @@ function TerminalApp() {
       {/* STATUS BAR */}
       <footer style={termStyles.statusBar}>
         <div style={termStyles.statusGroup}>
-          <span style={{color:"var(--cyan-300)", textShadow:"var(--text-glow-cyan)"}}>● tty-07</span>
+          <span style={{color:"var(--text-signal)", textShadow:"var(--text-glow-cyan)"}}>● tty-07</span>
           <span>OP-07 @ NODE-07</span>
           <span>SECTOR-A · CORE-9</span>
         </div>
@@ -236,7 +236,7 @@ function TerminalApp() {
           <span>UTF-8</span>
           <span>BASH 5.2</span>
           <span>UPLINK 8.4ms</span>
-          <span style={{color:"var(--green-500)"}}>● NOMINAL</span>
+          <span style={{color:"var(--text-success)"}}>● NOMINAL</span>
           <span>21:04:55</span>
         </div>
       </footer>

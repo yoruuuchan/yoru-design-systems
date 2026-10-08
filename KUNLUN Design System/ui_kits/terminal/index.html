@@ -2,12 +2,59 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>KUNLUN // CLI</title>
 <link rel="stylesheet" href="../../styles.css">
-<script src="../../assets/vendor/react.production.min.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="../../assets/vendor/react-dom.production.min.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="../../assets/vendor/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/react.production.min.js" integrity="sha384-t63xaoqI4/tnZOZs58Xd/POzyY+r0ZlL3MZJsg5uEpKiDX6mJDAaS/KuesDjH55i" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/react-dom.production.min.js" integrity="sha384-8Y1L+f1y2tWRffeBSFDSl0M0VN4EevwrTLXRQyhfXCTukfuKEvApVoVps3phj/Vp" crossorigin="anonymous"></script>
+<script src="../../assets/vendor/babel.min.js" integrity="sha384-nFyaaMobkrf0QCg1ByYephPUGWg8tPOUoVufojNocOA3oAhP+VvrN6x+m0JINhFn" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
+<style>
+  /* Snowline: the full-screen workspace sits on the light bench (--bg-base)
+     with LCD panes, not on the deepest strip. Dark falls back to --bg-void
+     via the inline var(--kl-term-page, var(--bg-void)) in TerminalApp.jsx. */
+  [data-theme="snowline"] { --kl-term-page: var(--bg-base); }
+</style>
 </head>
 <body>
 <div id="root"></div>
 <script type="text/babel" src="./TerminalApp.jsx"></script>
+<script>
+/* KUNLUN theme bootstrap — ?theme=snowline|default sets the theme and
+   persists it to localStorage["kunlun-theme"]; no param restores the saved
+   one. The floating toggle flips theme + persists. Plain JS, React-free. */
+(function () {
+  var KEY = "kunlun-theme";
+  function apply(t) {
+    if (t === "snowline") document.documentElement.setAttribute("data-theme", "snowline");
+    else document.documentElement.removeAttribute("data-theme");
+  }
+  function save(t) { try { localStorage.setItem(KEY, t); } catch (e) {} }
+  var param = new URLSearchParams(location.search).get("theme");
+  var initial = "default";
+  if (param === "snowline" || param === "default") { initial = param; save(param); }
+  else { try { if (localStorage.getItem(KEY) === "snowline") initial = "snowline"; } catch (e) {} }
+  apply(initial);
+
+  function current() {
+    return document.documentElement.getAttribute("data-theme") === "snowline" ? "snowline" : "default";
+  }
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.id = "kl-theme-toggle";
+  var s = btn.style;
+  s.position = "fixed"; s.right = "16px"; s.bottom = "16px"; s.zIndex = "9999";
+  s.margin = "0"; s.padding = "6px 12px"; s.cursor = "pointer";
+  s.fontFamily = "var(--font-mono)"; s.fontSize = "10px"; s.fontWeight = "600";
+  s.textTransform = "uppercase"; s.letterSpacing = ".16em";
+  s.clipPath = "var(--clip-chamfer-sm)";
+  s.border = "1px solid var(--border-signal)";
+  s.color = "var(--text-link)";
+  s.background = "transparent";
+  function relabel() { btn.textContent = "▸ " + (current() === "snowline" ? "DEFAULT" : "SNOWLINE"); }
+  btn.addEventListener("click", function () {
+    var next = current() === "snowline" ? "default" : "snowline";
+    apply(next); save(next); relabel();
+  });
+  relabel();
+  document.body.appendChild(btn);
+})();
+</script>
 </body></html>

@@ -41,7 +41,7 @@
   text-transform: uppercase;
   color: var(--text-signal); text-shadow: var(--text-glow-cyan);
 }
-.kl-dialog__title::before { content: "▣ "; color: var(--cyan-400); }
+.kl-dialog__title::before { content: "▣ "; color: var(--text-link); }
 .kl-dialog--danger .kl-dialog__title { color: var(--red-300); text-shadow: var(--text-glow-red); }
 .kl-dialog--danger .kl-dialog__title::before { content: "⚠ "; color: var(--red-500); }
 
@@ -69,10 +69,10 @@
 .kl-toast--warn    { border-color: var(--amber-700); box-shadow: var(--glow-amber-md), var(--shadow-md); }
 .kl-toast--error   { border-color: var(--red-700); box-shadow: var(--glow-red-md), var(--shadow-md); }
 .kl-toast__icon { font-size: 14px; line-height: 1.2; }
-.kl-toast--info .kl-toast__icon    { color: var(--cyan-400); text-shadow: var(--text-glow-cyan); }
-.kl-toast--success .kl-toast__icon { color: var(--green-500); }
-.kl-toast--warn .kl-toast__icon    { color: var(--amber-500); text-shadow: var(--text-glow-amber); }
-.kl-toast--error .kl-toast__icon   { color: var(--red-500); text-shadow: var(--text-glow-red); }
+.kl-toast--info .kl-toast__icon    { color: var(--text-link); text-shadow: var(--text-glow-cyan); }
+.kl-toast--success .kl-toast__icon { color: var(--text-success); }
+.kl-toast--warn .kl-toast__icon    { color: var(--text-warn); text-shadow: var(--text-glow-amber); }
+.kl-toast--error .kl-toast__icon   { color: var(--text-danger); text-shadow: var(--text-glow-red); }
 
 .kl-toast__title {
   font-size: var(--text-2xs); font-weight: 600;
@@ -174,4 +174,12 @@
   border-radius: 50%;
   animation: kl-spin 0.7s linear infinite;
   box-shadow: var(--glow-cyan-sm);
+}
+
+/* ─── SNOWLINE overrides — red-300 danger title and the void-dark tooltip
+   break on white panels. Scoped; dark untouched. ─── */
+[data-theme="snowline"] .kl-dialog--danger .kl-dialog__title { color: var(--text-danger); }
+[data-theme="snowline"] .kl-tooltip {
+  background: var(--bg-elevated);
+  color: var(--text-link);
 }

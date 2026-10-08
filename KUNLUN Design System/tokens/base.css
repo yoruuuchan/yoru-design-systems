@@ -43,7 +43,7 @@ a {
   transition: var(--transition-base);
 }
 a:hover {
-  color: var(--cyan-300);
+  color: var(--text-signal);
   text-shadow: var(--text-glow-cyan);
   border-bottom-color: var(--cyan-400);
 }

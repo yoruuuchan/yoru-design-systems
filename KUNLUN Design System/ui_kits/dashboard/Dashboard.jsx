@@ -20,7 +20,7 @@ const dashStyles = {
   sideHead: { padding: "16px 18px", borderBottom: "1px solid var(--border)",
               display: "flex", alignItems: "center", gap: 10 },
   mark: {
-    width: 28, height: 28, background: "var(--cyan-500)", color: "var(--bg-void)",
+    width: 28, height: 28, background: "var(--accent)", color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)", display: "grid", placeItems: "center",
     fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 13,
     boxShadow: "var(--glow-cyan-sm)",
@@ -29,7 +29,7 @@ const dashStyles = {
     fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 16,
     letterSpacing: "var(--tracking-widest)",
   },
-  brandSub: { fontSize: 9, color: "var(--cyan-300)", letterSpacing: "0.4em" },
+  brandSub: { fontSize: 9, color: "var(--text-signal)", letterSpacing: "0.4em" },
   nav: { flex: 1, padding: "12px 8px", display: "flex", flexDirection: "column", gap: 1 },
   navLabel: { fontSize: 9, color: "var(--text-tertiary)", letterSpacing: "var(--tracking-widest)",
               textTransform: "uppercase", padding: "12px 12px 6px" },
@@ -45,7 +45,7 @@ const dashStyles = {
     color: "var(--text-signal)", textShadow: "var(--text-glow-cyan)",
     boxShadow: "inset 0 0 12px rgba(0,184,255,0.05)",
   },
-  navGlyph: { width: 16, color: "var(--cyan-400)", fontSize: 13 },
+  navGlyph: { width: 16, color: "var(--text-link)", fontSize: 13 },
   sideFoot: { padding: "12px 14px", borderTop: "1px solid var(--border)",
               display: "flex", justifyContent: "space-between", alignItems: "center",
               fontSize: 10, color: "var(--text-tertiary)" },
@@ -53,7 +53,7 @@ const dashStyles = {
   topbar: {
     padding: "12px 24px", borderBottom: "1px solid var(--border)",
     display: "flex", justifyContent: "space-between", alignItems: "center",
-    background: "rgba(13, 19, 32, 0.55)", backdropFilter: "blur(6px)",
+    background: "var(--chrome-strip, rgba(13, 19, 32, 0.55))", backdropFilter: "blur(6px)",
   },
   crumbs: {
     display: "flex", alignItems: "baseline", gap: 12, fontSize: 11,
@@ -128,8 +128,8 @@ function NavItem({ item, onClick }) {
 }
 
 function Activity() {
-  const tones = { info:"var(--text-secondary)", ok:"var(--green-500)",
-                  warn:"var(--amber-500)", error:"var(--red-500)" };
+  const tones = { info:"var(--text-secondary)", ok:"var(--text-success)",
+                  warn:"var(--text-warn)", error:"var(--text-danger)" };
   return (
     <Panel title="ACTIVITY" meta="LAST 30 MIN" flush
            actions={<Tooltip label="OPEN LOG"><IconButton label="Open" size="sm" variant="ghost">⌬</IconButton></Tooltip>}>
@@ -141,7 +141,7 @@ function Activity() {
             fontSize:12, alignItems:"center"
           }}>
             <span style={{color:"var(--text-tertiary)", fontVariantNumeric:"tabular-nums"}}>{a.t}</span>
-            <span style={{color:"var(--cyan-400)", fontWeight:600, letterSpacing:"var(--tracking-wide)"}}>{a.src}</span>
+            <span style={{color:"var(--text-link)", fontWeight:600, letterSpacing:"var(--tracking-wide)"}}>{a.src}</span>
             <span style={{color:tones[a.sev], textShadow: a.sev==="error" ? "var(--text-glow-red)" : (a.sev==="warn" ? "var(--text-glow-amber)" : "none")}}>
               {a.sev === "error" ? "⨯ " : a.sev === "warn" ? "⚠ " : a.sev === "ok" ? "✓ " : "› "}
               {a.text}

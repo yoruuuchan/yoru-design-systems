@@ -22,7 +22,7 @@
 }
 .kl-badge--signal {
   background: var(--accent-tint); border-color: var(--cyan-700);
-  color: var(--cyan-300); text-shadow: var(--text-glow-cyan);
+  color: var(--text-signal); text-shadow: var(--text-glow-cyan);
 }
 .kl-badge--success {
   background: rgba(0, 232, 145, 0.1); border-color: var(--green-700);
@@ -65,7 +65,7 @@
 .kl-tag__close:hover { color: var(--text-danger); }
 .kl-tag--accent {
   border-color: var(--cyan-700);
-  color: var(--cyan-300);
+  color: var(--text-signal);
   background: var(--accent-tint-soft);
 }
 
@@ -91,7 +91,7 @@
   box-shadow: 0 0 6px currentColor;
 }
 .kl-pill--online {
-  color: var(--green-500); border-color: var(--green-700);
+  color: var(--text-success); border-color: var(--green-700);
   background: rgba(0, 232, 145, 0.05);
 }
 .kl-pill--online .kl-pill__dot { animation: kl-pulse 1.4s ease-in-out infinite; }
@@ -101,7 +101,7 @@
 }
 .kl-pill--idle .kl-pill__dot { box-shadow: none; opacity: 0.6; }
 .kl-pill--busy {
-  color: var(--cyan-300); border-color: var(--cyan-700);
+  color: var(--text-signal); border-color: var(--cyan-700);
   background: var(--accent-tint-soft);
 }
 .kl-pill--busy .kl-pill__dot { animation: kl-pulse 0.8s linear infinite; }
@@ -120,7 +120,7 @@
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--bg-elevated);
   border: 1px solid var(--cyan-700);
-  color: var(--cyan-300);
+  color: var(--text-signal);
   font-family: var(--font-mono);
   font-weight: 700;
   text-transform: uppercase;
@@ -135,3 +135,13 @@
 .kl-avatar--md { width: 32px; height: 32px; font-size: 12px; }
 .kl-avatar--lg { width: 48px; height: 48px; font-size: 16px; }
 .kl-avatar__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ─── SNOWLINE overrides — light-ramp status text and --bg-void-on-accent
+   are unreadable on white panels; step them to the approved -700 roles.
+   Scoped: dark default rendering is untouched. ─── */
+[data-theme="snowline"] .kl-badge--success { color: var(--text-success); }
+[data-theme="snowline"] .kl-badge--warn    { color: var(--text-warn); }
+[data-theme="snowline"] .kl-badge--danger  { color: var(--text-danger); }
+[data-theme="snowline"] .kl-badge--solid   { color: var(--text-inverse); }
+[data-theme="snowline"] .kl-pill--warn     { color: var(--text-warn); }
+[data-theme="snowline"] .kl-pill--error    { color: var(--text-danger); }

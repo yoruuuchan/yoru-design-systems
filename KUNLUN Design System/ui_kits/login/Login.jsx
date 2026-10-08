@@ -34,19 +34,19 @@ const loginStyles = {
     marginBottom: 4,
   },
   brandMark: {
-    width: 56, height: 56, background: "var(--cyan-500)", color: "var(--bg-void)",
+    width: 56, height: 56, background: "var(--accent)", color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)", display: "grid", placeItems: "center",
     fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 28,
     boxShadow: "var(--glow-cyan-md)", marginBottom: 4,
   },
   brandWord: {
     fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 32,
-    letterSpacing: "var(--tracking-widest)", color: "var(--neutral-50)",
+    letterSpacing: "var(--tracking-widest)", color: "var(--text-primary)",
     textShadow: "var(--text-glow-cyan)",
   },
   brandCjk: {
     fontFamily: '"Noto Sans SC", sans-serif', fontSize: 13,
-    color: "var(--cyan-300)", letterSpacing: "0.6em",
+    color: "var(--text-signal)", letterSpacing: "0.6em",
   },
   brandMeta: { fontSize: 10, color: "var(--text-tertiary)", letterSpacing: "var(--tracking-wider)" },
   footer: {
@@ -121,7 +121,7 @@ function Login() {
                 &gt; HANDSHAKE OK
               </div>
               <div style={{fontSize:13, color:"var(--text-secondary)", lineHeight:1.6}}>
-                Operator <span style={{color:"var(--cyan-300)"}}>OP-{nodeId}</span> authorized.
+                Operator <span style={{color:"var(--text-signal)"}}>OP-{nodeId}</span> authorized.
                 Boot sequence complete. Redirecting to core dashboard.
               </div>
               <ProgressBar variant="success" label="REDIRECT" value={100} />

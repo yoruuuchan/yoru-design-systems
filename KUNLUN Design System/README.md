@@ -3,7 +3,7 @@
 > **Industrial sci-fi terminal aesthetic for the web.**
 > Chamfered surfaces. Cyan-glow signal. Mono-uppercase voice. Built to feel like an operations console for something massive and quiet.
 
-KUNLUN is a **dark-only** design system — all tokens assume a near-black background. When embedding KUNLUN inside a light-themed host, force `background: var(--bg-base)` and `color-scheme: dark` on the wrapper.
+KUNLUN ships **two themes**. The default is the void-dark console — all base tokens assume a near-black background. **SNOWLINE 雪线** (`data-theme="snowline"` on `<html>`, tokens in `tokens/snowline.css`) is the same console above the snowline: white instrument panels, blueprint grid, LCD terminals. Cyan stays the signal, amber/red stay warning/danger, and every brand rule (chamfers, mono, no purple, UPPERCASE labels, stepped motion) is unchanged.
 
 KUNLUN is a general-purpose web design system for landing pages, dashboards, AI chat surfaces, dev tools, and experimental creative work. Aesthetic reference: the 550-series quantum-computing consoles of *The Wandering Earth*, military HUD overlays, classic CRT terminals, and `bash`.
 
@@ -117,6 +117,7 @@ tokens/
   motion.css                     — durations, easings, keyframes
   base.css                       — resets, scrollbars, link defaults
   components.css                 — barrel @import of component CSS
+  snowline.css                   — SNOWLINE 雪线 light theme (scopes to [data-theme="snowline"])
 components/
   buttons/                       — Button, IconButton
   forms/                         — Input, Textarea, Select

@@ -136,3 +136,80 @@
   white-space: pre;
 }
 .kl-code__lines code { background: transparent; padding: 0; }
+
+/* ─── SNOWLINE LCD — the terminal, snowline edition. On the light bench the
+   darkroom CRT becomes a recessed liquid-crystal well set into the panel:
+   pale blue-grey glass, VT323 segment ink, visible scanlines, top glass
+   reflection (mirrors the approved proposal demo). Status ink per the
+   approved LCD palette: ok #0B6B4A / warn #8A5A00 / signal-link #00547A /
+   danger --red-700. Scoped; dark default rendering is byte-identical. ─── */
+[data-theme="snowline"] .kl-terminal {
+  background: var(--lcd-bg);
+  border-color: var(--border-strong);
+  box-shadow: var(--lcd-inset);
+  color: var(--lcd-ink);
+  font-family: var(--font-crt);
+  font-size: var(--text-lg);
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+}
+[data-theme="snowline"] .kl-terminal__body::before {
+  background: var(--bg-lcd-scanlines);
+}
+[data-theme="snowline"] .kl-terminal__body::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 120% 90% at 50% 0%, rgba(255, 255, 255, 0.28), transparent 55%);
+}
+[data-theme="snowline"] .kl-terminal__prompt {
+  color: #00547A;
+  font-weight: 700;
+  text-shadow: none;
+}
+[data-theme="snowline"] .kl-terminal__text          { color: var(--lcd-ink); }
+[data-theme="snowline"] .kl-terminal__text--muted   { color: var(--lcd-ink-dim); }
+[data-theme="snowline"] .kl-terminal__text--success { color: #0B6B4A; }
+[data-theme="snowline"] .kl-terminal__text--warn    { color: #8A5A00; }
+[data-theme="snowline"] .kl-terminal__text--error   { color: var(--red-700); text-shadow: none; }
+[data-theme="snowline"] .kl-terminal__text--user    { color: var(--lcd-ink); }
+[data-theme="snowline"] .kl-terminal__input-row {
+  background: var(--lcd-bg-deep);
+  border-top-color: var(--border-strong);
+}
+[data-theme="snowline"] .kl-terminal__input {
+  color: var(--lcd-ink);
+  caret-color: #00547A;
+}
+[data-theme="snowline"] .kl-terminal__caret {
+  background: #00547A;
+  box-shadow: none;
+}
+
+/* CodeBlock runs through the same LCD well — the proposal's rule is LCD,
+   not a dark island, for Terminal/CodeBlock alike. */
+[data-theme="snowline"] .kl-code {
+  background: var(--lcd-bg);
+  border-color: var(--border-strong);
+  box-shadow: var(--lcd-inset);
+  color: var(--lcd-ink);
+  font-family: var(--font-crt);
+  font-size: var(--text-lg);
+}
+[data-theme="snowline"] .kl-code__body { position: relative; }
+[data-theme="snowline"] .kl-code__body::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--bg-lcd-scanlines);
+  pointer-events: none;
+}
+[data-theme="snowline"] .kl-code__body::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 120% 90% at 50% 0%, rgba(255, 255, 255, 0.28), transparent 55%);
+}
+[data-theme="snowline"] .kl-code__gutter {
+  color: var(--lcd-ink-dim);
+  border-right-color: var(--border-strong);
+}

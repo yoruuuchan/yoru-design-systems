@@ -141,3 +141,19 @@
   background: var(--danger-tint); color: var(--red-300);
   border-color: var(--red-500); box-shadow: var(--glow-red-md);
 }
+
+/* ─── SNOWLINE overrides — accent-fill text, dark-island hovers, and
+   light-ramp danger text break on white panels. Scoped; dark untouched. ─── */
+[data-theme="snowline"] .kl-btn--primary { color: var(--text-inverse); }
+[data-theme="snowline"] .kl-btn--secondary:hover {
+  background: var(--accent-tint);
+  border-color: var(--border-signal);
+  color: var(--text-link);
+}
+[data-theme="snowline"] .kl-btn--danger:hover { color: var(--text-danger); }
+[data-theme="snowline"] .kl-iconbtn:hover {
+  background: var(--accent-tint);
+  border-color: var(--border-signal);
+  color: var(--text-link);
+}
+[data-theme="snowline"] .kl-iconbtn--danger:hover { color: var(--text-danger); }

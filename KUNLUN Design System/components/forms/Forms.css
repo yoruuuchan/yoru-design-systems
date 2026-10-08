@@ -121,7 +121,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0 10px;
-  color: var(--cyan-400);
+  color: var(--text-link);
   font-size: var(--text-xs);
   background: var(--accent-tint-soft);
   border-right: 1px solid var(--border);
@@ -130,4 +130,11 @@
 .kl-input-wrap__adornment--right {
   border-right: none;
   border-left: 1px solid var(--border);
+}
+
+/* ─── SNOWLINE overrides — cyan-400 select arrows are too faint on the
+   light inset well; step them to cyan-600. Scoped; dark untouched. ─── */
+[data-theme="snowline"] .kl-select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--cyan-600) 50%),
+                    linear-gradient(135deg, var(--cyan-600) 50%, transparent 50%);
 }

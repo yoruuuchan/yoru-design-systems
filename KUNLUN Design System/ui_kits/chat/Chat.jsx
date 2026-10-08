@@ -21,7 +21,7 @@ const chatStyles = {
   },
   brand: { display: "flex", alignItems: "center", gap: 10 },
   mark: {
-    width: 24, height: 24, background: "var(--cyan-500)", color: "var(--bg-void)",
+    width: 24, height: 24, background: "var(--accent)", color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)", display: "grid", placeItems: "center",
     fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 12,
     boxShadow: "var(--glow-cyan-sm)",
@@ -61,7 +61,7 @@ const chatStyles = {
   topbar: {
     padding: "12px 24px", borderBottom: "1px solid var(--border)",
     display: "flex", justifyContent: "space-between", alignItems: "center",
-    background: "rgba(13, 19, 32, 0.6)", backdropFilter: "blur(6px)",
+    background: "var(--chrome-strip, rgba(13, 19, 32, 0.6))", backdropFilter: "blur(6px)",
   },
   thread: { display: "flex", flexDirection: "column", gap: 6 },
   threadTitle: { fontFamily: "var(--font-display)", fontWeight: 700,
@@ -74,9 +74,9 @@ const chatStyles = {
   msgMeta: { display: "flex", gap: 10, alignItems: "baseline", marginBottom: 6,
              fontSize: 10, color: "var(--text-tertiary)",
              letterSpacing: "var(--tracking-wider)", textTransform: "uppercase" },
-  msgWho: { color: "var(--cyan-300)", textShadow: "var(--text-glow-cyan)", fontWeight: 600 },
+  msgWho: { color: "var(--text-signal)", textShadow: "var(--text-glow-cyan)", fontWeight: 600 },
   msgBody: { fontSize: 14, color: "var(--text-primary)", lineHeight: 1.65 },
-  msgBodyUser: { color: "var(--neutral-100)" },
+  msgBodyUser: { color: "var(--text-primary)" },
   msgBodyAi: { color: "var(--text-secondary)" },
 
   composer: {
@@ -146,10 +146,10 @@ function Message({ m }) {
     <div style={chatStyles.msgRow}>
       {isUser
         ? <Avatar initials="OP" size="md" />
-        : <Avatar size="md" style={{borderColor:"var(--amber-700)", color:"var(--amber-300)"}}>M</Avatar>}
+        : <Avatar size="md" style={{borderColor:"var(--amber-700)", color:"var(--text-warn)"}}>M</Avatar>}
       <div>
         <div style={chatStyles.msgMeta}>
-          <span style={{...chatStyles.msgWho, color: isUser ? "var(--cyan-300)" : "var(--amber-300)",
+          <span style={{...chatStyles.msgWho, color: isUser ? "var(--text-signal)" : "var(--text-warn)",
                         textShadow: isUser ? "var(--text-glow-cyan)" : "var(--text-glow-amber)"}}>
             {isUser ? "OPERATOR · OP-07" : "MOSS · v0.1.0"}
           </span>
@@ -262,10 +262,10 @@ function Chat() {
           {messages.map((m, i) => <Message key={i} m={m} />)}
           {thinking && (
             <div style={chatStyles.msgRow}>
-              <Avatar size="md" style={{borderColor:"var(--amber-700)", color:"var(--amber-300)"}}>M</Avatar>
+              <Avatar size="md" style={{borderColor:"var(--amber-700)", color:"var(--text-warn)"}}>M</Avatar>
               <div>
                 <div style={chatStyles.msgMeta}>
-                  <span style={{...chatStyles.msgWho, color: "var(--amber-300)", textShadow:"var(--text-glow-amber)"}}>MOSS · v0.1.0</span>
+                  <span style={{...chatStyles.msgWho, color: "var(--text-warn)", textShadow:"var(--text-glow-amber)"}}>MOSS · v0.1.0</span>
                   <span>thinking...</span>
                 </div>
                 <Loading label="// PROCESSING TELEMETRY" />

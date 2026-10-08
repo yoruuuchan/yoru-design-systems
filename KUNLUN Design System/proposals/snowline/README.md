@@ -8,9 +8,11 @@ LCD 屏：浅灰蓝液晶 + VT323 + 可见扫描线 + 内凹 bezel。页面同�
 
 ## Files
 
-- `tokens.css` — snow（基底）/ ink（文字）两条新 ramp + 全量 semantic remap + 光效重写 + LCD token
 - `palette.html` — 完整色卡：raw palette + semantic roles + HUD/texture/button states
 - `demo.html` — ops dashboard（对应 `ui_kits/dashboard` 的结构）
+- `ROLLOUT-NOTES.md` — 并入正式系统时的整合记录（审计、决策、偏差）
+
+tokens 已并入正式 `tokens/snowline.css`（proposal 目录保留为设计档案）。
 
 ## 关键判断
 
