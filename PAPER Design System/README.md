@@ -45,6 +45,8 @@ It is a second axis, orthogonal to `data-mode`: the mode still chooses the voice
 
 On the dark stock the grain flips from multiply to screen (silver-halide, not dirt), tape leaves kraft for washi, and the film base keeps its warm black — a contact sheet on a midnight page is a deliberate material contrast, not an oversight. The theme scopes the way a mode does, from `<html>` down to one figure. Tokens live in `tokens/midnight.css`, imported last in `styles.css`; the approved proposal is archived in `proposals/midnight/`.
 
+Midnight is a screen theme. Print pieces — the zine spread in `slides/08` and `templates/zine-spread/` — stay on the light editorial stock and carry no theme toggle; a deck meant for a projector may go midnight, a page meant for ink may not.
+
 ---
 
 ## Sources
