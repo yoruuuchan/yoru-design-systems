@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"KUNLUNDesignSystem_29e6df","components":[{"name":"Button","sourcePath":"components/buttons/Button.jsx"},{"name":"IconButton","sourcePath":"components/buttons/IconButton.jsx"},{"name":"Avatar","sourcePath":"components/data/Avatar.jsx"},{"name":"Badge","sourcePath":"components/data/Badge.jsx"},{"name":"StatusPill","sourcePath":"components/data/StatusPill.jsx"},{"name":"Tag","sourcePath":"components/data/Tag.jsx"},{"name":"Dialog","sourcePath":"components/feedback/Dialog.jsx"},{"name":"Loading","sourcePath":"components/feedback/Loading.jsx"},{"name":"ProgressBar","sourcePath":"components/feedback/ProgressBar.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"ToastStack","sourcePath":"components/feedback/Toast.jsx"},{"name":"Tooltip","sourcePath":"components/feedback/Tooltip.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"Panel","sourcePath":"components/surfaces/Panel.jsx"},{"name":"CodeBlock","sourcePath":"components/terminal/CodeBlock.jsx"},{"name":"Terminal","sourcePath":"components/terminal/Terminal.jsx"},{"name":"ChartCard","sourcePath":"components/viz/ChartCard.jsx"},{"name":"DataTable","sourcePath":"components/viz/DataTable.jsx"}],"sourceHashes":{"components/buttons/Button.jsx":"a7eeca1af718","components/buttons/IconButton.jsx":"9f7d58d15683","components/data/Avatar.jsx":"35e45126554b","components/data/Badge.jsx":"035688f236b2","components/data/StatusPill.jsx":"f589019a93f7","components/data/Tag.jsx":"f2b6852f8fe8","components/feedback/Dialog.jsx":"39de82a18e43","components/feedback/Loading.jsx":"a30345f3537b","components/feedback/ProgressBar.jsx":"13eedf4b61a7","components/feedback/Toast.jsx":"43b13120e3d9","components/feedback/Tooltip.jsx":"b5ae5e663c2c","components/forms/Input.jsx":"e5043e050c6d","components/forms/Select.jsx":"4a7726e63dd5","components/forms/Textarea.jsx":"d5b1c6963de9","components/navigation/Tabs.jsx":"c3fb94771ab5","components/surfaces/Card.jsx":"51df0e9904c6","components/surfaces/Panel.jsx":"3604f8ea9cb9","components/terminal/CodeBlock.jsx":"64101db5c1f1","components/terminal/Terminal.jsx":"fe6890a27d53","components/viz/ChartCard.jsx":"568a7abcdca9","components/viz/DataTable.jsx":"76dbd27f4846","ui_kits/chat/Chat.jsx":"9b2dad632347","ui_kits/dashboard/Dashboard.jsx":"20021a656f19","ui_kits/landing/Landing.jsx":"3dc6ab284d3f","ui_kits/login/Login.jsx":"b0839ec290fd","ui_kits/terminal/TerminalApp.jsx":"ecdab99775df"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"KUNLUNDesignSystem_29e6df","components":[{"name":"Button","sourcePath":"components/buttons/Button.jsx"},{"name":"IconButton","sourcePath":"components/buttons/IconButton.jsx"},{"name":"Avatar","sourcePath":"components/data/Avatar.jsx"},{"name":"Badge","sourcePath":"components/data/Badge.jsx"},{"name":"StatusPill","sourcePath":"components/data/StatusPill.jsx"},{"name":"Tag","sourcePath":"components/data/Tag.jsx"},{"name":"Dialog","sourcePath":"components/feedback/Dialog.jsx"},{"name":"Loading","sourcePath":"components/feedback/Loading.jsx"},{"name":"ProgressBar","sourcePath":"components/feedback/ProgressBar.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"ToastStack","sourcePath":"components/feedback/Toast.jsx"},{"name":"Tooltip","sourcePath":"components/feedback/Tooltip.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"Panel","sourcePath":"components/surfaces/Panel.jsx"},{"name":"CodeBlock","sourcePath":"components/terminal/CodeBlock.jsx"},{"name":"Terminal","sourcePath":"components/terminal/Terminal.jsx"},{"name":"ChartCard","sourcePath":"components/viz/ChartCard.jsx"},{"name":"DataTable","sourcePath":"components/viz/DataTable.jsx"}],"sourceHashes":{"components/buttons/Button.jsx":"a7eeca1af718","components/buttons/IconButton.jsx":"9f7d58d15683","components/data/Avatar.jsx":"35e45126554b","components/data/Badge.jsx":"035688f236b2","components/data/StatusPill.jsx":"f589019a93f7","components/data/Tag.jsx":"f2b6852f8fe8","components/feedback/Dialog.jsx":"39de82a18e43","components/feedback/Loading.jsx":"a30345f3537b","components/feedback/ProgressBar.jsx":"13eedf4b61a7","components/feedback/Toast.jsx":"43b13120e3d9","components/feedback/Tooltip.jsx":"b5ae5e663c2c","components/forms/Input.jsx":"e5043e050c6d","components/forms/Select.jsx":"4a7726e63dd5","components/forms/Textarea.jsx":"d5b1c6963de9","components/navigation/Tabs.jsx":"c3fb94771ab5","components/surfaces/Card.jsx":"51df0e9904c6","components/surfaces/Panel.jsx":"3604f8ea9cb9","components/terminal/CodeBlock.jsx":"64101db5c1f1","components/terminal/Terminal.jsx":"fe6890a27d53","components/viz/ChartCard.jsx":"568a7abcdca9","components/viz/DataTable.jsx":"76dbd27f4846","ui_kits/chat/Chat.jsx":"185c0318c86d","ui_kits/dashboard/Dashboard.jsx":"c938031506ef","ui_kits/landing/Landing.jsx":"6174d8bf7d58","ui_kits/login/Login.jsx":"b8e212890613","ui_kits/terminal/TerminalApp.jsx":"0685e81bbc47"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -867,8 +867,8 @@ const chatStyles = {
   mark: {
     width: 24,
     height: 24,
-    background: "var(--cyan-500)",
-    color: "var(--bg-void)",
+    background: "var(--accent)",
+    color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)",
     display: "grid",
     placeItems: "center",
@@ -955,7 +955,7 @@ const chatStyles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    background: "rgba(13, 19, 32, 0.6)",
+    background: "var(--chrome-strip, rgba(13, 19, 32, 0.6))",
     backdropFilter: "blur(6px)"
   },
   thread: {
@@ -1001,7 +1001,7 @@ const chatStyles = {
     textTransform: "uppercase"
   },
   msgWho: {
-    color: "var(--cyan-300)",
+    color: "var(--text-signal)",
     textShadow: "var(--text-glow-cyan)",
     fontWeight: 600
   },
@@ -1011,7 +1011,7 @@ const chatStyles = {
     lineHeight: 1.65
   },
   msgBodyUser: {
-    color: "var(--neutral-100)"
+    color: "var(--text-primary)"
   },
   msgBodyAi: {
     color: "var(--text-secondary)"
@@ -1140,14 +1140,14 @@ function Message({
     size: "md",
     style: {
       borderColor: "var(--amber-700)",
-      color: "var(--amber-300)"
+      color: "var(--text-warn)"
     }
   }, "M"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: chatStyles.msgMeta
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       ...chatStyles.msgWho,
-      color: isUser ? "var(--cyan-300)" : "var(--amber-300)",
+      color: isUser ? "var(--text-signal)" : "var(--text-warn)",
       textShadow: isUser ? "var(--text-glow-cyan)" : "var(--text-glow-amber)"
     }
   }, isUser ? "OPERATOR · OP-07" : "MOSS · v0.1.0"), /*#__PURE__*/React.createElement("span", null, m.at), !isUser && /*#__PURE__*/React.createElement(Badge, {
@@ -1308,14 +1308,14 @@ function Chat() {
     size: "md",
     style: {
       borderColor: "var(--amber-700)",
-      color: "var(--amber-300)"
+      color: "var(--text-warn)"
     }
   }, "M"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: chatStyles.msgMeta
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       ...chatStyles.msgWho,
-      color: "var(--amber-300)",
+      color: "var(--text-warn)",
       textShadow: "var(--text-glow-amber)"
     }
   }, "MOSS \xB7 v0.1.0"), /*#__PURE__*/React.createElement("span", null, "thinking...")), /*#__PURE__*/React.createElement(Loading, {
@@ -1409,8 +1409,8 @@ const dashStyles = {
   mark: {
     width: 28,
     height: 28,
-    background: "var(--cyan-500)",
-    color: "var(--bg-void)",
+    background: "var(--accent)",
+    color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)",
     display: "grid",
     placeItems: "center",
@@ -1427,7 +1427,7 @@ const dashStyles = {
   },
   brandSub: {
     fontSize: 9,
-    color: "var(--cyan-300)",
+    color: "var(--text-signal)",
     letterSpacing: "0.4em"
   },
   nav: {
@@ -1465,7 +1465,7 @@ const dashStyles = {
   },
   navGlyph: {
     width: 16,
-    color: "var(--cyan-400)",
+    color: "var(--text-link)",
     fontSize: 13
   },
   sideFoot: {
@@ -1483,7 +1483,7 @@ const dashStyles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    background: "rgba(13, 19, 32, 0.55)",
+    background: "var(--chrome-strip, rgba(13, 19, 32, 0.55))",
     backdropFilter: "blur(6px)"
   },
   crumbs: {
@@ -1708,9 +1708,9 @@ function NavItem({
 function Activity() {
   const tones = {
     info: "var(--text-secondary)",
-    ok: "var(--green-500)",
-    warn: "var(--amber-500)",
-    error: "var(--red-500)"
+    ok: "var(--text-success)",
+    warn: "var(--text-warn)",
+    error: "var(--text-danger)"
   };
   return /*#__PURE__*/React.createElement(Panel, {
     title: "ACTIVITY",
@@ -1746,7 +1746,7 @@ function Activity() {
     }
   }, a.t), /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "var(--cyan-400)",
+      color: "var(--text-link)",
       fontWeight: 600,
       letterSpacing: "var(--tracking-wide)"
     }
@@ -2048,7 +2048,7 @@ const landingStyles = {
     alignItems: "center",
     padding: "16px 48px",
     borderBottom: "1px solid var(--border)",
-    background: "rgba(6, 8, 13, 0.6)",
+    background: "var(--chrome-strip, rgba(6, 8, 13, 0.6))",
     backdropFilter: "blur(8px)"
   },
   navLogo: {
@@ -2059,8 +2059,8 @@ const landingStyles = {
   navMark: {
     width: 28,
     height: 28,
-    background: "var(--cyan-500)",
-    color: "var(--bg-void)",
+    background: "var(--accent)",
+    color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)",
     display: "grid",
     placeItems: "center",
@@ -2074,12 +2074,12 @@ const landingStyles = {
     fontWeight: 900,
     fontSize: 18,
     letterSpacing: "var(--tracking-widest)",
-    color: "var(--neutral-50)"
+    color: "var(--text-primary)"
   },
   navCjk: {
     fontFamily: '"Noto Sans SC", sans-serif',
     fontSize: 12,
-    color: "var(--cyan-300)",
+    color: "var(--text-signal)",
     letterSpacing: "0.3em"
   },
   navLinks: {
@@ -2111,7 +2111,7 @@ const landingStyles = {
     fontWeight: 600,
     letterSpacing: "var(--tracking-widest)",
     textTransform: "uppercase",
-    color: "var(--cyan-300)",
+    color: "var(--text-signal)",
     textShadow: "var(--text-glow-cyan)"
   },
   eyebrowTick: {
@@ -2125,7 +2125,7 @@ const landingStyles = {
     lineHeight: 0.95,
     letterSpacing: "-0.01em",
     margin: 0,
-    background: "linear-gradient(180deg, var(--neutral-50) 30%, var(--cyan-400) 110%)",
+    background: "linear-gradient(180deg, var(--text-primary) 30%, var(--accent) 110%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     textShadow: "var(--text-glow-cyan)"
@@ -2140,7 +2140,7 @@ const landingStyles = {
   cjkTitle: {
     fontFamily: '"Noto Sans SC", sans-serif',
     fontSize: 18,
-    color: "var(--cyan-300)",
+    color: "var(--text-signal)",
     letterSpacing: "0.5em",
     marginTop: 16
   },
@@ -2203,7 +2203,7 @@ const landingStyles = {
   featIdx: {
     fontFamily: "var(--font-mono)",
     fontSize: 10,
-    color: "var(--cyan-400)",
+    color: "var(--text-link)",
     letterSpacing: "var(--tracking-widest)",
     marginBottom: 18,
     display: "flex",
@@ -2505,8 +2505,8 @@ const loginStyles = {
   brandMark: {
     width: 56,
     height: 56,
-    background: "var(--cyan-500)",
-    color: "var(--bg-void)",
+    background: "var(--accent)",
+    color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)",
     display: "grid",
     placeItems: "center",
@@ -2521,13 +2521,13 @@ const loginStyles = {
     fontWeight: 900,
     fontSize: 32,
     letterSpacing: "var(--tracking-widest)",
-    color: "var(--neutral-50)",
+    color: "var(--text-primary)",
     textShadow: "var(--text-glow-cyan)"
   },
   brandCjk: {
     fontFamily: '"Noto Sans SC", sans-serif',
     fontSize: 13,
-    color: "var(--cyan-300)",
+    color: "var(--text-signal)",
     letterSpacing: "0.6em"
   },
   brandMeta: {
@@ -2641,7 +2641,7 @@ function Login() {
     }
   }, "Operator ", /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "var(--cyan-300)"
+      color: "var(--text-signal)"
     }
   }, "OP-", nodeId), " authorized. Boot sequence complete. Redirecting to core dashboard."), /*#__PURE__*/React.createElement(ProgressBar, {
     variant: "success",
@@ -2740,7 +2740,7 @@ const termStyles = {
     display: "grid",
     gridTemplateColumns: "240px 1fr",
     gridTemplateRows: "auto 1fr auto",
-    background: "var(--bg-void)",
+    background: "var(--kl-term-page, var(--bg-void))",
     color: "var(--text-primary)",
     fontFamily: "var(--font-mono)",
     overflow: "hidden"
@@ -2763,8 +2763,8 @@ const termStyles = {
   mark: {
     width: 26,
     height: 26,
-    background: "var(--cyan-500)",
-    color: "var(--bg-void)",
+    background: "var(--accent)",
+    color: "var(--text-inverse)",
     clipPath: "var(--clip-chamfer-all-md)",
     display: "grid",
     placeItems: "center",
@@ -2820,7 +2820,7 @@ const termStyles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    background: "rgba(13, 19, 32, 0.6)"
+    background: "var(--chrome-strip, rgba(13, 19, 32, 0.6))"
   },
   pathRow: {
     display: "flex",
@@ -3127,14 +3127,14 @@ function TerminalApp() {
     style: termStyles.statusGroup
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "var(--cyan-300)",
+      color: "var(--text-signal)",
       textShadow: "var(--text-glow-cyan)"
     }
   }, "\u25CF tty-07"), /*#__PURE__*/React.createElement("span", null, "OP-07 @ NODE-07"), /*#__PURE__*/React.createElement("span", null, "SECTOR-A \xB7 CORE-9")), /*#__PURE__*/React.createElement("div", {
     style: termStyles.statusGroup
   }, /*#__PURE__*/React.createElement("span", null, "UTF-8"), /*#__PURE__*/React.createElement("span", null, "BASH 5.2"), /*#__PURE__*/React.createElement("span", null, "UPLINK 8.4ms"), /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "var(--green-500)"
+      color: "var(--text-success)"
     }
   }, "\u25CF NOMINAL"), /*#__PURE__*/React.createElement("span", null, "21:04:55"))));
 }
