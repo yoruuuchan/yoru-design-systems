@@ -105,11 +105,12 @@ Screenshots in `C:/Users/15877/AppData/Local/Temp/theme-rollout-yozora/`:
 
 ## Open questions
 
-- Home screen decorations (`glass-blob.svg`, `droplets.svg` at 0.5–0.55 opacity)
-  glow bright at night; the approved demo has a calmer sky. Dimming them needs an
-  approved opacity value — not improvised.
-- Switch off-track (`--neutral-300`) and Dialog/Button bespoke blurs were left
-  as-is; if the night look wants them tuned, that needs new approved values.
+- RESOLVED 2026-10-08 — Home screen decorations (`glass-blob.svg`, `droplets.svg`
+  at 0.5–0.55 opacity) glow bright at night: user reviewed a three-way
+  comparison (keep / dim to ~60% / hide) and chose KEEP. No change.
+- RESOLVED 2026-10-08 — Switch off-track now has an approved night treatment:
+  `--aoz-switch-off-track: var(--night-500)` + subtle stroke inset, via fallback
+  hook in `tokens/yozora-overrides.css`. Dialog/Button bespoke blurs remain as-is.
 - Badge/Tag `accent` soft text maps to `--moon-300`; `--glass-bg-sun` alias kept
   (proposal's own open question — alias kept for compatibility).
 - Toggle click behavior verified by code path + both URL-param states; the click
