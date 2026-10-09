@@ -201,3 +201,27 @@ file:// 下被禁；templates 的 support.js 还要 fetch 兄弟文件），head
    autocrlf=true 的机器上 kits/cards 永远渲染不了。改根目录文件超出本次授权。
 6. `_ds_bundle.js` 的 sourceHashes 与 `_ds_manifest.json`（globalCssPaths 未含
    midnight.css）需由 lead 的 ds 工具重新生成（前一轮已记录，仍然有效）。
+
+## 决议（2026-10-09）
+
+- **RESOLVED 2026-10-09 — `tokens/color.css` 已退役**（上面第 4 条）。退役前把
+  两个状态都实测了一遍，确认它唯一的活效果就是 analog 作用域的 `--text-body`：
+  两个 analog 模板（ZineSpread / PortfolioIndex）正文墨色 `#403C34` → `#26241E`，
+  打在 `#EDE6D7` 纸上的对比度 8.83:1 → 12.49:1；纸张底色、字体、字号、其余
+  表面色全部不变。用户看了左右同框对比后选**较深的一边**，即接受 `#26241E`。
+  顺带拆掉一颗地雷：在 `data-mode` 作用域里 `--border-hair` 曾被 color.css 从
+  `1px`（space.css）覆写成颜色 `#CDC3A9`，`--rule-weight` 因此也变成颜色——
+  今天没有消费者所以是哑的，将来会用错。`--text-quiet` / `--caption` 两个旧名
+  在 PAPER 里零引用。
+  5 个 `ds-base.js` 改为只挂 `styles.css`，同时删掉那里 404 的 `tokens/fonts.css`。
+  midnight + analog 组合已复测：正文 `#D9DFEA` 配 noir 底 `#1A2130`，glue 仍生效
+  （midnight.css 自身已在 midnight 作用域声明 `--text-body`，glue 那一行现在起
+  「守卫」作用，注释已同步更新）。
+- **RESOLVED 2026-10-09 — 上面第 6 条已处理**：`globalCssPaths` 补进了
+  `tokens/midnight.css` 与三张自托管字体表；`_ds_bundle.js` 的 sourceHashes 全部
+  按 git LF 字节重算（PAPER 41/41 与源文件一致）。
+- 上面第 5 条（`.gitattributes`）无需再议：根 `.gitattributes` 已存在并锁了
+  `**/assets/vendor/*.js text eol=lf`；全仓库 108 个 SRI 摘要已按 LF 字节重算
+  且逐条复核通过。
+- 上面第 3 条（SlideDeck 的 midnight 行为「deck 是否应翻 noir」）**仍未拍板**，
+  保持原样。

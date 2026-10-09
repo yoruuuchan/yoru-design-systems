@@ -104,13 +104,14 @@
    DESCENDANT of the midnight scope — e.g. <html data-theme="midnight"> with
    <body data-mode="analog"> — the mode's own surface assignments win over
    inheritance and would keep the page light. Re-point the three light surfaces
-   to the approved midnight stock so the theme owns paper. --text-body joins
-   them because the legacy tokens/color.css (still loaded by every template's
-   ds-base.js) pins --text-body:var(--ink-1) on [data-mode="analog"] itself —
-   warm charcoal, unreadable on noir. Mode voice (label font/tracking, figure
-   tilt, plate shadow, photo tone, grain level, warm muted/faint ink) is
-   deliberately kept. data-mode="dark" is excluded: its film-base semantics
-   stay unchanged. */
+   to the approved midnight stock so the theme owns paper. --text-body is pinned
+   here for the same reason: a declaration on the mode scope beats inheritance,
+   so any mode that set it would keep warm charcoal ink on noir. (Midnight
+   already sets it at the midnight scope, so today this line restates the
+   approved value rather than rescuing it; it stays as the guard.) Mode voice
+   (label font/tracking, figure tilt, plate shadow, photo tone, grain level,
+   warm muted/faint ink) is deliberately kept. data-mode="dark" is excluded: its
+   film-base semantics stay unchanged. */
 [data-theme="midnight"] [data-mode="editorial"],
 [data-theme="midnight"] [data-mode="analog"] {
   --surface-page:   var(--noir-200);
