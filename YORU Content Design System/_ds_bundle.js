@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"YORUContentDesignSystem_a0b73e","components":[{"name":"Callout","sourcePath":"components/blocks/Callout.jsx"},{"name":"CodeBlock","sourcePath":"components/blocks/CodeBlock.jsx"},{"name":"CompareTable","sourcePath":"components/blocks/CompareTable.jsx"},{"name":"MarginNote","sourcePath":"components/blocks/MarginNote.jsx"},{"name":"PromptBlock","sourcePath":"components/blocks/PromptBlock.jsx"},{"name":"Quote","sourcePath":"components/blocks/Quote.jsx"},{"name":"ReferenceList","sourcePath":"components/blocks/ReferenceList.jsx"},{"name":"StepList","sourcePath":"components/blocks/StepList.jsx"},{"name":"CoverOverprint","sourcePath":"components/covers/CoverOverprint.jsx"},{"name":"CoverType","sourcePath":"components/covers/CoverType.jsx"},{"name":"EndCard","sourcePath":"components/covers/EndCard.jsx"},{"name":"Diagram","sourcePath":"components/diagram/Diagram.jsx"},{"name":"DiagramAnnotation","sourcePath":"components/diagram/DiagramAnnotation.jsx"},{"name":"DiagramEdge","sourcePath":"components/diagram/DiagramEdge.jsx"},{"name":"DiagramGroup","sourcePath":"components/diagram/DiagramGroup.jsx"},{"name":"DiagramLegend","sourcePath":"components/diagram/DiagramLegend.jsx"},{"name":"DiagramNode","sourcePath":"components/diagram/DiagramNode.jsx"},{"name":"GEO","sourcePath":"components/diagram/diagramLayout.js"},{"name":"GEO_COMPACT","sourcePath":"components/diagram/diagramLayout.js"},{"name":"SectionMark","sourcePath":"components/labels/SectionMark.jsx"},{"name":"StatusLabel","sourcePath":"components/labels/StatusLabel.jsx"},{"name":"Tag","sourcePath":"components/labels/Tag.jsx"},{"name":"Figure","sourcePath":"components/media/Figure.jsx"},{"name":"MoonPhases","sourcePath":"components/page/Masthead.jsx"},{"name":"Masthead","sourcePath":"components/page/Masthead.jsx"},{"name":"Page","sourcePath":"components/page/Page.jsx"},{"name":"PageFooter","sourcePath":"components/page/PageFooter.jsx"},{"name":"Timeline","sourcePath":"components/timeline/Timeline.jsx"},{"name":"Body","sourcePath":"components/typography/Body.jsx"},{"name":"Caption","sourcePath":"components/typography/Caption.jsx"},{"name":"Emphasis","sourcePath":"components/typography/Emphasis.jsx"},{"name":"Heading","sourcePath":"components/typography/Heading.jsx"},{"name":"Lede","sourcePath":"components/typography/Lede.jsx"},{"name":"Marker","sourcePath":"components/typography/Marker.jsx"}],"sourceHashes":{"components/blocks/Callout.jsx":"877408a9fdba","components/blocks/CodeBlock.jsx":"991d7bf56873","components/blocks/CompareTable.jsx":"2bfaf2e80d0b","components/blocks/MarginNote.jsx":"575736dd653a","components/blocks/PromptBlock.jsx":"1de407871afc","components/blocks/Quote.jsx":"7fbbb149f327","components/blocks/ReferenceList.jsx":"516569a11060","components/blocks/StepList.jsx":"616cc04a2754","components/covers/CoverOverprint.jsx":"771f59a6c76b","components/covers/CoverType.jsx":"babe3cea9591","components/covers/EndCard.jsx":"1fb07aa856ca","components/diagram/Diagram.jsx":"fc729584b718","components/diagram/DiagramAnnotation.jsx":"b1d65e4bfbd9","components/diagram/DiagramEdge.jsx":"cee0ecd7982a","components/diagram/DiagramGroup.jsx":"83ba8476cc86","components/diagram/DiagramLegend.jsx":"92aa5fbb69f9","components/diagram/DiagramNode.jsx":"324433eaea54","components/diagram/diagramLayout.js":"dab956bbdb2d","components/labels/SectionMark.jsx":"f5d04c380326","components/labels/StatusLabel.jsx":"c14a68468207","components/labels/Tag.jsx":"29941149869a","components/media/Figure.jsx":"0f15d33c82a9","components/page/Masthead.jsx":"b234a705d14d","components/page/Page.jsx":"262c350929d7","components/page/PageFooter.jsx":"d508f443de13","components/timeline/Timeline.jsx":"06d610e6f935","components/typography/Body.jsx":"06b6e0ecefbe","components/typography/Caption.jsx":"9c03531dd985","components/typography/Emphasis.jsx":"221fca9bd91a","components/typography/Heading.jsx":"276e63b78e0e","components/typography/Lede.jsx":"2155be167e3f","components/typography/Marker.jsx":"7414ec7cf404","ui_kits/diagrams/examples.js":"d7915d86c379","ui_kits/diagrams/gallery.jsx":"f7f044a156a5","ui_kits/wechat/article.jsx":"f14ccb2847bf","ui_kits/xiaohongshu/blocks.jsx":"ea4e7c29bd77","ui_kits/xiaohongshu/content.js":"403606a81d2f","ui_kits/xiaohongshu/paginate.jsx":"9ee3c30494e8","ui_kits/xiaohongshu/workbench.jsx":"cdb199245815"},"inlinedExternals":[],"unexposedExports":[{"name":"arrowPath","sourcePath":"components/diagram/diagramLayout.js"},{"name":"boxes","sourcePath":"components/diagram/diagramLayout.js"},{"name":"cellX","sourcePath":"components/diagram/diagramLayout.js"},{"name":"cellY","sourcePath":"components/diagram/diagramLayout.js"},{"name":"cnDate","sourcePath":"components/page/Masthead.jsx"},{"name":"cnIssue","sourcePath":"components/page/Masthead.jsx"},{"name":"cnPage","sourcePath":"components/page/Masthead.jsx"},{"name":"grid","sourcePath":"components/diagram/diagramLayout.js"},{"name":"labelPoint","sourcePath":"components/diagram/diagramLayout.js"},{"name":"layered","sourcePath":"components/diagram/diagramLayout.js"},{"name":"routeEdge","sourcePath":"components/diagram/diagramLayout.js"},{"name":"runLayout","sourcePath":"components/diagram/diagramLayout.js"},{"name":"spanH","sourcePath":"components/diagram/diagramLayout.js"},{"name":"spanW","sourcePath":"components/diagram/diagramLayout.js"},{"name":"stack","sourcePath":"components/diagram/diagramLayout.js"},{"name":"tree","sourcePath":"components/diagram/diagramLayout.js"}]} */
+/* @ds-bundle: {"format":4,"namespace":"YORUContentDesignSystem_a0b73e","components":[{"name":"Callout","sourcePath":"components/blocks/Callout.jsx"},{"name":"CodeBlock","sourcePath":"components/blocks/CodeBlock.jsx"},{"name":"CompareTable","sourcePath":"components/blocks/CompareTable.jsx"},{"name":"MarginNote","sourcePath":"components/blocks/MarginNote.jsx"},{"name":"PromptBlock","sourcePath":"components/blocks/PromptBlock.jsx"},{"name":"Quote","sourcePath":"components/blocks/Quote.jsx"},{"name":"ReferenceList","sourcePath":"components/blocks/ReferenceList.jsx"},{"name":"StepList","sourcePath":"components/blocks/StepList.jsx"},{"name":"CoverOverprint","sourcePath":"components/covers/CoverOverprint.jsx"},{"name":"CoverType","sourcePath":"components/covers/CoverType.jsx"},{"name":"EndCard","sourcePath":"components/covers/EndCard.jsx"},{"name":"Diagram","sourcePath":"components/diagram/Diagram.jsx"},{"name":"DiagramAnnotation","sourcePath":"components/diagram/DiagramAnnotation.jsx"},{"name":"DiagramEdge","sourcePath":"components/diagram/DiagramEdge.jsx"},{"name":"DiagramGroup","sourcePath":"components/diagram/DiagramGroup.jsx"},{"name":"DiagramLegend","sourcePath":"components/diagram/DiagramLegend.jsx"},{"name":"DiagramNode","sourcePath":"components/diagram/DiagramNode.jsx"},{"name":"GEO","sourcePath":"components/diagram/diagramLayout.js"},{"name":"GEO_COMPACT","sourcePath":"components/diagram/diagramLayout.js"},{"name":"SectionMark","sourcePath":"components/labels/SectionMark.jsx"},{"name":"StatusLabel","sourcePath":"components/labels/StatusLabel.jsx"},{"name":"Tag","sourcePath":"components/labels/Tag.jsx"},{"name":"Figure","sourcePath":"components/media/Figure.jsx"},{"name":"MoonPhases","sourcePath":"components/page/Masthead.jsx"},{"name":"Masthead","sourcePath":"components/page/Masthead.jsx"},{"name":"Page","sourcePath":"components/page/Page.jsx"},{"name":"PageFooter","sourcePath":"components/page/PageFooter.jsx"},{"name":"Timeline","sourcePath":"components/timeline/Timeline.jsx"},{"name":"Body","sourcePath":"components/typography/Body.jsx"},{"name":"Caption","sourcePath":"components/typography/Caption.jsx"},{"name":"Emphasis","sourcePath":"components/typography/Emphasis.jsx"},{"name":"Heading","sourcePath":"components/typography/Heading.jsx"},{"name":"Lede","sourcePath":"components/typography/Lede.jsx"},{"name":"Marker","sourcePath":"components/typography/Marker.jsx"}],"sourceHashes":{"components/blocks/Callout.jsx":"877408a9fdba","components/blocks/CodeBlock.jsx":"991d7bf56873","components/blocks/CompareTable.jsx":"2bfaf2e80d0b","components/blocks/MarginNote.jsx":"575736dd653a","components/blocks/PromptBlock.jsx":"1de407871afc","components/blocks/Quote.jsx":"7fbbb149f327","components/blocks/ReferenceList.jsx":"516569a11060","components/blocks/StepList.jsx":"af5451503125","components/covers/CoverOverprint.jsx":"ba4b692c0620","components/covers/CoverType.jsx":"babe3cea9591","components/covers/EndCard.jsx":"1fb07aa856ca","components/diagram/Diagram.jsx":"fc729584b718","components/diagram/DiagramAnnotation.jsx":"b1d65e4bfbd9","components/diagram/DiagramEdge.jsx":"cee0ecd7982a","components/diagram/DiagramGroup.jsx":"83ba8476cc86","components/diagram/DiagramLegend.jsx":"92aa5fbb69f9","components/diagram/DiagramNode.jsx":"324433eaea54","components/diagram/diagramLayout.js":"dab956bbdb2d","components/labels/SectionMark.jsx":"f5d04c380326","components/labels/StatusLabel.jsx":"c14a68468207","components/labels/Tag.jsx":"29941149869a","components/media/Figure.jsx":"70723bd2810a","components/page/Masthead.jsx":"b234a705d14d","components/page/Page.jsx":"663528140024","components/page/PageFooter.jsx":"3a8efc7c36a2","components/timeline/Timeline.jsx":"06d610e6f935","components/typography/Body.jsx":"06b6e0ecefbe","components/typography/Caption.jsx":"9c03531dd985","components/typography/Emphasis.jsx":"221fca9bd91a","components/typography/Heading.jsx":"276e63b78e0e","components/typography/Lede.jsx":"2155be167e3f","components/typography/Marker.jsx":"7414ec7cf404","ui_kits/diagrams/examples.js":"d7915d86c379","ui_kits/diagrams/gallery.jsx":"f7f044a156a5","ui_kits/wechat/article.jsx":"e1cd21e32963","ui_kits/xiaohongshu/blocks.jsx":"45cc018b623e","ui_kits/xiaohongshu/content.js":"8b7ffeffd293","ui_kits/xiaohongshu/paginate.jsx":"3fe30e0686b0","ui_kits/xiaohongshu/workbench.jsx":"be0220208afd"},"inlinedExternals":[],"unexposedExports":[{"name":"arrowPath","sourcePath":"components/diagram/diagramLayout.js"},{"name":"boxes","sourcePath":"components/diagram/diagramLayout.js"},{"name":"cellX","sourcePath":"components/diagram/diagramLayout.js"},{"name":"cellY","sourcePath":"components/diagram/diagramLayout.js"},{"name":"cnDate","sourcePath":"components/page/Masthead.jsx"},{"name":"cnIssue","sourcePath":"components/page/Masthead.jsx"},{"name":"cnPage","sourcePath":"components/page/Masthead.jsx"},{"name":"grid","sourcePath":"components/diagram/diagramLayout.js"},{"name":"labelPoint","sourcePath":"components/diagram/diagramLayout.js"},{"name":"layered","sourcePath":"components/diagram/diagramLayout.js"},{"name":"routeEdge","sourcePath":"components/diagram/diagramLayout.js"},{"name":"runLayout","sourcePath":"components/diagram/diagramLayout.js"},{"name":"spanH","sourcePath":"components/diagram/diagramLayout.js"},{"name":"spanW","sourcePath":"components/diagram/diagramLayout.js"},{"name":"stack","sourcePath":"components/diagram/diagramLayout.js"},{"name":"tree","sourcePath":"components/diagram/diagramLayout.js"}]} */
 
 (() => {
 
@@ -456,8 +456,12 @@ Object.assign(__ds_scope, { ReferenceList });
 // components/blocks/StepList.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* Numbered walkthrough，铅字房版：汉字编号 壹貳叁，宋体，变体深色。Steps are separated
-   by a hairline ABOVE each one — the numeral column itself is the structure. */
+/* Numbered walkthrough，铅字房版：汉字编号 壹贰叁，宋体，变体深色。Steps are separated
+   by a hairline ABOVE each one — the numeral column itself is the structure.
+   NOTE simplified formal digits only — 「贰」 and 「陆」, not 「貳」 / 「陸」.
+   Traditional forms sit outside GB2312, so they fall out of the pyftsubset
+   coverage the readme claims; the render-time character audit fires an error
+   the moment one shows up on a real page. */
 const CN_STEP = ["壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖", "拾"];
 function StepList({
   steps = [],
@@ -1815,7 +1819,6 @@ Object.assign(__ds_scope, { Tag });
 // components/media/Figure.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-
 /* Screenshot / image frame. Empty state is an explicit placeholder, never a fake image.
 
    `fit` decides what happens when the image and the frame disagree:
@@ -2127,10 +2130,28 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* Cover B — the "套印" cover.
 
-   No more giant corner卷号. The title prints twice; issueNumber is still
-   accepted (masthead + spine use cnIssue) but the cover renders none of its
-   own. Optional cover image sits under the title as a quiet Figure. See
-   the source jsx header for the full rationale. */
+   The title prints twice: a solid ink pass at z-index 2, and a pale accent
+   pass 0.08em above and 0.11em to the right (relative to --fs-cover),
+   mix-blend-mode:multiply so the two pass through each other rather than
+   fighting for the eye. It reads as a riso print that came off the press a
+   hair misaligned.
+
+   No more giant corner卷号. Earlier revisions rendered `issueNumber` as a
+   4.6× monster汉字 cropped by the page edge — worked for high-stroke digits,
+   collapsed to a single-stroke shard for 一 / 二 / 三 / 十, and the reader
+   never saw a number. The卷号 still lives — in the masthead and the spine
+   (both use cnIssue) — the cover just doesn't try to be its billboard.
+
+   Optional cover image: `image` fills the space that used to be dominated by
+   the corner graphic. Frame treatment stays quiet (thin border, --radius-media,
+   no shadow) so the套印 title remains the loudest thing on the page. Ratio
+   defaults to 16 / 10; pass `imageRatio` to override, `imageCaption` for a
+   short line under the frame.
+
+   The masthead is identical to interior pages: 月相 + 汉字页码 + 文武线.
+   `column`/`date`/`issueNumber` are still accepted (workbench passes them,
+   spine string uses them) but the cover renders none of them itself; the date
+   lives in the Page spine, the卷号 in the masthead page-number pair. */
 function CoverOverprint({
   variant = "signal",
   size = "1242x1656",
@@ -3933,20 +3954,47 @@ function Article({
     }
   }, /*#__PURE__*/React.createElement("span", null, post.issue, " \xB7 \u8F6C\u8F7D\u8BF7\u6CE8\u660E\u51FA\u5904"))));
 }
+
+/* Range-selection rich-text copy.
+   `navigator.clipboard.writeText(html)` writes text/plain — pasting into the
+   WeChat editor drops a wall of HTML source. What the editor wants is
+   text/html, and the most compatible way to hand it that is to select real
+   DOM and call execCommand("copy") — the browser fills BOTH text/plain and
+   text/html from the live selection. Modern `ClipboardItem` with a Blob is
+   cleaner in theory but flakier against the WeChat editor's paste path in
+   practice. The container is off-screen (opacity/pointer-events keep it out
+   of layout & interaction), inserted just long enough to select and copy. */
+function copyHtmlAsRichText(html) {
+  const holder = document.createElement("div");
+  holder.setAttribute("aria-hidden", "true");
+  holder.style.cssText = "position:fixed;left:-99999px;top:0;opacity:0;pointer-events:none;user-select:text";
+  holder.innerHTML = html;
+  document.body.appendChild(holder);
+  const range = document.createRange();
+  range.selectNodeContents(holder);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  let ok = false;
+  try {
+    ok = document.execCommand("copy");
+  } catch {
+    ok = false;
+  }
+  sel.removeAllRanges();
+  document.body.removeChild(holder);
+  return ok;
+}
 function WeChatKit() {
   const post = window.YORU_POST;
   const [variant, setVariant] = React.useState(post.variant);
   const [width, setWidth] = React.useState(677);
   const [copied, setCopied] = React.useState("");
-  const copy = async () => {
+  const copy = () => {
     const html = inlineStyles(document.getElementById("yoru-article"));
-    try {
-      await navigator.clipboard.writeText(html);
-      setCopied("已复制 " + Math.round(html.length / 1024) + "KB 行内样式 HTML");
-    } catch (e) {
-      setCopied("复制失败，请手动导出");
-    }
-    setTimeout(() => setCopied(""), 2600);
+    const ok = copyHtmlAsRichText(html);
+    setCopied(ok ? "已复制富文本 · " + Math.round(html.length / 1024) + "KB · 直接粘贴到公众号编辑器" : "复制失败，请用键盘复制屏幕上选中的部分");
+    setTimeout(() => setCopied(""), 3200);
   };
   const btn = on => ({
     padding: "6px 12px",
@@ -4085,8 +4133,73 @@ Object.assign(window, {
 
 // ui_kits/xiaohongshu/blocks.jsx
 try { (() => {
-/* Maps the content stream onto YORU components. The only place block types are interpreted. */
+/* Maps the content stream onto YORU components. The only place block types are interpreted.
+   The written contract for blocks[] lives in README.md 「内容契约」—— 改这里就要改那里。 */
 const YB = window.YORUContentDesignSystem_a0b73e;
+
+/* ---- 行内标记 ----------------------------------------------------------------
+   正文里的两个签名动作没法用「一种 block」表达，它们是句子内部的东西：
+
+     ·四十多遍·      →  <Emphasis>  着重号
+     ==留下来的部分==  →  <Marker>    荧光笔
+
+   分隔符必须贴着字，里侧不许有空格。这条规则不是洁癖：`·` 是这套系统里合法的
+   正文字符（ICONOGRAPHY 允许 `—` `·` `/`），而它当分隔符用的时候永远写成 ` · `
+   带空格。贴着写才算标记，隔开写就是标点，两者不会打架。
+
+   code 与 prompt 的正文永不解析——那两块是读者要原样抄走的东西，里面出现
+   `==` 就得是 `==`。
+
+   @handle 处理：@ 后紧跟字母数字下划线的段（`@thsottiaux`）在中文正文里会
+   被浏览器按普通英文串处理，恰好碰到窄行时会从中间折行——出现「@thsot|tiaux」
+   这种切法，读者根本看不出这是同一个 handle。这里把 handle 包成 nowrap 的
+   span，让它整块换行到下一行。#话题标签不做特殊处理——按内容契约，话题标签
+   本来就不该进图。 */
+const RE_INLINE = () => /·(\S(?:[^·]*\S)?)·|==(\S(?:[^=]*\S)?)==|(@[A-Za-z0-9_]+)/g;
+function inline(text) {
+  if (typeof text !== "string") return text;
+  const re = RE_INLINE();
+  const out = [];
+  let last = 0,
+    m,
+    k = 0;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) out.push(text.slice(last, m.index));
+    if (m[1] != null) out.push(/*#__PURE__*/React.createElement(YB.Emphasis, {
+      key: k++
+    }, m[1]));else if (m[2] != null) out.push(/*#__PURE__*/React.createElement(YB.Marker, {
+      key: k++
+    }, m[2]));else out.push(/*#__PURE__*/React.createElement("span", {
+      key: k++,
+      style: {
+        whiteSpace: "nowrap"
+      }
+    }, m[3]));
+    last = m.index + m[0].length;
+  }
+  if (!out.length) return text;
+  if (last < text.length) out.push(text.slice(last));
+  return out;
+}
+
+/* Counts the marks in a string without rendering. The render check uses this to
+   enforce 「荧光笔每页一条」—— same regex, one copy. */
+function inlineMarks(text) {
+  const n = {
+    emphasis: 0,
+    marker: 0
+  };
+  if (typeof text !== "string") return n;
+  const re = RE_INLINE();
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    if (m[1] != null) n.emphasis++;else if (m[2] != null) n.marker++;
+    // m[3] is @handle — not a signature mark, don't count
+  }
+  return n;
+}
+
+/* ---- block 类型 -------------------------------------------------------------- */
 function YoruBlock({
   b
 }) {
@@ -4096,21 +4209,24 @@ function YoruBlock({
         level: b.level,
         mark: b.mark,
         kicker: b.kicker
-      }, b.text);
+      }, inline(b.text));
     case "lede":
-      return /*#__PURE__*/React.createElement(YB.Lede, null, b.text);
+      return /*#__PURE__*/React.createElement(YB.Lede, null, inline(b.text));
     case "body":
-      return /*#__PURE__*/React.createElement(YB.Body, null, b.text);
+      return /*#__PURE__*/React.createElement(YB.Body, {
+        size: b.size,
+        muted: b.muted
+      }, inline(b.text));
     case "callout":
       return /*#__PURE__*/React.createElement(YB.Callout, {
         kind: b.kind,
         title: b.title
-      }, b.text);
+      }, inline(b.text));
     case "quote":
       return /*#__PURE__*/React.createElement(YB.Quote, {
         cite: b.cite,
         source: b.source
-      }, b.text);
+      }, inline(b.text));
     case "code":
       return /*#__PURE__*/React.createElement(YB.CodeBlock, {
         filename: b.filename,
@@ -4124,7 +4240,11 @@ function YoruBlock({
     case "steps":
       return /*#__PURE__*/React.createElement(YB.StepList, {
         start: b.start,
-        steps: b.items
+        steps: b.items.map(s => ({
+          ...s,
+          title: inline(s.title),
+          body: inline(s.body)
+        }))
       });
     case "compare":
       return /*#__PURE__*/React.createElement(YB.CompareTable, {
@@ -4135,9 +4255,11 @@ function YoruBlock({
       });
     case "figure":
       return /*#__PURE__*/React.createElement(YB.Figure, {
+        treatment: b.treatment,
         ratio: b.ratio,
+        fit: b.fit,
         index: b.index,
-        caption: b.caption,
+        caption: inline(b.caption),
         src: b.src,
         placeholder: b.placeholder
       });
@@ -4145,22 +4267,88 @@ function YoruBlock({
       return /*#__PURE__*/React.createElement(YB.ReferenceList, {
         items: b.items
       });
+    /* 手写旁批 —— 签名动作 ④。float 不透传：浮动版走 position:absolute，在流里不占高度，
+       分页器会把它当成零高块，然后它会压到别的东西上。卡片上就用在流的这一版。 */
+    case "marginnote":
+      return /*#__PURE__*/React.createElement(YB.MarginNote, {
+        tone: b.tone,
+        tilt: b.tilt
+      }, inline(b.text));
+    /* 标签行 —— 与 CoverOverprint 封面那条标签横排同一个排法，没有新版式 */
+    case "labels":
+      return /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          gap: "var(--sp-3)"
+        }
+      }, (b.status || []).map((s, i) => /*#__PURE__*/React.createElement(YB.StatusLabel, {
+        key: "s" + i,
+        status: s.status
+      }, s.label)), (b.tags || []).map((t, i) => /*#__PURE__*/React.createElement(YB.Tag, {
+        key: "t" + i,
+        tone: b.tone,
+        filled: b.filled
+      }, t)));
+    case "section":
+      return /*#__PURE__*/React.createElement(YB.SectionMark, {
+        index: b.index,
+        total: b.total,
+        label: b.label,
+        size: b.size
+      });
+    case "timeline":
+      return /*#__PURE__*/React.createElement(YB.Timeline, {
+        items: b.items,
+        orientation: b.orientation,
+        title: b.title,
+        kicker: b.kicker,
+        caption: b.caption,
+        source: b.source
+      });
+    /* 图谱：卡片上一律 fit，按栏宽等比缩小、永不放大 */
+    case "diagram":
+      return /*#__PURE__*/React.createElement(YB.Diagram, {
+        nodes: b.nodes,
+        edges: b.edges,
+        groups: b.groups,
+        annotations: b.annotations,
+        layout: b.layout,
+        title: b.title,
+        kicker: b.kicker,
+        caption: b.caption,
+        source: b.source,
+        legend: b.legend,
+        grid: b.grid,
+        stack: b.stack,
+        fit: true
+      });
     default:
       return null;
   }
 }
 Object.assign(window, {
-  YoruBlock
+  YoruBlock,
+  inlineMarks
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/xiaohongshu/blocks.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/xiaohongshu/content.js
 try { (() => {
-/* One real post, written as a linear block stream. This is the shape the pagination engine eats. */
+/* One real post, written as a linear block stream. This is the shape the pagination engine eats.
+
+   contentMode 决定系统能不能动这些字：
+     "editable"  文案由系统一起产出 —— readme 的 CONTENT FUNDAMENTALS 全套生效
+                 （无 emoji、封面 ≤14 字、结尾两行封顶、中英之间留半角空格……）。
+     "verbatim"  用户给的定稿 —— 系统只做分页、排版、缩放媒体，
+                 **不得增删改任何文字 / 标点 / emoji / 顺序**，也不得顺手润色。
+                 装不下是排版要解决的问题，不是改字的理由；真要改，先问。 */
 window.YORU_POST = {
   variant: "lab",
+  contentMode: "editable",
   kicker: "VIBE CODING",
-  issue: "2026.08 / 04",
+  issue: "二〇二六年八月 · 第四期",
   cover: {
     column: "VIBE CODING",
     date: "2026.08",
@@ -4256,100 +4444,193 @@ window.YORU_POST = {
 // ui_kits/xiaohongshu/paginate.jsx
 try { (() => {
 /* Automatic pagination.
-   Renders the whole block stream once into an off-screen column of the real content width,
-   measures every block, then greedily fills pages. Headings never end a page alone.
 
-   Safety: every block gets a small padding on its measured height, and code/prompt
-   blocks get a larger one — the probe's height and the final rendered height can
-   drift by a few px per row from font-metric rounding, and the drift accumulates
-   with big multi-line blocks. Better to leave a bit of empty space at the bottom
-   of a page than to have the footer bleed into the code block. */
-function usePagination(blocks, {
-  variant,
-  size,
-  contentHeight,
-  contentWidth,
-  gap
-}) {
+   ONE RULE, and everything else follows from it: the DOM we measure IS the DOM
+   we render. The caller hands us the exact `pageProps` object it will spread onto
+   every content <Page>; we render one more <Page> off-screen with those same
+   props and read every layout number back off it — usable width, usable height,
+   block gap. Nothing about the page box is written down twice.
+
+   There is deliberately NO table of padding / gap / footer-height constants in
+   this file or in workbench.jsx. The previous version kept its own copy of those
+   four numbers. All four had drifted, and all four had drifted the same way, so
+   the paginator believed each page had ~230px more room than it really did and
+   real content overflowed every time. A second copy of a layout number is a bug
+   with a delay fuse.
+
+   Measuring column: the blocks are laid out inside the probe page's own content
+   column, in a child flex column with gap:0 and flex-shrink:0 (shrink off, or the
+   fixed-height page would squeeze them and we would measure the squeeze). Same
+   width, same cascade, same fonts as the final render, so a measured height is
+   the height the block will actually take. The gap arithmetic is ours because the
+   greedy fill needs per-block numbers.
+
+   Waiting: font metrics and image sizes decide block heights, so measurement is
+   held until document.fonts.ready resolves and every <img> in the probe has
+   settled. Measuring before that produces confident, wrong numbers. */
+
+const PG = window.YORUContentDesignSystem_a0b73e;
+
+/* Content keeps one full --flow-block clear of the footer strip. The footer is
+   absolutely positioned, so the column's own bottom padding does not know about
+   it; we read where the footer actually starts and stop short of it. */
+const FOOT_CLEARANCE = 1;
+function readPageGeometry(pageEl) {
+  const col = pageEl.querySelector("[data-yoru-flow]");
+  if (!col) return null;
+  const cs = getComputedStyle(col);
+  const padL = parseFloat(cs.paddingLeft) || 0,
+    padR = parseFloat(cs.paddingRight) || 0;
+  const padT = parseFloat(cs.paddingTop) || 0,
+    padB = parseFloat(cs.paddingBottom) || 0;
+  const gap = parseFloat(cs.rowGap) || 0;
+  const rect = col.getBoundingClientRect();
+  const top = rect.top + padT;
+  let bottom = rect.top + col.clientHeight - padB;
+  const foot = pageEl.querySelector("[data-yoru-footer]");
+  if (foot) bottom = Math.min(bottom, foot.getBoundingClientRect().top - gap * FOOT_CLEARANCE);
+  return {
+    width: col.clientWidth - padL - padR,
+    height: bottom - top,
+    gap
+  };
+}
+
+/* Fonts ready + every image loaded or failed. An undecoded image inside a
+   ratio="auto" Figure measures as zero height, which is how a page ends up
+   with a screenshot hanging off the bottom edge. */
+function whenSettled(root) {
+  const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+  const imgs = Array.from(root.querySelectorAll("img")).filter(i => !i.complete).map(i => new Promise(res => {
+    i.addEventListener("load", res, {
+      once: true
+    });
+    i.addEventListener("error", res, {
+      once: true
+    });
+  }));
+  return Promise.all([fonts, ...imgs]);
+}
+function usePagination(blocks, pageProps) {
   const [pages, setPages] = React.useState(null);
-  const probe = React.useRef(null);
+  const [report, setReport] = React.useState(null);
+  const pageRef = React.useRef(null);
+  const colRef = React.useRef(null);
+  const key = [pageProps.variant, pageProps.size, pageProps.spine, pageProps.kicker].join("\u0000");
   React.useLayoutEffect(() => {
-    const el = probe.current;
-    if (!el) return;
-    let raf = requestAnimationFrame(() => {
-      const hs = Array.from(el.children).map((c, i) => {
-        const t = blocks[i]?.t;
-        const pad = t === "code" || t === "prompt" ? 24 : 6;
-        return c.getBoundingClientRect().height + pad;
-      });
+    const pageEl = pageRef.current,
+      colEl = colRef.current;
+    if (!pageEl || !colEl) return;
+    let live = true;
+    setPages(null);
+    whenSettled(pageEl).then(() => new Promise(r => requestAnimationFrame(r))).then(() => {
+      if (!live) return;
+      const geom = readPageGeometry(pageEl);
+      if (!geom) return;
+      const heights = Array.from(colEl.children).map(c => Math.ceil(c.getBoundingClientRect().height));
+      const oversized = heights.map((h, i) => h > geom.height ? i : -1).filter(i => i >= 0);
+
+      /* Greedy fill. The stranded-heading rule is handled INSIDE the loop, at the
+         moment the page breaks, not as a pass afterwards. Moving a heading onto
+         the next page after the fact was silently pushing that page over budget —
+         it was the last remaining way a finished page could overflow. Doing it
+         at the break means the invariant "no page exceeds the usable height"
+         holds by construction. */
       const out = [];
       let cur = [];
       let h = 0;
       blocks.forEach((b, i) => {
-        const bh = hs[i] || 0;
-        const need = cur.length ? h + gap + bh : bh;
-        if (cur.length && need > contentHeight) {
+        const bh = heights[i] || 0;
+        const need = cur.length ? h + geom.gap + bh : bh;
+        if (cur.length && need > geom.height) {
+          let carry = [];
+          const lastIdx = cur[cur.length - 1];
+          if (cur.length > 1 && blocks[lastIdx].t === "heading") {
+            const lh = heights[lastIdx] || 0;
+            // only carry it if the heading and the block that broke the page fit together;
+            // otherwise the heading is better off stranded than the next page overfull
+            if (lh + geom.gap + bh <= geom.height) carry = [cur.pop()];
+          }
           out.push(cur);
-          cur = [i];
-          h = bh;
+          cur = [...carry, i];
+          h = carry.length ? (heights[carry[0]] || 0) + geom.gap + bh : bh;
         } else {
           cur.push(i);
           h = need;
         }
       });
       if (cur.length) out.push(cur);
-      // a heading stranded as the last block of a page moves forward
-      for (let p = 0; p < out.length - 1; p++) {
-        const last = out[p][out[p].length - 1];
-        if (out[p].length > 1 && blocks[last].t === "heading") {
-          out[p].pop();
-          out[p + 1].unshift(last);
-        }
-      }
+      // how full each page came out — the render check flags the thin ones
+      const fill = out.map(idxs => (idxs.reduce((a, i) => a + (heights[i] || 0), 0) + geom.gap * (idxs.length - 1)) / geom.height);
       setPages(out);
+      setReport({
+        geom,
+        heights,
+        oversized,
+        fill
+      });
     });
-    return () => cancelAnimationFrame(raf);
-  }, [blocks, variant, size, contentHeight, contentWidth, gap]);
+    return () => {
+      live = false;
+    };
+  }, [blocks, key]);
+
+  /* The probe. Same component, same props, same footer element as a real content
+     page — the only additions are the off-screen wrapper and the measuring column. */
   const Probe = /*#__PURE__*/React.createElement("div", {
-    className: "yoru-card",
-    "data-yoru": variant,
-    "data-size": size,
+    ref: pageRef,
     "aria-hidden": "true",
     style: {
       position: "fixed",
       left: -99999,
       top: 0,
-      height: "auto",
-      width: contentWidth,
-      overflow: "visible"
+      pointerEvents: "none"
     }
-  }, /*#__PURE__*/React.createElement("div", {
-    ref: probe,
+  }, /*#__PURE__*/React.createElement(PG.Page, pageProps, /*#__PURE__*/React.createElement("div", {
+    ref: colRef,
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 0,
-      width: contentWidth
+      flexShrink: 0,
+      width: "100%"
     }
   }, blocks.map((b, i) => /*#__PURE__*/React.createElement("div", {
-    key: i
+    key: i,
+    "data-block": i
   }, /*#__PURE__*/React.createElement(YoruBlock, {
     b: b
-  })))));
+  }))))));
   return {
     pages,
+    report,
     Probe
   };
 }
+/* readPageGeometry is exported too: export_cards.mjs measures the rendered cards
+   with the very same function that laid them out. */
 Object.assign(window, {
-  usePagination
+  usePagination,
+  readPageGeometry
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/xiaohongshu/paginate.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/xiaohongshu/workbench.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/* The Xiaohongshu workbench.
+
+   Note what is NOT in this file: page padding, block gap, footer height. Those
+   live in the CSS tokens and are read back off the real DOM by usePagination().
+   SIZES keeps only the two numbers that are genuinely the workbench's own
+   business — the canvas dimensions, used to size and scale the preview slots.
+
+   URL parameters (used by export_cards.mjs, handy by hand too):
+     ?variant=lab   ?size=1080x1350   ?fixture=long-tutorial
+     ?scale=1       full size, no transform — what the exporter screenshots
+     ?bare=1        drop the toolbar and slot captions, cards only */
 const WB = window.YORUContentDesignSystem_a0b73e;
+const Q = new URLSearchParams(location.search);
 const CN_D = "〇一二三四五六七八九";
 const cnDate = s => {
   const m = String(s).match(/(\d{4})\D?(\d{1,2})/);
@@ -4366,27 +4647,15 @@ const cnIss = n => {
 const SIZES = {
   "1242x1656": {
     w: 1242,
-    h: 1656,
-    px: 96,
-    py: 104,
-    footer: 110,
-    gap: 32
+    h: 1656
   },
   "1080x1440": {
     w: 1080,
-    h: 1440,
-    px: 84,
-    py: 90,
-    footer: 96,
-    gap: 32
+    h: 1440
   },
   "1080x1350": {
     w: 1080,
-    h: 1350,
-    px: 84,
-    py: 80,
-    footer: 88,
-    gap: 32
+    h: 1350
   }
 };
 const VARIANTS = [{
@@ -4406,6 +4675,7 @@ const VARIANTS = [{
   label: "Special",
   desc: "FPV · 摄影 · 生活"
 }];
+const EXPORT_CMD = "node ui_kits/xiaohongshu/export_cards.mjs";
 function Chip({
   active,
   onClick,
@@ -4446,7 +4716,8 @@ function Toolbar({
   setSize,
   scale,
   setScale,
-  count
+  count,
+  warn
 }) {
   return /*#__PURE__*/React.createElement("header", {
     style: {
@@ -4537,7 +4808,14 @@ function Toolbar({
       alignItems: "center",
       gap: 16
     }
-  }, /*#__PURE__*/React.createElement("span", {
+  }, warn && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 10,
+      letterSpacing: ".08em",
+      color: "var(--stop)"
+    }
+  }, warn), /*#__PURE__*/React.createElement("span", {
     style: {
       fontFamily: "var(--font-mono)",
       fontSize: 10,
@@ -4548,7 +4826,19 @@ function Toolbar({
     style: {
       color: "var(--yoru-blue)"
     }
-  }, String(count).padStart(2, "0")), " \u9875"), /*#__PURE__*/React.createElement("button", {
+  }, String(count).padStart(2, "0")), " \u9875"), /*#__PURE__*/React.createElement("code", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 10,
+      letterSpacing: ".04em",
+      color: "var(--ink-3)",
+      background: "var(--paper-3)",
+      border: "1px solid var(--line-1)",
+      borderRadius: 2,
+      padding: "5px 8px",
+      userSelect: "all"
+    }
+  }, "\u51FA\u56FE \xB7 ", EXPORT_CMD), /*#__PURE__*/React.createElement("button", {
     onClick: () => window.print(),
     style: {
       padding: "7px 14px",
@@ -4561,7 +4851,7 @@ function Toolbar({
       background: "var(--yoru-blue)",
       color: "#fff"
     }
-  }, "\u5BFC\u51FA\u56FE\u7247")));
+  }, "\u6253\u5370 / PDF")));
 }
 function Slot({
   n,
@@ -4569,6 +4859,7 @@ function Slot({
   scale,
   w,
   h,
+  bare,
   children
 }) {
   return /*#__PURE__*/React.createElement("div", {
@@ -4582,14 +4873,14 @@ function Slot({
       width: w * scale,
       height: h * scale,
       overflow: "hidden",
-      boxShadow: "0 1px 2px rgba(17,24,39,.06),0 14px 40px rgba(17,24,39,.10)"
+      boxShadow: bare ? "none" : "0 1px 2px rgba(17,24,39,.06),0 14px 40px rgba(17,24,39,.10)"
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, scale === 1 ? children : /*#__PURE__*/React.createElement("div", {
     style: {
       transform: "scale(" + scale + ")",
       transformOrigin: "top left"
     }
-  }, children)), /*#__PURE__*/React.createElement("div", {
+  }, children)), !bare && /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       justifyContent: "space-between",
@@ -4602,58 +4893,85 @@ function Slot({
 }
 function Workbench() {
   const post = window.YORU_POST;
-  const [variant, setVariant] = React.useState(post.variant);
-  const [size, setSize] = React.useState("1242x1656");
-  const [scale, setScale] = React.useState(0.3);
+  const bare = Q.get("bare") === "1";
+  const [variant, setVariant] = React.useState(Q.get("variant") || post.variant);
+  const [size, setSize] = React.useState(SIZES[Q.get("size")] ? Q.get("size") : "1242x1656");
+  const [scale, setScale] = React.useState(Q.get("scale") ? Number(Q.get("scale")) : 0.3);
   const S = SIZES[size];
-  const {
-    pages,
-    Probe
-  } = usePagination(post.blocks, {
-    variant,
-    size,
-    contentWidth: S.w - S.px * 2,
-    contentHeight: S.h - S.py * 2 - S.footer,
-    gap: S.gap
-  });
-  const list = pages || [];
-  const total = list.length + 2;
   const foot = /*#__PURE__*/React.createElement(WB.PageFooter, {
     note: post.issue
   });
+
+  /* One props object, spread onto the probe page and onto every real content page.
+     This is what keeps measurement and rendering from drifting apart. */
+  const pageProps = {
+    variant,
+    size,
+    kicker: post.kicker,
+    footer: foot,
+    spine: cnDate(post.cover.date) + " · 卷" + cnIss(post.cover.issueNumber) + " · " + post.cover.title
+  };
+  const {
+    pages,
+    report,
+    Probe
+  } = usePagination(post.blocks, {
+    ...pageProps,
+    index: 2
+  });
+  const list = pages || [];
+  const total = list.length + 2;
   const wh = {
     w: S.w,
     h: S.h
   };
+  React.useEffect(() => {
+    if (!pages) {
+      delete document.body.dataset.paginated;
+      return;
+    }
+    window.__YORU_PAGINATION__ = {
+      total,
+      variant,
+      size,
+      pages,
+      report
+    };
+    document.body.dataset.paginated = String(total);
+  }, [pages, report, total, variant, size]);
+  const warn = report && report.oversized.length ? "警告 · " + report.oversized.length + " 个块高于整页可用高度" : null;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: "100vh",
-      background: "var(--paper-3)"
+      background: bare ? "var(--paper-1)" : "var(--paper-3)"
     }
-  }, Probe, /*#__PURE__*/React.createElement(Toolbar, {
+  }, Probe, !bare && /*#__PURE__*/React.createElement(Toolbar, {
     variant,
     setVariant,
     size,
     setSize,
     scale,
     setScale,
+    warn,
     count: total
   }), /*#__PURE__*/React.createElement("main", {
     style: {
-      padding: "36px 28px 72px",
+      padding: bare ? 0 : "36px 28px 72px",
       display: "flex",
       flexWrap: "wrap",
-      gap: 32,
+      gap: bare ? 0 : 32,
       alignItems: "flex-start"
     }
   }, /*#__PURE__*/React.createElement(Slot, _extends({
     n: 1,
     total: total,
-    scale: scale
+    scale: scale,
+    bare: bare
   }, wh), /*#__PURE__*/React.createElement(WB.CoverOverprint, {
     variant: variant,
     size: size,
     column: post.cover.column,
+    "data-yoru-role": "cover",
     date: post.cover.date,
     index: 1,
     total: total,
@@ -4661,33 +4979,35 @@ function Workbench() {
     subtitle: post.cover.subtitle,
     tags: post.cover.tags,
     aside: post.cover.aside,
-    issueNumber: post.cover.issueNumber
+    issueNumber: post.cover.issueNumber,
+    image: post.cover.image,
+    imageCaption: post.cover.imageCaption,
+    imageRatio: post.cover.imageRatio
   })), list.map((idxs, i) => /*#__PURE__*/React.createElement(Slot, _extends({
     key: i,
     n: i + 2,
     total: total,
-    scale: scale
-  }, wh), /*#__PURE__*/React.createElement(WB.Page, {
-    variant: variant,
-    size: size,
-    kicker: post.kicker,
+    scale: scale,
+    bare: bare
+  }, wh), /*#__PURE__*/React.createElement(WB.Page, _extends({}, pageProps, {
     index: i + 2,
     total: total,
-    footer: foot,
-    spine: cnDate(post.cover.date) + " · 卷" + cnIss(post.cover.issueNumber) + " · " + post.cover.title
-  }, idxs.map(j => /*#__PURE__*/React.createElement(YoruBlock, {
+    "data-yoru-role": "content"
+  }), idxs.map(j => /*#__PURE__*/React.createElement(YoruBlock, {
     key: j,
     b: post.blocks[j]
   }))))), pages && /*#__PURE__*/React.createElement(Slot, _extends({
     n: total,
     total: total,
-    scale: scale
+    scale: scale,
+    bare: bare
   }, wh), /*#__PURE__*/React.createElement(WB.EndCard, {
     variant: variant,
     size: size,
     headline: post.end.headline,
     lines: post.end.lines,
-    note: post.issue
+    note: post.issue,
+    "data-yoru-role": "end"
   }))));
 }
 Object.assign(window, {
