@@ -12,14 +12,18 @@
 /* ---------- Font faces -------------------------------------- */
 /* Geist + Geist Mono + Zen Kaku Gothic New: self-hosted (was
    Google Fonts CDN — files under fonts/). Zen Kaku Gothic New is
-   used for occasional Japanese moments and accent labels. All
-   are licensed for embedding. */
+   used for occasional Japanese moments and accent labels.
+   Noto Sans SC carries every Chinese character (400 / 500 / 700, sliced
+   by unicode-range, same files as the Reed app); without it Chinese
+   falls back to the OS font (Microsoft YaHei / NSimSun on Windows).
+   All are licensed for embedding. */
 @import url("fonts/fonts-local.css");
+@import url("fonts/noto-sans-sc-local.css");
 
 /* ---------- Family stacks ----------------------------------- */
 :root {
-  --font-ui:      "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-mono:    "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-ui:      "Geist", "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono:    "Geist Mono", "JetBrains Mono", "Noto Sans SC", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-jp:      "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", system-ui, sans-serif;
 
   /* Type scale — compact, console-grade.
